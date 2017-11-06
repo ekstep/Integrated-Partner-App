@@ -1,0 +1,66 @@
+ext {
+    genieSdkVersion = '1.0.483'
+    genieCanvasVersion = '2.6.259'
+    supportLibraryVersion = '23.4.0'
+    playServicesVersion = '9.4.0'
+    multidexVersion = '1.0.1'
+    xWalkVersion = '22+'
+    okhttpVersion = '3.8.1'
+    espressoVersion = '3.0.0'
+    carshlyticsVersion = '2.6.8'
+    stethoVersion = '1.5.0'
+    glideVersion = '3.7.0'
+
+    googleApiVersion = '1.22.0'
+    sheetApiVersion = 'v4-rev483-1.22.0'
+
+    dependencies = [
+
+            supportLibrary       : "com.android.support:design:$supportLibraryVersion",
+            cardView             : "com.android.support:cardview-v7:$supportLibraryVersion",
+            multidex             : "com.android.support:multidex:$multidexVersion",
+
+            playServicesFcm      : "com.google.firebase:firebase-messaging:$playServicesVersion",
+            playServicesLocation : "com.google.android.gms:play-services-location:$playServicesVersion",
+            playServicesAnalytics: "com.google.android.gms:play-services-analytics:$playServicesVersion",
+
+
+            // Partner Apps Dependencies
+            playServiceAuth      : "com.google.android.gms:play-services-auth:$playServicesVersion",
+            playServiceDrive     : "com.google.android.gms:play-services-drive:$playServicesVersion",
+
+            googleAPIClient      : "com.google.api-client:google-api-client-android:$googleApiVersion",
+            sheetsAPIClient      : "com.google.apis:google-api-services-sheets:$sheetApiVersion",
+
+
+            glide                : "com.github.bumptech.glide:glide:$glideVersion",
+            crashlytics          : "com.crashlytics.sdk.android:crashlytics:$carshlyticsVersion@aar",
+            roundImageview       : "com.makeramen:roundedimageview:2.2.1",
+            schemaValidator      : "com.github.fge:json-schema-validator:2.2.6",
+
+            //Genie-Sdk dependencies
+            genieproviders       : "org.ekstep.genieservices:genie-providers:$genieSdkVersion",
+            genieIntegration     : "org.ekstep.genieservices:genie-integration:$genieSdkVersion",
+
+            //Content-Player dependencies
+            cordova              : "org.apache.cordova:CordovaLib:1.0@aar",
+            gcSharedXwalk        : "org.ekstep.geniecanvas:geniecanvas_sharedxwalk:$genieCanvasVersion@aar",
+            xWalkSharedLib       : "org.xwalk:xwalk_shared_library:$xWalkVersion",
+            xWalkCore            : "org.xwalk:xwalk_core_library:$xWalkVersion",
+
+            //Debugging dependencies
+            stetho               : "com.facebook.stetho:stetho:$stethoVersion",
+            stethoOkhttp         : "com.facebook.stetho:stetho-okhttp3:$stethoVersion",
+
+            //Test dependencies
+            testRunner           : "com.android.support.test:runner:1.0.0",
+            espressoCore         : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+            espressoContrib      : "com.android.support.test.espresso:espresso-contrib:$espressoVersion",
+            espressoIntents      : "com.android.support.test.espresso:espresso-intents:$espressoVersion",
+            findBugs             : "com.google.code.findbugs:jsr305:3.0.0",
+            mockWebServer        : "com.squareup.okhttp3:mockwebserver:$okhttpVersion",
+            supportAnnotation    : "com.android.support:support-annotations:$supportLibraryVersion",
+            uiAutomator          : "com.android.support.test.uiautomator:uiautomator-v18:2.1.2"
+
+    ]
+}

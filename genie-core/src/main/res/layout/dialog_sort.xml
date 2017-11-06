@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/alert_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_10"
+        android:ellipsize="end"
+        android:paddingBottom="@dimen/size_10"
+        android:paddingRight="@dimen/size_10"
+        android:paddingTop="@dimen/size_10"
+        android:text="@string/title_sort_by"
+        android:textAllCaps="true"
+        android:textColor="@color/colorblue"
+        android:textSize="@dimen/sp_15" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_primary_light" />
+
+    <RadioGroup
+        android:id="@+id/rg_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_10_margin">
+
+        <org.ekstep.genie.customview.EkStepRadioGroup
+            android:id="@+id/rg_relevant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:buttonTint="@color/filter_color"
+            android:checked="true"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingLeft="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
+            android:text="@string/label_sort_relevant"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/sp_15"
+            android:theme="@style/EkstepCheckBox" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/size_30"
+            android:background="@color/color_primary_light" />
+
+        <org.ekstep.genie.customview.EkStepRadioGroup
+            android:id="@+id/rg_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:buttonTint="@color/filter_color"
+            android:checked="false"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingLeft="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
+            android:text="@string/label_sort_name"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/sp_15"
+            android:theme="@style/EkstepCheckBox" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/size_30"
+            android:background="@color/color_primary_light" />
+
+        <org.ekstep.genie.customview.EkStepRadioGroup
+            android:id="@+id/rg_most_popular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:buttonTint="@color/filter_color"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingLeft="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
+            android:text="@string/label_sort_most_popular"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/sp_15"
+            android:theme="@style/EkstepCheckBox" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/size_30"
+            android:background="@color/color_primary_light" />
+
+        <org.ekstep.genie.customview.EkStepRadioGroup
+            android:id="@+id/rg_newest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:buttonTint="@color/filter_color"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingLeft="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
+            android:text="@string/label_sort_newest"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/sp_15"
+            android:theme="@style/EkstepCheckBox" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/size_30"
+            android:background="@color/color_primary_light"
+            android:visibility="gone" />
+
+        <org.ekstep.genie.customview.EkStepRadioGroup
+            android:id="@+id/rg_highly_rated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/size_10"
+            android:buttonTint="@color/filter_color"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/size_8"
+            android:paddingLeft="@dimen/size_8"
+            android:paddingRight="@dimen/size_8"
+            android:paddingTop="@dimen/size_8"
+            android:text="@string/label_sort_highly_rated"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/sp_15"
+            android:theme="@style/EkstepCheckBox"
+            android:visibility="gone" />
+
+    </RadioGroup>
+
+
+</LinearLayout>

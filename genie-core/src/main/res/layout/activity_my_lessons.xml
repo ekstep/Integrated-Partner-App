@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            style="@style/MenuBackButtonStyle" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            style="@style/HeaderTextStyle"
+            android:text="@string/title_home_my_lessons" />
+    </android.support.v7.widget.Toolbar>
+
+    <!--My Lessons-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_my_lessons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_tiny"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_small"
+        android:paddingTop="@dimen/spacing_tiny"
+        android:scrollbars="none" />
+
+</LinearLayout>

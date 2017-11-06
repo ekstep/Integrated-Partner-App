@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/home_item_drawer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/spacing_tiny"
+        android:background="@drawable/bg_round_edge_rectangle"
+        android:drawablePadding="@dimen/size_6"
+        android:gravity="center"
+        android:padding="@dimen/size_8"
+        android:singleLine="true"
+        android:text="@string/label_nav_home"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_size_15"
+        android:textStyle="bold"
+        tools:drawableLeft="@drawable/ic_nav_slider_menu_home" />
+
+</RelativeLayout>

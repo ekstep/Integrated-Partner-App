@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/download_rl_normal_options"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:animateLayoutChanges="true">
+
+    <!-- Menu Settings-->
+    <ImageView
+        android:id="@+id/btn_menu_settings"
+        style="@style/MenuSettingsStyle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_10" />
+
+    <!-- Menu Import-->
+    <ImageView
+        android:id="@+id/btn_import"
+        style="@style/MenuImportStyle"
+        android:layout_toLeftOf="@id/btn_menu_settings" />
+
+    <!-- Menu Sort-->
+    <ImageView
+        android:id="@+id/btn_menu_sort"
+        style="@style/MenuSortStyle"
+        android:layout_toLeftOf="@id/btn_import" />
+</RelativeLayout>

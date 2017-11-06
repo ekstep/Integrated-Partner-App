@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/size_10"
+        android:textColor="@color/grey2"
+        android:textSize="@dimen/txt_size_15"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/toolbar_layout"
+        style="?screenBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_5">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            style="@style/MenuBackButtonStyle"
+            android:layout_alignParentLeft="true" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            style="@style/HeaderTextStyle"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/btn_back"></org.ekstep.genie.customview.EkStepCustomTextView>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

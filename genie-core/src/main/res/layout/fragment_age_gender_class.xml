@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="?attr/addChildRoundedRectangleBackground"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <!--Linear layout for age and class-->
+        <LinearLayout
+            android:id="@+id/layout_age_class"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!--Relative Layout for Age-->
+            <RelativeLayout
+                android:id="@+id/layout_age"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_age_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/label_all_age"
+                    android:textColor="?attr/addChildAllLabelsColor"
+                    android:textSize="@dimen/font_medium_medium"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_age_label"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:background="?attr/addChildNickNameRectangleBorder">
+
+                    <RelativeLayout
+                        android:id="@+id/age_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/dummy_txt_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="@dimen/spacing_tiny"
+                            android:paddingLeft="@dimen/spacing_small"
+                            android:paddingTop="@dimen/spacing_tiny"
+                            android:text="17 years"
+                            android:textSize="@dimen/font_medium_small"
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/txt_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="@dimen/spacing_tiny"
+                            android:paddingLeft="@dimen/spacing_small"
+                            android:paddingTop="@dimen/spacing_tiny"
+                            android:text="@string/label_addchild_select"
+                            android:textSize="@dimen/font_medium_small"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/img_age_drop_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/age_layout"
+                        android:src="?attr/dropDownIcon" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_grey" />
+
+            <!--Relative Layout for Class-->
+            <RelativeLayout
+                android:id="@+id/layout_class"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_class_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/label_addchild_class"
+                    android:textColor="?attr/addChildAllLabelsColor"
+                    android:textSize="@dimen/font_medium_medium"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_class_label"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:background="?attr/addChildNickNameRectangleBorder">
+
+                    <RelativeLayout
+                        android:id="@+id/layout_standard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/dummy_txt_standard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingBottom="@dimen/spacing_tiny"
+                            android:paddingLeft="@dimen/spacing_small"
+                            android:paddingTop="@dimen/spacing_tiny"
+                            android:text="17 years"
+                            android:textSize="@dimen/font_medium_small"
+                            android:textStyle="bold"
+                            android:visibility="invisible" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/txt_class"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="@dimen/spacing_tiny"
+                            android:paddingLeft="@dimen/spacing_small"
+                            android:paddingTop="@dimen/spacing_tiny"
+                            android:text="@string/label_addchild_select"
+                            android:textSize="@dimen/font_medium_small"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/img_class_drop_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/layout_standard"
+                        android:src="?attr/dropDownIcon" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/color_grey" />
+
+        <!--Relative layout for gender-->
+        <RelativeLayout
+            android:id="@+id/gender_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_label_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/label_addchild_gender"
+                android:textColor="?attr/addChildAllLabelsColor"
+                android:textSize="@dimen/font_medium_medium"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/layout_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_label_gender"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/gender_boy_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:padding="@dimen/size_7">
+
+                    <ImageView
+                        android:id="@+id/gender_boy_btn"
+                        android:layout_width="@dimen/addchild_boy_icon_dimension"
+                        android:layout_height="@dimen/addchild_boy_icon_dimension"
+                        android:src="?attr/addChildIconMaleUnselected"
+                        android:textSize="@dimen/font_medium_small" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/gender_girl_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_30"
+                    android:background="@drawable/bg_nickname"
+                    android:padding="@dimen/size_7">
+
+                    <ImageView
+                        android:id="@+id/gender_girl_btn"
+                        android:layout_width="@dimen/addchild_girl_icon_dimension"
+                        android:layout_height="@dimen/addchild_girl_icon_dimension"
+                        android:src="?addChildIconFemaleUnselected"
+                        android:textSize="@dimen/font_medium_small" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>

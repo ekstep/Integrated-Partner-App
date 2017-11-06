@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/download_rl_selected_options"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:animateLayoutChanges="true">
+
+    <!--Menu Share-->
+    <LinearLayout
+        android:id="@+id/btn_share_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/btn_share"
+            style="@style/MenuShareStyle" />
+
+        <ImageView
+            android:id="@+id/btn_done"
+            style="@style/MenuDoneStyle"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+    <!-- Menu Delete-->
+    <ImageView
+        android:id="@+id/btn_delete"
+        style="@style/MenuDeleteStyle"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/btn_share_layout" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_blue_rounded_selector">
+        <!--Selected contents details-->
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_download_selected_content_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:textAllCaps="true"
+            android:textColor="@color/app_white_theme_color"
+            android:textSize="@dimen/txt_size_16" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_download_selected_content_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_5"
+            android:textColor="@color/app_white_theme_color"
+            android:textSize="@dimen/txt_size_16" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_download_clear_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:text="@string/label_downloads_clear_all"
+            android:textColor="@color/app_white_theme_color"
+            android:textSize="@dimen/txt_size_16" />
+    </LinearLayout>
+
+
+</RelativeLayout>

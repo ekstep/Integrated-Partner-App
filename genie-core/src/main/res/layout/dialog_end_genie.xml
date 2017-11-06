@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="200dp"
+    android:background="@drawable/shape_round_rect_white">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/txt_name_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/size_20"
+        android:layout_marginRight="@dimen/size_20"
+        android:layout_marginTop="@dimen/size_50"
+        android:text="@string/title_dialog_end"
+        android:textColor="@color/app_black_theme_color"
+        android:textSize="@dimen/font_medium_small"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:orientation="horizontal">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_black_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/spacing_small"
+            android:paddingLeft="@dimen/size_35"
+            android:paddingRight="@dimen/size_35"
+            android:paddingTop="@dimen/spacing_small"
+            android:text="@string/label_dialog_ok"
+            android:textAllCaps="true"
+            android:textColor="@color/selector_color_black_white"
+            android:textSize="@dimen/sp_15"
+            android:textStyle="bold" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_35"
+            android:background="@drawable/selector_black_white"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="@dimen/spacing_small"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large"
+            android:paddingTop="@dimen/spacing_small"
+            android:text="@string/label_dialog_cancel"
+            android:textColor="@color/selector_color_black_white"
+            android:textSize="@dimen/sp_15"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

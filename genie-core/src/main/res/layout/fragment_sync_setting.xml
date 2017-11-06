@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.ekstep.genie.fragment.SyncSettingFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_as"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            style="@style/HeaderTextStyle"
+            android:text="@string/title_sync_settings" />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_as"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="@drawable/dialog_background"
+            android:orientation="vertical">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_16"
+                android:layout_marginLeft="@dimen/size_16"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_16"
+                android:text="@string/title_data_synchronization_setting"
+                android:textColor="@color/app_blue_theme_color"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size_16">
+
+                    <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                        android:id="@+id/sync_manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                        android:text="@string/label_sync_manual"
+                        android:textColor="@color/app_black_theme_color"
+                        android:textSize="@dimen/txt_size_16"
+                        android:theme="@style/EkstepCheckBox" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_20"
+                        android:layout_marginRight="@dimen/size_20"
+                        android:text="@string/label_sync_manual_desc"
+                        android:textColor="@color/light_grayish_orange"
+                        android:textSize="@dimen/txt_size_15" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="@dimen/size_16"
+                    android:layout_marginLeft="@dimen/size_16"
+                    android:layout_marginRight="@dimen/size_16"
+                    android:layout_marginStart="@dimen/size_16"
+                    android:background="@drawable/line_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size_16">
+
+                    <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                        android:id="@+id/auto_sync_using_wifi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center_vertical"
+                        android:text="@string/label_auto_sync_using_wifi"
+                        android:textColor="@color/app_black_theme_color"
+                        android:textSize="@dimen/txt_size_16"
+                        android:theme="@style/EkstepCheckBox" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_20"
+                        android:layout_marginRight="@dimen/size_20"
+                        android:text="@string/label_auto_sync_using_wifi_desc"
+                        android:textColor="@color/light_grayish_orange"
+                        android:textSize="@dimen/txt_size_15" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginEnd="@dimen/size_16"
+                    android:layout_marginLeft="@dimen/size_16"
+                    android:layout_marginRight="@dimen/size_16"
+                    android:layout_marginStart="@dimen/size_16"
+                    android:background="@drawable/line_divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:padding="@dimen/size_16">
+
+                    <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                        android:id="@+id/auto_sync_using_wifi_and_cellular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                        android:gravity="center_vertical"
+                        android:text="@string/label_auto_sync_using_wifi_and_cellular"
+                        android:textColor="@color/app_black_theme_color"
+                        android:textSize="@dimen/txt_size_16"
+                        android:theme="@style/EkstepCheckBox" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_20"
+                        android:layout_marginRight="@dimen/size_20"
+                        android:text="@string/label_auto_sync_using_wifi_and_cellular_desc"
+                        android:textColor="@color/light_grayish_orange"
+                        android:textSize="@dimen/txt_size_15" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

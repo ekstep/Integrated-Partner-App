@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--Tablayout to display tabs  -->
+    <org.ekstep.genie.customview.EkStepCustomTabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_toRightOf="@+id/back_btn"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/app_blue_theme_color"
+        app:tabIndicatorHeight="@dimen/spacing_tiny"
+        app:tabMaxWidth="0dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/app_blue_theme_color"
+        app:tabTextAppearance="@style/TabLayoutTextAppearance"
+        app:tabTextColor="@color/almost_black" />
+
+    <View
+        android:id="@+id/view"
+        style="?screenBackground"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:layout_below="@+id/tabLayout" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabLayout"
+        android:background="@color/grey5" />
+
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view"
+        android:layout_toRightOf="@id/view_line"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</RelativeLayout>

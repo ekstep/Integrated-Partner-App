@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_tiny"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            style="@style/HeaderTextStyle"
+            android:text="@string/label_nav_transfer" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/layout_export"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/size_35"
+                android:layout_marginRight="@dimen/size_35"
+                android:background="@drawable/selector_dark_grey"
+                android:drawableLeft="@drawable/ic_transfer_white"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableStart="@drawable/ic_transfer_white"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/label_nav_transfer"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_15" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@drawable/dialog_background"
+        android:paddingLeft="@dimen/spacing_normal_vertical"
+        android:paddingRight="@dimen/spacing_normal_vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/size_16">
+
+            <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                android:id="@+id/chk_txt_telemetry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorSingle"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/size_16"
+                android:paddingTop="@dimen/size_16"
+                android:text="@string/title_trasfer_telemtry"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/sp_15"
+                android:theme="@style/EkstepCheckBox" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_primary_light" />
+
+            <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                android:id="@+id/chk_txt_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorSingle"
+                android:checked="false"
+                android:enabled="true"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/size_16"
+                android:paddingTop="@dimen/size_16"
+                android:text="@string/title_trasfer_profile"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/sp_15"
+                android:theme="@style/EkstepCheckBox" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/size_16"
+                android:paddingTop="@dimen/size_16"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_primary_light" />
+
+            <org.ekstep.genie.customview.EkStepBalooCheckedTextView
+                android:id="@+id/chk_txt_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorSingle"
+                android:checked="false"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/size_16"
+                android:paddingTop="@dimen/size_16"
+                android:text="@string/title_trasfer_content"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/sp_15"
+                android:theme="@style/EkstepCheckBox" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/size_16"
+                android:paddingTop="@dimen/size_16"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_primary_light" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/download_rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_white_theme_color"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:weightSum="10">
+
+        <!--Dummy Check box -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/download_iv_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:buttonTint="@color/profile_background"
+                android:visibility="invisible" />
+        </LinearLayout>
+        <!--Title-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5.2">
+
+            <RelativeLayout
+                android:id="@+id/download_rl_content_icon_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dummy_download_iv_content_icon"
+                    android:layout_width="@dimen/bigger_content_poster_size"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/download_iv_content_icon"
+                    android:layout_width="@dimen/content_poster_size"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <!--Content name-->
+            <LinearLayout
+                android:id="@+id/download_ll_content_name_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/download_ectv_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/download_header_title"
+                    android:textColor="?attr/downloadTitleColor"
+                    android:textSize="@dimen/font_medium_small" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!--Size-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_header_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/download_header_size"
+                android:textColor="?attr/downloadTitleColor"
+                android:textSize="@dimen/font_medium_small" />
+        </LinearLayout>
+
+        <!-- Last Used-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_header_last_used"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/download_dummy_iv_more"
+                android:text="@string/download_header_last_used"
+                android:textColor="?attr/downloadTitleColor"
+                android:textSize="@dimen/font_medium_small" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_nested_content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/layout_back_header"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/app_blue_theme_color"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_nav" />
+
+        </LinearLayout>
+
+        <org.ekstep.genie.customview.BreadCrumbHorizontalScrollView
+            android:id="@+id/hs_breadcrumb"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginLeft="@dimen/spacing_tiny">
+
+            <LinearLayout
+                android:id="@+id/layout_breadcrumb_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
+        </org.ekstep.genie.customview.BreadCrumbHorizontalScrollView>
+
+    </LinearLayout>
+</RelativeLayout>
+

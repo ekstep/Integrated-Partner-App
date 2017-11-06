@@ -1,0 +1,197 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.ekstep.genie.ui.managechild.ManageChildFragment">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_manage_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/spacing_tiny"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/rl_children"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_children"
+                    style="@style/HeaderTextStyle"
+                    android:text="@string/title_children" />
+
+                <View
+                    android:id="@+id/view_children"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/black7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_group"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_groups"
+                    style="@style/HeaderTextStyle"
+                    android:text="@string/title_children_groups" />
+
+                <View
+                    android:id="@+id/view_groups"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/black7" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_more_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+
+            <LinearLayout
+                android:id="@+id/layout_more"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_40"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:background="@drawable/shape_rounded_rectangle_filled_black"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_small">
+
+                <ImageView
+                    android:id="@+id/iv_collection_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_download" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_my_content_import"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp_8"
+                    android:layout_marginTop="-2dp"
+                    android:layout_toRightOf="@+id/iv_collection_download"
+                    android:text="@string/label_all_import"
+                    android:textColor="@color/app_white_theme_color"
+                    android:textSize="@dimen/sp_15"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:layout_toLeftOf="@+id/layout_more"
+                android:layout_toStartOf="@+id/layout_more">
+
+                <ImageView
+                    android:id="@+id/btn_share"
+                    style="@style/MenuShareStyle"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/btn_done"
+                    style="@style/MenuDoneStyle"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_user_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fab_add_user"
+        android:layout_below="@+id/toolbar_manage_user"
+        android:layout_marginTop="@dimen/size_10_margin"
+        android:paddingLeft="@dimen/spacing_large"
+        android:paddingRight="@dimen/spacing_large"
+        android:scrollbars="none"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/layout_no_User"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_manage_user"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:layout_marginLeft="@dimen/size_30"
+        android:layout_marginRight="@dimen/size_30"
+        android:layout_marginTop="@dimen/size_10_margin"
+        android:background="@drawable/dialog_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/fab_add_userCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="?menuAddIcon" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/no_tag_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:text="@string/msg_children_no_profile"
+            android:textAllCaps="false"
+            android:textColor="?noStatementsTextColor"
+            android:textSize="@dimen/sp_15" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/add_tag_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_10"
+            android:text="@string/msg_children_start_adding_profile"
+            android:textAllCaps="false"
+            android:textColor="?clickOnStatementsTextColor"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/fab_add_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/size_10"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/size_10"
+        android:src="?menuAddIcon"
+        android:visibility="gone" />
+
+</RelativeLayout>

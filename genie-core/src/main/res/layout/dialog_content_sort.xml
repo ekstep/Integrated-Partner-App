@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_content_sort"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="-5dp"
+    android:paddingTop="@dimen/dp_20">
+
+    <org.ekstep.genie.customview.EkStepRadioGroup
+        android:id="@+id/rb_file_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:text="@string/label_downloads_file_size"
+        android:textColor="@color/profile_background"
+        android:textSize="@dimen/txt_size_16"
+        android:theme="@style/EkstepCheckBox" />
+
+    <org.ekstep.genie.customview.EkStepRadioGroup
+        android:id="@+id/rb_last_used"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_downloads_last_used"
+        android:textColor="@color/profile_background"
+        android:textSize="@dimen/txt_size_16"
+        android:theme="@style/EkstepCheckBox" />
+
+</RadioGroup>

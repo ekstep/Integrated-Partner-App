@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="authority_profiles">org.ekstep.genieservices.qa.profiles</string>
+    <string name="authority_telemetry">org.ekstep.genieservices.qa.telemetry</string>
+    <string name="authority_partner">org.ekstep.genieservices.qa.partner</string>
+    <string name="authority_content">org.ekstep.genieservices.qa.content</string>
+    <string name="authority_summarizer">org.ekstep.genieservices.qa.summarizer</string>
+
+</resources>

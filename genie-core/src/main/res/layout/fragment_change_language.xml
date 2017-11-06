@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_normal">
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radio_group_language"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_header"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_english"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:paddingRight="@dimen/spacing_normal"
+                    android:text="@string/label_dummy_english"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_hindi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_hindi"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_kannada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_kannada"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_telugu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_telugu"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_marathi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_marathi"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_tamil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_tamil"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_punjabi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:text="@string/label_punjabi"
+                    android:textColor="@color/selector_rb"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+            </RadioGroup>
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_apply_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/radio_group_language"
+                android:background="@drawable/bg_blue_rounded_selector"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:paddingLeft="@dimen/size_25"
+                android:paddingRight="@dimen/size_25"
+                android:text="@string/action_filter_apply"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

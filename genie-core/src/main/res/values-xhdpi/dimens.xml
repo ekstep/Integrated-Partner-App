@@ -1,0 +1,137 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="avatar_height">350dp</dimen>
+    <dimen name="content_icon_dimen">70dp</dimen>
+    <dimen name="content_icon_height">110dp</dimen>
+    <dimen name="game_card_height">450dp</dimen>
+    <dimen name="viewpager_height">600dp</dimen>
+    <dimen name="viewpager_width">450dp</dimen>
+    <dimen name="viewpager_height_anonymous">640dp</dimen>
+    <dimen name="viewpager_width_anonymous">450dp</dimen>
+    <dimen name="content_icon_radius">10dp</dimen>
+    <dimen name="menu_bg_dimen">130dp</dimen>
+    <dimen name="sp_70">55sp</dimen>
+    <dimen name="add_child_margin_top">30dp</dimen>
+    <dimen name="language_card_dimen">300dp</dimen>
+    <dimen name="language_card_dimen_menu">300dp</dimen>
+    <dimen name="txt_size_25">22sp</dimen>
+    <integer name="popup_size">310</integer>
+    <integer name="popup_size_main">330</integer>
+    <dimen name="group_dimen">75dp</dimen>
+
+    <dimen name="addchild_boy_icon_dimension">38dp</dimen>
+    <dimen name="addchild_girl_icon_dimension">38dp</dimen>
+
+    <dimen name="search_result_icon">80dp</dimen>
+    <dimen name="margin_add_child">20dp</dimen>
+    <dimen name="margin_place_holder">50dp</dimen>
+    <dimen name="language_card_height">350dp</dimen>
+    <dimen name="switch_avatar_dimen">210dp</dimen>
+    <dimen name="switch_profile_dimen">100dp</dimen>
+    <dimen name="avatar_header_height">40dp</dimen>
+    <dimen name="txt_size_small">14sp</dimen>
+    <dimen name="txt_size_medium_small">16sp</dimen>
+    <dimen name="txt_size_medium">18sp</dimen>
+    <dimen name="sp_20">22sp</dimen>
+    <dimen name="margin_filter_sort">10dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- font sizes -->
+    <dimen name="font_largest">68sp</dimen>
+    <dimen name="font_larger">52sp</dimen>
+    <dimen name="font_x_large">36sp</dimen>
+    <dimen name="font_large">30sp</dimen>
+    <dimen name="font_medium_large">24sp</dimen>
+    <dimen name="font_medium_medium">22sp</dimen>
+    <dimen name="font_medium_small">18sp</dimen>
+    <dimen name="sp_15">16sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_normal_horizontal">16dp</dimen>
+    <dimen name="spacing_normal_vertical">16dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_very_tiny">2dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="copyright_margin">125dp</dimen>
+
+    <integer name="xdelta_shake">10</integer>
+
+    <!--Height and width of each content(Normal/Collection/TextBook) item-->
+    <dimen name="section_each_item_height">136dp</dimen>
+    <dimen name="section_each_item_width">102dp</dimen>
+    <dimen name="section_divider">9dp</dimen>
+
+    <!--New label in each of the content-->
+    <dimen name="label_new_height">19dp</dimen>
+    <dimen name="label_new_text_size">5sp</dimen>
+    <dimen name="label_new_margin_top">-8dp</dimen>
+    <dimen name="label_new_margin_right">-8dp</dimen>
+
+    <!--Height and width of the content poster size-->
+    <dimen name="content_poster_size">75dp</dimen>
+    <dimen name="bigger_content_poster_size">80dp</dimen>
+    <dimen name="content_poster_margin_top">12dp</dimen>
+
+    <!--Content name text size-->
+    <dimen name="content_name_text_size">11sp</dimen>
+    <dimen name="content_name_margin_right_collection">12dp</dimen>
+    <dimen name="content_name_margin_right_normal">5dp</dimen>
+    <dimen name="content_name_margin_top">8dp</dimen>
+    <dimen name="content_type_padding_top">3dp</dimen>
+
+    <!--Content New Label Dimensions-->
+    <dimen name="new_label_margin_top">-7dp</dimen>
+    <dimen name="new_label_margin_right">-7dp</dimen>
+
+    <!--Content type (Activity/Collection/Textbook) text size-->
+    <dimen name="content_type_text_size">8sp</dimen>
+
+    <!--Height of label tick-->
+    <dimen name="label_tick_height">18dp</dimen>
+    <dimen name="label_tick_margin_bottom">7dp</dimen>
+    <dimen name="label_tick_margin_right">7dp</dimen>
+    <dimen name="label_tick_margin_right_collection">13dp</dimen>
+
+    <!--Home Fragment-->
+    <dimen name="standard_spacing">16dp</dimen>
+    <dimen name="change_subject_height">36dp</dimen>
+    <dimen name="change_subject_width">160dp</dimen>
+    <dimen name="home_header_icon_size">46dp</dimen>
+
+    <!--More Button-->
+    <dimen name="more_button_padding_bottom">8dp</dimen>
+    <dimen name="more_button_padding_left">5dp</dimen>
+    <dimen name="more_button_padding_right">5dp</dimen>
+
+    <!--TOC height of Parent node-->
+    <dimen name="parent_node_height">50dp</dimen>
+
+    <!-- progress reports average details margin right -->
+    <dimen name="kid_average_details_layout_margin_right">65dp</dimen>
+
+    <!--Content detail page screenshot size-->
+    <dimen name="content_screenshot_width">152dp</dimen>
+    <dimen name="content_screenshot_height">87dp</dimen>
+    <dimen name="margin_iv_share">15dp</dimen>
+
+    <dimen name="download_queue_pb_size">25dp</dimen>
+    <dimen name="download_queue_pb_thickness">2dp</dimen>
+    <dimen name="spacing_extra_normal">20dp</dimen>
+    <dimen name="spacing_extra_huge">60dp</dimen>
+
+    <dimen name="txt_size_14">14sp</dimen>
+    <dimen name="txt_size_15">15sp</dimen>
+    <dimen name="txt_size_16">16sp</dimen>
+    <dimen name="txt_size_17">17sp</dimen>
+
+</resources>

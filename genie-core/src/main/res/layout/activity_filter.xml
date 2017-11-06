@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal"
+        android:animateLayoutChanges="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_searched_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                style="@style/MenuBackButtonStyle" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_header"
+                style="@style/HeaderTextStyle"
+                android:text="@string/label_search_filter" />
+        </android.support.v7.widget.Toolbar>
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/clear_btn"
+            style="@style/MenuTextButtonStyle"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:layout_toLeftOf="@+id/apply_btn"
+            android:layout_toStartOf="@+id/apply_btn"
+            android:drawableLeft="@drawable/ic_reset"
+            android:drawableStart="@drawable/ic_reset"
+            android:text="@string/action_filter_clear" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/apply_btn"
+            style="@style/MenuTextButtonStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:drawableLeft="@drawable/ic_apply"
+            android:drawableStart="@drawable/ic_apply"
+            android:text="@string/action_filter_apply" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:layout_marginLeft="@dimen/size_25"
+        android:layout_marginRight="@dimen/size_25"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <include layout="@layout/layout_filter_type" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layout_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_10"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <include layout="@layout/layout_filter_details" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

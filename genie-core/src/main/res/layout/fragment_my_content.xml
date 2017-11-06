@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_manage_content_main"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_tiny"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <!--Download Toolbar-->
+        <include layout="@layout/layout_download_toolbar" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <!--No my content available-->
+        <include
+            layout="@layout/layout_goto_library"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <!-- Header for listing -->
+        <include
+            android:id="@+id/download_header"
+            layout="@layout/layout_download_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+
+        <!-- Downloaded contents recycler view-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/download_rv_my_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/download_header"
+            android:layout_marginTop="@dimen/dp_5"
+            android:background="@color/white"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

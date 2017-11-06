@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/img_arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:src="@drawable/img_arrow00" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_arrow_right"
+        android:background="@drawable/dialog_background"
+        android:padding="@dimen/spacing_normal">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_content_title"
+            style="@style/OnBoardDialogHeaderStyle"
+            android:maxLines="1"
+            android:text="@string/label_home_onboarding_add_child" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/layout_description"
+            style="@style/OnBoardDialogDescriptionStyle"
+            android:layout_below="@id/txt_content_title"
+            android:text="@string/label_home_onboarding_addchild_desc" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/layout_description"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/dialog_button"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/label_dialog_ok"
+            android:textAllCaps="true"
+            android:textColor="@color/colorblue"
+            android:textSize="@dimen/sp_15"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

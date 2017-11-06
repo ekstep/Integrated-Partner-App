@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">जीनी</string>
+
+    <!--Splash String Begin-->
+    <string name="title_splash_genie">Genie</string>
+    <!--Splash String End-->
+
+    <!-- Menu Items String Begin-->
+    <string name="label_nav_home">होम</string>
+    <string name="label_nav_transfer">भेजें</string>
+    <string name="label_nav_library">पुस्तकालय</string>
+    <string name="label_nav_children">@string/title_children</string>
+    <string name="label_nav_settings">सेटिंग</string>
+    <string name="label_nav_downloads">पाठ</string>
+    <string name="label_nav_share_genie">जीनी बांटें </string>
+    <string name="label_nav_notifications">सूचना</string>
+    <!--Menu Items String End-->
+
+    <!-- Home  String Begin-->
+    <string name="title_home_sync_genie_data">सिंक जीनी डेटा</string>
+    <string name="title_home_my_lessons">मेरे पाठ</string>
+    <string name="title_home_my_text_books">मेरी किताबें</string>
+    <string name="label_home_onboarding_add_child">बच्चे /समूह  का  नाम जोड़े</string>
+    <string name="label_home_view_all">सब देखें</string>
+    <string name="label_home_new_label">नया</string>
+    <string name="label_home_change_subject">विषय चुनें</string>
+    <string name="label_home_all_subjects">सभी विषयों</string>
+    <string name="label_home_choose_subject">विषय चुनें</string>
+    <string name="label_home_default_subject">विषय चुनें</string>
+    <string name="label_home_sync_now">स्वचालित रूप से सिंक अगर मैं वाईफ़ाई / इंटरनेट से जुड़ा हूँ</string>
+    <string name="label_home_sync_later">बाद में</string>
+    <string name="msg_home_end_of_content">आप पृष्ठ के अंत तक पहुँच चुके हैं, अधिक सामग्री के लिए दूसरा विषय चुनें</string>
+    <string name="msg_home_download_content">नीचेसे पाठ प्राप्त करें ।</string>
+    <string name="msg_home_sync_dialog_prompt">जीनी सर्वर के साथ अपने डेटा व्यक्तिगत सिफारिशें पाने के लिए सिंक और हमें हमारी सेवा में सुधार करने के लिए मदद</string>
+    <string name="error_home_genie_offline">जिनी ऑफ़लाइन है, कृपया इंटरनेट से कनेक्ट करें!</string>
+    <string name="error_home_no_network">और सामग्री के लिए इंटरनेटसे जोड़ें</string>
+    <string name="label_home_coming_soon">जल्द आ रहा है</string>
+    <string name="msg_home_packaging_genie">जीनी को भेजने के लिए तैयार किया जा रहा है </string>
+    <string name="device_low_memory_error">Your device is running low on memory. Would you like to make some storage space free?</string>
+    <string name="label_manage_memory">Manage Memory</string>
+    <!-- Home  String End-->
+
+    <!--Onboard screen strings start-->
+    <string name="action_home_skip">छोड़ें</string>
+    <string name="label_home_onboarding_addchild_desc">जीनी आप के बारे में सीखता है और सही पाठ का सुझाव आपको देता है बच्चे को जोड़ें!</string>
+    <!--Onboard screen strings end-->
+
+    <!-- Add Child  String Begin-->
+    <string name="title_addchild">बच्चे का नाम दर्ज करें </string>
+    <string name="title_addchild_group">समूह दर्ज करें </string>
+    <string name="title_addchild_edit">बच्चे का विवरण बदलें</string>
+    <string name="title_addchild_edit_group">समूह का विवरण बदलें </string>
+    <string name="label_addchild_pick_avatar">अवतार चुनें</string>
+    <string name="label_addchild_avatar">अवतार</string>
+    <string name="label_addchild_nick_name">नाम</string>
+    <string name="label_addchild_do_you">क्या आप यह नाम चाहते हैं? </string>
+    <string name="label_addchild_or">or</string>
+    <string name="label_addchild_how_old">उम्र लिखें ?</string>
+    <string name="label_addchild_welcome_aboard">जीनी में आपका स्वागत है</string>
+    <string name="label_addchild_genie_star">Genie star!</string>
+
+    <string name="label_addchild_class">कक्षा</string>
+    <string name="label_addchild_gender">लिंग</string>
+    <string name="label_addchild_others">अन्य</string>
+    <string name="label_addchild_kg">KG</string>
+    <string name="label_addchild_medium">माध्यम</string>
+    <string name="label_addchild_board">पटल</string>
+    <string name="label_addchild_select">चुनें</string>
+    <string name="label_addchild_enter_your_name">अपना नाम डालें</string>
+    <string name="error_addchild_blank_nick_name">उपनाम सिर्फ खाली नहीं हो सकता, कृपया फिर से प्रयास करें&#8230;</string>
+    <!--Add Child String End-->
+
+    <!--Notification Strings Begin-->
+    <string name="error_notification_delete_failed">विलोपन असफल रहा। कृपया पुन: प्रयास करें।</string>
+    <!--Notification Strings End-->
+
+    <!--Errors Strings Begin-->
+    <string name="error_import_file_not_supported">दी गयी फ़ाइल प्रकार समर्थित नहीं है</string>
+    <string name="error_network">इंटरनेट नहीं है, कुछ समय बाद प्रयास करें। यदि यह तकलीफ दोबारा आए तो help@ekstep.org को सम्पर्क करें। </string>
+    <string name="error_db_operation">डेटाबेस को पढ़ने या लिखने में असमर्थ</string>
+    <string name="error_invalid_event">वर्तमान घटना एक वैध टेलीमेट्री इवेंट नहीं है</string>
+    <string name="error_sync_validation">आपके डेटा को समन्वयित करने में एक त्रुटि हुई बाद में पुन: प्रयास करें</string>
+    <string name="error_network_1">इन्टरनेट नहीं है</string>
+    <string name="error_duplicate_file">फाईल पहले से मौजूद है।</string>
+    <string name="error_procession_failed">डेटा को प्रोसेस करने में असमर्थ है। कृपया पुन: प्रयास करें</string>
+    <string name="error_authentication_failed">प्रमाणीकरण विफल होना। कृपया पुन: प्रयास करें</string>
+    <string name="error_network2">इंटरनेट नहीं है। इंटरनेट से सम्बन्ध स्थापित करें और फिर दोबारा कोशिश करें। </string>
+    <string name="error_timeout">खोज परिणाम देने मैं कोई मुश्किल आ रही है। कृपया दोबारा कोशिश करें </string>
+
+    <!--Import Errors Strings Begin-->
+    <string name="error_import_device_merory_full">आयात विफल रहा है। डिवाइस पूर्ण स्मृति</string>
+    <string name="error_import_insufficient_memory">डाउनलोड विफल। अपने डिवाइस पर अपर्याप्त स्थान ।</string>
+    <string name="errorr_import_lesson_expired">आयात असफल। पाठ की समय सीमा समाप्त।</string>
+    <string name="error_import_failed">आयात विफल: फ़ाइल आयात करने में त्रुटि थी ।</string>
+    <string name="error_import_file_exists">यह फाईल आयात हो चुकी है। कोई और फाईल सिलेक्ट करें।</string>
+    <string name="error_import_unsupported_manifest">यह पुरानी ecar है। आयात नही हो सकती।</string>
+    <string name="msg_import_successfull">आयात सफल रही।</string>
+    <string name="error_import_file_already_exists">यह प्रोफाइल पहले ही आयात किया जा चुका है. </string>
+    <string name="error_import_failure">आयात असफल।</string>
+    <!--Import Errors Strings End-->
+
+    <!--Errors Strings End-->
+
+    <!--Dialog Strings Begin-->
+    <string name="label_dialog_ok">ठीक है</string>
+    <string name="label_dialog_yes">हाँ</string>
+    <string name="label_dialog_no">नहीं</string>
+    <string name="label_dialog_cancel">रद्द करें</string>
+    <string name="title_dialog_end">जीनी को अन्त करें?</string>
+    <string name="action_dialog_update_now">अभी अद्यतन करें</string>
+    <string name="action_dialog_delete">मिटा दें </string>
+    <string name="action_dialog_progress">प्रगति </string>
+    <string name="action_dialog_share">बांटें </string>
+    <string name="action_dialog_view_details">विवरण देखें</string>
+    <string name="msg_dialog_update_genie">बेहतर अनुभव के लिए अब अद्यतन करें!</string>
+    <string name="msg_dialog_delete_confirmation">क्या आप अवश्य इसे मिटाना चाहते हैं?</string>
+    <string name="msg_dialog_delete_confirmation_for_content_multiple_existence">इस सामग्री को अन्यत्र उपयोग किया जाता है क्या आप वाकई हटाना चाहते हैं?</string>
+
+
+    <!--Navigation Drawer String Begin-->
+    <string name="action_nav_drawer_open">Open navigation drawer</string>
+    <string name="action_nav_drawer_close">Close navigation drawer</string>
+    <!--Navigation Drawer End-->
+
+    <!--Language Selection String Begin-->
+    <string name="title_select_language">भाषा चुनें </string>
+    <string name="label_language">भाषा</string>
+    <string name="label_hindi">हिंदी</string>
+    <string name="label_kannada">ಕನ್ನಡ</string>
+    <string name="label_telugu">తెలుగు</string>
+    <string name="label_marathi">मराठी</string>
+    <string name="label_tamil">தமிழ்</string>
+    <string name="label_punjabi">ਪੰਜਾਬੀ</string>
+    <!--Language Selection End-->
+
+    <!-- Children String Begin-->
+    <string name="title_children">बच्चों की सूची</string>
+    <string name="title_children_import_profile">प्रोफाइल आयात करें </string>
+    <string name="title_children_groups">समूह</string>
+    <string name="label_children_profile_age">उम्र:</string>
+    <string name="label_children_class">कक्षा:</string>
+    <string name="label_children_other">अन्य</string>
+    <string name="msg_children_profile_deletion_successful">प्रोफ़ाइल सफलतापूर्वक मिटाई गई </string>
+    <string name="msg_children_no_profile">अभी तक कोई उपयोगकर्ता नहीं है</string>
+    <string name="msg_children_start_adding_profile">उपयोगकर्ता जोड़ने के लिए + दबाएँ&#8230;</string>
+    <string name="msg_children_fetching_profile">सूची प्राप्त कर रहा है; कृपया प्रतीक्षा करें&#8230;</string>
+    <!-- Children String End-->
+
+
+    <!-- Settings String Begin-->
+    <string name="label_settings_app_info">" ऐप की जानकारी और क्रेडिट"</string>
+    <string name="msg_setting_changing_language">भाषा परिवर्तन हो रहा है, कृपया प्रतीक्षा करें&#8230;</string>
+
+    <!-- DataSetting String Begin-->
+    <string name="title_sync_data_setting">डेटा की सेटिंग </string>
+    <string name="title_sync_settings">सिंक सेटिंग</string>
+    <string name="title_sync_data_sync_settings">डेटा सिंक सेटिंग</string>
+    <string name="action_sync_now">डेटा संकालन करें </string>
+    <string name="label_sync_last_synced_time">अंतिम सिंक</string>
+    <string name="msg_sync_now">जब आप हमें अपना उपयोग डेटा भेजते हैं तो वह हमें आपके बच्चे के लिए सबसे उपयुक्त सामग्री सुझाने मैं मदद करता है। यह हमें जीनी को बेहतर बनाने में भी मदद करता है।</string>
+    <string name="msg_syncing">डेटा भेज जा रहा है। कृपया प्रतीक्षा करें&#8230;</string>
+    <string name="msg_sync_successfull">डेटा सफलतापूर्वक भेजा गया</string>
+    <string name="title_data_synchronization_setting">डेटा संकालन की सेटिंग </string>
+    <string name="label_sync_manual">गाइड</string>
+    <string name="label_sync_manual_desc">हम आपको समय - समय पर डेटा सिंक करने के लिए याद दिलाते रहेंगे </string>
+    <string name="label_auto_sync_using_wifi">वाई - फाई के ज़रिये खुद ब खुद</string>
+    <string name="label_auto_sync_using_wifi_desc">जब भी आप वाई - फाई के ज़रिये इंटरनेट से जुढ़े हों तो आपका डेटा सिंक कर दिया जायेगा  </string>
+    <string name="label_auto_sync_using_wifi_and_cellular">खुद ब खुद जब भी आप इंटरनेट से जुढ़े हों तो  </string>
+    <string name="label_auto_sync_using_wifi_and_cellular_desc">जब भी आप इंटरनेट से जुढ़े हों तो आपका डेटा सिंक कर दिया जायेगा। इस लिए आपको डेटा शुल्क लग सकता है। </string>
+    <!--DataSetting String End-->
+
+    <!-- About String Begin-->
+    <string name="title_about">जीनी के बारे में</string>
+    <string name="label_about_device_id">यन्त्र संख्या</string>
+    <string name="label_about_genie_version">जीनी रूपांतर</string>
+    <string name="label_about_privacy_policy">प्राइवेसी पॉलिसी</string>
+    <string name="label_about_us">जीनी के बारे में</string>
+    <string name="label_about_tos">सेवा की शर्तें</string>
+    <!--About String End-->
+
+    <!-- Advanced Setting/Tag String Begin-->
+    <string name="title_advanced_settings">उच्च स्तर की सेटिंग </string>
+    <string name="title_tag_add_new">नया टैग दर्ज करें </string>
+    <string name="label_tag_program_code">प्रोग्राम कोड /टैग </string>
+    <string name="label_tag_short_desc">संक्षेप विवरण </string>
+    <string name="label_tag_event_sched">कार्यक्रम सारणी </string>
+    <string name="label_tag_start_date">आरंभ तिथि </string>
+    <string name="label_tag_end_date">अंत तिथि </string>
+    <string name="title_tag_program">प्रोग्राम टैग </string>
+    <string name="msg_tag_added_sussessfully">टैग सफलतापूर्वक दर्ज किया गया </string>
+    <string name="msg_tag_updated_successfully">Tag updated successfully</string>
+    <string name="msg_tag_not_available">अभी तक कोई कार्यक्रम टैग नहीं है</string>
+    <string name="msg_tag_onboarding">टैग जोड़ने के लिए + दबाएँ&#8230;</string>
+    <string name="action_tag_save">सेव</string>
+    <string name="action_tag_done">पुरा हुआ</string>
+    <string name="hint_tag_type_here">यहा लिखो&#8230;</string>
+    <string name="error_tag_cant_be_empty">प्रोग्राम कोड / टैग खाली नहीं रह सकता </string>
+    <string name="error_tag_should_be_alpha_numeric">प्रोग्राम कोड में अक्षर और संख्या दोनों होने चाहिए </string>
+    <string name="error_tag_duplicate">प्रोग्राम कोड पहले से मौजूद है </string>
+    <string name="error_tag_limit">प्रोग्राम कोड 6&#8211;12 अक्षरों का होना चाहिए </string>
+    <string name="error_tag_desc_empty">प्रोग्राम विवरण खली नहीं रह सकता </string>
+    <string name="error_tag_start_date_empty">प्रारंभ तारीख खाली नहीं हो सकती</string>
+    <string name="error_tag_end_date_empty">अंतिम तारीख खाली नहीं हो सकती</string>
+    <string name="error_tag_inavlid">टैग अमान्य है </string>
+    <string name="error_tag_invalid_date_range">अमान्य तिथि सीमा </string>
+    <!--Advanced Setting/Tag String End-->
+
+    <!-- Storage settings String Begin-->
+    <string name="title_storage_settings">Storage Setting</string>
+    <!-- Storage settings String End-->
+
+    <!--Settings String End-->
+
+
+    <!-- Content Search String Begin-->
+    <string name="label_search_sort">इस अनुसार रखें </string>
+    <string name="label_search_filter">छांटें </string>
+    <string name="label_search">खोजें</string>
+    <string name="error_search">खोज के लिये कम से कम ३ अक्षर लिखें</string>
+    <string name="error_search_no_content">कोई परिणाम नहीं मिला</string>
+    <string name="error_search_try_different_criteria">कृपया अपनी खोज प्रणाली को बदलें और दोबारा कोशिश करें </string>
+    <string name="recommended_content">recommended content</string>
+    <!--Content Search String End-->
+
+    <!--Sort Strings-->
+    <string name="title_sort_by">इस अनुसार रखें </string>
+    <string name="label_sort_name">नाम </string>
+    <string name="label_sort_relevant">संबंधता</string>
+    <string name="label_sort_highly_rated">लोक प्रिय </string>
+    <string name="label_sort_newest">सबसे नया </string>
+    <string name="label_sort_most_popular">सबसे लोकप्रिय</string>
+    <!--Filter Strings!-->
+
+    <!--Filter Strings-->
+    <string name="action_filter_apply">लागू करें </string>
+    <string name="action_filter_clear">हटाए</string>
+    <string name="title_filter_all">सब</string>
+    <!--Filter Strings!-->
+
+    <!-- Content Details Begin-->
+    <string name="title_contentdetail">पाठ विवरण</string>
+    <string name="label_contentdetail_download">डाउनलोड</string>
+    <string name="label_contentdetail_downloading">डाउनलोड जारी </string>
+    <string name="label_contentdetail_importing">Importing&#8230;</string>
+    <string name="label_contentdetail_play">शुरू करें </string>
+    <string name="label_contentdetails_update">अपडेट</string>
+    <string name="label_contentdetail_publisher">द्वारा प्रकाशित:</string>
+    <string name="label_contentdetail_owner">द्वारा बनाई गई:</string>
+    <string name="label_contentdetail_read_more">अधिक पढ़ें</string>
+    <string name="label_contentdetail_read_less">कम पढ़ें</string>
+    <string name="label_contentdetail_rate">इस सामग्री को रेट करें</string>
+    <string name="label_contentdetail_copyright">Copyright:&#160;</string>
+    <string name="label_contentdetail_license">License:&#160;</string>
+    <string name="label_contentdetail_ccby">Creative Commons Attribution (CC BY) 4.0</string>
+    <string name="action_contentdetail_open">खोलो</string>
+    <string name="msg_contentdetail_fetching">सामग्री के बारे में सूचना प्राप्त की जा रही है </string>
+    <!--Content Details  String End-->
+
+    <!-- Share String Begin-->
+    <string name="error_share_cant_share_draft_content">ड्राफ्ट सामग्री शेयर नहीं कर सकते</string>
+    <string name="label_share_link">लिंक के रूप में शेयर करें</string>
+    <string name="label_share_file">फ़ाइल शेयर करें</string>
+    <string name="msg_share_content">चेक आउट&#160;</string>
+    <string name="msg_share_content1">&#160;जिनी पर!</string>
+    <string name="title_share_lesson">पाठ बांटें</string>
+    <string name="title_share_profile">प्रोफ़ाइल बांटें</string>
+    <string name="title_share_telemetry">टेलीमीट्री बांटें</string>
+    <string name="msg_share_genie">जिनी को देखें, एकेस्ट से मुफ्त शैक्षिक ऐप</string>
+    <string name="msg_share_lesson_subject">जिनी पर यह सबक देखें</string>
+    <string name="msg_share_profile_subject">जिनी पर यह प्रोफ़ाइल देखें</string>
+    <string name="msg_share_collection_subject">जिनी पर यह संग्रह देखें</string>
+    <string name="msg_share_genie_subject">जीनी को देखें (एक्सटेप से)</string>
+    <string name="title_share_details">Share Deatils</string>
+    <string name="label_share_text">Share as text via</string>
+    <!--Share  String End-->
+
+    <!--Download Strings-->
+    <string name="title_downloads">मेरा बैग</string>
+    <string name="download_header_title">Title</string>
+    <string name="download_header_size">Size</string>
+    <string name="download_header_last_used">Last Used</string>
+    <string name="title_downloads_import_content">पाठ लाएं </string>
+    <string name="label_downloads_get_more_content">+   अधिक सामग्री प्राप्त करें</string>
+    <string name="label_downloads_file_size">File Size</string>
+    <string name="label_downloads_last_used">Last Used</string>
+    <string name="label_downloads_sort_content_by">Sort content by</string>
+    <string name="label_downloads_clear_all">&#160; | &#160;Clear All</string>
+    <string name="label_downloads_items">&#160;Items</string>
+    <string name="title_download_confirm_delete">Confirm Delete</string>
+    <string name="msg_download_confirm_delete_desc">Are you sure you want to delete %1$s of content?</string>
+    <string name="msg_download_delete_successfull">%1$s has been cleared from device</string>
+    <string name="msg_downlod_exit">Are you sure you want to exit Downloads ?</string>
+    <!--Download Strings!-->
+
+    <!--Transfer Strings-->
+    <string name="msg_transfering_cotent">विषयवस्तु भेजा जा रहा है, रुकें </string>
+    <string name="title_trasfer_telemtry">टेलिमेट्री</string>
+    <string name="title_trasfer_profile">प्रोफ़ाइल</string>
+    <string name="title_trasfer_content">कहानी / खेल</string>
+    <string name="msg_transfer_select_content">भेजने के लिए किसी एक को चुनें </string>
+    <string name="msg_transfer_no_content">भेजने के लिए कोई सामग्री नहीं है </string>
+    <string name="msg_content_deletion_sucessfull">सामग्री सफलतापूर्वक मिटाई गई </string>
+    <string name="msg_transfer_select_profile">निर्यात करने वाला खाता चुनें </string>
+    <string name="error_transfer_no_kids">कोई भी खाता नहीं मिला </string>
+    <!--Transfer Strings!-->
+
+    <!--Language Test Strings Begin!-->
+    <string name="label_dummy_english">English</string>
+    <string name="label_dummy_hindi">Hindi</string>
+    <string name="label_dummy_kannada">Kannada</string>
+    <string name="label_dummy_tamil">Tamil</string>
+    <string name="label_dummy_telegu">Telegu</string>
+    <string name="title_language_test">Language Test</string>
+    <string name="label_dummy_you_are">आप अब </string>
+    <string name="label_dummy_steps_away">कदम दूर हैं। </string>
+    <string name="msg_dummy_language_test_success">अब आप एक भाषा परीक्षक हैं</string>
+    <!--Language Test Strings End!-->
+
+    <!--Notifications Strings Begin-->
+    <string name="title_no_notifications">अन्य कोई सूचना नहीं है|</string>
+    <!--Notifications Strings End-->
+
+    <!--Summerizer list Strings Begin-->
+    <string name="title_summarizer_profile_details">बाल विवरण और प्रगति</string>
+    <string name="title_summarizer_content_details">सामग्री विवरण और प्रगति</string>
+    <string name="label_summarizer_average_time">औसत समय</string>
+    <string name="label_summarizer_total_time">कुल समय</string>
+    <string name="label_summarizer_no_description">कोई वर्णन उपलब्ध नहीं</string>
+    <string name="label_summarizer_result">परिणाम</string>
+    <string name="label_summarizer_score">स्कोर</string>
+    <string name="label_summarizer_time_taken">कितना समय लगा</string>
+    <string name="msg_summarizer_no_profile_summary">कोई भी सक्रिय प्रगति रिपोर्ट अभी इस उपयोगकर्ता के लिए उपलब्ध नही हैं।</string>
+    <string name="msg_summarizer_no_content_summary">कोई भी सक्रिय प्रगति रिपोर्ट अभी इस पाठ के लिए उपलब्ध नही हैं।</string>
+    <string name="label_summarizer_quest_no">प्रश्न संख्या</string>
+    <string name="label_summarizer_lesson">@string/label_nav_downloads</string>
+    <!--Summerizer list Strings End-->
+
+    <!--File explorer start-->
+    <string name="title_fileexplorer_device_storage">डिवाइस स्टोरेज</string>
+    <string name="title_fileexplorer_external_storage">बाहरी स्टोरेज</string>
+    <string name="title_fileexplorer_root">Root</string>
+    <string name="msg_fileexplorer_no_content">Unable to detect any content on your device</string>
+    <string name="msg_fileexplorer_no_profile">Unable to detect any profile on your device</string>
+    <string name="msg_fileexplorer_expand">Expand</string>
+    <!--File explorer End-->
+
+    <!--Feedback strings start-->
+    <string name="title_feedback">प्रतिक्रिया</string>
+    <string name="label_fedback_give_your_comments">अपनी टिप्पणी लिखें</string>
+    <string name="action_feedback_submit">जमा करें</string>
+    <string name="msg_feedback_successfull">आपकी प्रतिक्रिया के लिए धन्यवाद</string>
+    <!--Feedback strings end-->
+
+    <!--Collection Strings Begin-->
+    <string name="action_collection_download_all">सभी डाउनलोड</string>
+    <!--Collection Strings End-->
+
+    <!--TextBook Strings Begin-->
+    <string name="title_textbook_downloaded_lessons">डाउनलोड किए गए पाठ</string>
+    <string name="label_textbook_table_of_contents">विषय सूची</string>
+    <string name="label_textbooks">पाठ्यपुस्तकें</string>
+    <string name="error_textbook_no_downloaded_lessons">डाउनलोड किए गए कोई भी पाठ उपलब्ध नहीं हैं</string>
+    <string name="msg_textbook_get_content_now">अब सामग्री प्राप्त करें</string>
+    <string name="msg_textbook_empty">पाठ्यपुस्तक खाली है</string>
+    <string name="label_textbook_number_of_lessons">पाठ की संख्या</string>
+    <string name="title_textbook_total_size">कुल आकार&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="error_textbook_no_contents_to_download">डाउनलोड करने के लिए कोई सामग्री नहीं</string>
+    <!--TextBook Strings End-->
+
+
+    <!--Content Player related strings start-->
+    <string name="title_content_player_home">@string/label_nav_home</string>
+    <string name="title_content_player_title">शीर्षक</string>
+    <string name="title_content_player_next">अगला</string>
+    <string name="title_content_player_submit">जमा करें</string>
+    <string name="title_content_player_image">छवि</string>
+    <string name="title_content_player_voice">आवाज़</string>
+    <string name="title_content_player_audio">ऑडियो</string>
+    <string name="title_content_player_author">लेखक</string>
+    <string name="title_content_player_instructions">शिक्षकों के लिए जानकारी</string>
+    <string name="title_content_player_feedback">@string/title_feedback</string>
+    <string name="title_content_player_replay">फिर से खेलना</string>
+    <string name="title_content_player_credits">क्रेडिट</string>
+    <string name="title_content_player_collection">संग्रह</string>
+    <string name="title_content_player_nocredits">इसमें कोई क्रेडिट उपलब्ध नही हैं</string>
+    <string name="title_content_player_congratulations">बहुत बढ़िया! आपने यह पाठ पूरा किया।</string>
+    <string name="title_content_player_comment">अपनी टिप्पणी लिखें&#8230;</string>
+    <string name="title_content_player_nextContent">अगला सामग्री</string>
+    <string name="title_content_player_scores">स्कोर और रेटिंग</string>
+    <string name="title_content_player_continue">जारी रहना</string>
+    <string name="title_content_player_group">समूह</string>
+    <string name="title_content_player_child">बच्चा</string>
+    <string name="title_content_player_groupfallbacktext">आपने कोई समूह नहीं बनाया है</string>
+    <string name="title_content_player_userswitchertitle">किसी बच्चे या समूह का चयन करें</string>
+    <string name="title_content_player_backbuttontext">क्या आप इस सामग्री को छोड़ना चाहेंगे?</string>
+    <string name="title_content_player_lastPage">अंतिम पृष्ठ पर जाएं</string>
+    <!--Content Player related strings End-->
+
+
+    <string name="label_all_anonymous">नामरहित</string>
+    <string name="label_all_content_type_activity">गतिविधि</string>
+    <string name="label_all_content_type_collection">संग्रह</string>
+    <string name="label_all_content_type_textbook">पाठयपुस्तक</string>
+    <string name="action_all_edit">संपादन करें</string>
+    <string name="label_all_age">उम्र</string>
+    <string name="error_sync_fail">असफल! डेटा भेजना असफल रहा। दोबारा कोशिश करें। </string>
+    <string name="msg_import_success">सफलतापूर्वक आयात हो गया</string>
+    <string name="label_all_import">प्राप्त करें</string>
+    <string name="label_all_details">विवरण</string>
+    <string name="msg_exporting">निर्यात कर रहा .. कृपया प्रतीक्षा करें</string>
+    <string name="msg_importing">आयात कर रहा.. कृपया प्रतीक्षा करें</string>
+    <string name="msg_import_count">Importing </string>
+    <string name="msg_please_wait">Please wait </string>
+    <string name="error_import_not_compatible">आयात विफल हुआ। पाठ जीनी द्वारा समर्थित नहीं है</string>
+
+    <string name="download_queue">Download Queue</string>
+    <string name="pause_download">Pause Download</string>
+    <string name="close">CLOSE</string>
+    <string name="resume_download">Resume Download</string>
+
+    <!--storage settings dialog strings start-->
+    <string name="title_add_memory_card">Add Memory Card</string>
+    <string name="msg_add_memory_card">Add memory card to store even more content.</string>
+    <string name="title_low_space_device">Low space in Mobile Device</string>
+    <string name="msg_low_space_device">Genie requires 100 MB or more free space to transfer to Mobile Device.</string>
+    <string name="title_low_space_sdcard">Low space in SD Card</string>
+    <string name="msg_low_space_sdcard">Genie requires 100 MB or more free space to transfer to SD Card.</string>
+    <string name="title_sdcard_default_storage">Set SD Card as default storage for Genie?</string>
+    <string name="msg_sdcard_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to external storage. Are you sure you want to transfer?</string>
+    <string name="title_device_default_storage">Set Device as default storage for Genie?</string>
+    <string name="msg_device_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to internal storage. Are you sure you want to transfer?</string>
+    <string name="title_merge_content">Merge content</string>
+    <string name="msg_merge_content">There is existing content on the sd card/mobile. Would you like to merge the content.</string>
+    <string name="title_low_storage_space">Low storage space</string>
+    <string name="msg_low_storage_space">Genie requires X MB or more free space to download this content.</string>
+    <string name="label_manage_storage">Manage Storage</string>
+    <string name="msg_dont_ask_again">Don\'t ask again</string>
+    <string name="msg_move_content_sdcard">Please wait while content is being moved to sd card</string>
+    <string name="msg_move_content_internal_storage">Please wait while content is being moved to internal memory</string>
+    <string name="title_move_content">Content Transfer</string>
+    <!--storage settings dialog strings end-->
+
+</resources>

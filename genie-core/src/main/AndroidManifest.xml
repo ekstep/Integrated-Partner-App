@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.ekstep.genie">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="org.ekstep.genie.CoreApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".ui.splash.SplashActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/octet-stream"
+                    android:pathPattern=".*\\.ecar" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="application/ecar"
+                    android:scheme="@string/deeplink_scheme_content" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/deeplink_scheme_file" />
+                <data android:pathPattern=".*\\.ecar" />
+                <data android:pathPattern="/*.*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:host="*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/deeplink_scheme_file" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*\\.ecar" />
+                <data android:pathPattern="/*.*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\..*\\..*\\..*\\..*\\.ecar" />
+                <data android:host="*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="@string/deeplink_scheme_file" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern="/*.*\\.gsa" />
+                <data android:pathPattern="/*.*\\..*\\.gsa" />
+                <data android:pathPattern="/*.*\\..*\\..*\\.gsa" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\.gsa" />
+                <data android:host="*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/settag"
+                    android:scheme="@string/deeplink_scheme_http" />
+                <data
+                    android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/c"
+                    android:scheme="@string/deeplink_scheme_http" />
+                <data
+                    android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/l"
+                    android:scheme="@string/deeplink_scheme_http" />
+                <data
+                    android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/landing"
+                    android:scheme="@string/deeplink_scheme_http" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.EDIT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="*"
+                    android:mimeType="application/octet-stream"
+                    android:pathPattern=".*\\.epar" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="application/epar"
+                    android:scheme="@string/deeplink_scheme_content" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/deeplink_scheme_file" />
+                <data android:pathPattern="/*.*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\.epar" />
+                <data android:host="*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/deeplink_scheme_file" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern="/*.*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\.epar" />
+                <data android:pathPattern="/*.*\\..*\\..*\\..*\\.epar" />
+                <data android:host="*" />
+            </intent-filter>
+
+            <!--Deep link clicked/called from content app-->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/deeplink_scheme_ekstep" />
+                <!--host to navigate  related contents-->
+                <data android:host="@string/deeplink_ekstep_host_show_all" />
+                <!--host to navigate content details-->
+                <data android:host="@string/deeplink_ekstep_host_show_content" />
+                <!--Host to add tag-->
+                <data android:host="@string/deeplink_ekstep_host_set_tag" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="org.ekstep.genie.activity.WelcomeActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name="org.ekstep.genie.ui.landing.LandingActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.addchild.AddChildActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ui.filter.FilterActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ui.contentdetail.ContentDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ui.progressreports.ProgressReportsActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+        <activity
+            android:name=".ui.progressreportdetail.ProgressReportDetailActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" />
+
+        <activity
+            android:name=".ui.share.ShareActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/ShareTheme" />
+
+        <!-- ImportArchiveActivity -->
+        <activity
+            android:name=".ui.importarchive.ImportArchiveActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- Collections Activity -->
+        <activity
+            android:name=".ui.collection.CollectionsActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- Textbooks Activity -->
+        <activity
+            android:name=".ui.textbook.TextbookActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- MyLessons Activity -->
+        <activity
+            android:name=".ui.mylessons.MyLessonsActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- Add New Tag Activity-->
+        <activity
+            android:name=".ui.settings.advancedsettings.addnewtag.AddNewTagActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <!-- About Activity-->
+        <activity
+            android:name=".ui.settings.about.AboutActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="sensorLandscape" />
+
+        <receiver android:name=".receiver.NetworkChangeReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
+
+
+
+        <!-- [START firebase_service] -->
+        <service android:name=".firebase.fcm.GenieFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
+        <!-- [START firebase_iid_service] -->
+        <service android:name=".firebase.fcm.GenieFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- [END firebase_iid_service] -->
+
+        <!-- Notification service -->
+        <service android:name=".notification.LocalNotificationService" />
+
+        <!-- Used for Google Play Store Campaign Measurement-->
+        <receiver
+            android:name=".receiver.ReferrerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+
+</manifest>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!--Deeplink strings start-->
+    <string name="deeplink_ekstep_host">www.ekstep.in</string>
+
+    <!--Local deep link scheme-->
+    <string name="deeplink_scheme_ekstep">ekstep</string>
+
+    <!--    Scheme for gmail attachment -->
+    <string name="deeplink_scheme_content">content</string>
+    <string name="deeplink_scheme_file">file</string>
+    <string name="deeplink_scheme_http">http</string>
+    <string name="deeplink_scheme_https">https</string>
+
+    <string name="deeplink_ekstep_host_show_all">l</string>
+    <string name="deeplink_ekstep_host_show_content">c</string>
+    <string name="deeplink_ekstep_host_set_tag">settag</string>
+    <!--Deeplink strings end-->
+</resources>

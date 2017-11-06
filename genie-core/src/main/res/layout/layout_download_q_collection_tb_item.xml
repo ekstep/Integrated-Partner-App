@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_tiny">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:gravity="center_vertical"
+            android:text="Activity" />
+
+        <RelativeLayout
+            android:id="@+id/rl_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/spacing_large"
+            android:background="@drawable/bg_download_queue_circle"
+            android:padding="@dimen/spacing_tiny">
+
+            <!-- TODO 17/08/2017 imageview close-->
+            <ImageView
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_close" />
+
+            <org.ekstep.genie.customview.EkstepCircularProgressBar
+                android:id="@+id/pb_download"
+                android:layout_width="@dimen/download_queue_pb_size"
+                android:layout_height="@dimen/download_queue_pb_size"
+                android:layout_centerInParent="true"
+                app:progress="90"
+                app:progressBarThickness="@dimen/download_queue_pb_thickness"
+                app:progressbarColor="@color/white" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_lessons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title"
+        android:orientation="vertical" />
+
+</LinearLayout>

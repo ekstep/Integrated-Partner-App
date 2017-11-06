@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/YellowBackgroundStyle"
+    android:animateLayoutChanges="true">
+
+    <!--Header-->
+    <RelativeLayout
+        android:id="@+id/rl_collection_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:id="@+id/iv_textbook_poster"
+            android:layout_width="@dimen/content_icon_dimen"
+            android:layout_height="@dimen/content_icon_dimen"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toRightOf="@+id/back_btn"
+            android:scaleType="fitXY"
+            android:src="@drawable/avatar_normal_1" />
+
+        <LinearLayout
+            android:id="@+id/ll_collection_name_and_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/spacing_tiny"
+            android:layout_toRightOf="@+id/iv_textbook_poster"
+            android:orientation="vertical">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/tv_textbook_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/label_textbooks"
+                android:textColor="@color/app_blue_theme_color"
+                android:textSize="@dimen/font_medium_medium"
+                android:textStyle="bold" />
+
+            <!--Textbooks language, grade and syllabus type-->
+            <LinearLayout
+                android:id="@+id/ll_textbook_grade_language_syllabus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_textbook_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/app_white_theme_color"
+                    android:textSize="@dimen/sp_15" />
+
+                <View
+                    android:id="@+id/textbook_grade_divider"
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/dp_15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:background="@color/app_white_theme_color" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_textbook_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/app_white_theme_color"
+                    android:textSize="@dimen/sp_15" />
+
+                <!--<View-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="@dimen/dp_15"-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:layout_marginLeft="@dimen/dp_5"-->
+                <!--android:layout_marginRight="@dimen/dp_5"-->
+                <!--android:background="@color/app_white_theme_color" />-->
+
+                <!--<org.ekstep.genie.customview.EkStepCustomTextView-->
+                <!--android:id="@+id/tv_textbook_syllabus"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="CBSE"-->
+                <!--android:textColor="@color/app_white_theme_color"-->
+                <!--android:textSize="@dimen/font_normal" />-->
+            </LinearLayout>
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/tv_textbook_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_3"
+                android:background="@drawable/shape_rounded_rectangle_bordered_black"
+                android:paddingBottom="@dimen/dp_5"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_5"
+                android:text="@string/label_all_details"
+                android:textColor="@color/app_black_theme_color"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/tv_textbook_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/standard_spacing"
+            android:background="@drawable/shape_rounded_rectangle_filled_black"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:text="@string/title_textbook_downloaded_lessons"
+            android:textColor="@color/app_white_theme_color"
+            android:textSize="@dimen/font_medium_small"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_normal_tick_mark"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_alignBottom="@+id/tv_textbook_download"
+            android:layout_alignRight="@+id/tv_textbook_download"
+            android:layout_marginBottom="-2dp"
+            android:background="@drawable/shape_circle_filled_green"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_tick"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_textbooks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_collection_header"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="@dimen/parent_node_height" />
+
+    <RelativeLayout
+        android:id="@+id/rl_no_textbook"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tree_view_container"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_no_textbooks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:layout_marginTop="@dimen/dp_45"
+            android:src="@drawable/ic_search_empty" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_no_textbooks"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/shape_rounded_rectangle_filled_white"
+            android:paddingBottom="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_5"
+            android:text="@string/msg_textbook_empty"
+            android:textColor="@color/app_black_theme_color"
+            android:textSize="@dimen/sp_15" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tree_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_collection_header" />
+
+</RelativeLayout>

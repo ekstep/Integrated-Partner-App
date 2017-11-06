@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/alert_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/txt_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_25"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="@string/msg_sync_successfull"
+        android:textColor="@color/dark_grey"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1"
+        android:layout_below="@id/txt_dialog"
+        android:layout_marginTop="@dimen/dp_13"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/layout_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view"
+        android:background="?attr/selectableItemBackground">
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/txt_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:text="@string/label_dialog_ok"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_grey"
+            android:textSize="@dimen/font_medium_small" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/sync_now_prompt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/button_disabled"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/title_home_sync_genie_data"
+        android:textAllCaps="true"
+        android:textColor="@color/header_text_color"
+        android:textSize="@dimen/txt_size_16" />
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/sync_now_prompt_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sync_now_prompt_title"
+        android:layout_marginBottom="@dimen/size_10"
+        android:layout_marginLeft="@dimen/size_20"
+        android:layout_marginRight="@dimen/size_20"
+        android:layout_marginTop="@dimen/size_20"
+        android:text="@string/msg_home_sync_dialog_prompt" />
+
+    <org.ekstep.genie.customview.EkStepCheckBox
+        android:id="@+id/is_sync_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sync_now_prompt_txt"
+        android:layout_marginLeft="@dimen/size_16"
+        android:layout_marginRight="@dimen/size_16"
+        android:text="@string/label_home_sync_now" />
+
+    <View
+        android:id="@+id/view_sync_now"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/is_sync_now"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@color/button_disabled" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_sync_now"
+        android:orientation="horizontal">
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/sync_now_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dialog_button"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/action_sync_now"
+            android:textAllCaps="true"
+            android:textColor="@color/colorblue"
+            android:textSize="@dimen/txt_size_16" />
+
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/sync_later_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/sync_now_btn"
+            android:layout_toStartOf="@id/sync_now_btn"
+            android:background="@drawable/dialog_button"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/label_home_sync_later"
+            android:textAllCaps="true"
+            android:textColor="@color/text_bg"
+            android:textSize="@dimen/txt_size_16" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

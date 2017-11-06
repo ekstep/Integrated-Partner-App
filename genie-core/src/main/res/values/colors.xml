@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--New Colors according to new designs as of 24/01/2017-->
+    <color name="app_yellow_theme_color">#fdc131</color>
+    <color name="app_blue_theme_color">#2691d0</color>
+    <color name="app_black_theme_color">#383838</color>
+    <color name="app_white_theme_color">#FEFEFE</color>
+    <color name="white">#ffffff</color>
+    <color name="color_primary">#76B71D</color>
+    <color name="color_primary_dark">#6AA519</color>
+    <color name="color_primary_light">#B3E5FC</color>
+    <color name="color_grey">#C2C2C2</color>
+
+    <!--Section colors-->
+    <color name="yellow_light">#fcda88</color>
+    <color name="yellow_lighter">#fce9bb</color>
+    <color name="blue_light">#62add9</color>
+    <color name="blue_lighter">#c4daf2</color>
+    <!-- End -->
+
+    <!--Add Child-->
+    <color name="blue_green">#00A3D1</color>
+
+    <!--Settings-->
+    <color name="grayish_orange">#827066</color>
+    <color name="very_dark_grayish_orange">#413A36</color>
+    <color name="light_grayish_orange">#9B8980</color>
+    <color name="almost_black">#80000000</color>
+
+    <!--Download-->
+    <color name="darker_grey">#4D4D4D</color>
+    <color name="light_grey">#CFCFCF</color>
+    <color name="dark_grey">#585858</color>
+    <color name="lightest_grey">#edecec</color>
+    <color name="light_gray">#E4E4E4</color>
+    <color name="dark_gray">#B7B7B7</color>
+
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorHighlight">#B6B6B6</color>
+    <color name="colorDivider">#7BD0DF</color>
+    <color name="hint_color">#999999</color>
+    <color name="grey">#F5F7F8</color>
+    <color name="profile_background">#4A4A4A</color>
+    <color name="button_disabled">#ddd</color>
+    <color name="grey_color">#9C9C9C</color>
+    <color name="disable_grey_color">#c9C9C9</color>
+    <color name="colorblue">#FF3B8CE2</color>
+    <color name="orange">#E55403</color>
+    <color name="black_1">#626262</color>
+    <color name="black1">#616161</color>
+    <color name="header_text_color">#CC000000</color>
+    <color name="black7">#878787</color>
+    <color name="grey2">#8F9394</color>
+    <color name="grey5">#8C8C8C</color>
+    <color name="black_dark_transparent">#80000000</color>
+    <color name="black_transparent">#33000000</color>
+    <color name="white_transparent1">#80FFFFFF</color>
+    <color name="dark_orange">#FECD2A</color>
+    <color name="text_color_button">#333333</color>
+    <color name="orange_new">#FF5400</color>
+    <color name="brown">#623300</color>
+    <color name="green">#406F00</color>
+    <color name="tabsSelectedTextColor">#E6E6E6</color>
+    <color name="red_1">#E94D00</color>
+    <color name="red_2">#ee2424</color>
+    <color name="circle_indicator_normal">#ADAFAE</color>
+    <color name="download_green">#5AD173</color>
+    <color name="download_green_disabled">#406E01</color>
+    <color name="read_more">#66C5D7</color>
+    <color name="gold">#DFB25F</color>
+    <color name="pink1">#D96D63</color>
+    <color name="selected_child_name">#7A4836</color>
+    <color name="select_add_child">#423A37</color>
+    <color name="select_add_child_shadow">#413A36</color>
+    <color name="filter_color">#1aa3cd</color>
+    <color name="share_bg">#FFEEEEEE</color>
+    <color name="dialog_queue_item_grey_bg_color">#f4f4f4</color>
+
+    <color name="background_color">#F2000000</color>
+
+    <color name="foreground_color">#FDC689</color>
+
+    <color name="background_text_color">#808080</color>
+
+    <color name="foreground_text_color">#eeeeee</color>
+
+    <color name="color_gray">#E0E0E0</color>
+    <color name="color_light_blue">#59AfE1</color>
+    <color name="color_orange">#FF884A</color>
+
+</resources>

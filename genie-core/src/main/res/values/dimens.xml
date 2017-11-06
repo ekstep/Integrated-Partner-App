@@ -1,0 +1,241 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="mapViewDragHandleWidth">45dp</dimen>
+    <dimen name="edit_text_inset_horizontal_material">4dp</dimen>
+    <dimen name="edit_text_inset_top_material">10dp</dimen>
+    <dimen name="edit_text_inset_bottom_material">7dp</dimen>
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_2_photo">25dp</dimen>
+    <dimen name="size_3">3dp</dimen>
+    <dimen name="size_6">6dp</dimen>
+    <dimen name="size_4">4dp</dimen>
+    <dimen name="size_5">5dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_7">7dp</dimen>
+    <dimen name="size_7_menu">7dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_10_margin">10dp</dimen>
+    <dimen name="size_10_header">10dp</dimen>
+    <dimen name="size_10_home">10dp</dimen>
+    <dimen name="size_5_negative">-7dp</dimen>
+    <dimen name="size_12">12dp</dimen>
+    <dimen name="size_13">13dp</dimen>
+    <dimen name="size_15">15dp</dimen>
+    <dimen name="size_15_game">15dp</dimen>
+    <dimen name="size_14">14dp</dimen>
+    <dimen name="size_14_game">14dp</dimen>
+    <dimen name="size_18">18dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_17">17dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_23">23dp</dimen>
+    <dimen name="size_23_profile">23dp</dimen>
+    <dimen name="size_10_photo">40dp</dimen>
+    <dimen name="size_23_photo_right">38dp</dimen>
+    <dimen name="size_23_photo">20dp</dimen>
+    <dimen name="size_25">25dp</dimen>
+    <dimen name="size_25_settings">25dp</dimen>
+
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_35">35dp</dimen>
+    <dimen name="size_40">40dp</dimen>
+    <dimen name="size_45">45dp</dimen>
+    <dimen name="size_35_photo">65dp</dimen>
+    <dimen name="size_30_negative">-30dp</dimen>
+    <dimen name="size_50">50dp</dimen>
+    <dimen name="size_65">68dp</dimen>
+    <dimen name="size_50_header">50dp</dimen>
+    <dimen name="size_60">60dp</dimen>
+    <dimen name="size_80">80dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_100_game">100dp</dimen>
+    <dimen name="size_130">130dp</dimen>
+    <dimen name="size_140">140dp</dimen>
+    <dimen name="size_150">150dp</dimen>
+    <dimen name="size_150_avatar">150dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+    <dimen name="size_55">30dp</dimen>
+    <dimen name="size_80_avatar">50dp</dimen>
+    <dimen name="anonymous_padding_bottom">25dp</dimen>
+    <dimen name="home_header_height">180dp</dimen>
+    <dimen name="txt_size_11">11sp</dimen>
+    <dimen name="txt_size_12">12sp</dimen>
+    <dimen name="txt_size_13">13sp</dimen>
+    <dimen name="txt_size_14">14sp</dimen>
+    <dimen name="txt_size_15">15sp</dimen>
+    <dimen name="txt_size_16">16sp</dimen>
+    <dimen name="txt_size_17">17sp</dimen>
+    <dimen name="txt_size_18">18sp</dimen>
+    <dimen name="txt_size_20">20sp</dimen>
+    <dimen name="txt_size_22">22sp</dimen>
+    <dimen name="txt_size_25">25sp</dimen>
+    <dimen name="txt_size_30">30sp</dimen>
+    <dimen name="txt_size_35">35sp</dimen>
+    <dimen name="txt_size_40">40sp</dimen>
+    <dimen name="txt_size_45">45sp</dimen>
+    <dimen name="language_card_dimen">300dp</dimen>
+    <dimen name="language_card_dimen_menu">300dp</dimen>
+    <dimen name="avatar_height">300dp</dimen>
+    <dimen name="avatar_height_game">85dp</dimen>
+    <dimen name="avatar_bg_height_game">90dp</dimen>
+    <dimen name="game_card_height">350dp</dimen>
+    <dimen name="game_card_width">300dp</dimen>
+    <dimen name="game_card_text_width">20dp</dimen>
+    <dimen name="viewpager_height">350dp</dimen>
+    <dimen name="viewpager_width">250dp</dimen>
+    <dimen name="viewpager_height_anonymous">400dp</dimen>
+    <dimen name="viewpager_width_anonymous">250dp</dimen>
+    <integer name="avatar_spacing">50</integer>
+    <dimen name="plus_spacing">65dp</dimen>
+    <dimen name="avatar_negative_padding">-45dp</dimen>
+    <dimen name="avatar_padding">50dp</dimen>
+    <dimen name="padding_top_nick_name">5dp</dimen>
+    <dimen name="avatar_height_nick_name">70dp</dimen>
+    <dimen name="game_header_height">160dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
+    <dimen name="game_card_spacing">-55dp</dimen>
+    <dimen name="game_card_top_padding">5dp</dimen>
+    <dimen name="tab_text_size">16sp</dimen>
+    <dimen name="alert_width">290dp</dimen>
+    <dimen name="play_dimen">60dp</dimen>
+    <dimen name="cross_negative_margin">-45dp</dimen>
+    <dimen name="edit_negative_margin">-85dp</dimen>
+    <dimen name="add_child_negative_margin">-110dp</dimen>
+    <dimen name="content_icon_dimen">150dp</dimen>
+    <dimen name="content_icon_height">170dp</dimen>
+    <integer name="content_card_spacing">0</integer>
+    <integer name="content_grid_size">2</integer>
+    <dimen name="content_icon_radius">10dp</dimen>
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="negative_toolbar_height">-60dp</dimen>
+    <dimen name="nav_header_height">130dp</dimen>
+    <dimen name="add_child_margin_top">15dp</dimen>
+    <integer name="popup_size">250</integer>
+    <integer name="popup_size_main">250</integer>
+    <dimen name="group_dimen">70dp</dimen>
+    <dimen name="banner_height">180dp</dimen>
+
+    <dimen name="addchild_boy_icon_dimension">38dp</dimen>
+    <dimen name="addchild_girl_icon_dimension">38dp</dimen>
+
+    <dimen name="alert_dialog_padding_material">24dp</dimen>
+    <dimen name="alert_dialog_padding_top_material">18dp</dimen>
+
+    <dimen name="search_result_icon">65dp</dimen>
+    <dimen name="margin_add_child">20dp</dimen>
+    <dimen name="margin_place_holder">50dp</dimen>
+    <dimen name="section_dimen">180dp</dimen>
+    <dimen name="plus_spacing_new">-37dp</dimen>
+    <dimen name="language_card_height">350dp</dimen>
+    <dimen name="add_child_top">10dp</dimen>
+    <integer name="local_content_grid_size">2</integer>
+    <dimen name="switch_avatar_dimen">80dp</dimen>
+    <dimen name="drawer_width">320dp</dimen>
+    <dimen name="avatar_header_height">40dp</dimen>
+    <integer name="language_card_spacing">-50</integer>
+    <dimen name="margin_filter_sort">5dp</dimen>
+
+    <dimen name="txt_size_small">12sp</dimen>
+    <dimen name="txt_size_medium_small">14sp</dimen>
+    <dimen name="txt_size_medium">16sp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- font sizes -->
+    <dimen name="font_largest">64sp</dimen>
+    <dimen name="font_larger">48sp</dimen>
+    <dimen name="font_x_large">32sp</dimen>
+    <dimen name="font_large">28sp</dimen>
+    <dimen name="font_medium_large">22sp</dimen>
+    <dimen name="font_medium_medium">18sp</dimen>
+    <dimen name="font_medium_small">16sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_tiny">11sp</dimen>
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_normal_horizontal">16dp</dimen>
+    <dimen name="spacing_normal_vertical">16dp</dimen>
+    <dimen name="spacing_medium">18dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_very_tiny">2dp</dimen>
+
+    <dimen name="spacing_welcome_avatar_margin_top">108dp</dimen>
+
+    <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
+         https://developer.android.com/design/patterns/navigation-drawer.html -->
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+    <!-- FAB -->
+    <dimen name="fab_margin_right">0dp</dimen>
+    <dimen name="fab_margin_bottom">0dp</dimen>
+
+    <dimen name="share_max_width">600dp</dimen>
+    <dimen name="share_icon">54dp</dimen>
+    <dimen name="share_dimen">96dp</dimen>
+    <dimen name="collapsed_height">200dp</dimen>
+    <dimen name="copyright_margin">130dp</dimen>
+    <dimen name="negative_spacing_15">-15dp</dimen>
+    <dimen name="negative_spacing_10">-10dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_150">150dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_25">25dp</dimen>
+    <dimen name="dp_35">35dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="sp_10">10sp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_13">13dp</dimen>
+    <dimen name="dp_210">210dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_24">24dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
+    <dimen name="dp_220">220dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_22">22dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+
+    <!--Text Sizes-->
+    <dimen name="sp_70">70sp</dimen>
+    <dimen name="sp_20">20sp</dimen>
+    <dimen name="sp_15">15sp</dimen>
+
+    <!--Height of recycler view in each sections-->
+    <dimen name="section_each_item_height">233dp</dimen>
+    <dimen name="section_each_item_width">177dp</dimen>
+    <dimen name="section_divider">6dp</dimen>
+
+    <dimen name="dp_45">45dp</dimen>
+    <dimen name="dp_48">48dp</dimen>
+    <dimen name="dp_46">46dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+
+    <dimen name="dialog_width">320dp</dimen>
+    <dimen name="child_age_margin">1dp</dimen>
+    <dimen name="child_class_margin">1dp</dimen>
+
+    <dimen name="download_queue_pb_size">25dp</dimen>
+    <dimen name="download_queue_pb_thickness">2dp</dimen>
+    <dimen name="spacing_extra_normal">20dp</dimen>
+    <dimen name="spacing_extra_huge">60dp</dimen>
+
+    <integer name="xdelta_shake">5</integer>
+    <dimen name="generic_dialog_width">500dp</dimen>
+
+</resources>

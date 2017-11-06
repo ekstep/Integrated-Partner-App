@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="@dimen/spacing_tiny"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/export_bg_selector">
+
+        <ImageView
+            android:id="@+id/chk_tick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/spacing_small"
+            android:src="@drawable/ic_feedback" />
+
+        <ImageView
+            android:id="@+id/img_user_profile"
+            android:layout_width="@dimen/content_icon_dimen"
+            android:layout_height="@dimen/content_icon_dimen"
+            android:layout_gravity="center"
+            android:enabled="false"
+            android:src="@drawable/avatar_normal_1" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/img_user_profile"
+            android:layout_toLeftOf="@+id/layout_more"
+            android:layout_toRightOf="@id/img_user_profile"
+            android:layout_toStartOf="@+id/layout_more">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/sp_15"
+                android:textStyle="bold"
+                tools:text="Genie" />
+
+            <LinearLayout
+                android:id="@+id/layout_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_user_name"
+                android:layout_marginTop="@dimen/size_3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_small"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:orientation="horizontal">
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_age_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small"
+                        tools:text="Age" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small"
+                        tools:text="Age" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_class_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@string/label_addchild_class"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_class"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small"
+                        tools:text="Class" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/layout_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/img_user_profile"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/menu_selector_dark"
+            android:padding="@dimen/spacing_tiny"
+            android:src="@drawable/ic_more" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">లేదా </string>
+
+    <!--Splash String Begin-->
+    <string name="title_splash_genie">Genie</string>
+    <!--Splash String End-->
+
+    <!-- Menu Items String Begin-->
+    <string name="label_nav_home">మొదలుపేజీ</string>
+    <string name="label_nav_transfer">బదిలీ చెయ్యి</string>
+    <string name="label_nav_library">లైబ్రరీ</string>
+    <string name="label_nav_downloads">కంటెంటు</string>
+    <string name="label_nav_children">పిల్లలు</string>
+    <string name="label_nav_settings">సెట్టింగులు</string>
+    <string name="label_nav_share_genie">ఇతరులతో పంచుకోండి</string>
+    <string name="label_nav_notifications">నోటిఫికెషన్స్</string>
+    <!--Menu Items String End-->
+
+    <!-- Home  String Begin-->
+    <string name="title_home_sync_genie_data">సింక్ జీనీ డేటా</string>
+    <string name="title_home_my_lessons">My Lessons</string>
+    <string name="title_home_my_text_books">My Books</string>
+    <string name="label_home_onboarding_add_child">పిల్లలను నమోదుచెయ్యండి</string>
+    <string name="label_home_view_all">అన్ని వీక్షించడానికి</string>
+    <string name="label_home_new_label">New</string>
+    <string name="label_home_change_subject">విషయం మార్చండి</string>
+    <string name="label_home_all_subjects">All Subjects</string>
+    <string name="label_home_choose_subject">విషయం ఎంచుకోండి</string>
+    <string name="label_home_default_subject">విషయం ఎంచుకోండి</string>
+    <string name="label_home_sync_now">Sync automatically if I am connected to Wifi/Internet</string>
+    <string name="label_home_sync_later">తర్వాత</string>
+    <string name="msg_home_end_of_content">మరింత కంటెంట్ పొందడానికి వేరే సబ్జెక్టు ఎంచుకోండి</string>
+    <string name="msg_home_download_content">పాఠాలు పొందండి.</string>
+    <string name="msg_home_sync_dialog_prompt">జీనీ సర్వర్లతో మీ డేటా వ్యక్తిగతీకరించిన సిఫార్సులను పొందడానికి సమకాలీకరించడానికి మరియు మా సేవలను మెరుగుపరచడానికి సహాయం.</string>
+    <string name="error_home_genie_offline">Genie is offline, Please connect to internet !</string>
+    <string name="error_home_no_network">మరింత కంటెంట్ పొందడానికి ఇంటర్నెట్కి కనెక్ట్ చేయండి</string>
+    <string name="label_home_coming_soon">Coming soon</string>
+    <string name="msg_home_packaging_genie">జీనీ పంచుకొనేందుకు సిద్ధమవుతోంది</string>
+    <string name="device_low_memory_error">Your device is running low on memory. Would you like to make some storage space free?</string>
+    <string name="label_manage_memory">Manage Memory</string>
+    <!-- Home  String End-->
+
+    <!--Onboard screen strings start-->
+    <string name="action_home_skip">దాటేయ్</string>
+    <string name="label_home_onboarding_addchild_desc">Genie learns about you and suggest lessons that are just right for every child&#8230; Let\'s add a child!</string>
+    <!--Onboard screen strings end-->
+
+    <!-- Add Child  String Begin-->
+    <string name="title_addchild">పిల్లలను నమోదుచెయ్యండి</string>
+    <string name="title_addchild_group">గుంపుని నమోదు చేయండి </string>
+    <string name="title_addchild_edit">పిల్లల వివరాలను మార్చండి </string>
+    <string name="title_addchild_edit_group">మీ గుంపు వివరాలు మార్చండి</string>
+    <string name="label_addchild_pick_avatar">నచ్చిన అవతారం \nఎంచుకోండి</string>
+    <string name="label_addchild_avatar">Avatar</string>
+    <string name="label_addchild_nick_name">మారుపేరు</string>
+    <string name="label_addchild_do_you">ఈ మారుపేరు నచ్చిందా</string>
+    <string name="label_addchild_or">or</string>
+    <string name="label_addchild_how_old">మీ వయసెంత?</string>
+    <string name="label_addchild_welcome_aboard">జీనీ స్టార్‌కు స్వాగతం</string>
+    <string name="label_addchild_genie_star">Genie star!</string>
+    <string name="label_addchild_class">తరగతి</string>
+    <string name="label_addchild_gender">లింగము</string>
+    <string name="label_addchild_others">ఇతరులు</string>
+    <string name="label_addchild_kg">KG</string>
+    <string name="label_addchild_medium">మీడియం</string>
+    <string name="label_addchild_board">బోర్డు</string>
+    <string name="label_addchild_select">ఎంచుకోండి</string>
+    <string name="label_addchild_enter_your_name">మీ పేరు రాయండి</string>
+    <string name="error_addchild_blank_nick_name">Nick name can not be just blanks, please try again&#8230;</string>
+    <!--Add Child String End-->
+
+    <!--Notification Strings Begin-->
+    <string name="error_notification_delete_failed">Deletion failed. PLease try again.</string>
+    <!--Notification Strings End-->
+
+
+    <!--Errors Strings Begin-->
+    <string name="error_import_file_not_supported">ఈ రకం ఫైలు పనిచేయదు.</string>
+    <string name="error_network">ఇంటర్నెట్ అందుబాటులో లేదు. మరొకసారి ప్రయత్నించండి. ఇదే సమస్య పునరావృతమైతే., "help@ekstep.org"కు మెయిల్ పంపండి.</string>
+    <string name="error_db_operation">Unable read or write database</string>
+    <string name="error_invalid_event">Current event is not a valid Telemetry event</string>
+    <string name="error_sync_validation">There was an error syncing your data. Please try again later</string>
+    <string name="error_network_1">ఇంటర్నెట్టు కనెక్షను ఉన్నట్టులేదు</string>
+    <string name="error_duplicate_file">File already exists or Genie is unable to create the file</string>
+    <string name="error_procession_failed">Unable to process the data .Please try again</string>
+    <string name="error_authentication_failed">Authentication failed .Please try again</string>
+    <string name="error_network2">ఇంటర్నెట్టు కనెక్షను ఉన్నట్టులేదు. మళ్ళీ ప్రయత్నించండి</string>
+    <string name="error_timeout">ఎక్కడో తేడా జరిగింది. దయచేసి మళ్ళీ ప్రయత్నించండి</string>
+
+    <!--Import Errors Strings Begin-->
+    <string name="error_import_device_merory_full">Import failed. Device memory full</string>
+    <string name="error_import_insufficient_memory">Download failed. Insufficient space on your device.</string>
+    <string name="errorr_import_lesson_expired">Import failed. Lesson expired</string>
+    <string name="error_import_failed">Import Failed: There was a an error in importing the file.</string>
+    <string name="error_import_file_exists">The file is already imported. Please select a new file</string>
+    <string name="error_import_unsupported_manifest">Cannot import outdated ECAR!</string>
+    <string name="msg_import_successfull"> విజయవంతంగా దిగుమతి ఐఏందీ </string>
+    <string name="error_import_file_already_exists">This profile has already  been imported. </string>
+    <string name="error_import_failure"> దిగుమతి జరగలేదు</string>
+    <!--Import Errors Strings End-->
+
+    <!--Errors Strings End-->
+
+
+    <!--Dialog Strings Begin-->
+    <string name="title_dialog_end">జీనీ ఆపేయమంటారా?</string>
+    <string name="label_dialog_ok">సరే</string>
+    <string name="label_dialog_yes">అవును</string>
+    <string name="label_dialog_no">కాదు</string>
+    <string name="label_dialog_cancel">రద్దు</string>
+    <string name="action_dialog_update_now">Update Now</string>
+    <string name="action_dialog_delete">తీసెయ్</string>
+    <string name="action_dialog_progress">ప్రోగ్రెస్ చూడండి</string>
+    <string name="action_dialog_share">పంచుకోండి</string>
+    <string name="action_dialog_view_details">వివరాలు చూడండి</string>
+    <string name="msg_dialog_update_genie">Update now for a better experience!</string>
+    <string name="msg_dialog_delete_confirmation">ఖచ్చితంగా తీసేయాలనుకుంటున్నారా?</string>
+    <string name="msg_dialog_delete_confirmation_for_content_multiple_existence">This content is accessed elsewhere. Are you sure that you want to delete?</string>
+    <!--Dialog  String END-->
+
+    <!--Navigation Drawer String Begin-->
+    <string name="action_nav_drawer_open">Open navigation drawer</string>
+    <string name="action_nav_drawer_close">Close navigation drawer</string>
+    <!--Navigation Drawer End-->
+
+    <!--Language Selection String Begin-->
+    <string name="title_select_language">మీ భాషని ఎంచుకోండి</string>
+    <string name="label_language">భాష</string>
+    <string name="label_hindi">हिंदी</string>
+    <string name="label_kannada">ಕನ್ನಡ</string>
+    <string name="label_telugu">తెలుగు</string>
+    <string name="label_marathi">मराठी</string>
+    <string name="label_tamil">தமிழ்</string>
+    <string name="label_punjabi">ਪੰਜਾਬੀ</string>
+    <!--Language Selection End-->
+
+    <!-- Children String Begin-->
+    <string name="title_children">పిల్లలు</string>
+    <string name="title_children_import_profile">ప్రొఫైలు దిగుమతి చేయండి </string>
+    <string name="title_children_groups">గుంపులు</string>
+    <string name="label_children_profile_age">వయసు :</string>
+    <string name="label_children_class">వయసు :</string>
+    <string name="label_children_other">ఇతర</string>
+    <string name="msg_children_profile_deletion_successful">User deleted successfully</string>
+    <string name="msg_children_no_profile">ఇంకా వినియోగదారులు లేరు</string>
+    <string name="msg_children_start_adding_profile">+ ప్రెస్ వినియోగదారులు జోడించడానికి&#8230;</string>
+    <string name="msg_children_fetching_profile">ప్రొఫైళ్ళ పట్టిక తయారవుతున్నది</string>
+    <!-- Children String End-->
+
+    <!-- Settings String Begin-->
+    <string name="label_settings_app_info">ఆప్ సమాచారం, క్రెడిట్లు</string>
+    <string name="msg_setting_changing_language">భాషని మారుస్తున్నా. దయచేసి వేచి ఉండండి&#8230; </string>
+
+    <!-- DataSetting String Begin-->
+    <string name="title_sync_data_setting">డేటా సెట్టింగులు</string>
+    <string name="title_sync_settings">సింక్ సెట్టింగులు</string>
+    <string name="title_sync_data_sync_settings">డేటా సింక్ సెట్టింగ్లను</string>
+    <string name="action_sync_now">డేటా పంపండి </string>
+    <string name="label_sync_last_synced_time">గత సమకాలీకరణ</string>
+    <string name="msg_sync_now">మా సర్వర్లకి డేటా పంపితే, మీ పిల్లలకి తగిన కంటెంటుని గుర్తించి అందించే వీలు మాకు కలుగుతుంది.</string>
+    <string name="msg_syncing">దయచేసి వేచి ఉండండి&#8230;</string>
+    <string name="msg_sync_successfull">డేటా విజయవంతంగా పంపబడింది</string>
+    <string name="title_data_synchronization_setting">డేటా పంపేందుకు సెట్టింగులు</string>
+    <string name="label_sync_manual">సొంతంగా పంపడం</string>
+    <string name="label_sync_manual_desc">మిమ్మల్ని డేటా పంపమని అప్పుడప్పుడు గుర్తుచేస్తూ ఉంటాము </string>
+    <string name="label_auto_sync_using_wifi">వైఫై ద్వారా ఆటోమేటిగ్గా పంపడం</string>
+    <string name="label_auto_sync_using_wifi_desc">వైఫైకి మీరు కనెక్టయి ఉన్నప్పుడు దానంతట అదే డేటా పంపబడుతుంది </string>
+    <string name="label_auto_sync_using_wifi_and_cellular">ఇంటర్నెట్టు ద్వారా ఆటోమేటిగ్గా పంపడం</string>
+    <string name="label_auto_sync_using_wifi_and_cellular_desc">ఏ ఇంటర్నెట్టు కనెక్షన్ ఉన్నా డేటా దాని ద్వారా దానంతట అదే పంపబడుతుంది. మీరు డేటా ప్లాన్ వాడుతూ ఉన్నట్లయితే, దానికి డేటా చార్జీ అవుతుంది.</string>
+    <!--DataSetting String End-->
+
+    <!-- About String Begin-->
+    <string name="title_about">జీనీ గురించి</string>
+    <string name="label_about_device_id">డివైస్ ఐడి</string>
+    <string name="label_about_genie_version">జీనీ వెర్షన్</string>
+    <string name="label_about_privacy_policy">సమాచార గోప్యతా విధానం</string>
+    <string name="label_about_us">మా గురించి</string>
+    <string name="label_about_tos">వాడుక నిబంధనలు</string>
+    <!--About String End-->
+
+    <!-- Advanced Setting/Tag String Begin-->
+    <string name="title_advanced_settings">మరిన్ని సెట్టింగులు</string>
+    <string name="title_tag_add_new">కొత్త కోడు నమోదు చేయండి.</string>
+    <string name="label_tag_program_code">ప్రోగ్రాం కోడు</string>
+    <string name="label_tag_short_desc">చిరు వివరం </string>
+    <string name="label_tag_event_sched">ఈవెంటు షెడ్యూలు </string>
+    <string name="label_tag_start_date">మొదలు తేదీ</string>
+    <string name="label_tag_end_date">ముగింపు తేదీ </string>
+    <string name="title_tag_program">ప్రోగ్రాం కోడులు</string>
+    <string name="msg_tag_added_sussessfully">ప్రోగ్రాం కోడు నమోదు చేయబడింది.</string>
+    <string name="msg_tag_updated_successfully">Tag updated successfully</string>
+    <string name="msg_tag_not_available">ఇంకా ఏ టాగులు లేవు</string>
+    <string name="msg_tag_onboarding">టాగులు చేర్చడానికి "+" బటన్ నొక్కండి&#8230;</string>
+    <string name="action_tag_save">సేవ్</string>
+    <string name="action_tag_done">Done</string>
+    <string name="hint_tag_type_here">ఇక్కడ టైపు చేయండి&#8230;</string>
+    <string name="error_tag_cant_be_empty">ప్రోగ్రాం కోడు ఖాళీగా ఉండకూడదు.</string>
+    <string name="error_tag_should_be_alpha_numeric">ప్రోగ్రాం కోడులో అక్షరాలు, అంకెలు మాత్రమే ఉండాలి.</string>
+    <string name="error_tag_duplicate">ఈ ప్రోగ్రాం కోడు ఇప్పటికే ఉపయోగంలో ఉంది.</string>
+    <string name="error_tag_limit">ప్రోగ్రాం కోడు 6 నుండి 12 అక్షరాలు (లేదా అంకెలు) కలిగి ఉండాలి.</string>
+    <string name="error_tag_desc_empty">ప్రోగ్రాం వివరం ఖాళీగా ఉండకూడదు.</string>
+    <string name="error_tag_start_date_empty">Start date can\'t be empty</string>
+    <string name="error_tag_end_date_empty">End date can\'t be empty</string>
+    <string name="error_tag_inavlid">కోడు సరిగాలేదు.</string>
+    <string name="error_tag_invalid_date_range">తేదీ పరిధి సరిగా లేదు</string>
+    <!--Advanced Setting/Tag String End-->
+
+    <!-- Storage settings String Begin-->
+    <string name="title_storage_settings">Storage Setting</string>
+    <!-- Storage settings String End-->
+
+    <!--Settings String End-->
+
+
+    <!-- Content Search String Begin-->
+    <string name="label_search_sort">వరుసలో పెట్టు</string>
+    <string name="label_search_filter">వడపోత</string>
+    <string name="label_search">వెతుకు</string>
+    <string name="error_search">వెతకడానికి కనీసం మూడు అక్షరాలు కావాలి.</string>
+    <string name="error_search_no_content">ఫలితాలు లేవు</string>
+    <string name="error_search_try_different_criteria">వేరే వివరాలతో మళ్ళీ వెతకండి</string>
+    <string name="recommended_content">recommended content</string>
+    <!--Content Search String End-->
+
+    <!--Sort Strings-->
+    <string name="title_sort_by">దీని బట్టి వరుసలో పెట్టు</string>
+    <string name="label_sort_name">పేరు బట్టి </string>
+    <string name="label_sort_relevant">ప్రాసంగికత బట్టి </string>
+    <string name="label_sort_highly_rated">రేటింగు బట్టి </string>
+    <string name="label_sort_newest">తాజాదనం బట్టి </string>
+    <string name="label_sort_most_popular">జనాదరణ బట్టి</string>
+    <!--Filter Strings!-->
+
+    <!--Filter Strings-->
+    <string name="action_filter_apply">వర్తింపచెయ్యి</string>
+    <string name="action_filter_clear">తొలగించినవి</string>
+    <string name="title_filter_all">అన్ని</string>
+    <!--Filter Strings!-->
+
+    <!-- Content Details Begin-->
+    <string name="title_contentdetail">పాఠం వివరాలు</string>
+    <string name="label_contentdetail_download">దిగుమతి </string>
+    <string name="label_contentdetail_downloading">దిగుమతి అవుతున్నది</string>
+    <string name="label_contentdetail_importing">Importing&#8230;</string>
+    <string name="label_contentdetail_play">ఆట మొదలుపెట్టండి</string>
+    <string name="label_contentdetails_update">తాజాపరుచు</string>
+    <string name="label_contentdetail_publisher">ప్రచురించినవారు:</string>
+    <string name="label_contentdetail_owner">రూపొందించినవారు :</string>
+    <string name="label_contentdetail_read_more">ఇంకా చదవండి</string>
+    <string name="label_contentdetail_read_less">తక్కువ చదువు</string>
+    <string name="label_contentdetail_rate">ఈ కంటెంట్ను రేటు</string>
+    <string name="label_contentdetail_copyright">Copyright:&#160;</string>
+    <string name="label_contentdetail_license">License:&#160;</string>
+    <string name="label_contentdetail_ccby">Creative Commons Attribution (CC BY) 4.0</string>
+    <string name="action_contentdetail_open">Open</string>
+    <string name="msg_contentdetail_fetching">కంటెంటు వివరాలు వస్తున్నాయి&#8230;</string>
+    <!--Content Details  String End-->
+
+    <!-- Share String Begin-->
+    <string name="error_share_cant_share_draft_content">డ్రాఫ్ట్ కంటెంట్ భాగస్వామ్యం కాదు</string>
+    <string name="label_share_link">వాటా లింకులు</string>
+    <string name="label_share_file">ఫైలు భాగస్వామ్యం</string>
+    <string name="msg_share_content">Check out&#160;</string>
+    <string name="msg_share_content1">&#160;on Genie!</string>
+    <string name="title_share_lesson">వాటా లెసన్</string>
+    <string name="title_share_profile">వాటా ప్రొఫైల్ను</string>
+    <string name="title_share_telemetry">టెలిమెట్రీ భాగస్వామ్యం</string>
+    <string name="msg_share_genie">Check out Genie, free educational app from EkStep</string>
+    <string name="msg_share_lesson_subject">Check out this Lesson on Genie</string>
+    <string name="msg_share_profile_subject">Check out this Profile on Genie</string>
+    <string name="msg_share_collection_subject">Check out this Collection on Genie</string>
+    <string name="msg_share_genie_subject">Check out Genie (From EkStep)</string>
+    <string name="title_share_details">Share Deatils</string>
+    <string name="label_share_text">Share as text via</string>
+    <!--Share  String End-->
+
+    <!--Download Strings-->
+    <string name="title_downloads">నా పాఠాలు</string>
+    <string name="title_downloads_import_content">దిగుమతి పాఠం</string>
+    <string name="label_downloads_get_more_content">+   Get More Content</string>
+    <string name="label_downloads_file_size">File Size</string>
+    <string name="label_downloads_last_used">Last Used</string>
+    <string name="download_header_title">Title</string>
+    <string name="download_header_size">Size</string>
+    <string name="download_header_last_used">Last Used</string>
+    <string name="label_downloads_sort_content_by">Sort content by</string>
+    <string name="label_downloads_clear_all">&#160; | &#160;Clear All</string>
+    <string name="label_downloads_items">&#160;Items</string>
+    <string name="title_download_confirm_delete">Confirm Delete</string>
+    <string name="msg_download_confirm_delete_desc">Are you sure you want to delete %1$s of content?</string>
+    <string name="msg_download_delete_successfull">%1$s has been cleared from device</string>
+    <string name="msg_downlod_exit">Are you sure you want to exit Downloads ?</string>
+    <!--Download Strings!-->
+
+    <!--Transfer Strings-->
+    <string name="msg_transfering_cotent">కాంటెంట్ ఎగుమతి అవుతున్నది. దయచేసి నిరీక్షించండి</string>
+    <string name="title_trasfer_telemtry">టెలిమెట్రి </string>
+    <string name="title_trasfer_profile">ప్రొఫైలు</string>
+    <string name="title_trasfer_content">కంటెంటు</string>
+    <string name="msg_transfer_select_content">వెతకడానికి కనీసం మూడు అక్షరాలైనా ఉండాలి</string>
+
+    <string name="msg_transfer_no_content">బదిలీ చేయడానికి ఏ కంటెంటు లేదు</string>
+    <string name="msg_content_deletion_sucessfull">కంటెంటు తొలగించబడింది</string>
+    <string name="msg_transfer_select_profile">ఎగుమతి చేసే ప్రొఫైలు ఎంచుకోండి</string>
+    <string name="error_transfer_no_kids">నమోదైన పిల్లలెవరూ లేరు.</string>
+    <!--Transfer Strings!-->
+
+    <!--Language Test Strings Begin!-->
+    <string name="label_dummy_english">English</string>
+    <string name="label_dummy_hindi">Hindi</string>
+    <string name="label_dummy_kannada">Kannada</string>
+    <string name="label_dummy_tamil">Tamil</string>
+    <string name="label_dummy_telegu">Telugu</string>
+    <string name="title_language_test">Language Test</string>
+    <string name="label_dummy_you_are">You are</string>
+    <string name="label_dummy_steps_away">steps away.</string>
+    <string name="msg_dummy_language_test_success">You are now a language tester.</string>
+    <!--Language Test Strings End!-->
+
+    <!--Notifications Strings Begin-->
+    <string name="title_no_notifications">కొత్త నోటిఫికెషన్స్ ఏమి లేవు</string>
+    <!--Notifications Strings End-->
+
+    <!--Summerizer list Strings Begin-->
+    <string name="title_summarizer_profile_details">పిల్లల వివరాలు &amp; పురోగతి</string>
+    <string name="title_summarizer_content_details">కంటెంట్ వివరాలు &amp; పురోగతి</string>
+    <string name="label_summarizer_average_time">అవేరేజ్ మయం</string>
+    <string name="label_summarizer_total_time">Total Time</string>
+    <string name="label_summarizer_no_description">No description available</string>
+    <string name="label_summarizer_score">స్కోర్</string>
+    <string name="label_summarizer_result">ఫలితం</string>
+    <string name="label_summarizer_time_taken">సమయం తీసుకున్న</string>
+    <string name="msg_summarizer_no_profile_summary">సక్రియ ప్రగతి నివేదికల ఈ వినియోగదారుకు ప్రస్తుతం అందుబాటులో ఉన్నాయి.</string>
+    <string name="msg_summarizer_no_content_summary">సక్రియ ప్రగతి నివేదికల ఈ కంటెంట్ కోసం ప్రస్తుతం అందుబాటులో ఉన్నాయి.</string>
+    <string name="label_summarizer_quest_no">ప్రశ్న నెం</string>
+    <string name="label_summarizer_lesson">@string/label_nav_downloads</string>
+    <!--Summerizer list Strings End-->
+
+    <!--File explorer start-->
+    <string name="title_fileexplorer_device_storage">డివైస్ స్టోరేజ్</string>
+    <string name="title_fileexplorer_external_storage">ఎక్సటర్నల్ స్టోరేజ్</string>
+    <string name="title_fileexplorer_root">రూట్</string>
+    <string name="msg_fileexplorer_no_content">Unable to detect any content on your device</string>
+    <string name="msg_fileexplorer_no_profile">Unable to detect any profile on your device</string>
+    <string name="msg_fileexplorer_expand">Expand</string>
+    <!--File explorer End-->
+
+    <!--Feedback strings start-->
+    <string name="title_feedback">అభిప్రాయం</string>
+    <string name="label_fedback_give_your_comments">మీ వ్యాఖ్యలు రాయండి</string>
+    <string name="action_feedback_submit">సమర్పించండి</string>
+    <string name="msg_feedback_successfull">మీ అభిప్రాయాని తెలిపినందుకు  ధన్యవాదాలు.</string>
+    <!--Feedback strings end-->
+
+    <!--Collection Strings Begin-->
+    <string name="action_collection_download_all">Download All</string>
+    <!--Collection Strings End-->
+
+    <!--TextBook Strings Begin-->
+    <string name="title_textbook_downloaded_lessons">Downloaded lessons</string>
+    <string name="label_textbook_table_of_contents">Table of contents</string>
+    <string name="label_textbooks">Textbooks</string>
+    <string name="error_textbook_no_downloaded_lessons">No downloaded lessons available</string>
+    <string name="msg_textbook_get_content_now">Get content now</string>
+    <string name="msg_textbook_empty">Textbook is empty</string>
+    <string name="label_textbook_number_of_lessons">Number of lessons</string>
+    <string name="title_textbook_total_size">Total size&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="error_textbook_no_contents_to_download">No Contents to Download</string>
+    <!--TextBook Strings End-->
+
+    <!--Content Player related strings start-->
+    <string name="title_content_player_home">@string/label_nav_home</string>
+    <string name="title_content_player_title">టైటిల్</string>
+    <string name="title_content_player_next">తరువాత</string>
+    <string name="title_content_player_submit">సమర్పించండి</string>
+    <string name="title_content_player_image">చిత్రం</string>
+    <string name="title_content_player_voice">స్వరము</string>
+    <string name="title_content_player_audio">ఆడియో</string>
+    <string name="title_content_player_author">రచయిత</string>
+    <string name="title_content_player_instructions">టీచర్ కోసం గమనిక</string>
+    <string name="title_content_player_feedback">@string/title_feedback</string>
+    <string name="title_content_player_replay">రిప్లయ్</string>
+    <string name="title_content_player_credits">క్రెడిట్స్</string>
+    <string name="title_content_player_collection">సేకరణ</string>
+    <string name="title_content_player_nocredits">ఏ క్రెడిట్ల అందుబాటులో లేవు</string>
+    <string name="title_content_player_congratulations">అభినందనలు! మీరు ఈ పాఠం పూర్తిచేసరు!</string>
+    <string name="title_content_player_comment">మీ వ్యాఖ్యలు రాయండి&#8230;</string>
+    <string name="title_content_player_nextContent">Next content</string>
+    <string name="title_content_player_scores">Score and Rating</string>
+    <string name="title_content_player_continue">Continue</string>
+    <string name="title_content_player_group">Group</string>
+    <string name="title_content_player_child">Child</string>
+    <string name="title_content_player_groupfallbacktext">ou have not created any group</string>
+    <string name="title_content_player_userswitchertitle">Select a child or a group</string>
+    <string name="title_content_player_backbuttontext">Would you like to leave this content ?</string>
+    <string name="title_content_player_lastPage">Go to last page</string>
+    <!--Content Player related strings End-->
+
+
+    <string name="label_all_anonymous">పేరులేదు</string>
+    <string name="label_all_content_type_activity">కార్యాచరణ</string>
+    <string name="label_all_content_type_collection">కలెక్షన్</string>
+    <string name="label_all_content_type_textbook">Textbook</string>
+
+    <string name="action_all_edit">మార్చు</string>
+    <string name="label_all_age">వయసు </string>
+    <string name="error_sync_fail">డేటా పంపడం కుదరలేదు. దయచేసి  మళ్లీ ప్రయత్నించండి.</string>
+    <string name="msg_import_success">దిగుమతి విజయవంతమైనది</string>
+    <string name="label_all_import">Import</string>
+    <string name="label_all_details">Details</string>
+    <string name="msg_exporting">కాంటెంట్ ఎగుమతి అవుతున్నది. దయచేసి నిరీక్షించండి</string>
+    <string name="msg_importing">దిగుమతి అవుతున్నది. దయచేసి వేచి ఉండండి&#8230;</string>
+    <string name="msg_import_count">Importing </string>
+    <string name="msg_please_wait">Please wait </string>
+    <string name="error_import_not_compatible">Import failed. Lesson not supported by Genie</string>
+
+    <string name="download_queue">Download Queue</string>
+    <string name="pause_download">Pause Download</string>
+    <string name="close">CLOSE</string>
+    <string name="resume_download">Resume Download</string>
+
+    <!--storage settings dialog strings start-->
+    <string name="title_add_memory_card">Add Memory Card</string>
+    <string name="msg_add_memory_card">Add memory card to store even more content.</string>
+    <string name="title_low_space_device">Low space in Mobile Device</string>
+    <string name="msg_low_space_device">Genie requires 100 MB or more free space to transfer to Mobile Device.</string>
+    <string name="title_low_space_sdcard">Low space in SD Card</string>
+    <string name="msg_low_space_sdcard">Genie requires 100 MB or more free space to transfer to SD Card.</string>
+    <string name="title_sdcard_default_storage">Set SD Card as default storage for Genie?</string>
+    <string name="msg_sdcard_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to external storage. Are you sure you want to transfer?</string>
+    <string name="title_device_default_storage">Set Device as default storage for Genie?</string>
+    <string name="msg_device_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to internal storage. Are you sure you want to transfer?</string>
+    <string name="title_merge_content">Merge content</string>
+    <string name="msg_merge_content">There is existing content on the sd card/mobile. Would you like to merge the content.</string>
+    <string name="title_low_storage_space">Low storage space</string>
+    <string name="msg_low_storage_space">Genie requires X MB or more free space to download this content.</string>
+    <string name="label_manage_storage">Manage Storage</string>
+    <string name="msg_dont_ask_again">Don\'t ask again</string>
+    <string name="msg_move_content_sdcard">Please wait while content is being moved to sd card</string>
+    <string name="msg_move_content_internal_storage">Please wait while content is being moved to internal memory</string>
+    <string name="title_move_content">Content Transfer</string>
+    <!--storage settings dialog strings end-->
+
+</resources>

@@ -1,0 +1,59 @@
+[{
+  "msgid":1,
+  "title":"Welcome to Genie!",
+  "msg":"Congratulations on downloading Genie, every child's best friend in their learning journey.",
+  "relativetime":1,
+  "actionid":1
+},
+  {
+    "msgid":2,
+    "title":"New Genie Lessons Every Day!",
+    "msg":"Genie has stories, worksheets, and games! Download a new lesson today!",
+    "relativetime":12,
+    "actionid":2
+  },
+  {
+    "msgid":3,
+    "title":"Genie has Game!",
+    "msg":"Download \"Take Off\", the game that teaches mathematics as you play!",
+    "relativetime":24,
+    "actionid":3,
+    "actiondata":{"contentid":"org.ekstep.takeoff"}
+  },
+  {
+    "msgid":4,
+    "title":"So many Genie Lessons!",
+    "msg":"Genie has hundreds of Lessons. New ones are added every day! Get a new lesson now!",
+    "relativetime":36,
+    "actionid":2
+  },
+  {
+    "msgid":5,
+    "title":"Share Genie Lessons!",
+    "msg":"You can send Genie lessons to your friend using ShareIT, Xender and more. Share Genie now!",
+    "relativetime":48,
+    "actionid":4
+  },
+  {
+    "msgid":6,
+    "title":"Genie for every child!",
+    "msg":"Create child profiles in Genie and track your progress over time!",
+    "relativetime":72,
+    "actionid":5
+  },
+  {
+    "msgid":7,
+    "title":"Genie Stories!",
+    "msg":"Genie has stories to keep every child busy! Download one today!",
+    "relativetime":96,
+    "actionid":6,
+    "actiondata":{"searchquery":"all", "searchcontenttype":"story"}
+  },
+  {
+    "msgid":9,
+    "title":"100s of Free Lessons!",
+    "msg":"Download new Genie lessons every day. Get new Stories, Worksheets and Games.",
+    "relativetime": 120,
+    "actionid":2
+  }
+]

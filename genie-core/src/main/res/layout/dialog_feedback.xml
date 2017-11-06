@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_small"
+        android:text="@string/title_feedback"
+        android:textAllCaps="true"
+        android:textColor="@color/blue_green"
+        android:textSize="@dimen/font_medium_small" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/share"
+        android:background="@color/blue_green" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/share"
+        android:orientation="vertical">
+
+        <RatingBar
+            android:id="@+id/ratingFeedback"
+            style="@style/EkstepRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:numStars="5"
+            android:stepSize="1" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/size_20"
+            android:text="@string/label_fedback_give_your_comments"
+            android:textSize="@dimen/sp_15" />
+
+        <org.ekstep.genie.customview.EkStepCustomEditText
+            android:id="@+id/edt_comments"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/size_20"
+            android:gravity="top"
+            android:imeOptions="actionDone"
+            android:maxLength="130"
+            android:textSize="@dimen/sp_15" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/selector_dark_grey"
+            android:paddingBottom="@dimen/spacing_small"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_small"
+            android:text="@string/action_feedback_submit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+
+
+</RelativeLayout>

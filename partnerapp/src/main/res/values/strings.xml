@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="partner_app_name">Partner App</string>
+
+
+    <string name="btn_skip">Skip</string>
+    <string name="btn_get_started">Get Started</string>
+
+    <string name="label_drive_sync_message">Please wait while\n we are syncing the database</string>
+
+
+    <string name="add_child">Add Child</string>
+
+    <string name="label_select_child">Select Child</string>
+    <string name="btn_browse_lessons">Browse Lessons</string>
+    <string name="no_genie_children_available">No genie children available</string>
+
+
+    <string name="label_child_filter_sub_head">Please enter the following details</string>
+
+    <string name="label_district">District</string>
+    <string name="label_block">Block</string>
+    <string name="label_cluster">Cluster</string>
+    <string name="label_school">School</string>
+    <string name="label_class">Class</string>
+
+
+    <string name="hint_search_by_name">Search by name</string>
+
+    <string name="btn_search_child">Search Child</string>
+    <string name="btn_add_child">Add Child</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+
+    <string name="label_create_child">Create Child</string>
+
+
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/splashBackground">
+
+    <RelativeLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--<ImageView-->
+            <!--android:id="@+id/back_btn"-->
+            <!--style="@style/MenuBackButtonStyle" />-->
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/size_10"
+            android:text="@string/title_select_language"
+            android:textAllCaps="true"
+            android:textColor="?attr/screenTitleFontColor"
+            android:textSize="?attr/screenTitleFontSize"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <org.ekstep.genie.customview.FancyCoverFlow
+        android:id="@+id/fancyCoverFlow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/language_ok_btn"
+        android:layout_below="@id/layout_header"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/language_ok_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:src="@drawable/ic_done" />
+
+</RelativeLayout>

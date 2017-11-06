@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/cardview"
+        android:layout_width="?attr/contentTileWidth"
+        android:layout_height="?attr/contentTileHeight"
+        android:layout_marginLeft="@dimen/spacing_tiny"
+        android:layout_marginRight="@dimen/spacing_tiny">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/layout_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_content"
+                    android:layout_width="@dimen/content_poster_size"
+                    android:layout_height="@dimen/content_poster_size"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/content_poster_margin_top"
+                    android:scaleType="fitXY" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/txt_content_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/img_content"
+                    android:layout_below="@id/img_content"
+                    android:layout_marginRight="@dimen/content_name_margin_right_normal"
+                    android:layout_marginTop="@dimen/content_name_margin_top"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="?attr/contentNameFontColor"
+                    android:textSize="?attr/contentNameFontSize"
+                    ekstep:fontstyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/tv_content_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/img_content"
+                    android:layout_below="@+id/txt_content_name"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/content_type_padding_top"
+                    android:textColor="?attr/textbookContentTypeFontColor"
+                    android:textSize="?attr/contentTypeFontSize"
+                    android:textStyle="bold"
+                    tools:text="Activity" />
+
+                <ImageButton
+                    android:id="@+id/ib_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/txt_content_name"
+                    android:layout_marginRight="@dimen/content_name_margin_right_normal"
+                    android:background="@drawable/menu_selector_dark"
+                    android:paddingBottom="@dimen/more_button_padding_bottom"
+                    android:paddingLeft="@dimen/dp_3"
+                    android:paddingRight="@dimen/dp_3"
+                    android:src="?attr/moreIcon" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_new"
+                    android:layout_width="@dimen/label_new_height"
+                    android:layout_height="@dimen/label_new_height"
+                    android:layout_alignRight="@+id/img_content"
+                    android:layout_alignTop="@+id/img_content"
+                    android:layout_marginRight="@dimen/new_label_margin_right"
+                    android:layout_marginTop="@dimen/new_label_margin_top"
+                    android:background="@drawable/shape_circle_filled_blue"
+                    android:gravity="center"
+                    android:text="@string/label_home_new_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/label_new_text_size"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_tick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:id="@+id/iv_normal_tick_mark"
+                    android:layout_width="@dimen/label_tick_height"
+                    android:layout_height="@dimen/label_tick_height"
+                    android:layout_marginBottom="@dimen/label_tick_margin_bottom"
+                    android:layout_marginRight="@dimen/label_tick_margin_right"
+                    android:background="@drawable/shape_circle_filled_green"
+                    android:padding="@dimen/dp_5"
+                    android:src="@drawable/ic_tick" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!--Transparent view when clicked on sharing-->
+        <View
+            android:id="@+id/vw_selector_layer"
+            style="@style/SelectorLayerStyle"
+            android:visibility="invisible" />
+
+        <!--Tick mark when item is selected-->
+        <ImageView
+            android:id="@+id/iv_select_tick"
+            style="@style/TickMarkStyle"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_10"
+        android:layout_below="@id/cardview" />
+</RelativeLayout>

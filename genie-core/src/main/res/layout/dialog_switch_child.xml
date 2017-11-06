@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/size_12"
+        android:src="@drawable/ic_close" />
+
+    <ImageView
+        android:id="@+id/add_child"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/size_12"
+        android:layout_toLeftOf="@id/img_close"
+        android:src="@drawable/ic_home_add_child" />
+
+    <RelativeLayout
+        android:id="@+id/layout_kid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_child"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:layout_marginTop="-36dp"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/size_2">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/kid_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_player"
+            android:layout_marginLeft="-38dp"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_toRightOf="@+id/img_player"
+            android:background="@drawable/img_title_strip"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingEnd="@dimen/spacing_small"
+            android:paddingLeft="@dimen/spacing_huge"
+            android:paddingRight="@dimen/spacing_small"
+            android:paddingStart="@dimen/spacing_huge"
+            android:text="@string/label_all_anonymous"
+            android:textColor="@color/selected_child_name"
+            android:textSize="@dimen/sp_15" />
+
+        <ImageView
+            android:id="@+id/img_player"
+            android:layout_width="@dimen/switch_profile_dimen"
+            android:layout_height="@dimen/switch_profile_dimen"
+            android:src="@drawable/avatar_anonymous" />
+
+        <LinearLayout
+            android:id="@+id/layout_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/kid_name"
+            android:layout_marginEnd="@dimen/spacing_huge"
+            android:layout_marginRight="@dimen/spacing_huge"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:background="@drawable/bg_profile_data"
+            android:padding="@dimen/size_6"
+            android:visibility="invisible">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:minWidth="70dp"
+                android:text="@string/label_addchild_class"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16"
+                android:layout_marginRight="@dimen/size_16"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/layout_class"
+            android:layout_alignLeft="@+id/layout_class"
+            android:layout_alignRight="@+id/layout_class"
+            android:layout_alignStart="@+id/layout_class"
+            android:layout_below="@+id/layout_class"
+            android:layout_marginTop="@dimen/size_10"
+            android:background="@drawable/bg_profile_data"
+            android:padding="@dimen/size_6"
+            android:visibility="invisible">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_age_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16"
+                android:maxLines="1"
+                android:text="@string/label_all_age"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/size_16"
+                android:layout_marginRight="@dimen/size_16"
+                android:layout_toRightOf="@+id/txt_age_label"
+                android:gravity="end|right"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <org.ekstep.genie.customview.FancyCoverFlow
+        android:id="@+id/fancyCoverFlow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/size_8" />
+
+</RelativeLayout>

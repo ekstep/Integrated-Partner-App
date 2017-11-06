@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/txt_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:background="@drawable/bg_partner_spinner"
+        app:queryBackground="@android:color/transparent"
+        app:queryHint="@string/hint_search_by_name"
+        tools:text="hello world" />
+
+
+    <Button
+        android:id="@+id/create_child_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_search"
+        android:text="@string/label_create_child"
+        android:background="@null"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txt_search"
+        android:layout_margin="@dimen/dp_4"
+        android:background="@drawable/bg_partner_child_list"
+        android:paddingBottom="48dp" />
+
+    <Button
+        android:id="@+id/btn_browse_lesson"
+        style="@style/ButtonCompatBorderless"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_partner_button_selector"
+        android:enabled="false"
+        android:text="@string/btn_add_child"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size_15"
+    android:background="@drawable/dialog_background"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/size_15">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible" />
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/txt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_5"
+        android:gravity="center"
+        android:padding="@dimen/spacing_small"
+        android:text="@string/title_sync_data_setting"
+        android:textColor="@color/dark_grey"
+        android:textSize="12sp" />
+
+</LinearLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_stepper_progress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:animateLayoutChanges="true">
+
+    <ImageView
+        android:id="@+id/img_connector1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-5dp"
+        android:layout_toRightOf="@+id/layout_step_1"
+        android:background="?attr/addChildStepperIconConnector" />
+
+    <RelativeLayout
+        android:id="@+id/layout_step_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_step_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/addChildStepperBackgroundFilled"
+            android:drawable="?attr/addChildStepperIconTick"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="?attr/addChildStepperTextColorFilled"
+            android:textSize="@dimen/txt_size_medium" />
+
+        <ImageView
+            android:id="@+id/img_tick_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="?attr/addChildStepperIconTick"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/img_connector2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-5dp"
+        android:layout_toRightOf="@+id/layout_step_2"
+        android:background="?attr/addChildStepperIconConnector" />
+
+    <RelativeLayout
+        android:id="@+id/layout_step_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-2dp"
+        android:layout_toRightOf="@+id/img_connector1">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_step_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/addChildStepperBackgroundUnfilled"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="?attr/addChildStepperTextColorUnfilled"
+            android:textSize="@dimen/txt_size_medium" />
+
+        <ImageView
+            android:id="@+id/img_tick_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="?attr/addChildStepperIconTick"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_connector3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="-5dp"
+        android:layout_toRightOf="@+id/layout_step_3"
+        android:background="?attr/addChildStepperIconConnector" />
+
+    <RelativeLayout
+        android:id="@+id/layout_step_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-2dp"
+        android:layout_toRightOf="@+id/img_connector2">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_step_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/addChildStepperBackgroundUnfilled"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="?attr/addChildStepperTextColorUnfilled"
+            android:textSize="@dimen/txt_size_medium" />
+
+        <ImageView
+            android:id="@+id/img_tick_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="?attr/addChildStepperIconTick"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/txt_step_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-5dp"
+        android:layout_toRightOf="@+id/img_connector3"
+        android:background="?attr/addChildStepperBackgroundUnfilled"
+        android:gravity="center"
+        android:text="4"
+        android:textColor="?attr/addChildStepperTextColorUnfilled"
+        android:textSize="@dimen/txt_size_medium" />
+</RelativeLayout>

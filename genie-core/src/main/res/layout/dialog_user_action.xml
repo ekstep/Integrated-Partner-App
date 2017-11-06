@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/alert_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:orientation="vertical">
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/txt_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/size_10"
+        android:layout_marginRight="@dimen/size_10"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingBottom="@dimen/size_10"
+        android:paddingRight="@dimen/size_10"
+        android:paddingTop="@dimen/size_10"
+        android:textAllCaps="true"
+        android:textColor="@color/colorblue"
+        android:textSize="@dimen/sp_15"
+        ekstep:fontstyle="bold"
+        tools:text="Ninja" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_grey" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/layout_share"
+        style="@style/DialogMoreTextStyle"
+        android:drawableLeft="@drawable/ic_share_new"
+        android:drawableStart="@drawable/ic_share_new"
+        android:text="@string/action_dialog_share" />
+
+    <View style="@style/DialogDividerStyle" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/layout_edit"
+        style="@style/DialogMoreTextStyle"
+        android:drawableLeft="@drawable/ic_edit_black"
+        android:drawableStart="@drawable/ic_edit_black"
+        android:text="@string/action_all_edit" />
+
+    <View style="@style/DialogDividerStyle" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/layout_report_progress"
+        style="@style/DialogMoreTextStyle"
+        android:drawableLeft="@drawable/ic_report"
+        android:drawableStart="@drawable/ic_report"
+        android:text="@string/action_dialog_progress" />
+
+    <View style="@style/DialogDividerStyle" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/layout_delete"
+        style="@style/DialogMoreTextStyle"
+        android:drawableLeft="@drawable/ic_dialog_delete"
+        android:drawableStart="@drawable/ic_dialog_delete"
+        android:text="@string/action_dialog_delete" />
+
+</LinearLayout>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginLeft="@dimen/size_30"
+        android:layout_marginRight="@dimen/size_30"
+        android:layout_marginTop="@dimen/spacing_small">
+
+        <RelativeLayout
+            android:id="@+id/layout_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/filter_btn">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/layout_searh_title"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:longClickable="true"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/back_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/menu_selector_dark"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_search_back_new" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toRightOf="@id/back_btn"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black1"
+                        android:textSize="@dimen/sp_15" />
+
+                    <ImageView
+                        android:id="@+id/layout_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?attr/actionBarSize"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_marginRight="@dimen/spacing_small"
+                        android:padding="@dimen/spacing_small"
+                        android:src="@drawable/ic_search" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/layout_toolbar_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+                <include layout="@layout/layout_toolbar_search" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/filter_btn"
+            style="@style/MenuTextButtonStyle"
+            android:layout_marginLeft="@dimen/margin_filter_sort"
+            android:layout_toLeftOf="@+id/sort_btn"
+            android:layout_toStartOf="@+id/sort_btn"
+            android:drawableLeft="@drawable/ic_filter"
+            android:drawableStart="@drawable/ic_filter"
+            android:text="@string/label_search_filter" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/sort_btn"
+            style="@style/MenuTextButtonStyle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/ic_sort"
+            android:drawableStart="@drawable/ic_sort"
+            android:text="@string/label_search_sort" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLayout"
+        android:layout_marginLeft="@dimen/size_30"
+        android:layout_marginRight="@dimen/size_30"
+        android:layout_marginTop="@dimen/size_10">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
+            android:scrollbars="vertical" />
+
+        <RelativeLayout
+            android:id="@+id/layout_no_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/img_sad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_search_empty" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_no_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_sad"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/size_10"
+                android:gravity="center"
+                android:text="@string/error_search_no_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_no_result1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_no_result"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="@string/error_search_try_different_criteria"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_15" />
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <!--Transparent view-->
+    <RelativeLayout
+        android:id="@+id/rl_disabled_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLayout"
+        android:alpha="0.5"
+        android:background="@color/header_text_color"
+        android:fillViewport="true"
+        android:visibility="gone" />
+</RelativeLayout>

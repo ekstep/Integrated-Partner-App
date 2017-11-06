@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true">
+
+    <ImageView
+        android:id="@+id/back_btn"
+        style="@style/MenuBackButtonStyle"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/txt_header"
+        style="@style/HeaderTextStyle"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/back_btn"
+        android:text="@string/title_downloads" />
+
+    <!-- Include Normal Download Options-->
+    <include layout="@layout/layout_download_normal_menu_options" />
+
+
+    <!-- Include Options when a content is selected-->
+    <include
+        layout="@layout/layout_download_content_selected_menu_options"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

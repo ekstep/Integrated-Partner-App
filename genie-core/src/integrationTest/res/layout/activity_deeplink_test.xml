@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="org.ekstep.summarizer.SummarizerTestActivity">
+
+        <Button
+            android:id="@+id/btn_deeplink1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Content Details" />
+
+        <Button
+            android:id="@+id/btn_deeplink2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Search Content" />
+
+        <Button
+            android:id="@+id/btn_deeplink3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Explore Content" />
+
+        <Button
+            android:id="@+id/btn_deeplink4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Tag1" />
+
+        <Button
+            android:id="@+id/btn_deeplink5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Tag2" />
+
+        <Button
+            android:id="@+id/btn_deeplink6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Tag3" />
+
+        <Button
+            android:id="@+id/btn_deeplink7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deeplink Tag4" />
+
+        <Button
+            android:id="@+id/btn_deeplink8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CustomTag1" />
+
+        <Button
+            android:id="@+id/btn_deeplink9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CustomTag2" />
+
+        <Button
+            android:id="@+id/btn_deeplink10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="File Import" />
+    </LinearLayout>
+</ScrollView>

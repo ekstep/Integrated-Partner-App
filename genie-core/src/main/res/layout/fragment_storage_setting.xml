@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_bottom"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/storage_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:layout_margin="@dimen/spacing_normal"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/title_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_mobile_inactive"
+                        android:drawablePadding="@dimen/spacing_small"
+                        android:gravity="center"
+                        android:text="@string/title_mobile_device"
+                        android:textSize="@dimen/txt_size_16"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/layout_mobile_device"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title_mobile">
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_available_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/label_available_space"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_genie_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/label_available_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/label_used_space"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_others_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/label_genie_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/app_name"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/mobile_available_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text=""
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/mobile_used_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/label_available_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/mobile_genie_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/mobile_used_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:textSize="@dimen/txt_size_15" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/size_100"
+                    android:layout_marginBottom="@dimen/spacing_normal"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:background="@color/disable_grey_color"></View>
+
+                <RelativeLayout
+                    android:id="@+id/layout_sd_card"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/title_SD_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_sdcard_inactive"
+                        android:drawablePadding="@dimen/spacing_small"
+                        android:gravity="center"
+                        android:text="@string/title_sd_card"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/txt_size_16"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/title_SD_card">
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_sdcard_available_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="@string/label_available_space"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_sdcard_genie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/label_sdcard_available_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/label_used_space"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/label_sdcard_others"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/label_sdcard_genie"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="@string/app_name"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/available_sdcard_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/spacing_normal"
+                            android:text="--"
+                            android:textSize="@dimen/txt_size_16" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/others_sdcard_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/label_sdcard_available_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="--"
+                            android:textSize="@dimen/txt_size_15" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/genie_sdcard_space"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_below="@+id/others_sdcard_space"
+                            android:layout_marginTop="@dimen/spacing_small"
+                            android:text="--"
+                            android:textSize="@dimen/txt_size_15" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_default_storage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/storage_layout"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_small">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_default_storage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="@string/label_set_default_storage"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/txt_default_storage"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_very_tiny">
+
+                    <org.ekstep.genie.customview.EkStepRadioGroup
+                        android:id="@+id/mobile_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_small"
+                        android:drawableLeft="@drawable/ic_mobile_inactive"
+                        android:drawablePadding="@dimen/spacing_small"
+                        android:text="@string/title_mobile_device"
+                        android:textSize="@dimen/txt_size_15"
+                        android:theme="@style/EkstepCheckBox" />
+
+                    <org.ekstep.genie.customview.EkStepRadioGroup
+                        android:id="@+id/sdcard_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_tiny"
+                        android:drawableLeft="@drawable/ic_sdcard_inactive"
+                        android:drawablePadding="@dimen/spacing_small"
+                        android:text="@string/title_sd_card"
+                        android:textSize="@dimen/txt_size_15"
+                        android:theme="@style/EkstepCheckBox" />
+                </RadioGroup>
+            </RelativeLayout>
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_storage_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_default_storage"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
+                android:text="@string/set_default_storage_desc"
+                android:textSize="@dimen/txt_size_14" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_tiny">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/manage_others"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_blue_rounded_selector"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:text="@string/label_manage_others"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_16" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/manage_genie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_blue_rounded_selector"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:text="@string/label_manage_genie"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_size_16" />
+    </RelativeLayout>
+</RelativeLayout>

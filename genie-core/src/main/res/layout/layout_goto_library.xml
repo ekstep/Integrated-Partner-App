@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_no_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_no_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:src="@drawable/ic_rocket" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_get_more_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_no_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/app_white_theme_color"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        ekstep:cardCornerRadius="5dp"
+        ekstep:cardUseCompatPadding="true">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingBottom="@dimen/spacing_normal"
+            android:paddingLeft="@dimen/spacing_huge"
+            android:paddingRight="@dimen/spacing_huge"
+            android:paddingTop="@dimen/spacing_normal"
+            android:text="@string/label_downloads_get_more_content"
+            android:textAllCaps="true"
+            android:textColor="@color/app_black_theme_color"
+            android:textSize="@dimen/sp_15" />
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_normal_menu_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="@dimen/spacing_normal">
+
+    <ImageView
+        android:id="@+id/iv_menu_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_nav_slider_menu_share" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/normal_item_drawer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_menu_item"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:text="@string/label_nav_home"
+        android:textAllCaps="true"
+        android:textColor="@color/app_black_theme_color"
+        android:textSize="@dimen/txt_size_16"
+        android:textStyle="bold" />
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/ectv_notification_counter"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_notification_counter"
+        android:gravity="center"
+        android:padding="@dimen/spacing_very_tiny"
+        android:text="100+"
+        android:textSize="@dimen/txt_size_11"
+        android:visibility="gone" />
+
+</RelativeLayout>

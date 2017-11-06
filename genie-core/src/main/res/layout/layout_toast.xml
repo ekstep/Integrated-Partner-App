@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.ekstep.genie.customview.EkStepNotoTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_toast"
+    android:padding="@dimen/spacing_small"
+    android:textColor="@android:color/white"
+    android:textSize="@dimen/sp_15" />

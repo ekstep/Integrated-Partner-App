@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <RelativeLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <RelativeLayout
+            android:id="@+id/layout_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_add_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="?attr/addChildMenuAddGroup" />
+
+            <ImageView
+                android:id="@+id/img_add_child"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="?attr/addChildMenuAddChild"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_add_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/title_addchild"
+            android:textAllCaps="true"
+            android:textColor="?attr/addChildTitleColor"
+            android:textSize="@dimen/txt_size_22"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/img_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/size_10"
+        android:background="?attr/addChildIconNextStep" />
+
+    <ImageView
+        android:id="@+id/img_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/size_10"
+        android:background="?attr/addChildIconPreviousStep"
+        android:visibility="invisible" />
+
+    <include
+        android:id="@+id/layout_progress"
+        layout="@layout/layout_add_child_progress_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_header"
+        android:layout_centerHorizontal="true" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_progress"
+        android:layout_toLeftOf="@+id/img_next"
+        android:layout_toRightOf="@id/img_skip" />
+
+    <RelativeLayout
+        android:id="@+id/layout_transparent_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/screenTrasnparentColor"
+        android:visibility="gone" />
+</RelativeLayout>

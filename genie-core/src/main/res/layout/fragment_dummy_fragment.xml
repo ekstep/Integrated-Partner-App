@@ -1,0 +1,4543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fr_root_dummy"
+    style="@style/YellowBackgroundStyle">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/size_10"
+            android:paddingTop="5dp"
+            android:text="@string/title_language_test"
+            android:textAllCaps="true"
+            android:textColor="@color/very_dark_grayish_orange"
+            android:textSize="@dimen/sp_15"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/more_btn"
+                style="@style/MenuMoreButtonStyle"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/txt_selected_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/more_btn"
+                android:padding="@dimen/size_10"
+                android:text="@string/label_language"
+                android:textAllCaps="true"
+                android:textColor="@color/very_dark_grayish_orange"
+                android:textSize="@dimen/sp_15"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!--<Spinner-->
+        <!--android:id="@+id/spn_language_select"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="120dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--app:theme="@style/ThemeOverlay.AppCompat.Dark">-->
+        <!--</Spinner>-->
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_about"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_normal"
+            android:background="@drawable/dialog_background"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_home1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:text="Home"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_home"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:text="@string/label_nav_home"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingRight="@dimen/size_5"
+                    android:paddingTop="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="Children"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_22"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingRight="@dimen/size_5"
+                    android:paddingTop="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="@string/title_children"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_22"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingRight="@dimen/size_5"
+                    android:paddingTop="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="Children &amp; Groups"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_22"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Add a child"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_addchild"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Add a group"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_addchild_group"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Edit child details"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_addchild_edit"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Pick your favorite"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_22"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_addchild_pick_avatar"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_22"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxWidth="230dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="16dp"
+                    android:text="Do you want to be"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_do_you"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxWidth="230dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="16dp"
+                    android:text="@string/label_addchild_do_you"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_or"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="10dp"
+                    android:text="or"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="10dp"
+                    android:text="@string/label_addchild_or"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_type_nick_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:maxWidth="250dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="10dp"
+                    android:text="Type your nick name"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_15"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingRight="5dp"
+                    android:paddingTop="@dimen/padding_top_nick_name"
+                    android:text="Nick name"
+                    android:textColor="@color/grey2" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLength="20"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="@dimen/padding_top_nick_name"
+                    android:text="@string/label_addchild_nick_name"
+                    android:textColor="@color/grey2" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="Age:"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_18"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="@string/label_children_profile_age"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_18"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="Gender:"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_18"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="Class"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_18"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="@string/label_addchild_class"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_18"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_how_old"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:maxWidth="200dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_30"
+                    android:text="How old are you?"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+
+                    android:maxWidth="200dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_30"
+                    android:text="@string/label_addchild_how_old"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_birth_day"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxWidth="230dp"
+                    android:paddingBottom="@dimen/size_5"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="When is your birthday?"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxWidth="230dp"
+                    android:paddingBottom="@dimen/size_5"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_5"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Class"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_addchild_class"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_gender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_5"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="Gender"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_5"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_5"
+                    android:text="@string/label_addchild_gender"
+                    android:textColor="@color/blue_green"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_boy"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Boy"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Girl"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_girl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Welcome aboard"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_addchild_welcome_aboard"
+                    android:textColor="@color/orange_new"
+                    android:textSize="@dimen/txt_size_25"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Content"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_downloads"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="My Content"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/txt_my_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_downloads"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Explore Content"
+                    android:textAllCaps="true"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/txt_explore_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_library"
+                    android:textAllCaps="true"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Children"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_children"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Groups"
+                    android:textAllCaps="true"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_children_groups"
+                    android:textAllCaps="true"
+                    android:textColor="@color/grey2"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Delete"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/action_dialog_delete"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Share"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/action_dialog_share"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Progress"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/action_dialog_progress"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Import Content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_downloads_import_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Import Content"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_downloads_import_content"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Transfer"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/txt_transfer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_transfer"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Transfer"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_transfer"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Telemetry"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_trasfer_telemtry"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Profile"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_trasfer_profile"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_trasfer_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_child_name1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="Anonymous"
+                    android:textColor="@color/brown"
+                    android:textSize="@dimen/txt_size_25" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_child_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="@string/label_all_anonymous"
+                    android:textColor="@color/brown"
+                    android:textSize="@dimen/txt_size_25" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Advanced Settings"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_advanced_settings"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program Tags"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_tag_program"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Add new tag"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_tag_add_new"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="@dimen/size_10"
+                    android:singleLine="true"
+                    android:text="Program code/Tag"
+                    android:textColor="@color/profile_background"
+                    android:theme="@style/EkStepEditTextTheme" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="@dimen/size_10"
+                    android:singleLine="true"
+                    android:text="@string/label_tag_program_code"
+                    android:textColor="@color/profile_background"
+                    android:theme="@style/EkStepEditTextTheme" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Short Description"
+                    android:imeOptions="actionDone"
+                    android:paddingLeft="@dimen/size_10"
+                    android:singleLine="true"
+                    android:textColor="@color/profile_background"
+                    android:theme="@style/EkStepEditTextTheme" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/label_tag_short_desc"
+                    android:imeOptions="actionDone"
+                    android:paddingLeft="@dimen/size_10"
+                    android:singleLine="true"
+                    android:textColor="@color/profile_background"
+                    android:theme="@style/EkStepEditTextTheme" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Event Schedule(Optional)"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_tag_event_sched"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Start Date"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_tag_start_date"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="End Date"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_tag_end_date"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program code can't be empty"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/error_tag_cant_be_empty"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program code should be alphanumeric"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/error_tag_should_be_alpha_numeric"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program code already exists"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/error_tag_duplicate"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program code should be of 6 to 12 characters"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/error_tag_limit"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Program description can't be empty"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/error_tag_desc_empty"
+                    android:textColor="@color/profile_background"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Welcome"
+                    android:textColor="@color/orange_new"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:shadowColor="@color/dark_grey"
+                    android:singleLine="false"
+                    android:text="Select your"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_25" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:shadowColor="@color/dark_grey"
+                    android:singleLine="false"
+                    android:text="@string/title_select_language"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_25" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/size_5"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="Language"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_30" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/size_5"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="@string/label_language"
+                    android:textColor="@color/orange"
+                    android:textSize="@dimen/txt_size_30" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:text="Language"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="5dp"
+                    android:text="@string/label_language"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_20"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Language"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_language"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Home"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:id="@+id/txt_drawer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_home"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Users"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_children"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Content"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_downloads"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Transfer"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_transfer"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Settings"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_settings"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="About"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/title_about"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+
+                    android:text="Advanced Settings"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+
+                    android:text="@string/title_advanced_settings"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="About us"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_about_us"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_about_privacy_policy"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Terms &amp; Conditions"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_about_tos"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="Share Genie"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:text="@string/label_nav_share_genie"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_child_name122"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="Anonymous"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_25" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_child_name12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/size_10"
+                    android:shadowColor="@color/dark_grey"
+                    android:text="@string/label_all_anonymous"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/txt_size_25" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Settings"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_nav_settings"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Transfer via"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Bluetooth"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Wireless Network"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <!--Dialog messages-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Retrieving Gamelist info. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Syncing ... Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_syncing"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Adding child. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Exporting.. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_exporting"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Importing.. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_importing"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Listing profiles.. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Getting profiles.. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_children_fetching_profile"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Applying language changes.."
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_setting_changing_language"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Updating child info. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Retrieving language list. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Retrieving game list. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Packaging Genie..."
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_home_packaging_genie"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Rendering explore content home"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="OK"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_dialog_ok"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Yes"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_dialog_yes"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_dialog_no"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Cancel"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_dialog_cancel"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="End Genie?"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/title_dialog_end"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Searching Content.. Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Are you sure that you want to delete?"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_dialog_delete_confirmation"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="content(s) selected"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Transferring content....Please wait"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_transfering_cotent"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <!--Toast messages-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="The ecar file is outdated.Please import the newer version."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Successfully exported"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Successfully imported"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_import_success"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Given file type is not supported"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_import_file_not_supported"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Could not connect to the Internet, or it is very slow. Please try again later. If it happens repeatedly, please contact help@ekstep.org."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_network"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Name shouldn\'t be more than or equal to 20 charecters"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Name shouldn\'t contain any charecter other than  alphabets, digits underscore and dot"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="There was an error syncing your data. Please try again later"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_sync_validation"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="It seems there is no internet connectivity"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_network_1"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Export failed. Please try again"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="The file is already imported.Please select another file"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_import_file_exists"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Invalid download url"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Invalid date range"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_tag_invalid_date_range"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No contents available"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="The search string should be greater than or equal to 3 characters"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_search"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Please select one of the content to export"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_transfer_select_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No content is available to transfer"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_transfer_no_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Content deleted successfully"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_content_deletion_sucessfull"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No app found to render this content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Tag added successfully"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_tag_added_sussessfully"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="You are"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="steps away."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="You are now a language tester."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No Results Found."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_search_no_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Please change your criteria and try again"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_search_try_different_criteria"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Kids not available"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_transfer_no_kids"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No Internet Connection. Please check your internet connection and try again."
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_network2"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="There was an error in retrieving search results. Please try again later"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_timeout"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="No results found. Please change your criteria and try again"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_14" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/tab_height"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Sort"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/tab_height"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_search_sort"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/tab_height"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Filter"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/tab_height"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_search_filter"
+                    android:textAllCaps="true"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Search"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_search"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Sort by"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_16" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/title_sort_by"
+                    android:textColor="@color/black1"
+                    android:textSize="@dimen/txt_size_16" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Relevant"
+                    android:textColor="@color/dark_grey"
+
+                    android:textSize="@dimen/txt_size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_sort_relevant"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Most Popular"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_sort_most_popular"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Newest"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_sort_newest"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Highly Rated"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_sort_highly_rated"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/txt_size_15" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Filter"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_search_filter"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Apply"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/action_filter_apply"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Continue playing as"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Anonymous"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_all_anonymous"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Choose from list"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Download"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_contentdetail_download"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Downloading"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_contentdetail_downloading"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Play"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_contentdetail_play"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Update"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_contentdetails_update"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/txt_size_16"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Device ID"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_about_device_id"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Genie Version"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_18" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/label_about_genie_version"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/size_18" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Success! Data synced successfully"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/msg_sync_successfull"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Failed! Please connect to the internet and try again."
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="Failed! Data sync failed. Please try again later."
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+
+                <org.ekstep.genie.customview.EkStepNotoTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1"
+                    android:paddingBottom="@dimen/size_10"
+                    android:paddingLeft="@dimen/size_10"
+                    android:paddingTop="@dimen/size_10"
+                    android:text="@string/error_sync_fail"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

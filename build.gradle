@@ -1,0 +1,49 @@
+apply from: 'dependencies.gradle'
+
+ext {
+
+    androidBuildToolsVersion = "23.0.3"
+    androidMinSdkVersion = 21
+    crosswalkBuildMinSdkVersion = 16
+    androidTargetSdkVersion = 23
+    androidCompileSdkVersion = 23
+
+
+    appId = "YOUR_APP_ID"
+    appVersionCode = 1
+    crosswalkBuildVersionCode = 1
+    appBuildNumber = System.getenv("BUILD_NUMBER") ?: "local"
+    appVersionName = "1.0.$appBuildNumber"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://platform.ekstep.in/downloads/content/repositories/releases" }
+        maven { url "https://platform.ekstep.in/downloads/content/repositories/production" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.google.gms:google-services:3.0.0'
+        classpath 'io.fabric.tools:gradle:1.24.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url "https://maven.google.com" }
+        maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://platform.ekstep.in/downloads/content/repositories/releases" }
+        maven { url "https://platform.ekstep.in/downloads/content/repositories/production" }
+        maven { url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2' }
+        repositories {
+            flatDir {
+                dirs 'libs'
+            }
+        }
+    }
+}

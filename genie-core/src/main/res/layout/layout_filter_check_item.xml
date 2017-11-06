@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.ekstep.genie.customview.EkStepNotoCheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/checkedText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+    android:gravity="center_vertical"
+    android:padding="@dimen/size_10"
+    android:textColor="@color/profile_background"
+    android:textSize="@dimen/txt_size_16"
+    android:theme="@style/EkstepCheckBox" />

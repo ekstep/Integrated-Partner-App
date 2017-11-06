@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="partner_color_primary">@color/color_primary</color>
+    <color name="partner_color_primary_dark">@color/color_primary_dark</color>
+    <color name="partner_color_accent">@color/colorAccent</color>
+
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
+
+    <style name="PartnerTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="SyncProgressBar" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#FF7C7C7C</item>
+        <item name="android:progressBackgroundTint">@color/white</item>
+    </style>
+
+
+    <style name="ChildFilterTitleStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+        <item name="android:layout_marginTop">@dimen/spacing_normal</item>
+    </style>
+
+    <style name="ChildFilterSpinnerStyle">
+        <item name="android:height">42dp</item>
+        <item name="android:padding">@dimen/spacing_small</item>
+        <item name="android:background">@drawable/bg_partner_spinner</item>
+        <item name="android:spinnerMode">dialog</item>
+    </style>
+</resources>

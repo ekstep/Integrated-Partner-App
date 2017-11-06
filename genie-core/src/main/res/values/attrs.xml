@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EkstepCustomTextView">
+        <attr name="fontType" format="string" />
+        <attr name="typeface" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="EkstepNotoTextView">
+        <attr name="fontstyle" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="FancyCoverFlow">
+        <attr name="unselectedAlpha" format="float" />
+        <attr name="unselectedSaturation" format="float" />
+        <attr name="unselectedScale" format="float" />
+        <attr name="maxRotation" format="integer" />
+        <attr name="scaleDownGravity" format="float" />
+        <attr name="actionDistance" format="integer">
+            <enum name="auto" value="2147483647" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShareTheme">
+        <attr name="shareBackground" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightLinearLayout">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <!--Theming related Attributes-->
+
+    <!--General-->
+    <attr name="screenBackground" format="reference|color" />
+    <attr name="screenTitleFontColor" format="reference|color" />
+    <attr name="screenTitleFontSize" format="reference|dimension" />
+    <attr name="screenHeaderFontSize" format="reference|dimension" />
+    <attr name="screenHeaderFontColor" format="reference|color" />
+    <attr name="screenTrasnparentColor" format="reference|color" />
+    <attr name="dropDownIcon" format="reference" />
+    <attr name="moreIcon" format="reference" />
+    <attr name="roundrectButtonBackground" format="reference" />
+    <attr name="noStatementsTextColor" format="reference|color" />
+    <attr name="clickOnStatementsTextColor" format="reference|color" />
+
+    <!--Splash-->
+    <attr name="splashBackground" format="reference" />
+
+    <!--Home-->
+    <attr name="viewAllRoundRectBackground" format="reference" />
+
+    <!--Home Section-->
+    <attr name="sectionBackgroundDark" format="reference|color" />
+    <attr name="sectionBackgroundLight" format="reference|color" />
+
+    <!--Splash-->
+    <attr name="splashAppNameFontSize" format="reference|dimension" />
+    <attr name="splashAppNameFontColor" format="reference|color" />
+
+    <!--Content Related Attributes-->
+    <attr name="contentNameFontColor" format="reference|color" />
+    <attr name="contentNameFontSize" format="reference|color" />
+    <attr name="contentTypeFontSize" format="reference|color" />
+    <attr name="normalContentTypeFontColor" format="reference|color" />
+    <attr name="collectionContentTypeFontColor" format="reference|color" />
+    <attr name="textbookContentTypeFontColor" format="reference|color" />
+    <attr name="contentBackground" format="reference" />
+    <attr name="collectionBackground" format="reference" />
+    <attr name="primaryFontPath" format="string" />
+    <attr name="secondaryFontPath" format="string" />
+    <attr name="hindiFontPath" format="string" />
+    <attr name="kannadaFontPath" format="string" />
+    <attr name="teleguFontPath" format="string" />
+    <attr name="marathiFontPath" format="string" />
+    <attr name="tamilFontPath" format="string" />
+    <attr name="punjabiFontPath" format="string"/>
+    <attr name="bookBackground" format="reference" />
+    <attr name="draftContentBackground" format="reference" />
+    <attr name="expiredContentBackground" format="reference" />
+    <attr name="contentTileHeight" format="reference|dimension" />
+    <attr name="contentTileWidth" format="reference|dimension" />
+
+    <!--Menu and Navigation Related Attributes-->
+    <attr name="menuBackIcon" format="reference" />
+    <attr name="menuMoreIcon" format="reference" />
+    <attr name="menuAddChildIcon" format="reference" />
+    <attr name="menuHamburgerIcon" format="reference" />
+    <attr name="menuShareIcon" format="reference" />
+    <attr name="menuDoneIcon" format="reference" />
+    <attr name="menuSearchIcon" format="reference" />
+    <attr name="menuAddIcon" format="reference" />
+    <attr name="menuImportIcon" format="reference" />
+    <attr name="menuSettingsIcon" format="reference" />
+    <attr name="menuFilterIcon" format="reference" />
+    <attr name="menuSortIcon" format="reference" />
+    <attr name="menuExportIcon" format="reference" />
+    <attr name="menuDeleteIcon" format="reference" />
+    <attr name="navShareIcon" format="reference" />
+    <attr name="navNotificationIcon" format="reference" />
+    <attr name="navUserIcon" format="reference" />
+    <attr name="navDownloadsIcon" format="reference" />
+    <attr name="navTrasnferIcon" format="reference" />
+    <attr name="navSettingsIcon" format="reference" />
+    <attr name="navHomeIcon" format="reference" />
+    <attr name="navMenuItemNameColor" format="reference|color" />
+
+    <!--Add Child Related Attributes-->
+    <attr name="orDrawable" format="reference" />
+    <attr name="addChildTitleColor" format="reference|color" />
+    <attr name="addChildMenuAddChild" format="reference" />
+    <attr name="addChildMenuAddGroup" format="reference" />
+    <attr name="addChildIconNextStep" format="reference" />
+    <attr name="addChildIconPreviousStep" format="reference" />
+    <attr name="addChildStepperBackgroundFilled" format="reference" />
+    <attr name="addChildStepperBackgroundUnfilled" format="reference" />
+    <attr name="addChildStepperIconTick" format="reference" />
+    <attr name="addChildStepperIconConnector" format="reference" />
+    <attr name="addChildStepperTextColorFilled" format="reference|color" />
+    <attr name="addChildStepperTextColorUnfilled" format="reference|color" />
+    <attr name="addChildRoundedRectangleBackground" format="reference" />
+    <attr name="addChildAllLabelsColor" format="reference|color" />
+    <attr name="addChildNickNameColor" format="reference|color" />
+    <attr name="addChildNickNameRectangleBorder" format="reference" />
+    <attr name="addChildIconMaleUnselected" format="reference" />
+    <attr name="addChildIconMaleSelected" format="reference" />
+    <attr name="addChildIconFemaleUnselected" format="reference" />
+    <attr name="addChildIconFemaleSelected" format="reference" />
+    <attr name="addChildGenderCircle" format="reference" />
+    <attr name="addChildMediumBoardDividerColor" format="reference|color" />
+    <attr name="addChildWelcomeAboardColor" format="reference|color" />
+    <attr name="addChildPickAvatarColor" format="reference|color" />
+
+    <!--Search  Related Attributes-->
+    <attr name="searchTileBackground" format="reference" />
+    <attr name="searchActionButtonBackground" format="reference" />
+    <attr name="searchActionButtonTextColor" format="reference|color" />
+
+    <!--ContentDetail  Related Attributes-->
+    <attr name="innerTopBackground" format="reference" />
+    <attr name="innerBottomBackground" format="reference" />
+
+    <!--Settings Related Attributes-->
+    <attr name="settingsTileBackground" format="reference" />
+    <attr name="settingsTileTitleColor" format="reference|color" />
+    <attr name="settingsTileSubtitleColor" format="reference|color" />
+    <attr name="settingsIconLanguage" format="reference" />
+    <attr name="settingsIconDataSettings" format="reference" />
+    <attr name="settingsIconAdvancedDataSettings" format="reference" />
+    <attr name="settingsIconStorageSettings" format="reference" />
+    <attr name="settingsIconAbout" format="reference" />
+    <attr name="settingsIconSyncNow" format="reference" />
+    <attr name="settingsIconSyncSettings" format="reference" />
+    <attr name="settingsSyncNowMessageColor" format="reference|color" />
+    <attr name="settingsAboutTitleColor" format="reference|color" />
+    <attr name="settingsAboutSubtitleColor" format="reference|color" />
+
+    <!--Download Related Attributes-->
+    <attr name="downloadCheckBoxBackground" format="reference" />
+    <attr name="downloadContentNameColor" format="reference|color" />
+    <attr name="downloadTitleColor" format="reference|color" />
+    <attr name="downloadItemBackgroundColor" format="reference|color" />
+    <attr name="downloadItemLocationIconBackground" format="reference|color" />
+    <attr name="downloadItemLocationIconDevice" format="reference" />
+    <attr name="downloadItemLocationIconSdcard" format="reference" />
+    <attr name="downloadItemSelectedBackgroundColor" format="reference|color" />
+    <attr name="downloadMoreDialogBackground" format="reference" />
+    <attr name="downloadMoreDialogTitleColor" format="reference|color" />
+    <attr name="downloadMoreDialogActionTextColor" format="reference|color" />
+
+    <!--Ekstep Downloading progressbar-->
+    <declare-styleable name="EkstepCircularProgressBar">
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="progressbarColor" format="color" />
+        <attr name="progressBarThickness" format="dimension" />
+    </declare-styleable>
+
+</resources>

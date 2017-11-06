@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_25"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/label_addchild_welcome_aboard"
+            android:textColor="?attr/addChildWelcomeAboardColor"
+            android:textSize="@dimen/txt_size_25"
+            android:textStyle="bold" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_welcome_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_addchild_genie_star"
+            android:textColor="?attr/addChildAllLabelsColor"
+            android:textSize="@dimen/txt_size_40"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_text"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_stars" />
+
+        <ImageView
+            android:id="@+id/img_welcome_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            tools:src="@drawable/avatar_normal_1" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

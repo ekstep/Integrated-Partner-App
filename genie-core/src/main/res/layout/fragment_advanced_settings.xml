@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_normal">
+
+        <RelativeLayout
+            android:id="@+id/layout_program_tags"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/title_program_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_tiny"
+                android:text="@string/title_tag_program"
+                android:textAllCaps="false"
+                android:textColor="@color/profile_background"
+                android:textSize="@dimen/txt_size_17" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_create_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="?attr/selectableItemBackground"
+                android:padding="@dimen/spacing_tiny"
+                android:text="@string/label_create_new"
+                android:textColor="@color/profile_background"
+                android:textSize="@dimen/txt_size_16"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recylerview_tags"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/title_program_tag"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:overScrollMode="never" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_no_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/about_dialog_background"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/fab_add_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_add_tag" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/msg_no_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:layout_toRightOf="@+id/fab_add_tag"
+                android:text="@string/msg_tag_not_available"
+                android:textAllCaps="false"
+                android:textColor="?noStatementsTextColor"
+                android:textSize="@dimen/sp_15" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/msg_add_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/msg_no_tag"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/size_5"
+                android:layout_toRightOf="@+id/fab_add_tag"
+                android:text="@string/label_create_program_tag"
+                android:textAllCaps="false"
+                android:textSize="@dimen/sp_15" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

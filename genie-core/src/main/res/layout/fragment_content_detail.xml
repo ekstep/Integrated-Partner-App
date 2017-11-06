@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?screenBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_searched_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            style="@style/MenuBackButtonStyle" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_header"
+            style="@style/HeaderTextStyle"
+            android:layout_toRightOf="@+id/back_btn"
+            android:text="@string/title_contentdetail" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/layout_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:background="?attr/innerTopBackground"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/size_5"
+        android:paddingLeft="@dimen/copyright_margin"
+        android:paddingTop="@dimen/size_5"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/size_10">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_copyright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black1"
+                android:textSize="@dimen/font_small" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_licence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black1"
+                android:textSize="@dimen/font_small" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/layout_scroll_content_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_copyright"
+        android:layout_below="@+id/toolbar_searched_result"
+        android:layout_marginLeft="@dimen/size_35"
+        android:layout_marginRight="@dimen/size_35"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="?attr/innerBottomBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:longClickable="true"
+            android:padding="@dimen/spacing_normal">
+
+            <LinearLayout
+                android:id="@+id/ll_delete_and_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/menu_selector_dark"
+                    android:src="@drawable/ic_content_detail_delete" />
+
+                <ImageView
+                    android:id="@+id/item_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_iv_share"
+                    android:background="@drawable/menu_selector_dark"
+                    android:src="@drawable/ic_share_new" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_content"
+                android:layout_width="@dimen/content_icon_dimen"
+                android:layout_height="@dimen/content_icon_dimen"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_default_book" />
+
+            <org.ekstep.genie.customview.EkStepNotoTextView
+                android:id="@+id/txt_content_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_2"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_toLeftOf="@+id/layout_details"
+                android:layout_toRightOf="@id/img_content"
+                android:textColor="@color/very_dark_grayish_orange"
+                android:textSize="@dimen/font_medium_small"
+                ekstep:fontstyle="bold"
+                tools:text="content_name" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_langauge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_content_name"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_2"
+                android:layout_toRightOf="@id/img_content"
+                android:text="@string/label_language"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/font_tiny"
+                ekstep:fontstyle="bold" />
+
+            <View
+                android:layout_width="@dimen/size_1"
+                android:layout_height="@dimen/size_10"
+                android:layout_below="@+id/txt_content_name"
+                android:layout_marginLeft="@dimen/size_4"
+                android:layout_marginRight="@dimen/size_2"
+                android:layout_marginTop="@dimen/size_3"
+                android:layout_toRightOf="@id/txt_langauge"
+                android:background="@color/color_primary" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_content_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_content_name"
+                android:layout_marginLeft="@dimen/size_12"
+                android:layout_marginRight="@dimen/size_2"
+                android:layout_toRightOf="@id/txt_langauge"
+                android:text="type"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/font_tiny"
+                ekstep:fontstyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl_action_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_content_type"
+                android:layout_toRightOf="@id/img_content">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_downloading_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:paddingLeft="@dimen/size_4"
+                    android:textColor="@color/colorblue"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="gone"
+                    ekstep:fontstyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/layout_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_downloading_progress"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_preview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/size_10"
+                        android:src="@drawable/ic_preview"
+                        android:visibility="gone"/>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true">
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/tv_download"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:background="@drawable/bg_download_content"
+                            android:contentDescription="@string/label_contentdetail_download"
+                            android:paddingBottom="@dimen/dp_2"
+                            android:paddingLeft="@dimen/spacing_normal"
+                            android:paddingRight="@dimen/spacing_normal"
+                            android:paddingTop="@dimen/dp_2"
+                            android:text="@string/label_contentdetail_download"
+                            android:textColor="@color/app_black_theme_color"
+                            android:textSize="@dimen/sp_15"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_downnload_progress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_very_tiny"
+                            android:layout_marginTop="@dimen/dp_2"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ProgressBar
+                                android:id="@+id/download_progress_bar"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="@dimen/size_130"
+                                android:layout_height="@dimen/size_15"
+                                android:layout_gravity="center"
+                                android:indeterminateOnly="false"
+                                android:max="100"
+                                android:progressDrawable="@drawable/progress_bar_states" />
+
+                            <LinearLayout
+                                android:id="@+id/layout_cancel_download"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="@dimen/size_5"
+                                android:background="@drawable/bg_cancel_selector"
+                                android:clickable="true"
+                                android:contentDescription="CancelDownload"
+                                android:padding="@dimen/size_5">
+
+                                <android.support.v7.widget.AppCompatImageView
+                                    android:id="@+id/img_cancel_download"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_cancel_download"
+                                    android:tint="@color/color_primary" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/txt_update"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/spacing_small"
+                            android:layout_marginRight="@dimen/size_10"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:background="@drawable/bg_download_content"
+                            android:paddingBottom="@dimen/dp_2"
+                            android:paddingLeft="@dimen/size_20"
+                            android:paddingRight="@dimen/size_20"
+                            android:paddingTop="@dimen/dp_2"
+                            android:text="@string/label_contentdetails_update"
+                            android:textColor="@color/app_black_theme_color"
+                            android:textSize="@dimen/sp_15"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+                        <org.ekstep.genie.customview.EkStepCustomTextView
+                            android:id="@+id/txt_play"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/spacing_small"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:layout_toRightOf="@+id/txt_update"
+                            android:background="@drawable/bg_download_content"
+                            android:paddingBottom="@dimen/dp_2"
+                            android:paddingLeft="@dimen/size_20"
+                            android:paddingRight="@dimen/size_20"
+                            android:paddingTop="@dimen/dp_2"
+                            android:text="@string/label_contentdetail_play"
+                            android:textAllCaps="false"
+                            android:textColor="@color/app_black_theme_color"
+                            android:textSize="@dimen/sp_15"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/ll_delete_and_share"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/size_15"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/size_2"
+                        android:paddingRight="@dimen/size_2"
+                        android:src="@drawable/ic_user"
+                        android:visibility="gone" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_total_ratings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/size_6"
+                        android:paddingTop="@dimen/size_2"
+                        android:textColor="@color/black1"
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="bold"
+                        ekstep:fontstyle="bold" />
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_avg_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="@dimen/size_3"
+                        android:textColor="@color/black1"
+                        android:textSize="@dimen/font_medium_medium"
+                        android:visibility="gone"
+                        ekstep:fontstyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/rating_avg"
+                        style="@style/EkstepRatingBarSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:stepSize=".1"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|end"
+                    android:orientation="horizontal">
+
+                    <org.ekstep.genie.customview.EkStepCustomTextView
+                        android:id="@+id/txt_content_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingBottom="@dimen/size_5"
+                        android:paddingLeft="@dimen/size_4"
+                        android:textColor="@color/colorDivider"
+                        android:textSize="@dimen/sp_15"
+                        ekstep:fontstyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1"
+                android:layout_below="@+id/rl_action_top"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:layout_marginTop="@dimen/size_5"
+                android:background="@color/app_blue_theme_color" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_screenshots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10" />
+
+            <LinearLayout
+                android:id="@+id/layout_screenshots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/divider"
+                android:paddingBottom="@dimen/spacing_normal"
+                android:paddingLeft="@dimen/spacing_large"
+                android:paddingRight="@dimen/spacing_large"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/content_icon_dimen"
+                    android:layout_height="@dimen/content_icon_height"
+                    android:background="@color/color_grey"
+                    android:src="@drawable/ic_default_book" />
+
+                <ImageView
+                    android:layout_width="@dimen/content_icon_dimen"
+                    android:layout_height="@dimen/content_icon_height"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:background="@color/color_grey"
+                    android:src="@drawable/ic_default_book" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_content_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rv_screenshots"
+                android:layout_marginBottom="@dimen/size_10"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/size_10"
+                    android:layout_marginTop="@dimen/spacing_very_tiny"
+                    android:text="@string/label_contentdetail_rate"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/font_small"
+                    ekstep:fontstyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/rating_user"
+                    style="@style/EkstepRatingBarMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:stepSize="0.5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_content_feedback">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_contentdetail_publisher"
+                    android:textColor="@color/app_black_theme_color"
+                    android:textSize="@dimen/font_small"
+                    ekstep:fontstyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_publisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_12"
+                    android:text="@string/label_contentdetail_publisher"
+                    android:textColor="@color/app_black_theme_color"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_publisher"
+                android:orientation="horizontal">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_contentdetail_owner"
+                    android:textColor="@color/app_black_theme_color"
+                    android:textSize="@dimen/font_small"
+                    ekstep:fontstyle="bold" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_normal"
+                    android:textColor="@color/app_black_theme_color"
+                    android:textSize="@dimen/font_small" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:src="@drawable/ic_group" />
+            </LinearLayout>
+
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_content_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_owner"
+                android:layout_marginTop="@dimen/size_12"
+                android:textColor="@color/app_black_theme_color"
+                android:textSize="@dimen/font_small" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

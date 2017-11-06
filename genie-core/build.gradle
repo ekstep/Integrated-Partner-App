@@ -1,0 +1,140 @@
+apply plugin: 'com.android.library'
+apply plugin: 'io.fabric'
+apply from: 'jacoco.gradle'
+
+def globalConf = rootProject.ext
+
+android {
+    compileSdkVersion globalConf.androidCompileSdkVersion
+    buildToolsVersion globalConf.androidBuildToolsVersion
+    publishNonDefault true
+    defaultConfig {
+        ext.buildNumber = globalConf.appBuildNumber
+        minSdkVersion globalConf.androidMinSdkVersion
+        targetSdkVersion globalConf.androidTargetSdkVersion
+        versionCode globalConf.appVersionCode
+        versionName globalConf.appVersionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources true
+            testCoverageEnabled false
+            buildConfigField "boolean", "USE_CRASHLYTICS", "true"
+            ext.enableCrashlytics = true
+        }
+
+    }
+
+
+
+    lintOptions {
+        abortOnError false
+    }
+
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/ASL-2.0.txt'
+        exclude 'META-INF/LGPL-3.0.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        pickFirst 'draftv3/schema'
+        pickFirst 'draftv4/schema'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
+    Map<String, String> dependencies = globalConf.dependencies;
+
+
+    compile dependencies.multidex
+    compile dependencies.cardView
+    compile dependencies.supportLibrary
+    compile dependencies.glide
+    compile dependencies.roundImageview
+    compile dependencies.playServicesFcm
+    compile dependencies.playServicesLocation
+    compile dependencies.playServicesAnalytics
+    compile(dependencies.crashlytics) {
+        transitive = true;
+    }
+
+    //Genie Sdk modules
+    compile dependencies.genieproviders
+    compile dependencies.genieIntegration
+
+    //Content player modules
+    compile dependencies.cordova
+
+    // xWalk shared mode
+    compile dependencies.gcSharedXwalk
+//    devCompile dependencies.gcSharedXwalk
+//    qaCompile dependencies.gcSharedXwalk
+//    qaxWalkCompile dependencies.gcSharedXwalk
+//    productionxWalkCompile dependencies.gcSharedXwalk
+//    integrationTestCompile dependencies.gcSharedXwalk
+
+    //Only for Content-Player dev
+//    compile(name:'geniecanvas-local-debug',ext:'aar')
+//    compile(name:'CordovaLib',ext:'aar')
+
+//     xWalk shared mode lib
+    compile dependencies.xWalkSharedLib
+//    devCompile dependencies.xWalkSharedLib
+//    qaCompile dependencies.xWalkSharedLib
+    compile "com.squareup.okhttp3:okhttp:3.8.1"
+
+//     xWalk lib
+//    productionxWalkCompile dependencies.xWalkCore
+//    qaxWalkCompile dependencies.xWalkCore
+
+    //Debug dependencies
+    debugCompile dependencies.stetho
+    debugCompile dependencies.stethoOkhttp
+
+    //Test dependencies
+    androidTestCompile dependencies.mockWebServer
+    androidTestCompile dependencies.supportAnnotation
+    androidTestCompile dependencies.uiAutomator
+    androidTestCompile dependencies.testRunner
+    androidTestCompile dependencies.espressoCore
+    androidTestCompile(dependencies.espressoContrib) {
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
+    androidTestCompile dependencies.espressoIntents
+}
+
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '23.4.0'
+            }
+        }
+    }
+}
+
+
+
+
+
+

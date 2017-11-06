@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_sync_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/spacing_normal"
+        android:layout_toLeftOf="@+id/btn_sync_now">
+
+        <ImageView
+            android:id="@+id/iv_tick_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:src="@drawable/ic_check_active" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/title_sync_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_tick_mark"
+            android:text="@string/title_sync_data"
+            android:textColor="@color/profile_background"
+            android:textSize="@dimen/txt_size_16"
+            android:textStyle="bold" />
+
+        <org.ekstep.genie.customview.EkStepCustomTextView
+            android:id="@+id/txt_last_sync_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_sync_data"
+            android:layout_toRightOf="@+id/iv_tick_mark"
+            android:text="@string/label_sync_last_synced_time"
+            android:textSize="@dimen/txt_size_14" />
+    </RelativeLayout>
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/btn_sync_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/spacing_normal"
+        android:background="@drawable/bg_blue_rounded_selector"
+        android:includeFontPadding="false"
+        android:paddingLeft="@dimen/size_25"
+        android:paddingRight="@dimen/size_25"
+        android:text="@string/label_sync_now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/txt_size_15" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_sync_data"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal"
+        android:background="@drawable/about_dialog_background"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_normal">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_sync_settings"
+                android:textColor="@color/profile_background"
+                android:textSize="@dimen/txt_size_16"
+                android:textStyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/txt_last_sync_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_sync_data"
+                android:text="@string/label_sync_last_synced_time"
+                android:textSize="@dimen/txt_size_14" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_sync_manual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:text="@string/label_sync_manual"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_sync_using_wifi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:text="@string/label_auto_sync_using_wifi"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+
+                <org.ekstep.genie.customview.EkStepRadioGroup
+                    android:id="@+id/radio_sync_using_wifi_and_cellular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:paddingStart="@dimen/spacing_normal"
+                    android:text="@string/label_auto_sync_using_wifi_and_cellular"
+                    android:textColor="@color/profile_background"
+                    android:textSize="@dimen/txt_size_16"
+                    android:theme="@style/EkstepCheckBox" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

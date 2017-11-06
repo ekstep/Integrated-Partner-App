@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/iv_download_queue_anim8"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim1"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim4"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim5"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim6"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim7"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/iv_download_queue_anim8"
+        android:duration="100" />
+</animation-list>
+

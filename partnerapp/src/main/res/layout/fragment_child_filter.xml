@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_child_filter_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:text="@string/label_child_filter_sub_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txt_child_filter_help"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_centerInParent="true"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="56dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/ChildFilterTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_district" />
+
+            <Spinner
+                style="@style/ChildFilterSpinnerStyle"
+                android:id="@+id/spinner_district"
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
+
+            <TextView
+                style="@style/ChildFilterTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_block" />
+
+            <Spinner
+                style="@style/ChildFilterSpinnerStyle"
+                android:id="@+id/spinner_block"
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
+
+
+            <TextView
+                style="@style/ChildFilterTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_cluster" />
+
+            <Spinner
+                style="@style/ChildFilterSpinnerStyle"
+                android:id="@+id/spinner_cluster"
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
+
+            <TextView
+                style="@style/ChildFilterTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_school" />
+
+            <Spinner
+                style="@style/ChildFilterSpinnerStyle"
+                android:id="@+id/spinner_school"
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
+
+            <TextView
+                style="@style/ChildFilterTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_class" />
+
+            <Spinner
+                style="@style/ChildFilterSpinnerStyle"
+                android:id="@+id/spinner_class"
+                android:layout_width="match_parent"
+                android:layout_height="42dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_search_child"
+        style="@style/ButtonCompatBorderless"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_partner_button_selector"
+        android:enabled="false"
+        android:text="@string/btn_search_child"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

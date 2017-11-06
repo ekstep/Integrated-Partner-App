@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/resolver_contentPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/size_35"
+    android:layout_marginRight="@dimen/size_35"
+    android:descendantFocusability="blocksDescendants">
+
+    <View
+        android:id="@+id/transparent_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_recyclerView" />
+
+    <org.ekstep.genie.customview.MaxHeightLinearLayout
+        android:id="@+id/layout_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/share_bg"
+        android:maxWidth="@dimen/share_max_width"
+        android:orientation="vertical">
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/tv_share_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_disabled"
+            android:padding="@dimen/spacing_normal"
+            android:text="@string/action_dialog_share"
+            android:textColor="@color/header_text_color"
+            android:textSize="@dimen/txt_size_16" />
+
+        <ScrollView
+            android:id="@+id/scroll_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layout_share_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <org.ekstep.genie.customview.EkStepNotoTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:text="@string/label_share_file"
+                        android:textColor="@color/very_dark_grayish_orange"
+                        android:textSize="@dimen/sp_15" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/resolver_recyclerview_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/share_bg"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_share_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height=".5dp"
+                        android:background="@color/light_grey" />
+
+                    <org.ekstep.genie.customview.EkStepNotoTextView
+                        android:id="@+id/tv_share_as_text_or_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:layout_marginLeft="@dimen/spacing_normal"
+                        android:layout_marginTop="@dimen/spacing_normal"
+                        android:textColor="@color/very_dark_grayish_orange"
+                        android:textSize="@dimen/sp_15" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/resolver_recyclerview_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/share_bg"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </org.ekstep.genie.customview.MaxHeightLinearLayout>
+</RelativeLayout>

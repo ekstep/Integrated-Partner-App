@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <org.ekstep.genie.customview.EkStepCustomTextView
+        android:id="@+id/txt_header_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_10"
+        android:text="Book1"
+        android:textColor="@color/app_blue_theme_color"
+        android:textSize="@dimen/txt_size_16" />
+
+    <View
+        android:id="@+id/view_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignLeft="@+id/txt_header_name"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txt_header_name"
+        android:background="@color/app_blue_theme_color"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

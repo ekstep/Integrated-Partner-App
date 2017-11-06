@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ಜೀನೀ</string>
+
+    <!--Splash String Begin-->
+    <string name="title_splash_genie">Genie</string>
+    <!--Splash String End-->
+
+    <!-- Menu Items String Begin-->
+    <string name="label_nav_home">ಹೋಮ್</string>
+    <string name="label_nav_transfer">ವರ್ಗಾಯಿಸಿ</string>
+    <string name="label_nav_library">ಲೈಬ್ರರಿ</string>
+    <string name="label_nav_downloads">ವಿಷಯ</string>
+    <string name="label_nav_children">ಮಕ್ಕಳು</string>
+    <string name="label_nav_settings">ಸೆಟ್ಟಿಂಗ್ಸ್</string>
+    <string name="label_nav_share_genie">ಹಂಚಿಕೊಳ್ಳುವುದು</string>
+    <string name="label_nav_notifications">ಸೂಚನೆಗಳು</string>
+    <!--Menu Items String End-->
+
+    <!-- Home  String Begin-->
+    <string name="title_home_sync_genie_data">ಸಿಂಕ್ ಜಿನೀ ಡೇಟಾ</string>
+    <string name="title_home_my_lessons">My Lessons</string>
+    <string name="title_home_my_text_books">My Books</string>
+    <string name="label_home_onboarding_add_child">ಮಗು ಆಡ್ ಮಾಡಿ</string>
+    <string name="label_home_view_all">ಎಲ್ಲಾ ವೀಕ್ಷಿಸಿ</string>
+    <string name="label_home_new_label">ಹೊಸ</string>
+    <string name="label_home_change_subject">ವಿಷಯ ಆರಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="label_home_all_subjects">ಎಲ್ಲ ವಿಷಯಗಳು</string>
+    <string name="label_home_choose_subject">ವಿಷಯ ಆರಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="label_home_default_subject">ವಿಷಯ ಆರಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="label_home_sync_now">ನಾನು ವೈಫೈ/ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಹೊಂದಿದ್ದರೆ, ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಹೊಂದಿಕೆ ಮಾಡಿ</string>
+    <string name="label_home_sync_later">ನಂತರ</string>
+    <string name="msg_home_end_of_content">ನೀವು ಪುಟದ ಕೊನೆಗೆ ಬಂದಿದ್ದೀರಿ, ಇನ್ನೂ ಹೆಚ್ಚು ವಿಷಯವಸ್ತುಗಳಿಗೆ ಬೇರೆ ವಿಷಯ ಆಯ್ಕೆ ಮಾಡಕೊಳ್ಳಿ.</string>
+    <string name="msg_home_download_content">ಕೆಳಗಡೆಯಿಂದ ಲೆಸನ್ಸ್ ತೆಗೆದುಕೊಳ್ಳಿ.</string>
+    <string name="msg_home_sync_dialog_prompt">ನಿಮಗೇ ವಿಶಿಷ್ಟವಾದ ಸಲಹೆಗಳನ್ನು ಪಡೆಯಲು ಮತ್ತು ನಮ್ಮ ಸೇವೆಯನ್ನು ಉತ್ತಮಗೊಳಿಸಲು ನಿಮ್ಮ ದತ್ತಾಂಶವನ್ನು ಜೀನಿ ಸರ್ವರ್ ಜೊತೆ ಹೊಂದಿಕೆ ಮಾಡಿ </string>
+    <string name="error_home_genie_offline">ಜೀನಿ ಆಫ್‍ಲೈನ್ ಆಗಿದೆ, ಇಂಟರ್ನೆಟ್‍ಗೆ ಸಂಪರ್ಕ ಕೊಡಿ!</string>
+    <string name="error_home_no_network">ಹೆಚ್ಚು ವಿಷಯವಸ್ತು ಪಡೆಯಲು ಇಂಟರ್ನೆಟ್ ಗೆ ಸಂಪರ್ಕ ಹೊಂದಿ</string>
+    <string name="label_home_coming_soon">ಬೇಗನೆ ಬರಲಿದೆ</string>
+    <string name="msg_home_packaging_genie">ಜೀನೀಯನ್ನು ಕಳಿಸಲು ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
+    <string name="device_low_memory_error">Your device is running low on memory. Would you like to make some storage space free?</string>
+    <string name="label_manage_memory">Manage Memory</string>
+    <!-- Home  String End-->
+
+    <!--Onboard screen strings start-->
+    <string name="action_home_skip">ಸ್ಕಿಪ್ ಮಾಡಿ </string>
+    <string name="label_home_onboarding_addchild_desc">ಜೀನಿ ನಿಮ್ಮ ಬಗ್ಗೆ ತಿಳಿದುಕೊಳ್ಳುತ್ತದೆ ಮತ್ತು ಪ್ರತೀ ಮಗುವಿಗೆ ಸೂಕ್ತವಾದ ಪಾಠಗಳನ್ನು ಸಲಹೆ ಮಾಡುತ್ತದೆ ನಾವೀಗ ಮಗುವಿನ ಹೆಸರು ಸೇರಿಸೋಣ!</string>
+    <!--Onboard screen strings end-->
+
+
+    <!-- Add Child  String Begin-->
+    <string name="title_addchild">ಮಗುವನ್ನು ಸೇರಿಸಿ</string>
+    <string name="title_addchild_group">ಒಂದು ಗುಂಪನ್ನು ಸೇರಿಸಿ</string>
+    <string name="title_addchild_edit">ಮಗುವಿನ ವಿವರಗಳನ್ನು ಪರಿಷ್ಕರಿಸಿ</string>
+    <string name="title_addchild_edit_group">ಗುಂಪಿನ ವಿವರಗಳನ್ನು ಪರಿಷ್ಕರಿಸಿ</string>
+    <string name="label_addchild_pick_avatar">ನಿಮಗೆ ಇಷ್ಟವಾದ ಅವತಾರ್ ಅನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
+    <string name="label_addchild_avatar">ಅವತಾರ್</string>
+    <string name="label_addchild_nick_name">ಅಡ್ಡ ಹೆಸರು</string>
+    <string name="label_addchild_do_you">ನೀವೇನಾಗಲು ಬಯಸಿದ್ದೀರಿ?</string>
+    <string name="label_addchild_or">or</string>
+    <string name="label_addchild_how_old">ನಿಮಗೆ ಎಷ್ಟು ವರ್ಷ ?</string>
+    <string name="label_addchild_welcome_aboard">ಜೀನಿ ಸ್ಟಾರ್ ಗೆ ಸ್ವಾಗತ</string>
+    <string name="label_addchild_genie_star">Genie star!</string>
+    <string name="label_addchild_class">ತರಗತಿ</string>
+    <string name="label_addchild_gender">ಲಿಂಗ</string>
+    <string name="label_addchild_others">ಇತರೆ</string>
+    <string name="label_addchild_kg">KG</string>
+    <string name="label_addchild_medium">ಮಾಧ್ಯಮ</string>
+    <string name="label_addchild_board">ಬೋರ್ಡ್</string>
+    <string name="label_addchild_select">ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
+    <string name="label_addchild_enter_your_name">ನಿಮ್ಮ ಹೆಸರನ್ನು ಹಾಕಿ</string>
+    <string name="error_addchild_blank_nick_name">ನಿಕ್ ನೇಮ್ ಖಾಲಿ ಬಿಡಬಾರದು, ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ&#8230;</string>
+    <!--Add Child String End-->
+
+    <!--Notification Strings Begin-->
+    <string name="error_notification_delete_failed">ಡಿಲೀಟ್ ವಿಫಲವಾಯಿತು. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <!--Notification Strings End-->
+
+
+    <!--Errors Strings Begin-->
+    <string name="error_import_file_not_supported">ಈ ರೀತಿಯ ಫೈಲ್ ಗೆ ಬೆಂಬಲ ಇಲ್ಲ</string>
+    <string name="error_network">ಇಂಟರ್ನೆಟ್ ಗೆ ಸಂಪರ್ಕ ಸಾಧ್ಯವಾಗಿಲ್ಲ ಅಥವಾ ತುಂಬಾ ನಿಧಾನವಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಪ್ರಯತ್ನಿಸಿ. ಪದೇ ಪದೇ ಹೀಗೆ ಆಗುತ್ತಿದ್ದರೆ, ದಯವಿಟ್ಟು ಇಲ್ಲಿಗೆ ಸಂಪರ್ಕಿಸಿ:help@ekstep.org</string>
+    <string name="error_db_operation">ಡೇಟಾಬೇಸ್ ಓದಲು ಅಥವಾ ಬರೆಯಲು ಸಾಧ್ಯವಾಗ್ತಿಲ್ಲ</string>
+    <string name="error_invalid_event">ಸದ್ಯದ ಈವೆಂಟ್ ಒಂದು ಮೌಲಿಕ ಟೆಲಿಮೆಟ್ರಿ ಈವೆಂಟ್ ಆಲ್ಲ</string>
+    <string name="error_sync_validation">ನಿಮ್ಮ ಡಾಟಾ ಸಿಂಕ್ ಮಾಡುವಲ್ಲಿ ತಪ್ಪು ಆಗಿದೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+    <string name="error_network_1">ಬಹುಶಃ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಇಲ್ಲ</string>
+    <string name="error_duplicate_file">ಈಗಾಗಲೇ ಫೈಲ್ ಇದೆ ಅಥವಾ ಫೈಲ್ ಕ್ರಿಯೇಟ್ ಮಾಡಲು ಜೀನಿಗೆ ಸಾಧ್ಯವಾಗ್ತಿಲ್ಲ</string>
+    <string name="error_procession_failed">ದತ್ತಾಂಶವನ್ನು ಪ್ರಾಸೆಸ್ ಮಾಡಲು ಆಗುತ್ತಿಲ್ಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ. </string>
+    <string name="error_authentication_failed">ಅಥೆಂಟಿಕೇಶನ್ ವಿಫಲ. ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="error_network2">ಇಂಟರ್ನೆಟ್ ಇಲ್ಲ. ನಿಮ್ಮ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕವನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ </string>
+    <string name="error_timeout">ಫಲಿತಾಂಶಗಳನ್ನು ಹುಡುಕಿ ಪಡೆಯುವಲ್ಲಿ ತಪ್ಪಾಗುತ್ತಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಪ್ರಯತ್ನಿಸಿ. </string>
+
+    <!--Import Errors Strings Begin-->
+    <string name="error_import_device_merory_full">ಇಂಪೋರ್ಟ್ ವಿಫಲ. ಡಿವೈಸ್ ಮೆಮೊರಿ ತುಂಬಿದೆ</string>
+    <string name="error_import_insufficient_memory">ಡೌನ್ಲೋಡ್ ವಿಫಲ. ನಿಮ್ಮ ಡಿವೈಸ್ ನಲ್ಲಿ ಸ್ಥಳ ಇಲ್ಲ</string>
+    <string name="errorr_import_lesson_expired">ಆಮದು ವಿಫಲವಾಗಿದೆ.  ಪಾಠ ಮುಗಿದ</string>
+    <string name="error_import_failed">ಇಂಪೋರ್ಟ್ ವಿಫಲ: ಫೈಲ್ ಇಂಪೋರ್ಟ್ ಮಾಡುವಲ್ಲಿ ತಪ್ಫಾಗುತ್ತಿದೆ. </string>
+    <string name="error_import_file_exists">ಈಗಾಗಲೇ ಫೈಲ್ ಇಂಪೋರ್ಟ್ ಆಗಿದೆ. ದಯವಿಟ್ಟು ಬೇರೆ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ </string>
+    <string name="error_import_unsupported_manifest">ಹಳೆಯದಾದ ಇಸಿಎಆರ್‍ಐ ಇಂಪೋರ್ಟ್ ಮಾಡಲು ಆಗುತ್ತಿಲ್ಲ</string>
+    <string name="msg_import_successfull"> ಇಂಪೋರ್ಟ್ ಯಶಸ್ವಿ </string>
+    <string name="error_import_file_already_exists">ಈ ಪ್ರೊಫೈಲ್ ಈಗಾಗಲೇ ಇಂಪೋರ್ಟ್ ಆಗಿದೆ.</string>
+    <string name="error_import_failure"> ಇಂಪೋರ್ಟ್ ವಿಫಲ </string>
+    <!--Import Errors Strings End-->
+
+    <!--Errors Strings End-->
+
+    <!--Dialog Strings Begin-->
+    <string name="title_dialog_end">ಜೀನಿ ಯನ್ನು ನಿಲ್ಲಿಸುವುದೇ ?</string>
+    <string name="label_dialog_ok">ಓಕೆ</string>
+    <string name="label_dialog_yes">ಹೌದು</string>
+    <string name="label_dialog_no">ಇಲ್ಲ</string>
+    <string name="label_dialog_cancel">ರದ್ದು ಮಾಡಿ</string>
+    <string name="action_dialog_update_now">ಈಗ ಅಪ್ ಡೇಟ್ ಮಾಡಿ</string>
+    <string name="action_dialog_delete">ಅಳಿಸು</string>
+    <string name="action_dialog_progress">ಪ್ರಗತಿ</string>
+    <string name="action_dialog_share">ಹಂಚಿಕೊಳ್ಳುವುದು</string>
+    <string name="action_dialog_view_details">ವಿವರಗಳು ವೀಕ್ಷಿಸಿ</string>
+    <string name="msg_dialog_update_genie">ಅತ್ಯುತ್ತಮ ಅನುಭವಕ್ಕಾಗಿ ಅಪ್ ಡೇಟ್ ಮಾಡಿ!</string>
+    <string name="msg_dialog_delete_confirmation">ನೀವು ನಿಜಕ್ಕೂ ಡಿಲೀಟ್ ಮಾಡಲು ಬಯಸಿದ್ದೀರಾ? </string>
+    <string name="msg_dialog_delete_confirmation_for_content_multiple_existence">ಈ ಕಂಟೆಂಟ್ ಅನ್ನು ಬೇರೆ ಕಡೆ ಬಳಸಲಾಗುತ್ತಿದೆ. ನೀವು ನಿಜಕ್ಕೂ ಡಿಲೀಟ್ ಮಾಡಲು ಬಯಸಿದ್ದೀರಾ?</string>
+    <!--Dialog  String END-->
+
+    <!--Navigation Drawer String Begin-->
+    <string name="action_nav_drawer_open">Open navigation drawer</string>
+    <string name="action_nav_drawer_close">Close navigation drawer</string>
+    <!--Navigation Drawer End-->
+
+    <!--Language Selection String Begin-->
+    <string name="title_select_language">ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
+    <string name="label_language">ಭಾಷೆ</string>
+    <string name="label_hindi">हिंदी</string>
+    <string name="label_kannada">ಕನ್ನಡ</string>
+    <string name="label_telugu">తెలుగు</string>
+    <string name="label_marathi">मराठी</string>
+    <string name="label_tamil">தமிழ்</string>
+    <string name="label_punjabi">ਪੰਜਾਬੀ</string>
+    <!--Language Selection End-->
+
+    <!-- Children String Begin-->
+    <string name="title_children">ಮಕ್ಕಳು</string>
+    <string name="title_children_import_profile">ಪ್ರೊಫೈಲ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <string name="title_children_groups">ಗುಂಪುಗಳು</string>
+    <string name="label_children_profile_age">ವಯಸ್ಸು:</string>
+    <string name="label_children_class">ತರಗತಿ:</string>
+    <string name="label_children_other">ಇತರ</string>
+    <string name="msg_children_profile_deletion_successful">ಬಳಕೆದಾರ ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ</string>
+    <string name="msg_children_no_profile">ಇನ್ನೂ ಯಾರೂ ಬಳಕೆದಾರರಿಲ್ಲ</string>
+    <string name="msg_children_start_adding_profile"> ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಲು "+" ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ</string>
+    <string name="msg_children_fetching_profile">ಪ್ರೊಫೈಲ್ ಪಡೆಯುತ್ತಿದ್ದೇವೆ .. </string>
+    <!-- Children String End-->
+
+    <!-- Settings String Begin-->
+    <string name="label_settings_app_info">ಆಪ್ ಮಾಹಿತಿ ಮತ್ತು ಕ್ರೆಡಿಟ್ಸ್</string>
+    <string name="msg_setting_changing_language">ಭಾಷೆ ಬದಲಾವಣೆ ಮಾಡಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ಕಾಯಿರಿ</string>
+
+    <!-- DataSetting String Begin-->
+    <string name="title_sync_data_setting">ದತ್ತಾಂಶ ಸೆಟಿಂಗ್ಸ್ </string>
+    <string name="title_sync_settings">ಸಿಂಕ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
+    <string name="title_sync_data_sync_settings">ಡೇಟಾ ಸಿಂಕ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
+    <string name="action_sync_now"> ದತ್ತಾಂಶ ಹೊಂದಿಕೆ ಮಾಡಿ</string>
+    <string name="label_sync_last_synced_time">ಕೊನೆಯ ಸಿಂಕ್</string>
+    <string name="msg_sync_now">ನೀವು ಬಳಸಿದ ದತ್ತಾಂಶವನ್ನು ನಮಗೆ ಕಳಿಸಿದರೆ, ನಿಮ್ಮ ಮಗುವಿನ ಅಗತ್ಯಗಳಿಗೆ ಸೂಕ್ತವಾದ ವಿಷಯವಸ್ತುವನ್ನು ಶಿಫಾರಸು ಮಾಡಲು ಸಹಾಯವಾಗುತ್ತದೆ. ಜೊತೆಗೆ ಮುಂದಿನ ಸಲ ಜೀನೀಯನ್ನು ಇನ್ನೂ ಹೆಚ್ಚು ಉತ್ತಮಗೊಳಿಸಲು ನಮಗೆ ಸಹಾಯವಾಗುತ್ತದೆ. </string>
+    <string name="msg_syncing">ದಯಮಾಡಿ ನಿರೀಕ್ಷಿಸಿ</string>
+    <string name="msg_sync_successfull">ದತ್ತಾಂಶ ಹೊಂದಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು</string>
+    <string name="title_data_synchronization_setting">ದತ್ತಾಂಶ ಹೊಂದಿಕೆ ಮಾಡುವ ಸೆಟಿಂಗ್ಸ್</string>
+    <string name="label_sync_manual">ಕೈಪಿಡಿ</string>
+    <string name="label_sync_manual_desc">ನಾವು ಕಾಲಕಾಲಕ್ಕೆ ದತ್ತಾಂಶವನ್ನು ಹೊಂದಿಕೆ ಮಾಡಲು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ</string>
+    <string name="label_auto_sync_using_wifi">ವೈ-ಫೈನಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತವಾಗುತ್ತದೆ</string>
+    <string name="label_auto_sync_using_wifi_desc">ನಿಮ್ಮ ಡಿವೈಸ್ ವೈಫೈ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕದಲ್ಲಿದ್ದಾಗ ದತ್ತಾಂಶ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ</string>
+    <string name="label_auto_sync_using_wifi_and_cellular">ನೀವು ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕದಲ್ಲಿದ್ದಾಗ ಸ್ವಯಂಚಾಲಿತವಾಗುತ್ತದೆ</string>
+    <string name="label_auto_sync_using_wifi_and_cellular_desc">ನಿಮ್ಮ ಡಿವೈಸ್ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕದಲ್ಲಿದ್ದಾಗ ದತ್ತಾಂಶ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ. ನೀವು 2ಜಿ, 3ಜಿ ಅಥವಾ 4ಜಿ ಸಂಪರ್ಕದಲ್ಲಿದ್ದಾಗ, ನಿಮಗೆ ಡಾಟಾ ಶುಲ್ಕ ವಿಧಿಸಬಹುದು. </string>
+    <!--DataSetting String End-->
+
+    <!-- About String Begin-->
+    <string name="title_about">ಕುರಿತು</string>
+    <string name="label_about_device_id">ಡಿವೈಸ್ ಐಡಿ</string>
+    <string name="label_about_genie_version">ಜೀನೀ ಆವೃತ್ತಿ&#160;</string>
+    <string name="label_about_privacy_policy">ಗೌಪ್ಯತೆ ನೀತಿ&#160;</string>
+    <string name="label_about_us">ನಮ್ಮ ಬಗ್ಗೆ&#160;</string>
+    <string name="label_about_tos">ಸೇವೆಯ ಕರಾರುಗಳು</string>
+    <!--About String End-->
+
+    <!-- Advanced Setting/Tag String Begin-->
+    <string name="title_advanced_settings">ಮುಂದಿನ ಹಂತದ ಸೆಟಿಂಗ್ಸ್ </string>
+    <string name="title_tag_add_new">ಹೊಸ ಟ್ಯಾಗ್ ಸೇರಿಸಿ</string>
+    <string name="label_tag_program_code">ಕಾರ್ಯಕ್ರಮದಲ್ಲಿ ಕೋಡ್ / ಟ್ಯಾಗ್</string>
+    <string name="label_tag_short_desc">ಕಿರು ವಿವರಣೆ </string>
+    <string name="label_tag_event_sched">ಇವೆಂಟ್ ವೇಳಾಪಟ್ಟಿ</string>
+    <string name="label_tag_start_date">ಆರಂಭದ ದಿನಾಂಕ</string>
+    <string name="label_tag_end_date">ಕೊನೆಯಾದ ದಿನಾಂಕ</string>
+    <string name="title_tag_program">ಪ್ರೋಗ್ರಾಮ್ ಟ್ಯಾಗ್‍ </string>
+    <string name="msg_tag_added_sussessfully">ಟ್ಯಾಗ್ ಸೇರಿಸಿದ್ದು ಯಶಸ್ವಿಯಾಯಿತು</string>
+    <string name="msg_tag_updated_successfully">Tag updated successfully</string>
+    <string name="msg_tag_not_available">ಇನ್ನೂ ಪ್ರೋಗ್ರಾಮ್ ಟ್ಯಾಗ್ಸ್ ಇಲ್ಲ</string>
+    <string name="msg_tag_onboarding">ಟ್ಯಾಗ್ಸ್ ಸೇರಿಸಲು ಕೆಳಗೆ ಸೇರಿಸು ಎಂದಿರುವುದರ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ&#8230;</string>
+    <string name="action_tag_save">ಉಳಿಸಿ</string>
+    <string name="action_tag_done">ಆಯಿತು</string>
+    <string name="hint_tag_type_here">ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ&#8230;</string>
+    <string name="error_tag_cant_be_empty">ಪ್ರೋಗ್ರಾಮ್ ಕೋಡ್/ಟ್ಯಾಗ್ ಖಾಲಿ ಇರಬಾರದು</string>
+    <string name="error_tag_should_be_alpha_numeric">ಪ್ರೋಗ್ರಾಮ್ ಕೋಡ್‍ ನಲ್ಲಿ ಅಕ್ಷರ ಮತ್ತು ಸಂಖ್ಯೆಗಳು ಇರಬೇಕು</string>
+    <string name="error_tag_duplicate">ಈಗಾಗಲೇ ಈ ಪ್ರೋಗ್ರಾಮ್ ಕೋಡ್ ಇದೆ</string>
+    <string name="error_tag_limit">ಪ್ರೋಗ್ರಾಮ್ ಕೋಡ್ 6 ರಿಂದ 12 ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು</string>
+    <string name="error_tag_desc_empty">ಪ್ರೋಗ್ರಾಮ್ ವಿವರಣೆ ಖಾಲಿ ಇರಬಾರದು</string>
+    <string name="error_tag_start_date_empty">ಆರಂಭದ  ದಿನಾಂಕ ಖಾಲಿ ಇರಬಾರದು</string>
+    <string name="error_tag_end_date_empty">ಅಂತಿಮ ದಿನಾಂಕ ಖಾಲಿ ಇರಬಾರದು</string>
+    <string name="error_tag_inavlid">ಟ್ಯಾಗ್ ಸರಿಯಾಗಿಲ್ಲ</string>
+    <string name="error_tag_invalid_date_range">ದತ್ತಾಂಶ ವ್ಯಾಪ್ತಿ ಸರಿಯಾಗಿಲ್ಲ</string>
+    <!--Advanced Setting/Tag String End-->
+
+    <!-- Storage settings String Begin-->
+    <string name="title_storage_settings">Storage Setting</string>
+    <!-- Storage settings String End-->
+
+    <!--Settings String End-->
+
+
+    <!-- Content Search String Begin-->
+    <string name="label_search_sort">ವಿಂಗಡಿಸಿ</string>
+    <string name="label_search_filter">ಫಿಲ್ಟರ್</string>
+    <string name="label_search">ಹುಡುಕಿ</string>
+    <string name="error_search">ಹುಡುಕಲು 3 ಅಥವಾ ಅದಕ್ಕಿಂತ ಹೆಚ್ಚು ಅಕ್ಷರಗಳನ್ನು ಹಾಕಬೇಕು</string>
+    <string name="error_search_no_content">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ </string>
+    <string name="error_search_try_different_criteria">ನಿಮ್ಮ ಮಾನದಂಡಗಳನ್ನು ಬದಲಿಸಿ ಮತ್ತು  ಪುನಃ  ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="recommended_content">recommended content</string>
+    <!--Content Search String End-->
+
+    <!--Sort Strings-->
+    <string name="title_sort_by">ಹೀಗೆ ವಿಂಗಡಿಸಿ</string>
+    <string name="label_sort_name">ಹೆಸರು</string>
+    <string name="label_sort_relevant">ಪ್ರಸ್ತುತ</string>
+    <string name="label_sort_highly_rated">ಹೆಚ್ಚು ರೇಟ್ ಆಗಿದೆ</string>
+    <string name="label_sort_newest">ಹೊಸದು</string>
+    <string name="label_sort_most_popular">ಹೆಚ್ಚು ಜನಪ್ರಿಯ</string>
+    <!--Filter Strings!-->
+
+    <!--Filter Strings-->
+    <string name="action_filter_apply">ಅನ್ವಯಿಸಿ</string>
+    <string name="action_filter_clear">ಅಳಿಸಲಾಗಿದೆ</string>
+    <string name="title_filter_all">ಎಲ್ಲಾ</string>
+    <!--Filter Strings!-->
+
+    <!-- Content Details Begin-->
+    <string name="title_contentdetail">ಪಾಠದ ವಿವರಗಳು</string>
+    <string name="label_contentdetail_download">ಡೌನ್ಲೋಡ್ </string>
+    <string name="label_contentdetail_downloading">ಡೌನ್ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
+    <string name="label_contentdetail_importing">ಇಂಪೋರ್ಟ್ ಆಗುತ್ತಿದೆ&#8230;</string>
+    <string name="label_contentdetail_play">ಆಡಲು ಶುರು ಮಾಡಿ</string>
+    <string name="label_contentdetails_update">ಪರಿಷ್ಕರಿಸಿ</string>
+    <string name="label_contentdetail_publisher">ಇವರಿಂದ ಪ್ರಕಾಶಿತವಾಗಿದೆ:</string>
+    <string name="label_contentdetail_owner">ಇವರಿಂದ ರಚಿತವಾಗಿದೆ:</string>
+    <string name="label_contentdetail_read_more">ಮತ್ತಷ್ಟು ಓದು</string>
+    <string name="label_contentdetail_read_less">ಕಡಿಮೆ ಓದಿ</string>
+    <string name="label_contentdetail_rate">ಈ ವಿಷಯವನ್ನು ರೇಟ್</string>
+    <string name="label_contentdetail_copyright">Copyright:&#160;</string>
+    <string name="label_contentdetail_license">License:&#160;</string>
+    <string name="label_contentdetail_ccby">Creative Commons Attribution (CC BY) 4.0</string>
+    <string name="action_contentdetail_open">ತೆರೆ</string>
+    <string name="msg_contentdetail_fetching">ವಿಷಯವಸ್ತು ವಿವರಗಳನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ</string>
+    <!--Content Details  String End-->
+
+    <!-- Share String Begin-->
+    <string name="error_share_cant_share_draft_content">ಡ್ರಾಫ್ಟ್ ವಿಷಯ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ</string>
+    <string name="label_share_link">ಹಂಚಿಕೊಳ್ಳಿ ಕೊಂಡಿಗಳು</string>
+    <string name="label_share_file">ಫೈಲ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="msg_share_content">ಚೆಕ್ ಮಾಡಿ&#160;</string>
+    <string name="msg_share_content1">&#160;ಜೀನೀಯಲ್ಲಿ!</string>
+    <string name="title_share_lesson">ಪಾಠ ಹಂಚಿಕೊಳ್ಳಲು</string>
+    <string name="title_share_profile">ಪಾಲು ಪ್ರೊಫೈಲ್</string>
+    <string name="title_share_telemetry">ಟೆಲಿಮೆಟ್ರಿ ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="msg_share_genie">Check out Genie, free educational app from EkStep</string>
+    <string name="msg_share_lesson_subject">Check out this Lesson on Genie</string>
+    <string name="msg_share_profile_subject">Check out this Profile on Genie</string>
+    <string name="msg_share_collection_subject">Check out this Collection on Genie</string>
+    <string name="msg_share_genie_subject">Check out Genie (From EkStep)</string>
+    <string name="title_share_details">ವಿವರಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ</string>
+    <string name="label_share_text">Share as text via</string>
+    <!--Share  String End-->
+
+    <!--Download Strings-->
+    <string name="title_downloads">ನನ್ನ ಪಾಠಗಳು</string>
+    <string name="download_header_title">Title</string>
+    <string name="download_header_size">Size</string>
+    <string name="download_header_last_used">Last Used</string>
+    <string name="title_downloads_import_content">ಆಮದು ಪಾಠಗಳನ್ನು&#160;</string>
+    <string name="label_downloads_get_more_content">+   ಇನ್ನೂ ಹೆಚ್ಚು ವಿಷಯವಸ್ತು ಪಡೆಯಿರಿ</string>
+    <string name="label_downloads_file_size">File Size</string>
+    <string name="label_downloads_last_used">Last Used</string>
+    <string name="label_downloads_sort_content_by">Sort content by</string>
+    <string name="label_downloads_clear_all">&#160; | &#160;Clear All</string>
+    <string name="label_downloads_items">&#160;Items</string>
+    <string name="title_download_confirm_delete">Confirm Delete</string>
+    <string name="msg_download_confirm_delete_desc">Are you sure you want to delete %1$s of content?</string>
+    <string name="msg_download_delete_successfull">%1$s has been cleared from device</string>
+    <string name="msg_downlod_exit">Are you sure you want to exit Downloads ?</string>
+    <!--Download Strings!-->
+
+    <!--Transfer Strings-->
+    <string name="msg_transfering_cotent">ವಸ್ತು/ಕಂಟೆಂಟ್ ಎಕ್ಸ್ ಪೋರ್ಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ, ದಯವಿಟ್ಟುಕಾಯಿರಿ/ನಿರೀಕ್ಷಿಸಿ</string>
+    <string name="title_trasfer_telemtry">ಟೆಲಿಮೆಟ್ರಿ</string>
+    <string name="title_trasfer_profile">ಪ್ರೊಫೈಲ್</string>
+    <string name="title_trasfer_content">ಕಂಟೆಂಟ್</string>
+    <string name="msg_transfer_select_content">ದಯವಿಟ್ಟು ಒಂದು ವಿಷಯವಸ್ತುವನ್ನು ಎಕ್ಸ್ ಪೋರ್ಟ್ ಮಾಡಲು ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳಿ</string>
+    <string name="msg_transfer_no_content">ಯಾವುದೇ  ವಿಷಯವಸ್ತು ವರ್ಗಾಯಿಸಲು ಲಭ್ಯವಿಲ್ಲ</string>
+    <string name="msg_content_deletion_sucessfull">ವಿಷಯವಸ್ತುವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಡಿಲೀಟ್ ಮಾಡಲಾಯಿತು</string>
+    <string name="msg_transfer_select_profile">ಎಕ್ಸ್ ಪೋರ್ಟ್ ಮಾಡಲು ಒಂದನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <string name="error_transfer_no_kids">ನೊಂದಾಯಿಸಿದ ಯಾವುದೇ ಮಗು ಕಾಣುತ್ತಿಲ್ಲ</string>
+    <!--Transfer Strings!-->
+
+    <!--Language Test Strings Begin!-->
+    <string name="label_dummy_english">English</string>
+    <string name="label_dummy_hindi">Hindi</string>
+    <string name="label_dummy_kannada">Kannada</string>
+    <string name="label_dummy_tamil">Tamil</string>
+    <string name="label_dummy_telegu">Telugu</string>
+    <string name="title_language_test">Language Test</string>
+    <string name="label_dummy_you_are">ನೀವು</string>
+    <string name="label_dummy_steps_away">ಹೆಜ್ಜೆ ದೂರವಿದ್ದೀರಿ.</string>
+    <string name="msg_dummy_language_test_success">You are now a language tester.</string>
+    <!--Language Test Strings End!-->
+
+    <!--Notifications Strings Begin-->
+    <string name="title_no_notifications">ಯಾವುದೇ ಹೊಸ ಸೂಚನೆಗಳು ಇಲ್ಲ.</string>
+    <!--Notifications Strings End-->
+
+    <!--Summerizer list Strings Begin-->
+    <string name="title_summarizer_profile_details">ಮಗುವಿನ ವಿವರಗಳು &amp; ಪ್ರಗತಿ</string>
+    <string name="title_summarizer_content_details">ವಿಷಯವಸ್ತು ವಿವರಗಳು &amp; ಪ್ರಗತಿ</string>
+    <string name="label_summarizer_average_time">ಸರಾಸರಿ ಸಮಯ</string>
+    <string name="label_summarizer_total_time">ಒಟ್ಟು ಸಮಯ</string>
+    <string name="label_summarizer_result">ಫಲಿತಾಂಶ</string>
+    <string name="label_summarizer_score">ಸ್ಕೋರ್ </string>
+    <string name="label_summarizer_time_taken">ತೆಗೆದುಕೊಂಡ ಸಮಯ</string>
+    <string name="msg_summarizer_no_profile_summary">ಈ ಬಳಕೆದಾರರಿಗೆ ಸದ್ಯ ಯಾವುದೇ ಪ್ರಗತಿ ವರದಿ ಲಭ್ಯವಿಲ್ಲ</string>
+    <string name="msg_summarizer_no_content_summary">ಯಾವುದೇ ಸಕ್ರಿಯ ಪ್ರಗತಿಯ ವರದಿಗಳನ್ನು ಈ ವಿಷಯಕ್ಕಾಗಿ ಪ್ರಸ್ತುತದಲ್ಲಿ ದೊರೆಯುತ್ತಿಲ್ಲ.</string>
+    <string name="label_summarizer_quest_no">ಪ್ರಶ್ನೆ ಸಂಖ್ಯೆ</string>
+    <string name="label_summarizer_lesson">@string/label_nav_downloads</string>
+    <string name="label_summarizer_no_description">ಯಾವುದೇ ವಿವರಣೆ ಲಭ್ಯವಿಲ್ಲ</string>
+    <!--Summerizer list Strings End-->
+
+    <!--File explorer start-->
+    <string name="title_fileexplorer_device_storage">ಡಿವೈಸ್ ಸ್ಟೋರೇಜ್</string>
+    <string name="title_fileexplorer_external_storage">ಎಕ್ಸಟರ್ನಲ್ ಸ್ಟೋರೇಜ್</string>
+    <string name="title_fileexplorer_root">ರೂಟ್</string>
+    <string name="msg_fileexplorer_no_content">Unable to detect any content on your device</string>
+    <string name="msg_fileexplorer_no_profile">Unable to detect any profile on your device</string>
+    <string name="msg_fileexplorer_expand">Expand</string>
+    <!--File explorer End-->
+
+    <!--Feedback strings start-->
+    <string name="title_feedback">ಪ್ರತಿಕ್ರಿಯೆ</string>
+    <string name="label_fedback_give_your_comments">ನಿಮ್ಮ ಕಾಮೆಂಟ್ಗಳನ್ನು ಬರೆಯಿರಿ</string>
+    <string name="action_feedback_submit">ಸಲ್ಲಿಸಲು</string>
+    <string name="msg_feedback_successfull">ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಧನ್ಯವಾದಗಳು</string>
+    <!--Feedback strings end-->
+
+    <!--Collection Strings Begin-->
+    <string name="action_collection_download_all">ಎಲ್ಲವನ್ನೂ ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</string>
+    <!--Collection Strings End-->
+
+    <!--TextBook Strings Begin-->
+    <string name="title_textbook_downloaded_lessons">ಡೌನ್ಲೋಡ್ ಮಾಡಿದ ಲೆಸನ್‍ಗಳು</string>
+    <string name="label_textbook_table_of_contents">ಪರಿವಿಡಿ</string>
+    <string name="label_textbooks">ಪಠ್ಯಪುಸ್ತಕಗಳು</string>
+    <string name="error_textbook_no_downloaded_lessons">ಯಾವುದೇ ಡೌನ್ಲೋಡ್ ಲೆಸನ್ ಲಭ್ಯವಿಲ್ಲ</string>
+    <string name="msg_textbook_get_content_now">ಈಗ ಕಂಟೆಂಟ್ ಪಡೆಯಿರಿ</string>
+    <string name="msg_textbook_empty">ಪಠ್ಯಪುಸ್ತಕ ಖಾಲಿ ಇದೆ</string>
+    <string name="label_textbook_number_of_lessons">ಲೆಸನ್‍ ಗಳ ಸಂಖ್ಯೆ</string>
+    <string name="title_textbook_total_size">ಒಟ್ಟು ಗಾತ್ರ&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="error_textbook_no_contents_to_download">ಡೌನ್ಲೋಡ್ ಮಾಡಲು ಯಾವುದು ಕಂಟೆಂಟ್ ಇಲ್ಲ</string>
+    <!--TextBook Strings End-->
+
+    <!--Content Player related strings start-->
+    <string name="title_content_player_home">@string/label_nav_home</string>
+    <string name="title_content_player_title">ಟೈಟಲ್</string>
+    <string name="title_content_player_next">ಮುಂದೆ ಸಾಗು</string>
+    <string name="title_content_player_submit">ಸಲ್ಲಿಸು</string>
+    <string name="title_content_player_image">ಚಿತ್ರ</string>
+    <string name="title_content_player_voice">ಧ್ವನಿ</string>
+    <string name="title_content_player_audio">ಆಡಿಯೋ</string>
+    <string name="title_content_player_author">ಲೇಖಕ</string>
+    <string name="title_content_player_instructions">ಶಿಕ್ಷಕರಿಗೆ ಟಿಪ್ಪಣಿ</string>
+    <string name="title_content_player_feedback">@string/title_feedback</string>
+    <string name="title_content_player_replay">ರಿಪ್ಲೇ</string>
+    <string name="title_content_player_credits">ಕ್ರೆಡಿಟ್ಸ್</string>
+    <string name="title_content_player_collection">ಸಂಗ್ರಹ</string>
+    <string name="title_content_player_nocredits">ಯಾವುದೇ ಕ್ರೆಡಿಟ್ಸ್ ಲಭ್ಯವಿಲ್ಲ</string>
+    <string name="title_content_player_congratulations">ಅಭಿನಂದನೆಗಳು! ನೀವು ಈ ಪಾಠವನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದಿರಿ!</string>
+    <string name="title_content_player_comment">ನಿಮ್ಮ ಕಾಮೆಂಟ್ಗಳನ್ನು ಬರೆಯಿರಿ&#8230;</string>
+    <string name="title_content_player_nextContent">ಮುಂದಿನ ವಿಷಯವಸ್ತು</string>
+    <string name="title_content_player_scores">ಸ್ಕೋರ್ ಮತ್ತು ರೇಟಿಂಗ್</string>
+    <string name="title_content_player_continue">ಮುಂದುವರೆಯಿರಿ</string>
+    <string name="title_content_player_group">ಗುಂಪು</string>
+    <string name="title_content_player_child">ಮಗು</string>
+    <string name="title_content_player_groupfallbacktext">ನೀವು ಯಾವುದೇ ಗುಂಪನ್ನು ಮಾಡಿಲ್ಲ</string>
+    <string name="title_content_player_userswitchertitle">ಮಗುವನ್ನು ಅಥವಾ ಗುಂಪನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <string name="title_content_player_backbuttontext">ಈ ವಿಷಯವಸ್ತುವನ್ನು ಇಲ್ಲಿಗೇ ಬಿಡಲು ಬಯಸುತ್ತೀರಾ?</string>
+    <string name="title_content_player_lastPage">ಕೊನೆಯ ಪುಟಕ್ಕೆ ಹೋಗಿ</string>
+    <!--Content Player related strings End-->
+
+
+
+    <string name="label_all_anonymous">ಅನಾಮಧೇಯ</string>
+    <string name="label_all_content_type_activity">ಚಟುವಟಿಕೆ</string>
+    <string name="label_all_content_type_collection">ಸಂಗ್ರಹ</string>
+    <string name="label_all_content_type_textbook">ಪಠ್ಯಪುಸ್ತಕ</string>
+    <string name="action_all_edit">ಪರಿಷ್ಕರಿಸಿ</string>
+    <string name="label_all_age">ವಯಸ್ಸು</string>
+    <string name="error_sync_fail">ಓಹ್! ದತ್ತಾಂಶ ಹೊಂದಿಕೆ ವಿಫಲವಾಯಿತು. ದಯವಿಟ್ಟು ಆಮೇಲೆ ಪ್ರಯತ್ನಿಸಿ</string>
+    <string name="msg_import_success">ಇಂಪೋರ್ಟ್ ಯಶಸ್ವಿಯಾಯಿತು</string>
+    <string name="label_all_import">ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
+    <string name="label_all_details">ವಿವರಗಳು</string>
+    <string name="msg_exporting">ಎಕ್ಸ್ ಪೋರ್ಟ್ ಮಾಡುತ್ತಿದ್ದೇವೆ, ದಯವಿಟ್ಟು ಕಾಯಿರಿ</string>
+    <string name="msg_importing">ಇಂಪೋರ್ಟ್ ಆಗುತ್ತಿದೆ.. ದಯವಿಟ್ಟು ಕಾಯಿರಿ</string>
+    <string name="msg_import_count">Importing </string>
+    <string name="msg_please_wait">Please wait </string>
+    <string name="error_import_not_compatible">Import failed. Lesson not supported by Genie</string>
+
+    <string name="download_queue">Download Queue</string>
+    <string name="pause_download">Pause Download</string>
+    <string name="close">CLOSE</string>
+    <string name="resume_download">Resume Download</string>
+
+    <!--storage settings dialog strings start-->
+    <string name="title_add_memory_card">Add Memory Card</string>
+    <string name="msg_add_memory_card">Add memory card to store even more content.</string>
+    <string name="title_low_space_device">Low space in Mobile Device</string>
+    <string name="msg_low_space_device">Genie requires 100 MB or more free space to transfer to Mobile Device.</string>
+    <string name="title_low_space_sdcard">Low space in SD Card</string>
+    <string name="msg_low_space_sdcard">Genie requires 100 MB or more free space to transfer to SD Card.</string>
+    <string name="title_sdcard_default_storage">Set SD Card as default storage for Genie?</string>
+    <string name="msg_sdcard_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to external storage. Are you sure you want to transfer?</string>
+    <string name="title_device_default_storage">Set Device as default storage for Genie?</string>
+    <string name="msg_device_default_storage">This will transfer all Genie content &#160;(%1$s)&#160; to internal storage. Are you sure you want to transfer?</string>
+    <string name="title_merge_content">Merge content</string>
+    <string name="msg_merge_content">There is existing content on the sd card/mobile. Would you like to merge the content.</string>
+    <string name="title_low_storage_space">Low storage space</string>
+    <string name="msg_low_storage_space">Genie requires X MB or more free space to download this content.</string>
+    <string name="label_manage_storage">Manage Storage</string>
+    <string name="msg_dont_ask_again">Don\'t ask again</string>
+    <string name="msg_move_content_sdcard">Please wait while content is being moved to sd card</string>
+    <string name="msg_move_content_internal_storage">Please wait while content is being moved to internal memory</string>
+    <string name="title_move_content">Content Transfer</string>
+    <!--storage settings dialog strings end-->
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <org.ekstep.genie.customview.EkStepNotoTextView
+        android:id="@+id/txt_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
+        android:text="@string/msg_dialog_delete_confirmation"
+        android:textAllCaps="false"
+        android:textColor="@color/header_text_color"
+        android:textSize="@dimen/txt_size_16" />
+
+
+    <View
+        android:id="@+id/view_sync_now"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/txt_delete"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@color/button_disabled" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_sync_now"
+        android:orientation="horizontal">
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/delete_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/dialog_button"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/size_10"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/size_10"
+            android:text="@string/label_dialog_yes"
+            android:textAllCaps="true"
+            android:textColor="@color/colorblue"
+            android:textSize="@dimen/txt_size_16" />
+
+
+        <org.ekstep.genie.customview.EkStepNotoTextView
+            android:id="@+id/delete_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/delete_yes"
+            android:layout_toStartOf="@id/delete_yes"
+            android:background="@drawable/dialog_button"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/size_10"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/size_10"
+            android:text="@string/label_dialog_no"
+            android:textAllCaps="true"
+            android:textColor="@color/text_bg"
+            android:textSize="@dimen/txt_size_16" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

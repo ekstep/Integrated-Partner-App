@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+
+def globalConf = rootProject.ext
+
+android {
+    compileSdkVersion globalConf.androidCompileSdkVersion
+    buildToolsVersion globalConf.androidBuildToolsVersion
+
+
+    defaultConfig {
+        ext.buildNumber = globalConf.appBuildNumber
+        applicationId globalConf.appId
+        minSdkVersion globalConf.androidMinSdkVersion
+        targetSdkVersion globalConf.androidTargetSdkVersion
+        versionCode globalConf.appVersionCode
+        versionName globalConf.appVersionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testCoverageEnabled false
+            buildConfigField 'org.ekstep.genie.ui.splash.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testCoverageEnabled false
+            buildConfigField 'org.ekstep.genie.ui.splash.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
+        }
+
+    }
+
+    productFlavors {
+        qa {
+            buildConfigField 'String', 'TELEMETRY_BASE_URL', '"https://qa.ekstep.in/api/data/v3"'
+            buildConfigField 'String', 'LANGUAGE_PLATFORM_BASE_URL', '"https://qa.ekstep.in/api/language/v3"'
+            buildConfigField 'String', 'TERMS_BASE_URL', '"https://qa.ekstep.in/api/domain/v3"'
+            buildConfigField 'String', 'CONFIG_BASE_URL', '"https://qa.ekstep.in/api/meta/v3"'
+            buildConfigField 'String', 'SEARCH_BASE_URL', '"https://qa.ekstep.in/api/composite/v3"'
+            buildConfigField 'String', 'CONTENT_LISTING_BASE_URL', '"https://qa.ekstep.in/api/data/v3"'
+            buildConfigField 'String', 'CONTENT_BASE_URL', '"https://qa.ekstep.in/api/content/v3"'
+            buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://qa.ekstep.in/api/api-manager/v1"'
+            buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
+            buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
+            buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
+            buildConfigField 'String', 'PLAYER_CONFIG', '"org.ekstep.genie.util.geniesdk.PlayerConfig"'
+            buildConfigField 'int', 'MAX_COMPATIBILITY_LEVEL', "4"
+            buildConfigField 'String', 'MOBILE_APP_CONSUMER', '"MOBILE_APP_CONSUMER"'
+            buildConfigField 'String', 'MOBILE_APP_KEY', '"MOBILE_APP_KEY"'
+            buildConfigField 'String', 'MOBILE_APP_SECRET', '"MOBILE_APP_SECRET"'
+        }
+
+        production {
+            buildConfigField 'String', 'TELEMETRY_BASE_URL', '"https://api.ekstep.in/data/v3"'
+            buildConfigField 'String', 'LANGUAGE_PLATFORM_BASE_URL', '"https://api.ekstep.in/language/v3"'
+            buildConfigField 'String', 'TERMS_BASE_URL', '"https://api.ekstep.in/domain/v3"'
+            buildConfigField 'String', 'CONFIG_BASE_URL', '"https://api.ekstep.in/meta/v3"'
+            buildConfigField 'String', 'SEARCH_BASE_URL', '"https://api.ekstep.in/composite/v3"'
+            buildConfigField 'String', 'CONTENT_LISTING_BASE_URL', '"https://api.ekstep.in/data/v3"'
+            buildConfigField 'String', 'CONTENT_BASE_URL', '"https://api.ekstep.in/content/v3"'
+            buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://api.ekstep.in/api-manager/v1"'
+            buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
+            buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
+            buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
+            buildConfigField 'String', 'PLAYER_CONFIG', '"org.ekstep.genie.util.geniesdk.PlayerConfig"'
+            buildConfigField 'int', 'MAX_COMPATIBILITY_LEVEL', "4"
+            buildConfigField 'String', 'MOBILE_APP_CONSUMER', '"MOBILE_APP_CONSUMER"'
+            buildConfigField 'String', 'MOBILE_APP_KEY', '"MOBILE_APP_KEY"'
+            buildConfigField 'String', 'MOBILE_APP_SECRET', '"MOBILE_APP_SECRET"'
+        }
+    }
+
+
+    dependencies {
+        compile fileTree(include: ['*.jar'], dir: 'libs')
+
+        Map<String, String> dependencies = globalConf.dependencies;
+        compile project(path:':genie-core')
+
+        compile dependencies.supportLibrary
+
+        compile dependencies.playServiceAuth
+        compile dependencies.playServiceDrive
+
+        compile (dependencies.googleAPIClient) {
+            exclude group: 'org.apache.httpcomponents'
+        }
+
+        compile (dependencies.sheetsAPIClient) {
+            exclude group: 'org.apache.httpcomponents'
+        }
+    }
+}

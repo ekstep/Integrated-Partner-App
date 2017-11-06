@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    android:background="@color/app_white_theme_color"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    ekstep:cardCornerRadius="5dp"
+    ekstep:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal">
+
+
+        <ImageView
+            android:id="@+id/delete_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/menu_selector_dark"
+            android:padding="@dimen/spacing_normal"
+            android:src="@drawable/ic_delete_notification" />
+
+        <LinearLayout
+            android:id="@+id/notification_content_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/delete_img"
+            android:orientation="vertical">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/tv_notification_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notification Title"
+                android:textAllCaps="true"
+                android:textColor="@color/app_black_theme_color"
+                android:textSize="@dimen/txt_size_15"
+                android:textStyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/tv_notification_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="lorem ipsum dolor sit amet,lorem ipsum dolor sit amet,lorem ipsum dolor sit amet"
+                android:textColor="@color/grayish_orange"
+                android:textSize="@dimen/txt_size_14" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

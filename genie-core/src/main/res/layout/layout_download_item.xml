@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/download_rl_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/downloadItemBackgroundColor"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <!--Check box -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/download_iv_check_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:buttonTint="@color/profile_background" />
+        </RelativeLayout>
+
+        <!--Dummy Content Icon and location-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5.2">
+
+            <RelativeLayout
+                android:id="@+id/download_rl_content_icon_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <ImageView
+                    android:id="@+id/dummy_download_iv_content_icon"
+                    android:layout_width="@dimen/bigger_content_poster_size"
+                    android:layout_height="@dimen/bigger_content_poster_size" />
+
+                <ImageView
+                    android:id="@+id/download_iv_content_icon"
+                    android:layout_width="@dimen/content_poster_size"
+                    android:layout_height="@dimen/content_poster_size"
+                    android:background="?attr/downloadCheckBoxBackground" />
+
+            </RelativeLayout>
+
+            <!--Content name and Content type-->
+            <LinearLayout
+                android:id="@+id/download_ll_content_name_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:orientation="vertical">
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/download_ectv_content_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_18"
+                    android:textColor="?attr/downloadTitleColor"
+                    android:textSize="@dimen/font_medium_small" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/download_ectv_content_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_small"
+                    android:textColor="?attr/contentNameFontColor"
+                    android:textSize="@dimen/font_small" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--Size -->
+        <LinearLayout
+            android:id="@+id/download_ll_content_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_weight="1.4"
+            android:orientation="horizontal">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_content_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_10"
+                android:textAllCaps="true"
+                android:textColor="?attr/contentNameFontColor"
+                android:textSize="@dimen/font_medium_small" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_content_size_metric"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textColor="?attr/contentNameFontColor"
+                android:textSize="@dimen/txt_size_14" />
+        </LinearLayout>
+
+        <!-- Time since content downloaded-->
+        <LinearLayout
+            android:id="@+id/download_ll_content_since"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10">
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_content_since"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="10"
+                android:textColor="?attr/contentNameFontColor"
+                android:textSize="@dimen/font_medium_small" />
+
+            <org.ekstep.genie.customview.EkStepCustomTextView
+                android:id="@+id/download_ectv_content_times_ago"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_2"
+                android:textColor="?attr/contentNameFontColor"
+                android:textSize="@dimen/txt_size_14" />
+        </LinearLayout>
+
+        <!--More options-->
+        <ImageView
+            android:id="@+id/download_iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/menu_selector_dark"
+            android:padding="@dimen/dp_15"
+            android:src="@drawable/ic_content_more" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="9"
+            android:background="@color/dark_gray" />
+    </LinearLayout>
+
+
+</LinearLayout>

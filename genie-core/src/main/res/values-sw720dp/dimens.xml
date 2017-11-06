@@ -1,0 +1,35 @@
+<resources>
+
+    <!--
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    -->
+    <dimen name="activity_horizontal_margin">128dp</dimen>
+    <integer name="content_grid_size">4</integer>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- font sizes -->
+    <dimen name="font_largest">70sp</dimen>
+    <dimen name="font_larger">56sp</dimen>
+    <dimen name="font_x_large">38sp</dimen>
+    <dimen name="font_large">32sp</dimen>
+    <dimen name="font_medium_large">26sp</dimen>
+    <dimen name="font_medium_medium">24sp</dimen>
+    <dimen name="font_medium_small">20sp</dimen>
+    <dimen name="sp_15">18sp</dimen>
+    <dimen name="font_small">16sp</dimen>
+
+    <dimen name="section_each_item_height">164dp</dimen>
+    <dimen name="section_each_item_width">131dp</dimen>
+
+
+    <!--TOC height of Parent node-->
+    <dimen name="parent_node_height">50dp</dimen>
+
+    <!--Content type (Activity/Collection/Textbook) text size-->
+    <dimen name="content_type_text_size">10sp</dimen>
+
+    <dimen name="dialog_width">400dp</dimen>
+    <dimen name="generic_dialog_width">512dp</dimen>
+
+</resources>

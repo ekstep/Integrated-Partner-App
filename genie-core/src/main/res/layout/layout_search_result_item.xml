@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:ekstep="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:longClickable="true"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/searchTileBackground"
+        android:longClickable="true"
+        android:orientation="vertical">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/img_content"
+            android:layout_width="@dimen/search_result_icon"
+            android:layout_height="@dimen/search_result_icon"
+            android:layout_margin="@dimen/size_5"
+            android:scaleType="fitXY"
+            ekstep:riv_border_color="@android:color/white"
+            ekstep:riv_border_width="3dp"
+            ekstep:riv_corner_radius="@dimen/content_icon_radius"
+            ekstep:riv_oval="false" />
+
+        <LinearLayout
+            android:id="@+id/content_desc_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/size_10_margin"
+            android:layout_marginStart="@dimen/size_5"
+            android:layout_toEndOf="@id/img_content"
+            android:layout_toRightOf="@id/img_content"
+            android:orientation="vertical">
+
+            <org.ekstep.genie.customview.EkStepNotoTextView
+                android:id="@+id/txt_content_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/size_5"
+                android:textColor="?attr/contentNameFontColor"
+                android:textSize="@dimen/txt_size_15"
+                ekstep:fontstyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepNotoTextView
+                android:id="@+id/txt_content_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/size_5"
+                android:textColor="@color/black1"
+                android:textSize="@dimen/txt_size_15"
+                android:visibility="gone"
+                ekstep:fontstyle="bold" />
+
+            <org.ekstep.genie.customview.EkStepNotoTextView
+                android:id="@+id/txt_content_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/txt_size_12"
+                ekstep:fontstyle="bold" />
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_normal_tick_mark"
+            android:layout_width="@dimen/label_tick_height"
+            android:layout_height="@dimen/label_tick_height"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/content_desc_layout"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/shape_circle_filled_green"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_tick" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
