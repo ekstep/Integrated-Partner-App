@@ -6,6 +6,10 @@ package org.ekstep.genie.telemetry.enums;
 
 import android.support.annotation.StringDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(RetentionPolicy.SOURCE)
 @StringDef({CoRelationType.API, CoRelationType.ONBRDNG})
 
 public @interface CoRelationType {

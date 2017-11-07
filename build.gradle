@@ -3,7 +3,7 @@ apply from: 'dependencies.gradle'
 ext {
 
     androidBuildToolsVersion = "23.0.3"
-    androidMinSdkVersion = 21
+    androidMinSdkVersion = 16
     crosswalkBuildMinSdkVersion = 16
     androidTargetSdkVersion = 23
     androidCompileSdkVersion = 23

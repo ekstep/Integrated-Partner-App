@@ -2,9 +2,13 @@ package org.ekstep.genie.telemetry.enums;
 
 import android.support.annotation.StringDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by swayangjit_gwl on 9/28/2016.
  */
+@Retention(RetentionPolicy.SOURCE)
 @StringDef({CoRelationIdContext.ONBOARDING, CoRelationIdContext.SEARCH, CoRelationIdContext.PAGE_ASSEMBLE, CoRelationIdContext.NONE})
 public @interface CoRelationIdContext {
     String ONBOARDING = "onboarding_corelation_id";
