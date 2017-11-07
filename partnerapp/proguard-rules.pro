@@ -40,6 +40,9 @@
 -keep class org.ekstep.genie.customview.treeview.TreeItemHolder { *;}
 -keep class org.ekstep.genie.BuildConfig { *;}
 
+# Don't allow proguard to override the BuildConfig file variable names.
+-keep class org.ekstep.ipa.BuildConfig { *;}
+
 # Event Bus
 -keep class org.greenrobot.eventbus.** { *;}
 -keepclassmembers class ** {
