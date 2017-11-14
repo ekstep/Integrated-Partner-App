@@ -268,13 +268,15 @@ public class MyContentPresenter implements MyContentContract.Presenter {
         if (ContentUtil.isContentLive(content.getContentData().getStatus())) {
             SelectedContent selectedContent = new SelectedContent(content.getIdentifier(), content.getSizeOnDevice(), content.getHierarchyInfo() != null);
             selectedContent.setRefCount(content.getReferenceCount());
-            List<SelectedContent> selectedContents = new ArrayList<>();
-            selectedContents.add(selectedContent);
-
             mMyContentView.toggleSelected(selectedContent);
-            mMyContentView.setSelectedContentSize(getSelectedContentSize(selectedContents));
-            mMyContentView.setSelectedContentCount(mMyContentView.getSelectedItems().size());
 
+            List<SelectedContent> selectedContents = new ArrayList<>();
+            selectedContents.addAll(mMyContentView.getSelectedItems());
+
+            if (selectedContents != null && selectedContents.size() != 0) {
+                mMyContentView.setSelectedContentSize(getSelectedContentSize(selectedContents));
+                mMyContentView.setSelectedContentCount(selectedContents.size());
+            }
         } else {
             mMyContentView.showContentisDraftMessage();
         }

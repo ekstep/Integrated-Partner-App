@@ -1,4 +1,4 @@
-package org.ekstep.genie.ui.splash;
+package org.ekstep.genie.hooks;
 
 import android.app.Activity;
 import android.content.Intent;

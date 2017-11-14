@@ -133,5 +133,6 @@
     <dimen name="txt_size_15">15sp</dimen>
     <dimen name="txt_size_16">16sp</dimen>
     <dimen name="txt_size_17">17sp</dimen>
+    <dimen name="progress_avatar_size">75dp</dimen>
 
 </resources>

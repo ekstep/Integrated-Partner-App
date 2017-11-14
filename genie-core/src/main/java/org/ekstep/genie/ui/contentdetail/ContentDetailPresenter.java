@@ -240,13 +240,6 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
     }
 
     private String computeSize() {
-//        List<ContentVariant> variants = mContentData.getVariants();
-//        if (variants != null && variants.size() > 0 && ContentUtil.isCollectionOrTextBook(mContentData.getContentType())) {
-//            return variants.get(0).getSize();
-//        } else {
-//            return mContentData.getSize();
-//        }
-
         if (mIsArtifactAvailable) {
             return String.valueOf(mContent.getSizeOnDevice());
         } else {
@@ -368,8 +361,15 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
                 } else {
                     mContentDetailView.showDownloadProgress();
                     mContentDetailView.showDownloadProgressText();
-                    mContentDetailView.setDownloadProgressText(mDownloadingString + "(" + (downloadProgress == -1 ? 0 : downloadProgress) + "%)");
                     mContentDetailView.setDownloadProgress(progress.getDownloadProgress());
+                    String progPercent = "(" + (downloadProgress == -1 ? 0 : downloadProgress) + "%)";
+
+                    if (NetworkUtil.getConnectivityStatusString(mContext) == NetworkUtil.NETWORK_STATUS_NOT_CONNECTED) {
+                        mContentDetailView.setDownloadProgressText(mContext.getString(R.string.label_waiting_for_connection)
+                                + progPercent);
+                    } else {
+                        mContentDetailView.setDownloadProgressText(mDownloadingString + progPercent);
+                    }
                 }
             }
         }
@@ -531,7 +531,6 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
             mContentDetailView.setDownloadProgressText(mDownloadingString);
             mIsDownloading = true;
         } else {
-
             if (mContent != null && mContent.isAvailableLocally()) {
                 if (mIsDownloading) {
                     mIsDownloading = false;
@@ -544,7 +543,6 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
                 if (mContent.isUpdateAvailable()) {
                     mContentDetailView.showUpdate();
                 }
-
                 showPlayAndDelete();
             } else {
                 mContentDetailView.hideDelete();

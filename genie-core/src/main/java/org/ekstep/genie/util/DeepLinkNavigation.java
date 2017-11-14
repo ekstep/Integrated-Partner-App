@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
-import org.ekstep.genie.ui.splash.IStartUp;
+import org.ekstep.genie.hooks.IStartUp;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;

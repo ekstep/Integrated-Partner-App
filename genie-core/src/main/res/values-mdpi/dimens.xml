@@ -128,5 +128,6 @@
     <dimen name="download_queue_pb_thickness">2dp</dimen>
     <dimen name="spacing_extra_normal">20dp</dimen>
     <dimen name="spacing_extra_huge">60dp</dimen>
+    <dimen name="progress_avatar_size">50dp</dimen>
 
 </resources>

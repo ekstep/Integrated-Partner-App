@@ -58,4 +58,9 @@ public class AboutActivity extends BaseActivity {
     protected BaseView getBaseView() {
         return null;
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }

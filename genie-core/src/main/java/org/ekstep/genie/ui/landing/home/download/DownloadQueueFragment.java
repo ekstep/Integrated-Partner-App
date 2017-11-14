@@ -1,6 +1,7 @@
 package org.ekstep.genie.ui.landing.home.download;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +36,8 @@ public class DownloadQueueFragment extends DialogFragment implements DownloadQue
     private DownloadQueueContract.Presenter mPresenter;
     private DownloadQueueAdapter mDownloadQueueAdapter;
     private TextView mTvPauseDownload;
+    private OnDismissListener onDismissListener;
+    private boolean mIsDownloadCancelled;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onDownloadProgress(DownloadProgress downloadProgress) throws InterruptedException {
@@ -93,7 +96,6 @@ public class DownloadQueueFragment extends DialogFragment implements DownloadQue
         view.findViewById(R.id.tv_download_close).setOnClickListener(this);
     }
 
-
     @Override
     public void setDownloadQueueAdapter(List<DownloadQueueItem> downloadQueueItemList) {
         if (mDownloadQueueAdapter != null) {
@@ -151,4 +153,30 @@ public class DownloadQueueFragment extends DialogFragment implements DownloadQue
         super.onStop();
         EventBus.unregisterSubscriber(this);
     }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(this, mIsDownloadCancelled);
+            setDownloadCancelled(false);
+        }
+    }
+
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void setDownloadCancelled(boolean isDownloadCancelled) {
+        mIsDownloadCancelled = isDownloadCancelled;
+    }
+
+    public interface OnDismissListener {
+        void onDismiss(DownloadQueueFragment downloadQueueFragment, boolean isDownloadCancelled);
+    }
+
+//    public boolean getIsDownloadCancelled(){
+//        return mIsDownloadCancelled;
+//    }
 }

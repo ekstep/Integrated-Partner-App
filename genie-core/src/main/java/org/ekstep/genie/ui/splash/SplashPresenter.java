@@ -17,6 +17,7 @@ import org.ekstep.genie.activity.RuntimePermissionsActivity;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.ProfileConfig;
 import org.ekstep.genie.callback.IInitAndExecuteGenie;
+import org.ekstep.genie.hooks.IStartUp;
 import org.ekstep.genie.notification.NotificationManagerUtil;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
@@ -162,7 +163,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     };
 
     public SplashPresenter() {
-        mIStartUp = BuildConfigUtil.getBuildConfigValue("org.ekstep.ipa", "STARTUP");
+        mIStartUp = BuildConfigUtil.getBuildConfigValue(CoreApplication.getInstance().getClientPackageName(), "STARTUP");
     }
 
     @Override

@@ -31,6 +31,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Sneha on 9/14/2017.
@@ -399,13 +401,20 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
         if (isChecked) {
             int i = buttonView.getId();
             if (i == R.id.mobile_btn) {
-                showDialogToSetMobileDeviceAsDefault();
+                if (FileHandler.isSelectedStorageAvailable(mActivity)) {
+                    showDialogToSetMobileDeviceAsDefault();
+                } else {
+                    Map<String, String> map = new HashMap();
+                    map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_MOBILE);
+                    map.put(Constant.DEFAULT_STORAGE_PATH, FileHandler.getExternalFilesDir(getActivity()).toString());
+                    PreferenceUtil.setDefaultStorageOption(map);
+                    PreferenceUtil.getPreferenceWrapper().putBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
+                    disableExternalDevice();
 
+                }
             } else if (i == R.id.sdcard_btn) {
                 showDialogtoSetExternalDeviceAsDefault();
-
             }
         }
-
     }
 }

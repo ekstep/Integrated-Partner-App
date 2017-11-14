@@ -15,6 +15,9 @@ import java.io.File;
 public class GlideImageUtil {
 
     public static void loadImageUrl(Context context, String url, ImageView imageView) {
+        if (context == null) {
+            return;
+        }
         Glide.with(context).load(url).bitmapTransform(new RoundedCornersTransformation(context, 15, 2,
                 RoundedCornersTransformation.CornerType.ALL)).crossFade().placeholder(R.drawable.ic_default_book).into(imageView);
     }

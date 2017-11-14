@@ -2,11 +2,15 @@ package org.ekstep.genie.notification.enums;
 
 import android.support.annotation.IntDef;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created on 9/27/2016.
  *
  * @author anil
  */
+@Retention(RetentionPolicy.SOURCE)
 @IntDef({NotificationActionId.DO_NOTHING, NotificationActionId.GENIE_HOME, NotificationActionId.EXPLORE_CONTENT_SCREEN, NotificationActionId.LESSON_DETAIL_SCREEN,
         NotificationActionId.TRANSFER_SCREEN, NotificationActionId.MANAGE_CHILD_SCREEN, NotificationActionId.LIST_OF_STORIES, NotificationActionId.DATA_SYNC_SETTINGS_SCREEN,
         NotificationActionId.MY_CONTENT_SCREEN})

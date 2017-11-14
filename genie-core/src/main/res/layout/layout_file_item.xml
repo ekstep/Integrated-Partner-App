@@ -19,10 +19,11 @@
 
     <org.ekstep.genie.customview.EkStepCustomTextView
         android:id="@+id/txt_file_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/img_file_icon"
+        android:gravity="center"
         android:paddingLeft="@dimen/size_8"
         android:textSize="@dimen/txt_size_16"
         tools:text="123" />

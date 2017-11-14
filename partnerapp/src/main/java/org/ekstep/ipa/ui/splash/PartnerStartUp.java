@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 
-import org.ekstep.genie.ui.splash.IStartUp;
+import org.ekstep.genie.hooks.IStartUp;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.ipa.R;
 import org.ekstep.ipa.ui.intro.IntroActivity;

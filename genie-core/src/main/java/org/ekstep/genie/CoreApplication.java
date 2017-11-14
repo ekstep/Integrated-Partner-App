@@ -17,8 +17,10 @@ import org.ekstep.genieservices.async.SyncService;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.ScanStorageRequest;
 import org.ekstep.genieservices.commons.bean.ScanStorageResponse;
+import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.eventbus.EventBus;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +75,10 @@ public class CoreApplication extends Application implements ForegroundService.On
         GenieService.init(this, getConfigPackageName());
     }
 
+    public String getClientPackageName() {
+        return getConfigPackageName();
+    }
+
     /**
      * Setter method to set Genie is running
      */
@@ -112,10 +118,18 @@ public class CoreApplication extends Application implements ForegroundService.On
         TelemetryHandler.saveTelemetry(TelemetryBuilder.buildResumeEvent());
 
         ScanStorageRequest.Builder builder = new ScanStorageRequest.Builder();
-        builder.storagePath(FileHandler.getDefaultStoragePath(this));
-        GenieResponse<List<ScanStorageResponse>> response = getGenieSdkInstance().getContentService().scanStorage(builder.build());
-        if (response != null && response.getResult() != null && response.getResult().size() > 0) {
-            EventBus.postEvent(response.getResult());
+
+        String filepath = FileHandler.getDefaultStoragePath(this);
+        if (!StringUtil.isNullOrEmpty(filepath)) {
+            File file = new File(filepath);
+            if (file.exists()) {
+                builder.storagePath(filepath);
+                GenieResponse<List<ScanStorageResponse>> response = getGenieSdkInstance().getContentService().scanStorage(builder.build());
+                if (response != null && response.getResult() != null && response.getResult().size() > 0) {
+                    EventBus.postEvent(response.getResult());
+                }
+            } else {
+            }
         }
     }
 

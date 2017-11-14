@@ -151,6 +151,7 @@ public class HomeFragment extends BaseFragment
     private long mLastClickTime = 0;
     private boolean isChangeSubjectClicked = false;
     private boolean isSearchBarVisible = false;
+    private DownloadQueueFragment downloadQueueFragment;
 
     private BroadcastReceiver mNetworkConnectedBroadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -1191,8 +1192,16 @@ public class HomeFragment extends BaseFragment
             mHomePresenter.addOrSwitchChild();
 
         } else if (i == R.id.iv_show_download_queue) {
-            DownloadQueueFragment downloadQueueFragment = new DownloadQueueFragment();
+            downloadQueueFragment = new DownloadQueueFragment();
             downloadQueueFragment.show(getFragmentManager(), downloadQueueFragment.getTag());
+            downloadQueueFragment.setOnDismissListener(new DownloadQueueFragment.OnDismissListener() {
+                @Override
+                public void onDismiss(DownloadQueueFragment downloadQueueFragment, boolean isDownloadCancelled) {
+                    if (isDownloadCancelled) {
+                        mHomePresenter.handleDownloadingAnimation(null);
+                    }
+                }
+            });
 
         } else if (i == R.id.search_content_btn) {
             setSearchBarVisibility(View.VISIBLE);

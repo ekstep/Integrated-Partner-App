@@ -156,6 +156,7 @@ public class DownloadQueuePresenter implements DownloadQueueContract.Presenter {
     @Override
     public void cancelDownload(DownloadQueueItem downloadQueueItem) {
         mSyncContentService.cancelDownload(downloadQueueItem.getIdentifier());
+        mDownloadQueueView.setDownloadCancelled(true);
         removeDownloadQueueItem(downloadQueueItem);
     }
 

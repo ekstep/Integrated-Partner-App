@@ -36,6 +36,10 @@ public interface ProgressReportsContract {
 
         void showProfileAction();
 
+        void hideEditOption();
+
+        void hideDeleteOption();
+
         void showProgressReport();
 
         void hideProgressReport();

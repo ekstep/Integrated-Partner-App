@@ -183,6 +183,7 @@ public interface Constant {
     String KEY_DOWNLOAD_QUEUE_ATTR_SIZE = "size";
     String KEY_DOWNLOAD_QUEUE_ATTR_PROGRESS = "progress";
     String DOWNLOAD_QUEUE_ATTR_PB_VALUE_ZERO = "0";
+    String KEY_SPINE = "spine";
 
     interface BundleKey {
         //Search Result
@@ -234,6 +235,11 @@ public interface Constant {
         String EVENT_KEY_REFRESH_PROFILE = "refresh_profile";
         String EVENT_KEY_CONTENT_IMPORT_SUCCESS = "import_online_content";
         String EVENT_KEY_EDIT_CHILD = "edit_child";
+    }
+
+    interface BuildConfigKey {
+        String VERSION_CODE = "VERSION_CODE";
+        String VERSION_NAME = "VERSION_NAME";
     }
 
 }

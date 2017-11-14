@@ -33,7 +33,6 @@ import org.ekstep.genieservices.commons.bean.ContentData;
 import org.ekstep.genieservices.commons.bean.ContentFeedback;
 import org.ekstep.genieservices.commons.bean.ContentFilterCriteria;
 import org.ekstep.genieservices.commons.bean.ContentImportResponse;
-import org.ekstep.genieservices.commons.bean.ContentVariant;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.HierarchyInfo;
 import org.ekstep.genieservices.commons.bean.enums.ContentAccessStatus;
@@ -323,9 +322,8 @@ public class ContentUtil {
     }
 
     public static String getContentSize(ContentData contentData) {
-        List<ContentVariant> variants = contentData.getVariants();
-        if (variants != null && variants.size() > 0 && isCollectionOrTextBook(contentData.getContentType())) {
-            return variants.get(0).getSize();
+        if (isCollectionOrTextBook(contentData.getContentType())) {
+            return contentData.getSize(Constant.KEY_SPINE);
         } else {
             return contentData.getSize();
         }

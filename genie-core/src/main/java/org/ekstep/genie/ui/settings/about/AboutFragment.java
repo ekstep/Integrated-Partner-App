@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.ekstep.genie.BuildConfig;
+import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.IPresenterFactory;
@@ -21,6 +21,7 @@ import org.ekstep.genie.ui.settings.SettingsActivity;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.FontConstants;
 import org.ekstep.genie.util.preference.PreferenceUtil;
+import org.ekstep.genieservices.utils.BuildConfigUtil;
 
 public class AboutFragment extends BaseFragment implements OnClickListener {
 
@@ -44,7 +45,10 @@ public class AboutFragment extends BaseFragment implements OnClickListener {
         txt_device_id.setText(PreferenceUtil.getUniqueDeviceId());
 
         TextView txt_genie_version = (TextView) view.findViewById(R.id.txt_genie_version);
-        txt_genie_version.setText("Genie v" + BuildConfig.VERSION_NAME + "." + BuildConfig.VERSION_CODE);
+        String packageName = CoreApplication.getInstance().getClientPackageName();
+        String versionName = BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_NAME);
+        int versionCode = Integer.valueOf(BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_CODE).toString());
+        txt_genie_version.setText("Genie v" + versionName + "." + versionCode);
 
         if (PreferenceUtil.getLanguage().equalsIgnoreCase(FontConstants.LANG_ENGLISH)) {
             txt_genie_version.setTypeface(txt_genie_version.getTypeface(), Typeface.BOLD);

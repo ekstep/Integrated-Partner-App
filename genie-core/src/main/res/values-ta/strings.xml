@@ -15,7 +15,7 @@
     <string name="label_nav_downloads">பதிவிறக்கங்கள்</string>
     <string name="label_nav_children">குழந்தை</string>
     <string name="label_nav_settings">அமைப்பை மாற்ற</string>
-    <string name="label_nav_share_genie">Share Genie</string>
+    <string name="label_nav_share_genie">பங்கு ஜீனி</string>
     <string name="label_nav_notifications">அறிவிப்புகள்</string>
     <!--Menu Items String End-->
 
@@ -438,6 +438,8 @@
     <string name="msg_move_content_sdcard">Please wait while content is being moved to sd card</string>
     <string name="msg_move_content_internal_storage">Please wait while content is being moved to internal memory</string>
     <string name="title_move_content">Content Transfer</string>
+    <string name="label_waiting_for_connection">Waiting for connection...</string>
+    <string name="msg_no_sdcard_found">No sdcard found.</string>
     <!--storage settings dialog strings end-->
 
 </resources>

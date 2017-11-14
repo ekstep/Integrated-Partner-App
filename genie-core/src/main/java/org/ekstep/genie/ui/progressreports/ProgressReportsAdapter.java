@@ -2,7 +2,6 @@ package org.ekstep.genie.ui.progressreports;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,11 +65,16 @@ public class ProgressReportsAdapter extends RecyclerView.Adapter<ProgressReports
                 viewHolder.vhImgProfile.setImageResource(R.drawable.avatar_anonymous);
             }
 
-            if (profile != null && TextUtils.isEmpty(profile.getHandle())) {
-                viewHolder.vhtvName.setText("Anonymous");
+            if (profile != null) {
+                if (StringUtil.isNullOrEmpty(profile.getHandle())) {
+                    viewHolder.vhtvName.setText("Anonymous");
+                } else {
+                    viewHolder.vhtvName.setText(profile.getHandle());
+                }
             } else {
-                viewHolder.vhtvName.setText(profile.getHandle());
+                viewHolder.vhtvName.setText("Anonymous");
             }
+
 
         } else {
             Content content = (Content) mAssesmentMap.get(learnerAssessmentSummary.getContentId());

@@ -15,6 +15,7 @@ import org.ekstep.genieservices.commons.IResponseHandler;
 import org.ekstep.genieservices.commons.bean.ContentMoveRequest;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.MoveContentProgress;
+import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.utils.DeviceSpec;
 
 import java.io.File;
@@ -60,8 +61,13 @@ public class StorageSettingsPresenter implements StorageSettingsContract.Present
     }
 
     public String getExternalGenieUsedSpace() {
-        File file = new File(FileHandler.getExternalSdcardPath(mContext));
-        return Util.humanReadableByteCount(FileHandler.folderSize(file), true);
+        if (StringUtil.isNullOrEmpty(FileHandler.getExternalSdcardPath(mContext))) {
+            Util.showCustomToast(R.string.msg_no_sdcard_found);
+        } else {
+            File file = new File(FileHandler.getExternalSdcardPath(mContext));
+            return Util.humanReadableByteCount(FileHandler.folderSize(file), true);
+        }
+        return null;
     }
 
     @Override

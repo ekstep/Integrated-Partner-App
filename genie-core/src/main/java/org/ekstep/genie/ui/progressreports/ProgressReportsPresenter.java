@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
@@ -74,6 +75,11 @@ public class ProgressReportsPresenter implements ProgressReportsContract.Present
             Profile profile = (Profile) bundle.getSerializable(Constant.PROFILE_SUMMARY);
             mProgressReportView.showTitle(R.string.title_summarizer_profile_details);
             mProgressReportView.showName(profile.getHandle());
+            if (TextUtils.isEmpty(profile.getHandle())) {
+                mProgressReportView.hideEditOption();
+                mProgressReportView.hideDeleteOption();
+                mProgressReportView.showName(mContext.getResources().getString(R.string.label_all_anonymous));
+            }
             mProgressReportView.hideContentIcon();
             mProgressReportView.showProfileIcon(profile.getAvatar(), profile.isGroupUser());
             mProgressReportView.showProfileAction();

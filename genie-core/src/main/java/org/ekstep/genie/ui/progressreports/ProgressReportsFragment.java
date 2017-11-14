@@ -166,6 +166,16 @@ public class ProgressReportsFragment extends BaseFragment
     }
 
     @Override
+    public void hideEditOption() {
+        mEditTv.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideDeleteOption() {
+        mDeleteTv.setVisibility(View.GONE);
+    }
+
+    @Override
     public void showProfileAction() {
         mProfileActionView.setVisibility(View.VISIBLE);
     }

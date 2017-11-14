@@ -237,5 +237,6 @@
 
     <integer name="xdelta_shake">5</integer>
     <dimen name="generic_dialog_width">500dp</dimen>
+    <dimen name="progress_avatar_size">75dp</dimen>
 
 </resources>

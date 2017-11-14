@@ -27,6 +27,8 @@ public class DownloadQueueContract {
         void setDownloadPauseText();
 
         void setDownloadResumeText();
+
+        void setDownloadCancelled(boolean isDownloadCancelled);
     }
 
     public interface Presenter {

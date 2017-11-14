@@ -12,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
 import org.ekstep.genie.CoreApplication;
+import org.ekstep.genie.R;
 import org.ekstep.genie.util.preference.PreferenceKey;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
@@ -428,12 +429,26 @@ public class FileHandler {
     public static String getExternalSdcardPath(Context context) {
         String sdCardPath = MountPointUtils.getExternalSecondaryStorage();
         File[] dirs = ContextCompat.getExternalFilesDirs(context, null);
-        for (File d : dirs) {
-            String path = d.getPath();
-            if (path.contains(sdCardPath))
-                return path;
+
+        if (StringUtil.isNullOrEmpty(sdCardPath)) {
+            Util.showCustomToast(R.string.msg_no_sdcard_found);
+        } else {
+            for (File d : dirs) {
+                String path = d.getPath();
+                if (path.contains(sdCardPath))
+                    return path;
+            }
         }
         return null;
+    }
+
+    public static boolean isSelectedStorageAvailable(Context context) {
+        String filepath = FileHandler.getDefaultStoragePath(context);
+        if (!StringUtil.isNullOrEmpty(filepath)) {
+            File file = new File(filepath);
+            return file.exists();
+        }
+        return false;
     }
 
     public static String getDefaultStoragePath(Context context) {

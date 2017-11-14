@@ -43,35 +43,36 @@
             android:paddingTop="@dimen/size_20">
 
             <!-- Kid details  layout -->
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/layout_kid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/ll_kid_full_details"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/layout_time_result">
 
                     <RelativeLayout
                         android:id="@+id/layout_avatar"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
 
                         <ImageView
                             android:id="@+id/img_avatar"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="@dimen/progress_avatar_size"
+                            android:layout_height="@dimen/progress_avatar_size"
                             android:src="@drawable/avatar_normal_1"
                             android:visibility="gone" />
 
                         <ImageView
                             android:id="@+id/img_content"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="@dimen/progress_avatar_size"
+                            android:layout_height="@dimen/progress_avatar_size"
                             android:scaleType="fitXY"
                             android:src="@drawable/ic_default_book"
                             android:visibility="visible" />
@@ -184,20 +185,20 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/layout_time_result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/kid_average_details_layout_margin_right"
-                    android:layout_weight="1"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/dp_5"
                     android:background="@drawable/summerizer_time_bg"
                     android:padding="@dimen/size_5">
 
                     <LinearLayout
                         android:id="@+id/layout_average_score"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_filter_sort"
                         android:layout_marginRight="@dimen/margin_filter_sort"
-                        android:layout_weight="1.5"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingBottom="@dimen/size_5"
@@ -225,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/summerizer_average_time"
                             android:ellipsize="end"
-                            android:maxLines="1"
+                            android:gravity="center"
                             android:padding="@dimen/size_3"
                             android:text="@string/label_summarizer_average_time"
                             android:textColor="@color/white"
@@ -233,11 +234,10 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/margin_filter_sort"
                         android:layout_marginRight="@dimen/margin_filter_sort"
-                        android:layout_weight="1"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingBottom="@dimen/size_5"
@@ -274,7 +274,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
