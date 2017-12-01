@@ -12,6 +12,8 @@ public interface PartnerPrefKey {
     String KEY_PARTNER_FIRST_LAUNCH = "partner_first_launch";
     String KEY_GENIE_FIRST_LAUNCH = "genie_first_launch";
 
+    String KEY_PARTNER_APP_VERSION = "partner_app_version";
+
     String KEY_SELECTED_DISTRICT = "district";
     String KEY_SELECTED_BLOCK = "block";
     String KEY_SELECTED_CLUSTER = "cluster";

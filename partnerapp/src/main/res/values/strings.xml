@@ -38,6 +38,8 @@
 
 
     <string name="label_create_child">Create Child</string>
+    <string name="label_empty_child">No Child Found</string>
+    <string name="label_added">Added</string>
 
 
 </resources>

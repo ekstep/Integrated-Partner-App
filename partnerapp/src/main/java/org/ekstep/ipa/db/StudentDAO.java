@@ -3,6 +3,7 @@ package org.ekstep.ipa.db;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 /**
  * A DAO class for creating Student Information
@@ -27,6 +27,9 @@ public final class StudentDAO {
 
     private static final String TAG = "StudentDAO";
     private static final boolean DEBUG = BuildConfig.DEBUG;
+
+    private static final int GENIE_CHILD_DELETED = -2;
+    private static final String QUERY_PLACE_HOLDER = "?";
 
 
     /**
@@ -345,145 +348,6 @@ public final class StudentDAO {
     }
 
 
-    /**
-     * Add student information into the local database
-     * @param studentMap HashMap contain the student information
-     */
-    public void addNewStudent(HashMap<String, Object> studentMap) {
-        ContentValues contentValues = new ContentValues();
-
-        Set<String> keySet = studentMap.keySet();
-
-        for (String key : keySet) {
-            String value = studentMap.get(key).toString();
-            contentValues.put(key, value);
-        }
-
-        PartnerDB.getInstance().insert(TABLE_NAME, null, contentValues);
-    }
-
-
-    /**
-     * It'll return the List of Student Information which is not synced to Google Excel
-     * @return List of Student Information in List of list object format
-     */
-    public List<List<Object>> getAllUnSyncedData() {
-        List<List<Object>> allData = new ArrayList<>();
-
-        final String selection = COLUMN_SYNC + " = ?";
-        final String [] selectionArgs = {
-                "1"
-        };
-
-        Cursor cursor = PartnerDB.getInstance().query(TABLE_NAME, DEFAULT_INSERT_COLUMN_MAP,
-                selection, selectionArgs, null, null, null);
-
-        if (cursor != null && cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-                List<Object> studentInfo = new ArrayList<>();
-                final int columnCount = cursor.getColumnCount();
-
-                for (int index = 0; index < columnCount; index++) {
-                    studentInfo.add(cursor.getString(index));
-                }
-
-                allData.add(studentInfo);
-            }
-        }
-
-        if (cursor != null) {
-            cursor.close();
-        }
-
-        return allData;
-    }
-
-
-    public void updateSyncState(List<List<Object>> syncedData) {
-        if (syncedData != null && syncedData.size() > 0) {
-            for (List<Object> studentInfo : syncedData) {
-                String studentId = studentInfo.get(7).toString();
-
-                final String where = COLUMN_STUDENT_ID + " = ?";
-                final String []whereArgs = {
-                        studentId
-                };
-
-                ContentValues values = new ContentValues();
-                values.put(COLUMN_SYNC, 0);
-
-                PartnerDB.getInstance().update(TABLE_NAME, values, where, whereArgs);
-            }
-        }
-    }
-
-
-
-    public Student [] getAllStudentObject(String schoolCode, String grade, String searchBy) {
-        Student[] studentInfos = new Student[0];
-
-        if (TextUtils.isEmpty(schoolCode) || TextUtils.isEmpty(searchBy)
-                || TextUtils.isEmpty(grade)) {
-            throw new IllegalArgumentException("Some parameters are null");
-        }
-
-        final String selection = COLUMN_SCHOOL_CODE + " = ? AND " + COLUMN_CHILD_NAME
-                + " LIKE '%" + searchBy + "%' AND " + COLUMN_CLASS + " = ?";
-
-        final String []selectionArgs = {
-                schoolCode,
-                grade
-        };
-
-        Cursor cursor = PartnerDB.getInstance().query(TABLE_NAME, null, selection, selectionArgs,
-                null, null, null);
-
-
-        if (cursor != null && cursor.getCount() > 0) {
-            studentInfos = new Student[cursor.getCount()];
-            int counter = 0;
-
-            while (cursor.moveToNext()) {
-                studentInfos[counter] = new Student();
-
-                studentInfos[counter].setDistrict(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_DISTRICT)));
-                studentInfos[counter].setBlock(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_BLOCK)));
-                studentInfos[counter].setCluster(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLUSTER)));
-                studentInfos[counter].setSchoolCode(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_CODE)));
-                studentInfos[counter].setSchoolName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_NAME)));
-                studentInfos[counter].setStudentClass(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLASS)));
-                studentInfos[counter].setStudentId(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_STUDENT_ID)));
-                studentInfos[counter].setName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CHILD_NAME)));
-                studentInfos[counter].setGender(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
-                studentInfos[counter].setFatherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_FATHER_NAME)));
-                studentInfos[counter].setUid(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_UID)));
-                studentInfos[counter].setMotherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_MOTHER_NAME)));
-                studentInfos[counter].setDob(cursor.getString(cursor.getColumnIndex(COLUMN_DOB)));
-
-                counter++;
-            }
-        }
-
-        if (cursor != null) {
-            cursor.close();
-        }
-
-        return studentInfos;
-    }
-
-
     @Nullable
     public List<Student> getAllGenieStudent() {
         List<Student> studentList = null;
@@ -497,33 +361,7 @@ public final class StudentDAO {
             studentList = new ArrayList<>();
 
             while (cursor.moveToNext()) {
-                Student student = new Student();
-
-                student.setDistrict(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_DISTRICT)));
-                student.setBlock(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_BLOCK)));
-                student.setCluster(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLUSTER)));
-                student.setSchoolCode(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_CODE)));
-                student.setSchoolName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_NAME)));
-                student.setStudentClass(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLASS)));
-                student.setStudentId(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_STUDENT_ID)));
-                student.setName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CHILD_NAME)));
-                student.setGender(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
-                student.setFatherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_FATHER_NAME)));
-                student.setUid(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_UID)));
-                student.setMotherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_MOTHER_NAME)));
-                student.setDob(cursor.getString(cursor.getColumnIndex(COLUMN_DOB)));
+                Student student = getStudent(cursor);
 
                 studentList.add(student);
             }
@@ -538,10 +376,10 @@ public final class StudentDAO {
 
 
     @Nullable
-    public List<Student> getAllStudent(String schoolId, String klass) {
+    public List<Student> getAllNonGenieStudent(String schoolId, String klass) {
         List<Student> studentList = null;
 
-        final String where = COLUMN_SCHOOL_CODE + " = ? AND " + COLUMN_CLASS + " = ?";
+        final String where = COLUMN_SCHOOL_CODE + " = ? AND " + COLUMN_CLASS + " = ? ";
         final String [] whereArgs = {
                 schoolId,
                 klass
@@ -554,33 +392,7 @@ public final class StudentDAO {
             studentList = new ArrayList<>();
 
             while (cursor.moveToNext()) {
-                Student student = new Student();
-
-                student.setDistrict(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_DISTRICT)));
-                student.setBlock(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_BLOCK)));
-                student.setCluster(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLUSTER)));
-                student.setSchoolCode(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_CODE)));
-                student.setSchoolName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_NAME)));
-                student.setStudentClass(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLASS)));
-                student.setStudentId(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_STUDENT_ID)));
-                student.setName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CHILD_NAME)));
-                student.setGender(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
-                student.setFatherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_FATHER_NAME)));
-                student.setUid(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_UID)));
-                student.setMotherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_MOTHER_NAME)));
-                student.setDob(cursor.getString(cursor.getColumnIndex(COLUMN_DOB)));
+                Student student = getStudent(cursor);
 
                 studentList.add(student);
             }
@@ -592,7 +404,6 @@ public final class StudentDAO {
 
         return studentList;
     }
-
 
 
     public List<Student> searchOnStudent(String schoolId, String klass, String searchBy) {
@@ -619,33 +430,7 @@ public final class StudentDAO {
             studentList = new ArrayList<>();
 
             while (cursor.moveToNext()) {
-                Student student = new Student();
-
-                student.setDistrict(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_DISTRICT)));
-                student.setBlock(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_BLOCK)));
-                student.setCluster(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLUSTER)));
-                student.setSchoolCode(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_CODE)));
-                student.setSchoolName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_NAME)));
-                student.setStudentClass(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CLASS)));
-                student.setStudentId(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_STUDENT_ID)));
-                student.setName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_CHILD_NAME)));
-                student.setGender(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
-                student.setFatherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_FATHER_NAME)));
-                student.setUid(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_UID)));
-                student.setMotherName(
-                        cursor.getString(cursor.getColumnIndex(COLUMN_MOTHER_NAME)));
-                student.setDob(cursor.getString(cursor.getColumnIndex(COLUMN_DOB)));
+                Student student = getStudent(cursor);
 
                 studentList.add(student);
             }
@@ -656,6 +441,30 @@ public final class StudentDAO {
         }
 
         return studentList;
+    }
+
+    /**
+     * Method to mark all the deleted Genie Child in the local database
+     * @param studentList List of student who is Genie child isi deleted.
+     */
+    public void updateGenieChildDeletion(List<Student> studentList) {
+        if (studentList != null && studentList.size() > 0) {
+            int size = studentList.size();
+            String[] studentIds = new String[size];
+
+            for (int index = 0; index < size; index++) {
+                studentIds[index] = studentList.get(index).getUid();
+            }
+
+
+            final String where = COLUMN_UID
+                    + " IN (" + makeCommonSepPlaceHolder(size) + ")";
+
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_SYNC, GENIE_CHILD_DELETED);
+
+            PartnerDB.getInstance().update(TABLE_NAME, values, where, studentIds);
+        }
     }
 
 //
@@ -716,6 +525,7 @@ public final class StudentDAO {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_UID, uid);
+        values.put(COLUMN_SYNC, 0);
 
         PartnerDB.getInstance().update(TABLE_NAME, values, where, whereArgs);
     }
@@ -730,7 +540,7 @@ public final class StudentDAO {
     private boolean isValueExists(SQLiteDatabase database, String studentId) {
         final String selection = COLUMN_STUDENT_ID + " = ?";
         final String [] selectionArgs = {
-            studentId
+                studentId
         };
 
         boolean isExists = false;
@@ -749,6 +559,62 @@ public final class StudentDAO {
         return isExists;
     }
 
+    /**
+     * Get the {@link Student} object from the Cursor
+     * @param cursor cursor in which need to read the information
+     * @return Student object
+     */
+    @NonNull
+    private Student getStudent(Cursor cursor) {
+        Student student = new Student();
+
+        student.setDistrict(
+                cursor.getString(cursor.getColumnIndex(COLUMN_DISTRICT)));
+        student.setBlock(
+                cursor.getString(cursor.getColumnIndex(COLUMN_BLOCK)));
+        student.setCluster(
+                cursor.getString(cursor.getColumnIndex(COLUMN_CLUSTER)));
+        student.setSchoolCode(
+                cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_CODE)));
+        student.setSchoolName(
+                cursor.getString(cursor.getColumnIndex(COLUMN_SCHOOL_NAME)));
+        student.setStudentClass(
+                cursor.getString(cursor.getColumnIndex(COLUMN_CLASS)));
+        student.setStudentId(
+                cursor.getString(cursor.getColumnIndex(COLUMN_STUDENT_ID)));
+        student.setName(
+                cursor.getString(cursor.getColumnIndex(COLUMN_CHILD_NAME)));
+        student.setGender(
+                cursor.getString(cursor.getColumnIndex(COLUMN_GENDER)));
+        student.setFatherName(
+                cursor.getString(cursor.getColumnIndex(COLUMN_FATHER_NAME)));
+        student.setUid(
+                cursor.getString(cursor.getColumnIndex(COLUMN_UID)));
+        student.setMotherName(
+                cursor.getString(cursor.getColumnIndex(COLUMN_MOTHER_NAME)));
+        student.setDob(cursor.getString(cursor.getColumnIndex(COLUMN_DOB)));
+        student.setSync(cursor.getInt(cursor.getColumnIndex(COLUMN_SYNC)));
+
+        return student;
+    }
+
+    private String makeCommonSepPlaceHolder(int length) {
+        if (length == 0) {
+            return "";
+        }
+
+        StringBuilder builder = new StringBuilder(QUERY_PLACE_HOLDER);
+
+        int count = 1;
+
+        while (count < length) {
+            builder.append(",");
+            builder.append(QUERY_PLACE_HOLDER);
+            count++;
+        }
+
+        return builder.toString();
+    }
 
 
 }

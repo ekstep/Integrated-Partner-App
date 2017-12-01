@@ -29,6 +29,8 @@ public class Student implements Parcelable {
 
     private String uid;
 
+    private int sync;
+
     public Student() {
     }
 
@@ -48,6 +50,7 @@ public class Student implements Parcelable {
         fatherName = in.readString();
         motherName = in.readString();
         uid = in.readString();
+        sync = in.readInt();
     }
 
     @Override
@@ -66,6 +69,7 @@ public class Student implements Parcelable {
         dest.writeString(fatherName);
         dest.writeString(motherName);
         dest.writeString(uid);
+        dest.writeInt(sync);
     }
 
     @Override
@@ -195,5 +199,13 @@ public class Student implements Parcelable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public int getSync() {
+        return sync;
+    }
+
+    public void setSync(int sync) {
+        this.sync = sync;
     }
 }

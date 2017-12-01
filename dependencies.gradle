@@ -1,5 +1,5 @@
 ext {
-    genieSdkVersion = '1.0.483'
+    genieSdkVersion = '1.0.487'
     genieCanvasVersion = '2.6.259'
     supportLibraryVersion = '23.4.0'
     playServicesVersion = '9.4.0'

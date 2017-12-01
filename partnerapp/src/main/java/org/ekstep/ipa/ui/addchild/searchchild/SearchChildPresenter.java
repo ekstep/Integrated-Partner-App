@@ -1,9 +1,12 @@
 package org.ekstep.ipa.ui.addchild.searchchild;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.util.ShowProgressDialog;
 import org.ekstep.genieservices.GenieService;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.PartnerData;
@@ -33,6 +36,8 @@ public class SearchChildPresenter
 
     private String mKlass;
 
+    private Activity mActivity;
+
     public SearchChildPresenter() {
         mSelectedStudent = new ArrayList<>();
     }
@@ -40,11 +45,13 @@ public class SearchChildPresenter
     @Override
     public void bindView(BaseView view, Context context) {
         mSearchChildView = (SearchChildContract.View) view;
+        mActivity = (Activity) context;
     }
 
     @Override
     public void unbindView() {
         mSearchChildView = null;
+        mActivity = null;
     }
 
     @Override
@@ -61,7 +68,7 @@ public class SearchChildPresenter
 
         mSelectedStudent.clear();
 
-        List<Student> studentList = StudentDAO.getInstance().getAllStudent(mSchoolId, mKlass);
+        List<Student> studentList = StudentDAO.getInstance().getAllNonGenieStudent(mSchoolId, mKlass);
         mSearchChildView.hideCreateChild();
 
         if (studentList != null && studentList.size() > 0) {
@@ -90,15 +97,32 @@ public class SearchChildPresenter
     @Override
     public void handleAddChild() {
 
+        ShowProgressDialog.showProgressDialog(mActivity, "Please wait creating child");
+
         Partner partner = PartnerApp.getPartnerApp().getPartnerConfig().getPartner();
 
         for (Student student : mSelectedStudent) {
             String handle = student.getName();
             String gender = student.getGender();
+            String klass = student.getStudentClass();
             Profile profile = new Profile(handle, "Avatar","en");
+
+
+            if (!TextUtils.isEmpty(student.getUid())) {
+                profile.setUid(student.getUid());
+            }
 
             if (!TextUtils.isEmpty(gender)) {
                 profile.setGender(gender);
+            }
+
+            if (!TextUtils.isEmpty(klass)) {
+                try {
+                    int studentClass = Integer.parseInt(klass);
+                    profile.setStandard(studentClass);
+                } catch (Exception ignored) {
+
+                }
             }
 
             GenieResponse<Profile> profileGenieResponse = GenieService.getService().getUserService()
@@ -115,6 +139,11 @@ public class SearchChildPresenter
                 StudentDAO.getInstance().updateStudentUID(student.getStudentId(), student.getUid());
             }
         }
+
+        ShowProgressDialog.dismissDialog();
+        Toast.makeText(mActivity, "Genie Children Created Successfully", Toast.LENGTH_SHORT)
+                .show();
+        mActivity.finish();
     }
 
     @Override

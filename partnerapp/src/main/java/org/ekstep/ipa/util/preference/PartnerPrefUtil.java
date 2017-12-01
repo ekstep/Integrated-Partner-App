@@ -32,7 +32,7 @@ public final class PartnerPrefUtil {
      * @param time time of Partner App Synced
      */
     public static void setPartnerDataSynced(long time) {
-         PreferenceUtil.getPreferenceWrapper().putLong(PartnerPrefKey.KEY_PARTNER_DATA_SYNC,
+        PreferenceUtil.getPreferenceWrapper().putLong(PartnerPrefKey.KEY_PARTNER_DATA_SYNC,
                 time);
     }
 
@@ -69,7 +69,7 @@ public final class PartnerPrefUtil {
      * @param district district values
      */
     public static void setDistrict(String district) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_DISTRICT, district);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_DISTRICT, district);
     }
 
 
@@ -86,7 +86,7 @@ public final class PartnerPrefUtil {
      * @param block block values
      */
     public static void setBlock(String block) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_BLOCK, block);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_BLOCK, block);
     }
 
 
@@ -103,7 +103,7 @@ public final class PartnerPrefUtil {
      * @param cluster cluster values
      */
     public static void setCluster(String cluster) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_CLUSTER, cluster);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_CLUSTER, cluster);
     }
 
 
@@ -120,7 +120,7 @@ public final class PartnerPrefUtil {
      * @param school school values
      */
     public static void setSchool(String school) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_SCHOOL, school);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_SCHOOL, school);
     }
 
 
@@ -138,7 +138,7 @@ public final class PartnerPrefUtil {
      * @param schoolId schoolId values
      */
     public static void setSchoolId(String schoolId) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_SCHOOL_ID, schoolId);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_SCHOOL_ID, schoolId);
     }
 
 
@@ -155,7 +155,7 @@ public final class PartnerPrefUtil {
      * @param klass klass values
      */
     public static void setStudentClass(String klass) {
-         PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_CLASS, klass);
+        PreferenceUtil.getPreferenceWrapper().putString(PartnerPrefKey.KEY_SELECTED_CLASS, klass);
     }
     /**
      * Get the selected schoolId value
@@ -163,5 +163,27 @@ public final class PartnerPrefUtil {
      */
     public static String getStudentClass() {
         return  PreferenceUtil.getPreferenceWrapper().getString(PartnerPrefKey.KEY_SELECTED_CLASS, null);
+    }
+
+
+    public static boolean isPartnerFirstLaunch() {
+        return PreferenceUtil.getPreferenceWrapper()
+                .getBoolean(PartnerPrefKey.KEY_PARTNER_FIRST_LAUNCH, true);
+    }
+
+
+    public static void setPartnerFirstLaunch(boolean isFirst) {
+        PreferenceUtil.getPreferenceWrapper().putBoolean(PartnerPrefKey.KEY_PARTNER_FIRST_LAUNCH, isFirst);
+    }
+
+
+    public static int getPartnerAppVersion() {
+        return PreferenceUtil.getPreferenceWrapper().getInt(PartnerPrefKey.KEY_PARTNER_APP_VERSION,
+                -1);
+    }
+
+    public static void setPartnerAppVersion(int version) {
+        PreferenceUtil.getPreferenceWrapper().putInt(PartnerPrefKey.KEY_PARTNER_APP_VERSION,
+                version);
     }
 }

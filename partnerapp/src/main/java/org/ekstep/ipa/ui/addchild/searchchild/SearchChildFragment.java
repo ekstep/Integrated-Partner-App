@@ -95,8 +95,6 @@ public class SearchChildFragment extends BaseFragment
             @Override
             public void onClick(View v) {
                 mPresenter.handleAddChild();
-
-                getActivity().onBackPressed();
             }
         });
 

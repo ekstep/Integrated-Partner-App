@@ -1,13 +1,17 @@
 package org.ekstep.ipa.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import org.ekstep.ipa.PartnerApp;
 import org.ekstep.ipa.R;
 import org.ekstep.ipa.model.Student;
 
@@ -44,6 +48,11 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ChildV
         final Student student = mStudentList.get(position);
         holder.bind(student);
 
+        if (mIsMultiSelect) {
+            holder.displayAddedOption((!TextUtils.isEmpty(student.getUid())
+                    && student.getSync() >= 0));
+        }
+
         if (isStudentSelected(student.getStudentId())) {
             holder.itemView.setBackgroundColor(Color.GRAY);
         } else {
@@ -53,6 +62,15 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ChildV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if ((!TextUtils.isEmpty(student.getUid())
+                        && student.getSync() >= 0) && mIsMultiSelect) {
+                    Context context = PartnerApp.getPartnerApp().getApplicationContext();
+                    Toast.makeText(context, "Genie child already created", Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
+
                 if (isStudentSelected(student.getStudentId())) {
                     mSelectedChildIds.remove(student.getStudentId());
 
@@ -115,6 +133,7 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ChildV
         TextView mNameTxt;
         TextView mClassTxt;
         TextView mIdTxt;
+        View mAddedLabel;
 
 
         ChildViewHolder(View itemView) {
@@ -123,12 +142,21 @@ public class ChildrenAdapter extends RecyclerView.Adapter<ChildrenAdapter.ChildV
             mNameTxt = (TextView) itemView.findViewById(R.id.txt_name);
             mClassTxt = (TextView) itemView.findViewById(R.id.txt_class);
             mIdTxt = (TextView) itemView.findViewById(R.id.txt_child_id);
+            mAddedLabel = itemView.findViewById(R.id.label_child_added);
         }
 
         public void bind(Student student) {
             mNameTxt.setText("Name : " + student.getName());
             mClassTxt.setText("Class : " + student.getStudentClass());
             mIdTxt.setText("ID : " + student.getStudentId());
+        }
+
+        public void displayAddedOption(boolean isAdded) {
+            if (isAdded) {
+                mAddedLabel.setVisibility(View.VISIBLE);
+            } else {
+                mAddedLabel.setVisibility(View.GONE);
+            }
         }
     }
 

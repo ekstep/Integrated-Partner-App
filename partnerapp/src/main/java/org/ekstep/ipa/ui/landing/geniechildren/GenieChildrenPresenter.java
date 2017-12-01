@@ -1,6 +1,7 @@
 package org.ekstep.ipa.ui.landing.geniechildren;
 
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 
 import org.ekstep.genie.base.BaseView;
@@ -19,6 +20,7 @@ import org.ekstep.ipa.model.Partner;
 import org.ekstep.ipa.model.Student;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,20 +39,61 @@ public class GenieChildrenPresenter implements GenieChildrenContract.Presenter,
 
     private UserService mUserService;
 
+    private Handler mHandler = new Handler();
+
     @Override
     public void getAllGenieChildren() {
         mGenieChildView.showLoader();
 
-        List<Student> studentList = StudentDAO.getInstance().getAllGenieStudent();
+        final List<Student> genieStudentList = new ArrayList<>();
 
-        if (studentList != null && studentList.size() > 0) {
-            mGenieChildView.setGenieChildListAdapter(studentList, this);
-            mGenieChildView.hideLoader();
-            mGenieChildView.hideEmptyView();
-        } else {
-            mGenieChildView.showEmptyView();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Student> studentList = StudentDAO.getInstance().getAllGenieStudent();
 
+                if (studentList != null && studentList.size() > 0) {
+                    GenieResponse<List<Profile>> profileList = GenieService.getService()
+                            .getUserService().getAllUserProfile();
+
+                    List<String> uidList = new ArrayList<>();
+
+                    List<Student> deletedGenieChild = new ArrayList<>();
+
+                    if (profileList.getStatus() && profileList.getResult() != null
+                            && profileList.getResult().size() > 0) {
+                        for(Profile profile : profileList.getResult()) {
+                            uidList.add(profile.getUid());
+                        }
+                    }
+
+                    for (Student student : studentList) {
+                        if (uidList.contains(student.getUid())) {
+                            genieStudentList.add(student);
+                        } else {
+                            deletedGenieChild.add(student);
+                        }
+                    }
+
+                    StudentDAO.getInstance().updateGenieChildDeletion(deletedGenieChild);
+
+
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            showGenieStudentList(genieStudentList);
+                        }
+                    });
+                } else {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mGenieChildView.showEmptyView();
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -83,8 +126,18 @@ public class GenieChildrenPresenter implements GenieChildrenContract.Presenter,
 
     @Override
     public void onChildUnSelected(Student student) {
+        removeSelectedChild();
+    }
+
+    private void removeSelectedChild() {
         mStudent = null;
         mGenieChildView.disableBrowseLesson();
+    }
+
+    private void showGenieStudentList(List<Student> students) {
+        mGenieChildView.setGenieChildListAdapter(students, this);
+        mGenieChildView.hideLoader();
+        mGenieChildView.hideEmptyView();
     }
 
     private void setCurrentStudent(final boolean isCreateChild) {
@@ -111,6 +164,10 @@ public class GenieChildrenPresenter implements GenieChildrenContract.Presenter,
         String handle = mStudent.getName();
         String gender = mStudent.getGender();
         Profile profile = new Profile(handle, "Avatar","en");
+
+        if (!TextUtils.isEmpty(mStudent.getUid())) {
+            profile.setUid(mStudent.getUid());
+        }
 
         if (!TextUtils.isEmpty(gender)) {
             profile.setGender(gender);
@@ -161,6 +218,7 @@ public class GenieChildrenPresenter implements GenieChildrenContract.Presenter,
             @Override
             public void onSuccess(GenieResponse<String> genieResponse) {
                 LogUtil.i(TAG, GsonUtil.toJson(genieResponse));
+                removeSelectedChild();
                 mGenieChildView.showGenieHomeScreen();
             }
 
