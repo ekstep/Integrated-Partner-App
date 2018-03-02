@@ -20,4 +20,7 @@ public interface PartnerPrefKey {
     String KEY_SELECTED_SCHOOL = "school";
     String KEY_SELECTED_SCHOOL_ID = "school_id";
     String KEY_SELECTED_CLASS = "class";
+
+    String KEY_OPEN_RAP_HOST = "open_rap_host";
+    String KEY_OPEN_RAP_PORT = "open_rap_port";
 }

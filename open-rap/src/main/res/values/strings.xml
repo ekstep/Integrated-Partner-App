@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">open-rap</string>
+
+    <string name="already_connected_open_rap_network">Already connected to open RAP network.</string>
+    <string name="connected_open_rap_network">Connected to open RAP network.</string>
+    <string name="enable_wifi">Please enable wifi to connect to open RAP network.</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+</resources>
