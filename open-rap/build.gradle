@@ -29,5 +29,5 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile dependencies.supportLibrary
-
+    compile dependencies.playServicesLocation
 }

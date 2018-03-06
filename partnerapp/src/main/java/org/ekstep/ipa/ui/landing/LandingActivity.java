@@ -54,7 +54,7 @@ public class LandingActivity extends BaseActivity implements LandingContract.Vie
 
         mPresenter.start();
 
-        mConnectToOpenRapNetwork = new ConnectToOpenRapNetwork(this);
+        mConnectToOpenRapNetwork = new ConnectToOpenRapNetwork(LandingActivity.this, this);
 
         new OpenRapDiscoveryHelper(this, this)
                 .startDiscovery("_openrap._tcp", "Open Resource Access Point");

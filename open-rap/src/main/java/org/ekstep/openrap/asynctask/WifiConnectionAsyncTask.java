@@ -5,7 +5,7 @@ import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author randhirgupta
@@ -57,10 +57,12 @@ public class WifiConnectionAsyncTask extends AsyncTask<Void, Void, Boolean> {
     }
 
     private WifiConfiguration getWifiConfiguration(String ssid) {
-        ArrayList<WifiConfiguration> wifiList = (ArrayList<WifiConfiguration>) mWifiManager.getConfiguredNetworks();
-        for (WifiConfiguration wifiConfiguration : wifiList) {
-            if (wifiConfiguration.SSID != null && wifiConfiguration.SSID.equals("\"" + ssid + "\"")) {
-                return wifiConfiguration;
+        List<WifiConfiguration> wifiList = mWifiManager.getConfiguredNetworks();
+        if (wifiList != null) {
+            for (WifiConfiguration wifiConfiguration : wifiList) {
+                if (wifiConfiguration.SSID != null && wifiConfiguration.SSID.equals(String.format("\"%s\"", ssid))) {
+                    return wifiConfiguration;
+                }
             }
         }
         return null;
