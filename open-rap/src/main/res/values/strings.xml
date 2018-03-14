@@ -6,4 +6,5 @@
     <string name="enable_wifi">Please enable wifi to connect to open RAP network.</string>
     <string name="dialog_ok">OK</string>
     <string name="dialog_cancel">Cancel</string>
+    <string name="disable_internet_msg">Please turn off mobile data.</string>
 </resources>
