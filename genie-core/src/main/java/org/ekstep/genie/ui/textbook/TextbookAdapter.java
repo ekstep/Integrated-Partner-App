@@ -22,6 +22,7 @@ import org.ekstep.genie.util.Util;
 import org.ekstep.genieservices.commons.bean.Content;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class TextbookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private static final String TAG = TextbookAdapter.class.getSimpleName();
     private final Context mContext;
-    private List<TextbookSection> mTextbookSectionList;
+    private List<TextbookSection> mTextbookSectionList = new ArrayList();
     private boolean isFromDownloadsScreen;
     private int numberOfDownloadedLessonsAvailable = 0;
     private TextbookContract.Presenter mPresenter;
@@ -40,7 +41,7 @@ public class TextbookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public TextbookAdapter(Context context, List<TextbookSection> textbookSectionList, boolean isFromDownloadsScreen, TextbookContract.Presenter presenter) {
         mContext = context;
-        mTextbookSectionList = textbookSectionList;
+        mTextbookSectionList.addAll(textbookSectionList);
         this.isFromDownloadsScreen = isFromDownloadsScreen;
         mPresenter = presenter;
     }
@@ -62,19 +63,19 @@ public class TextbookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         textBookSectionViewHolder.vhTvChapter.setText(textbookSection.getSectionName());
         if (mPresenter.isDownloadingAnyChapter(textbookSection)) {
-            textBookSectionViewHolder.vhProgressBarChapterDownload.setVisibility(View.VISIBLE);
+            textBookSectionViewHolder.vhProgressBarChapterDownload.setVisibility(View.GONE);
         } else if (textbookSection.getSectionContents() != null && textbookSection.getSectionContents().size() > 0) {
             mPresenter.checkToShowProgressOrDownloadChapterButton(textbookSection.getSectionContents(), textBookSectionViewHolder.vhImageButtonChapterDownload, textBookSectionViewHolder.vhProgressBarChapterDownload);
         } else {
-            textBookSectionViewHolder.vhImageButtonChapterDownload.setVisibility(View.INVISIBLE);
-            textBookSectionViewHolder.vhProgressBarChapterDownload.setVisibility(View.INVISIBLE);
+//            textBookSectionViewHolder.vhImageButtonChapterDownload.setVisibility(View.VISIBLE);
+            textBookSectionViewHolder.vhProgressBarChapterDownload.setVisibility(View.GONE);
         }
 
         textBookSectionViewHolder.vhImageButtonChapterDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (textbookSection.getSectionContents() != null && textbookSection.getSectionContents().size() > 0) {
-                    mPresenter.calculateSize(textbookSection.getSectionContents(), textbookSection.getSectionName(), textBookSectionViewHolder.vhImageButtonChapterDownload, textBookSectionViewHolder.vhProgressBarChapterDownload);
+//                    mPresenter.calculateSize(textbookSection.getSectionContents(), textbookSection.getSectionName(), textBookSectionViewHolder.vhImageButtonChapterDownload, textBookSectionViewHolder.vhProgressBarChapterDownload);
                 } else {
                     Util.showCustomToast(mContext.getString(R.string.error_textbook_no_contents_to_download));
                 }
@@ -175,8 +176,12 @@ public class TextbookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void refresh(List<TextbookSection> lessonsList) {
         numberOfDownloadedLessonsAvailable = 0;
-        mTextbookSectionList = lessonsList;
-        notifyItemChanged(mClickedTextbookSectionPosition);
+        mClickedTextbookSectionPosition = 0;
+        mTextbookSectionList.clear();
+        if (lessonsList != null && lessonsList.size() > 0) {
+            mTextbookSectionList.addAll(lessonsList);
+        }
+        notifyDataSetChanged();
     }
 
     @Override

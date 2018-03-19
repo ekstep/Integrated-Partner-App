@@ -13,10 +13,13 @@ import org.ekstep.genie.activity.RuntimePermissionsActivity;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.model.SelectedContent;
 import org.ekstep.genie.model.enums.ContentType;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.ui.share.ShareActivity;
 import org.ekstep.genie.util.Constant;
@@ -42,6 +45,7 @@ import org.ekstep.genieservices.commons.bean.ContentSortCriteria;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.enums.ContentImportStatus;
 import org.ekstep.genieservices.commons.bean.enums.InteractionType;
+import org.ekstep.genieservices.commons.bean.enums.SortOrder;
 import org.ekstep.genieservices.commons.utils.CollectionUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.eventbus.EventBus;
@@ -69,6 +73,9 @@ public class MyContentPresenter implements MyContentContract.Presenter {
     private Map<String, List<Content>> mContentListMap = null;
     private List<Integer> mPositionList = new ArrayList<>();
     private String mSelectedIdentifier = "all";
+
+    private boolean mIsSizeSortApplied;
+    private boolean mIsTimeSortApplied;
 
     public MyContentPresenter() {
         mContentService = CoreApplication.getGenieAsyncService().getContentService();
@@ -135,7 +142,7 @@ public class MyContentPresenter implements MyContentContract.Presenter {
     @Override
     public void renderMyContent() {
         renderLocalContents();
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MY_CONTENT));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.DOWNLOADS, TelemetryStageId.MY_CONTENT, ImpressionType.VIEW));
     }
 
     @Override
@@ -166,6 +173,12 @@ public class MyContentPresenter implements MyContentContract.Presenter {
         contentFilterCriteria.withContentAccess().withFeedback();
         contentFilterCriteria.forUser(mUserService.getCurrentUser().getResult().getUid());
         ContentUtil.applyPartnerFilter(contentFilterCriteria);
+
+        //by default sort the content in the descending order.
+        List<ContentSortCriteria> contentSortCriteriaList = new ArrayList<>();
+        contentSortCriteriaList.add(new ContentSortCriteria("sizeOnDevice", SortOrder.DESC));
+        contentFilterCriteria.sort(contentSortCriteriaList);
+
         mContentService.getAllLocalContent(contentFilterCriteria.build(), new IResponseHandler<List<Content>>() {
             @Override
             public void onSuccess(GenieResponse<List<Content>> genieResponse) {
@@ -175,6 +188,7 @@ public class MyContentPresenter implements MyContentContract.Presenter {
 
                 List<Content> contentList = genieResponse.getResult();
                 if (contentList.size() > 0) {
+                    mMyContentView.showDescendingSortIcon(true);
                     mMyContentView.hideNoContentCard();
                     mMyContentView.showMyContentRecyclerView();
                     handleShareVisibility(View.VISIBLE);
@@ -239,7 +253,10 @@ public class MyContentPresenter implements MyContentContract.Presenter {
 
     @Override
     public void deleteContent(final List<SelectedContent> selectedContentList) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MY_CONTENT, TelemetryAction.DELETE_CONTENT_INITIATED, TextUtils.join(",", selectedContentList)));
+
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MY_CONTENT, TelemetryAction.DELETE_CONTENT_INITIATED, TextUtils.join(",", selectedContentList)));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.DELETE_CONTENT_INITIATED, TelemetryStageId.MY_CONTENT, TextUtils.join(",", selectedContentList), ObjectType.CONTENT));
+
         ContentDeleteRequest.Builder request = new ContentDeleteRequest.Builder();
         for (SelectedContent selectedContent : selectedContentList) {
             ContentDelete contentDelete = new ContentDelete(selectedContent.getIdentifier(), selectedContent.isChild());
@@ -379,10 +396,20 @@ public class MyContentPresenter implements MyContentContract.Presenter {
     public void setContentToViews(MyContentAdapter.ContentWrapper contentwrapper, MyContentAdapter.ContentViewHolder contentViewHolder, MyContentAdapter myContentAdapter) {
         Content content = contentwrapper.getContent();
         contentViewHolder.vhCbContentCheckBox.setTag(content);
+        contentViewHolder.vhRlCompleteRow.setTag(content);
         contentViewHolder.vhIvMore.setTag(content);
-        contentViewHolder.vhImgContent.setTag(R.id.download_iv_content_icon, contentwrapper);
+        contentViewHolder.vhTvContentOpen.setTag(R.id.ectv_open_content, contentwrapper);
         contentViewHolder.vhTvContentName.setText(content.getContentData().getName());
         contentViewHolder.vhTvContentType.setText(Util.capitalizeFirstLetter(content.getContentType()));
+
+        if (ContentUtil.isCollectionOrTextBook(content.getContentType())) {
+            contentViewHolder.vhTvContentOpen.setVisibility(View.VISIBLE);
+            contentViewHolder.vhImgOpenSeparator.setVisibility(View.VISIBLE);
+        } else {
+            contentViewHolder.vhTvContentOpen.setVisibility(View.GONE);
+            contentViewHolder.vhImgOpenSeparator.setVisibility(View.GONE);
+        }
+
         contentViewHolder.vhCbContentCheckBox.setChecked(myContentAdapter.getSelectedItems().contains(new SelectedContent(content.getIdentifier())));
         String size = String.valueOf(Util.humanReadableByteCount(content.getSizeOnDevice(), true));
         String[] sizeArray = size.split(" ");
@@ -390,9 +417,14 @@ public class MyContentPresenter implements MyContentContract.Presenter {
         contentViewHolder.vhTvContentSizeMetric.setText(" " + sizeArray[1]);
         if (content.getLastUsedTime() != null && content.getLastUsedTime() != 0) {
             String[] time = Util.toTimesAgo(content.getLastUsedTime());
-            contentViewHolder.vhTvContentDownloadedTimeAgo.setVisibility(View.VISIBLE);
-            contentViewHolder.vhTvContentDownloadedSince.setText(time[0]);
-            contentViewHolder.vhTvContentDownloadedTimeAgo.setText(time[1]);
+            if (time != null) {
+                contentViewHolder.vhTvContentDownloadedTimeAgo.setVisibility(View.VISIBLE);
+                contentViewHolder.vhTvContentDownloadedSince.setText(time[0]);
+                contentViewHolder.vhTvContentDownloadedTimeAgo.setText(time[1]);
+            } else {
+                contentViewHolder.vhTvContentDownloadedSince.setText("-");
+                contentViewHolder.vhTvContentDownloadedTimeAgo.setVisibility(View.GONE);
+            }
 
         } else {
             contentViewHolder.vhTvContentDownloadedSince.setText("-");
@@ -482,8 +514,7 @@ public class MyContentPresenter implements MyContentContract.Presenter {
         if (mNestedContentHeader.size() == 1) {
             contentList = mContentListMap.get("all");
             mSelectedIdentifier = "all";
-            mNestedContentHeader.clear();
-            mMyContentView.hideNestedContentHeader();
+            clearBreadcrumbHeader();
             mMyContentView.showContentHeader();
             mMyContentView.showContentSort();
             mMyContentView.updateLocalContentList(new ArrayList<Content>(contentList));
@@ -496,25 +527,87 @@ public class MyContentPresenter implements MyContentContract.Presenter {
             mMyContentView.updateLocalContentList(contentList);
             mMyContentView.smoothScrollTo(position);
         }
+    }
 
+    @Override
+    public void clearBreadcrumbHeader() {
+        if (mNestedContentHeader != null && mNestedContentHeader.size() > 0) {
+            mNestedContentHeader.clear();
+        }
+        mMyContentView.hideNestedContentHeader();
+    }
+
+    @Override
+    public void onBreadcrumbHeaderClick(int position, String identifier) {
+
+        if (mNestedContentHeader.size() > 0) {
+            if (mNestedContentHeader.size() == 1) {
+                mMyContentView.showNestedContentHeader();
+            } else {
+                //when we click on the current content breadcrumb header, do nothing.
+                if ((position + 1) == mNestedContentHeader.size()) {
+                    return;
+                }
+                List<Content> contentList = mContentListMap.get(identifier);
+                mNestedContentHeader.remove(mNestedContentHeader.size() - 1);
+                mMyContentView.showHeaderBreadCrumb(mNestedContentHeader);
+                mMyContentView.updateLocalContentList(contentList);
+            }
+        }
     }
 
     public void deleteLocalCopyofContent(List<SelectedContent> selectedContents) {
-        for (SelectedContent selectedContent : selectedContents) {
-            for (List<Content> contentList : mContentListMap.values()) {
-                for (int i = 0; i < contentList.size(); i++) {
-                    Content content = contentList.get(i);
-                    if (selectedContent.getIdentifier().equalsIgnoreCase(content.getIdentifier())) {
-                        if (content.getHierarchyInfo() == null) {
-                            contentList.remove(i);
+        if (selectedContents != null) {
+            for (SelectedContent selectedContent : selectedContents) {
+                for (List<Content> contentList : mContentListMap.values()) {
+                    for (int i = 0; i < contentList.size(); i++) {
+                        Content content = contentList.get(i);
+                        if (selectedContent.getIdentifier().equalsIgnoreCase(content.getIdentifier())) {
+                            if (content.getHierarchyInfo() == null) {
+                                contentList.remove(i);
+                            }
                         }
                     }
                 }
             }
+            List<Content> contentList = mContentListMap.get(mSelectedIdentifier);
+            if (mMyContentView.getSelectedItems() != null) {
+                mMyContentView.getSelectedItems().clear();
+            }
+
+            if (contentList != null && contentList.size() > 0) {
+                mMyContentView.updateLocalContentList(new ArrayList<Content>(contentList));
+            }
         }
-        List<Content> contentList = mContentListMap.get(mSelectedIdentifier);
-        mMyContentView.getSelectedItems().clear();
-        mMyContentView.updateLocalContentList(new ArrayList<Content>(contentList));
+
+    }
+
+    @Override
+    public void handleContentSortBySize() {
+        if (!mIsSizeSortApplied) {
+            mIsSizeSortApplied = true;
+            mMyContentView.showAscendingSortIcon(true);
+            renderLocalContents(new ContentSortCriteria("sizeOnDevice", SortOrder.ASC));
+        } else {
+            mIsSizeSortApplied = false;
+            mMyContentView.showDescendingSortIcon(true);
+            renderLocalContents(new ContentSortCriteria("sizeOnDevice", SortOrder.DESC));
+        }
+        mIsTimeSortApplied = false;
+    }
+
+    @Override
+    public void handleContentSortByLastUsed() {
+        if (!mIsTimeSortApplied) {
+            mIsTimeSortApplied = true;
+            mMyContentView.showDescendingSortIcon(false);
+            renderLocalContents(new ContentSortCriteria("lastUsedOn", SortOrder.DESC));
+        } else {
+            mIsTimeSortApplied = false;
+            mMyContentView.showAscendingSortIcon(false);
+            renderLocalContents(new ContentSortCriteria("lastUsedOn", SortOrder.ASC));
+        }
+        mIsSizeSortApplied = false;
     }
 
     @Override

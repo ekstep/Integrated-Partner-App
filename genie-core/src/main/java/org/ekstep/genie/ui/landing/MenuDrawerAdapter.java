@@ -45,13 +45,13 @@ public class MenuDrawerAdapter extends RecyclerView.Adapter<MenuDrawerAdapter.Vi
     }
 
     @Override
-    public MenuDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_drawer_item, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MenuDrawerAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.vhTxtMenuName.setText(mDrawerTextName[position]);
         holder.vhTxtMenuName.setTextColor(ThemeUtility.getColor(mContext, new int[]{R.attr.navMenuItemNameColor}));
         holder.vhImageViewMenuItem.setImageDrawable(mDrawerIcons.get(position));

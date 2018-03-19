@@ -374,6 +374,8 @@
     <!--Collection Strings End-->
 
     <!--TextBook Strings Begin-->
+    <string name="title_view_all">View All</string>
+    <string name="title_downloaded">Downloaded</string>
     <string name="title_textbook_downloaded_lessons">Downloaded lessons</string>
     <string name="label_textbook_table_of_contents">Table of contents</string>
     <string name="label_textbooks">Textbooks</string>
@@ -474,6 +476,7 @@
     <string name="title_move_content">Content Transfer</string>
     <string name="label_waiting_for_connection">Waiting for connection...</string>
     <string name="msg_no_sdcard_found">No sdcard found.</string>
+    <string name="error_app_not_found">Application not found. Please choose another share option</string>
     <!--storage settings dialog strings end-->
 
 </resources>

@@ -74,14 +74,6 @@ public interface TextbookContract {
 
         void generateSectionViewedEvent(String identifier, List<Map<String, Object>> mSectionMapList);
 
-        void showDownloadedLessonText();
-
-        void hideDownloadedLessonText();
-
-        void showTickImage();
-
-        void hideTickImage();
-
         void setIsRequiredToCallApi(boolean isRequiredToCallApi);
 
         AndroidTreeView getAndroidTreeView();
@@ -93,6 +85,20 @@ public interface TextbookContract {
         void showFeedbackDialog(String identifier, float previousRating);
 
         void showProgressReportActivity(Content content);
+
+        void showDownloadedTextbookView();
+
+        void showViewAllTextbookView();
+
+        void setTextbookSize(String size);
+
+        void hideDownloadAllView();
+
+        void showDownloadAllView();
+
+        void hideDownloadingView();
+
+        void showDownloadingView();
     }
 
     interface Presenter extends BasePresenter {
@@ -103,7 +109,7 @@ public interface TextbookContract {
 
         void handleBackButtonClick();
 
-        void downloadedLessons();
+        void sendTelemetryEndEvent();
 
         void handleDetailsClick();
 
@@ -129,7 +135,7 @@ public interface TextbookContract {
 
         void checkToShowProgressOrDownloadChapterButton(List<Content> contentList, android.view.View downloadChapterButton, ProgressBar progressBarChapterDownload);
 
-        void calculateSize(List<Content> gameList, String sectionName, ImageButton chapterDownloadButton, ProgressBar progressBarChapterDownload);
+//        void calculateSize(List<Content> gameList, String sectionName, ImageButton chapterDownloadButton, ProgressBar progressBarChapterDownload);
 
         boolean isDownloadingAnyChapter(TextbookSection textbookSection);
 
@@ -156,5 +162,9 @@ public interface TextbookContract {
         void removeContentToBeDeletedValue();
 
         void handleProgressClick(Content content);
+
+        void handleDownloadAllClick();
+
+        void showDownloadedLessons();
     }
 }

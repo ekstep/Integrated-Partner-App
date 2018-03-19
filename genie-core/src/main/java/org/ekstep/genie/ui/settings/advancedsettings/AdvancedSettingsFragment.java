@@ -17,9 +17,11 @@ import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.IPresenterFactory;
 import org.ekstep.genie.customview.EkStepCustomTextView;
 import org.ekstep.genie.fragment.BaseFragment;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.ui.settings.advancedsettings.addnewtag.AddNewTagActivity;
 import org.ekstep.genieservices.commons.bean.Tag;
 
@@ -59,7 +61,8 @@ public class AdvancedSettingsFragment extends BaseFragment implements AdvancedSe
 
         initViews(view);
         mPresenter.handleGetTags();
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.SETTINGS_ADVANCED));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.SETTINGS_ADVANCED));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.SETTINGS, TelemetryStageId.SETTINGS_ADVANCED, ImpressionType.VIEW));
     }
 
     @Override

@@ -18,6 +18,7 @@ import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.customview.EkStepCustomTextView;
 import org.ekstep.genie.model.DownloadQueueItem;
 import org.ekstep.genie.model.enums.ContentType;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
@@ -25,6 +26,7 @@ import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.AvatarUtil;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeviceUtility;
@@ -256,10 +258,13 @@ public class HomePresenter implements HomeContract.Presenter {
                 ContentListing result = genieResponse.getResult();
 
                 String responseId = result.getResponseMessageId();
+
                 if (!StringUtil.isNullOrEmpty(responseId)) {
                     PreferenceUtil.setCoRelationIdContext(CoRelationIdContext.PAGE_ASSEMBLE);
                     PreferenceUtil.setPageAssembleApiResponseMessageId(responseId);
                     PreferenceUtil.setCoRelationType(result.getContentListingId());
+
+
                 } else {
                     PreferenceUtil.setPageAssembleApiResponseMessageId(null);
                 }
@@ -560,7 +565,9 @@ public class HomePresenter implements HomeContract.Presenter {
             String presentOnDevice = ContentUtil.getLocalContentsCache().contains(contentId) ? "Y" : "N";
             map.put(TelemetryConstant.PRESENT_ON_DEVICE, presentOnDevice);
         }
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.CONTENT_CLICKED, contentId, map, cdata));
+
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.CONTENT_CLICKED, contentId, map, cdata));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.CONTENT_CLICKED, TelemetryStageId.GENIE_HOME, contentId, ObjectType.CONTENT, map, cdata));
 
         ContentUtil.navigateToContentDetails(mContext, contentData, new ArrayList<HierarchyInfo>(), false, false, false);
 
@@ -978,7 +985,9 @@ public class HomePresenter implements HomeContract.Presenter {
                 isKnownUserProfile = true;
                 Map<String, Object> eksMap = new HashMap<>();
                 eksMap.put(TelemetryConstant.CHILDREN_ON_DEVICE, "" + size);
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, profile.getUid(), eksMap));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, profile.getUid(), eksMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, profile.getUid(), ObjectType.USER, eksMap));
                 getCurrentUser();
             }
 
@@ -1003,7 +1012,9 @@ public class HomePresenter implements HomeContract.Presenter {
                 getCurrentUser();
                 Map<String, Object> eksMap = new HashMap<>();
                 eksMap.put(TelemetryConstant.CHILDREN_ON_DEVICE, "" + size);
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, "0", eksMap));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, "0", eksMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, "0", ObjectType.USER, eksMap));
             }
 
             @Override
@@ -1185,6 +1196,14 @@ public class HomePresenter implements HomeContract.Presenter {
             handleDownloadingAnimation(response.getIdentifier());
         }
         manageImportnDeleteSuccess(response);
+    }
+
+    @Override
+    public void manageSwitchSource(String switchSource) {
+        if (!StringUtil.isNullOrEmpty(switchSource) && switchSource.equalsIgnoreCase(Constant.EventKey.EVENT_KEY_SWITCH_SOURCE)) {
+            getLocalContents();
+            EventBus.removeStickyEvent(Constant.EventKey.EVENT_KEY_SWITCH_SOURCE);
+        }
     }
 
     @Override

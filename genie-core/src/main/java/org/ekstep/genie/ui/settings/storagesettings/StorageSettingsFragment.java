@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BasePresenter;
@@ -26,11 +30,11 @@ import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.preference.PreferenceKey;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.commons.bean.MoveContentProgress;
+import org.ekstep.genieservices.commons.bean.enums.ExistingContentAction;
 import org.ekstep.genieservices.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,8 +64,19 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
     private EkStepRadioGroup mRbMobile;
     private EkStepRadioGroup mRbExternal;
     private int mSelectedRadioButtonId;
+    private int mSelectedMoveReplaceDontMoveButton = -1;
 
     private EkStepGenericDialog moveContentDialog = null;
+
+    private int mRBId = -1;
+
+    private ProgressBar mPbMobileGenieSpace;
+    private ProgressBar mPbMobileAvailableSpace;
+    private ProgressBar mPbMobileUsedSpace;
+
+    private ProgressBar mPbSdcardGenieSpace;
+    private ProgressBar mPbSdcardAvailableSpace;
+    private ProgressBar mPbSdcardUsedSpace;
 
     @Override
     public void onStart() {
@@ -105,6 +120,14 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
     }
 
     private void initViews(View view) {
+        mPbMobileGenieSpace = (ProgressBar) view.findViewById(R.id.pb_mobile_genie_space);
+        mPbMobileAvailableSpace = (ProgressBar) view.findViewById(R.id.pb_mobile_available_space);
+        mPbMobileUsedSpace = (ProgressBar) view.findViewById(R.id.pb_mobile_used_space);
+
+        mPbSdcardGenieSpace = (ProgressBar) view.findViewById(R.id.pb_sdcard_genie_space);
+        mPbSdcardAvailableSpace = (ProgressBar) view.findViewById(R.id.pb_sdcard_available_space);
+        mPbSdcardUsedSpace = (ProgressBar) view.findViewById(R.id.pb_sdcard_used_space);
+
         mTitleMobile = (EkStepCustomTextView) view.findViewById(R.id.title_mobile);
         mMobileAvailableSpace = (EkStepCustomTextView) view.findViewById(R.id.mobile_available_space);
         mMobileUsedSpace = (EkStepCustomTextView) view.findViewById(R.id.mobile_used_space);
@@ -129,8 +152,9 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
         mManageGenie = (EkStepCustomTextView) view.findViewById(R.id.manage_genie);
         mManageGenie.setOnClickListener(this);
 
-        mPresenter.calculateSdcardStorageValue(getActivity());
-        mPresenter.calculateMobileStorageValue(getActivity());
+//        mPresenter.calculateSdcardStorageValue(getActivity());
+//        mPresenter.calculateMobileStorageValue(getActivity());
+        mPresenter.calculateMobileNSdcardStorage(getActivity());
 
         mSelectedRadioButtonId = mPresenter.selectAptDefaultStorageOption();
         mPresenter.checkExternalStorageAvaibility();
@@ -176,34 +200,104 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
     }
 
     @Override
-    public void showDialogtoSetExternalDeviceAsDefault() {
-
-        File file = new File(String.valueOf(getActivity().getExternalFilesDir(null)) + File.separator + "content");
-        String internalGenieSpace = Util.humanReadableByteCount(FileHandler.folderSize(file), true);
+    public void showMoveReplaceAndDontMoveDialog(final boolean showReplace, final String path, final boolean sdCardAsDefault) {
+        int layoutId = -1;
+        if (showReplace) {
+            layoutId = R.layout.dialog_move_replace_dont_move;
+        } else {
+            layoutId = R.layout.dialog_move_dont_move;
+        }
 
         final EkStepGenericDialog ekStepGenericDialog = new EkStepGenericDialog.Builder(mActivity).
-                setTitle(R.string.title_sdcard_default_storage).
-                setDescription(getString(R.string.msg_sdcard_default_storage, internalGenieSpace)).
-                setPositiveButtonText(R.string.title_content_player_continue).
-                setNegativeButtonText(R.string.label_dialog_cancel).onPositiveClick(new EkStepGenericDialog.Callback() {
-            @Override
-            public void onClick(@NonNull final EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
-                dialog.dismiss();
-                mPresenter.setExternalDeviceAsDefault();
-            }
-        }).onNegativeClick(new EkStepGenericDialog.Callback() {
-            @Override
-            public void onClick(@NonNull EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
-                setPreviouslySelectedRadioButton();
-                dialog.cancel();
-            }
-        }).onDismiss(new EkStepGenericDialog.DismissCallback() {
-            @Override
-            public void onDismiss() {
-                setPreviouslySelectedRadioButton();
-            }
-        }).build();
+                setCustomView(layoutId).
+                setPositiveButtonText(R.string.label_dialog_ok).
+                setNegativeButtonText(R.string.label_dialog_cancel)
+                .onPositiveClick(new EkStepGenericDialog.Callback() {
+                    @Override
+                    public void onClick(@NonNull EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
+                        mSelectedMoveReplaceDontMoveButton = mRBId;
+                        if (mSelectedMoveReplaceDontMoveButton == R.id.rb_move) {
+                            if (showReplace) {
+                                mPresenter.mergeContents(ExistingContentAction.KEEP_HIGHER_VERSION, path, sdCardAsDefault);
+                            } else {
+                                mPresenter.mergeContents(null, path, sdCardAsDefault);
+                            }
+                        } else if (mSelectedMoveReplaceDontMoveButton == R.id.rb_dont_move) {
+                            mPresenter.switchSource(path, sdCardAsDefault);
+                        } else if (mSelectedMoveReplaceDontMoveButton == R.id.rb_replace) {
+                            mPresenter.deleteAndMoveContents(null, path, sdCardAsDefault);
+                        }
+
+                        if (mSelectedMoveReplaceDontMoveButton == -1){
+                            Util.showCustomToast(R.string.select_switch_option);
+                        }else {
+                            dialog.dismiss();
+                        }
+                    }
+                })
+                .onNegativeClick(new EkStepGenericDialog.Callback() {
+                    @Override
+                    public void onClick(@NonNull EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
+                        mSelectedMoveReplaceDontMoveButton = -1;
+                        mRBId = -1;
+                        setPreviouslySelectedRadioButton();
+                        dialog.cancel();
+                    }
+                })
+                .onDismiss(new EkStepGenericDialog.DismissCallback() {
+                    @Override
+                    public void onDismiss() {
+                        mSelectedMoveReplaceDontMoveButton = -1;
+                        mRBId = -1;
+                        setPreviouslySelectedRadioButton();
+                    }
+                })
+                .build();
+
+        TextView title = (TextView) ekStepGenericDialog.findViewById(R.id.tv_set_default_title);
+        TextView description = (TextView) ekStepGenericDialog.findViewById(R.id.tv_set_default_desc);
+        TextView moveRadioText = (TextView) ekStepGenericDialog.findViewById(R.id.tv_move_description);
+        TextView replaceRadioText = (TextView) ekStepGenericDialog.findViewById(R.id.tv_replace_description);
+
+        int titleId, descId, moveDescId, replaceDescId;
+        if (sdCardAsDefault) {
+            titleId = R.string.set_sd_card_as_default;
+            descId = R.string.set_sd_card_as_default_description;
+            moveDescId = R.string.move_to_sd_card_content_description;
+            replaceDescId = R.string.replace_sd_card_content_description;
+        } else {
+            titleId = R.string.set_phone_as_default;
+            descId = R.string.set_phone_as_default_description;
+            moveDescId = R.string.move_to_phone_content_description;
+            replaceDescId = R.string.replace_phone_content_description;
+        }
+
+        title.setText(getText(titleId));
+        if (sdCardAsDefault) {
+            description.setText(getString(descId, mPresenter.getInternalGenieUsedSpace()));
+        } else {
+            description.setText(getString(descId, mPresenter.getExternalGenieUsedSpace()));
+        }
+        moveRadioText.setText(getText(moveDescId));
+        if (replaceRadioText != null) {
+            replaceRadioText.setText(getText(replaceDescId));
+        }
+
         ekStepGenericDialog.show();
+
+        View customView = ekStepGenericDialog.getCustomView();
+        RadioGroup radioGroup = (RadioGroup) customView.findViewById(R.id.rg_move_dont_move);
+        if (mSelectedMoveReplaceDontMoveButton != -1) {
+            RadioButton selectedRadioButton = (RadioButton) customView.findViewById(mSelectedMoveReplaceDontMoveButton);
+            selectedRadioButton.setChecked(true);
+        }
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                mRBId = checkedId;
+            }
+        });
     }
 
     @Override
@@ -230,34 +324,6 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
         mRbMobile.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_mobile_active, 0, 0, 0);
         mTitleSdcard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_sdcard_inactive, 0, 0, 0);
         mRbExternal.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_sdcard_inactive, 0, 0, 0);
-    }
-
-    @Override
-    public void showDialogToSetMobileDeviceAsDefault() {
-        final EkStepGenericDialog ekStepGenericDialog = new EkStepGenericDialog.Builder(mActivity).
-                setTitle(R.string.title_device_default_storage).
-                setDescription(getString(R.string.msg_device_default_storage, mPresenter.getExternalGenieUsedSpace())).
-                setPositiveButtonText(R.string.title_content_player_continue).
-                setNegativeButtonText(R.string.label_dialog_cancel).onPositiveClick(new EkStepGenericDialog.Callback() {
-            @Override
-            public void onClick(@NonNull EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
-                dialog.dismiss();
-                mPresenter.setMobileDeviceAsDefault();
-            }
-        }).onNegativeClick(new EkStepGenericDialog.Callback() {
-            @Override
-            public void onClick(@NonNull EkStepGenericDialog dialog, @NonNull EkStepGenericDialog.Action action) {
-                setPreviouslySelectedRadioButton();
-                dialog.dismiss();
-            }
-        }).
-                onDismiss(new EkStepGenericDialog.DismissCallback() {
-                    @Override
-                    public void onDismiss() {
-                        setPreviouslySelectedRadioButton();
-                    }
-                }).build();
-        ekStepGenericDialog.show();
     }
 
     private void setPreviouslySelectedRadioButton() {
@@ -365,6 +431,52 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
         moveContentDialog.dismiss();
     }
 
+    @Override
+    public void showLoaders() {
+        // mobile pbs
+        mPbMobileGenieSpace.setVisibility(View.VISIBLE);
+        mPbMobileAvailableSpace.setVisibility(View.VISIBLE);
+        mPbMobileUsedSpace.setVisibility(View.VISIBLE);
+
+        // mobile size
+        mMobileGenieSpace.setVisibility(View.GONE);
+        mMobileAvailableSpace.setVisibility(View.GONE);
+        mMobileUsedSpace.setVisibility(View.GONE);
+
+        // sdcard
+        mPbSdcardAvailableSpace.setVisibility(View.VISIBLE);
+        mPbSdcardGenieSpace.setVisibility(View.VISIBLE);
+        mPbSdcardUsedSpace.setVisibility(View.VISIBLE);
+
+        // sdcard size
+        mSdcardAvailableSpace.setVisibility(View.GONE);
+        mSdcardGenieSpace.setVisibility(View.GONE);
+        mSdcardUsedSpace.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideLoaders() {
+        // mobile pbs
+        mPbMobileGenieSpace.setVisibility(View.GONE);
+        mPbMobileAvailableSpace.setVisibility(View.GONE);
+        mPbMobileUsedSpace.setVisibility(View.GONE);
+
+        // mobile size
+        mMobileGenieSpace.setVisibility(View.VISIBLE);
+        mMobileAvailableSpace.setVisibility(View.VISIBLE);
+        mMobileUsedSpace.setVisibility(View.VISIBLE);
+
+        // sdcard
+        mPbSdcardAvailableSpace.setVisibility(View.GONE);
+        mPbSdcardGenieSpace.setVisibility(View.GONE);
+        mPbSdcardUsedSpace.setVisibility(View.GONE);
+
+        // sdcard size
+        mSdcardAvailableSpace.setVisibility(View.VISIBLE);
+        mSdcardGenieSpace.setVisibility(View.VISIBLE);
+        mSdcardUsedSpace.setVisibility(View.VISIBLE);
+    }
+
     private int getMoveContentDialogDesc() {
         boolean isExternalDefault = PreferenceUtil.getPreferenceWrapper().
                 getBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
@@ -402,7 +514,7 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
             int i = buttonView.getId();
             if (i == R.id.mobile_btn) {
                 if (FileHandler.isSelectedStorageAvailable(mActivity)) {
-                    showDialogToSetMobileDeviceAsDefault();
+                    mPresenter.setMobileDeviceAsDefault(false);
                 } else {
                     Map<String, String> map = new HashMap();
                     map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_MOBILE);
@@ -413,7 +525,7 @@ public class StorageSettingsFragment extends BaseFragment implements StorageSett
 
                 }
             } else if (i == R.id.sdcard_btn) {
-                showDialogtoSetExternalDeviceAsDefault();
+                mPresenter.setExternalDeviceAsDefault(false);
             }
         }
     }

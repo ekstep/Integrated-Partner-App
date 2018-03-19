@@ -54,7 +54,7 @@
             </RelativeLayout>
 
             <!--Content name and Content type-->
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/download_ll_content_name_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,10 +73,37 @@
                     android:id="@+id/download_ectv_content_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/download_ectv_content_name"
                     android:paddingTop="@dimen/spacing_small"
                     android:textColor="?attr/contentNameFontColor"
                     android:textSize="@dimen/font_small" />
-            </LinearLayout>
+
+                <View
+                    android:id="@+id/ev_open_separator"
+                    android:layout_width="@dimen/size_1"
+                    android:layout_height="@dimen/dp_15"
+                    android:layout_below="@+id/download_ectv_content_name"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_toRightOf="@+id/download_ectv_content_type"
+                    android:background="@color/color_gray"
+                    android:visibility="gone" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/ectv_open_content"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/bg_blue_open_button"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/download_ectv_content_name"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_2"
+                    android:layout_toRightOf="@+id/download_ectv_content_type"
+                    android:text="@string/action_contentdetail_open"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small"
+                    android:visibility="gone" />
+            </RelativeLayout>
         </LinearLayout>
 
         <!--Size -->

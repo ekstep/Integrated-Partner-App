@@ -36,8 +36,6 @@ import org.ekstep.genie.base.IPresenterFactory;
 import org.ekstep.genie.base.PresenterManager;
 import org.ekstep.genie.callback.IMenuItemClick;
 import org.ekstep.genie.customview.EkStepCheckBox;
-import org.ekstep.genie.firebase.fcm.FirebaseInstanceUtil;
-//import org.ekstep.genie.fragment.DataSettingsFragment;
 import org.ekstep.genie.fragment.DummyLanguageTestFragment;
 import org.ekstep.genie.model.enums.SyncConfiguration;
 import org.ekstep.genie.receiver.NetworkChangeReceiver;
@@ -50,7 +48,6 @@ import org.ekstep.genie.ui.settings.SettingsActivity;
 import org.ekstep.genie.ui.transfer.TransferFragment;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeviceUtility;
-import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genie.util.ShowProgressDialog;
 import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.geniesdk.SyncServiceUtil;
@@ -58,6 +55,8 @@ import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.commons.bean.Profile;
 
 import java.util.List;
+
+//import org.ekstep.genie.fragment.DataSettingsFragment;
 
 public class LandingActivity extends BaseActivity
         implements LandingContract.View, IMenuItemClick {
@@ -139,7 +138,7 @@ public class LandingActivity extends BaseActivity
         } else {
             if (extras == null) {
                 mLandingPresenter.importExternalContent();
-//                mLandingPresenter.getFcmTokenAndDisableNCReceiver();
+                mLandingPresenter.getFcmTokenAndDisableNCReceiver();
             }
         }
 
@@ -194,11 +193,11 @@ public class LandingActivity extends BaseActivity
                     PackageManager.DONT_KILL_APP);
         } else {
             // Get the FCM token if its not available.
-            String token = FirebaseInstanceUtil.getFirebaseInstanceId().getToken();
-            LogUtil.d(TAG, "InstanceID token: " + token);
-            if (!TextUtils.isEmpty(token)) {
-                PreferenceUtil.setFcmToken(token);
-            }
+//            String token = FirebaseInstanceUtil.getFirebaseInstanceId().getToken();
+//            LogUtil.d(TAG, "InstanceID token: " + token);
+//            if (!TextUtils.isEmpty(token)) {
+//                PreferenceUtil.setFcmToken(token);
+//            }
         }
     }
 

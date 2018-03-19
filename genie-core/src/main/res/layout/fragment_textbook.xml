@@ -26,7 +26,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/avatar_normal_1" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_collection_name_and_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +52,7 @@
                 android:id="@+id/ll_textbook_grade_language_syllabus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_textbook_name"
                 android:orientation="horizontal">
 
                 <org.ekstep.genie.customview.EkStepCustomTextView
@@ -98,6 +99,7 @@
                 android:id="@+id/tv_textbook_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_textbook_grade_language_syllabus"
                 android:layout_marginTop="@dimen/dp_3"
                 android:background="@drawable/shape_rounded_rectangle_bordered_black"
                 android:paddingBottom="@dimen/dp_5"
@@ -107,7 +109,48 @@
                 android:text="@string/label_all_details"
                 android:textColor="@color/app_black_theme_color"
                 android:textSize="@dimen/font_small" />
-        </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/toggle"
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/ll_textbook_grade_language_syllabus"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_3"
+                android:layout_toRightOf="@+id/tv_textbook_details"
+                android:background="@drawable/textbook_section_switch"
+                android:checkedButton="@+id/view_all"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_section_background"
+                    android:button="@null"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_10"
+                    android:text="@string/title_view_all"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small" />
+
+                <RadioButton
+                    android:id="@+id/downloaded"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_section_background"
+                    android:button="@null"
+                    android:paddingLeft="@dimen/dp_10"
+                    android:paddingRight="@dimen/dp_10"
+                    android:text="@string/title_downloaded"
+                    android:textColor="@color/text_color_button"
+                    android:textSize="@dimen/font_small" />
+            </RadioGroup>
+
+        </RelativeLayout>
 
         <org.ekstep.genie.customview.EkStepCustomTextView
             android:id="@+id/tv_textbook_download"
@@ -128,17 +171,72 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/iv_normal_tick_mark"
-            android:layout_width="@dimen/dp_25"
-            android:layout_height="@dimen/dp_25"
-            android:layout_alignBottom="@+id/tv_textbook_download"
-            android:layout_alignRight="@+id/tv_textbook_download"
-            android:layout_marginBottom="-2dp"
-            android:background="@drawable/shape_circle_filled_green"
-            android:padding="@dimen/dp_5"
-            android:src="@drawable/ic_tick"
-            android:visibility="gone" />
+        <RelativeLayout
+            android:id="@+id/rl_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/spacing_normal">
+
+            <RelativeLayout
+                android:id="@+id/layout_download_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large">
+
+                <ImageView
+                    android:id="@+id/iv_textbook_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:layout_toRightOf="@+id/tv_textbook_size"
+                    android:src="@drawable/ic_textbook_download" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_textbook_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/tv_textbook_download"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:textColor="@color/text_color_button" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/tv_textbook_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_textbook_size"
+                    android:text="@string/action_collection_download_all"
+                    android:textColor="@color/text_color_button"
+                    android:textSize="@dimen/font_small" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_downloading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/pb_download"
+                    android:layout_width="@dimen/size_30"
+                    android:layout_height="@dimen/size_30"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/size_5" />
+
+                <org.ekstep.genie.customview.EkStepCustomTextView
+                    android:id="@+id/txt_downloading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pb_download"
+                    android:text="@string/label_contentdetail_downloading"
+                    android:textColor="@color/text_color_button"
+                    android:textSize="@dimen/font_small"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView

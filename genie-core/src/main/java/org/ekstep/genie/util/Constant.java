@@ -235,6 +235,7 @@ public interface Constant {
         String EVENT_KEY_REFRESH_PROFILE = "refresh_profile";
         String EVENT_KEY_CONTENT_IMPORT_SUCCESS = "import_online_content";
         String EVENT_KEY_EDIT_CHILD = "edit_child";
+        String EVENT_KEY_SWITCH_SOURCE = "switch_source";
     }
 
     interface BuildConfigKey {

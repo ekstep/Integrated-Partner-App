@@ -41,7 +41,7 @@ public class IntroPresenter implements IntroContract.Presenter,
 
         if (PreferenceUtil.isFirstTime().equalsIgnoreCase("true")) {
             PreferenceUtil.setFirstTime("false");
-            TelemetryBuilder.buildGEInteract("PARTNER_FIRST_LAUNCH");
+//            TelemetryBuilder.buildGEInteract("PARTNER_FIRST_LAUNCH");
         }
     }
 

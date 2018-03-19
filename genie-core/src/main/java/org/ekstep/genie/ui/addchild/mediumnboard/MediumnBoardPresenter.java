@@ -6,9 +6,11 @@ import android.view.View;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.FontConstants;
 import org.ekstep.genie.util.geniesdk.ConfigUtil;
@@ -59,7 +61,8 @@ public class MediumnBoardPresenter implements MediumnBoardContract.Presenter {
 
     @Override
     public void openMediumnBoard() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_MEDIUM_BOARD));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_MEDIUM_BOARD));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.ADD_CHILD_MEDIUM_BOARD, ImpressionType.VIEW));
         populateMediumnBoard();
     }
 

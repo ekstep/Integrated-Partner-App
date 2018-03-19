@@ -19,11 +19,14 @@ import org.ekstep.genie.base.ProfileConfig;
 import org.ekstep.genie.callback.IInitAndExecuteGenie;
 import org.ekstep.genie.hooks.IStartUp;
 import org.ekstep.genie.notification.NotificationManagerUtil;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeepLinkNavigation;
@@ -144,7 +147,8 @@ public class SplashPresenter implements SplashContract.Presenter {
                 CoreApplication.getGenieAsyncService().getTagService().setTag(tag, new IResponseHandler<Void>() {
                     @Override
                     public void onSuccess(GenieResponse<Void> genieResponse) {
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.ADD_TAG_DEEP_LINK));
+//                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.ADD_TAG_DEEP_LINK));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_TAG_DEEP_LINK, TelemetryStageId.SPLASH));
                         Util.showCustomToast(R.string.msg_tag_added_sussessfully);
                         mIInitAndExecuteGenie.initAndExecuteGenie();
                     }
@@ -171,7 +175,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         if (CoreApplication.getInstance().isGenieAlive() == -1) {
             CoreApplication.getInstance().setGenieAlive(1);
             PreferenceUtil.setGenieStartTimeStamp("" + System.currentTimeMillis());
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGenieStartEvent(mActivity));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildStartEvent(mActivity, TelemetryStageId.SPLASH, TelemetryConstant.APP, null, null, null, null));
             PreferenceUtil.setCdataStatus(false);
             this.initCoRelationData();
 
@@ -196,8 +200,9 @@ public class SplashPresenter implements SplashContract.Presenter {
         PreferenceUtil.setOfflineChosenSubject(mActivity.getString(R.string.label_home_all_subjects));
 
         // buildGEInteract
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME,
-                TelemetryAction.SUBJECT_RESET, ""));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME,
+//                TelemetryAction.SUBJECT_RESET, ""));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.SUBJECT_RESET, TelemetryStageId.GENIE_HOME, "", ObjectType.CONTENT));
     }
 
     private void callGenieSupport() {
@@ -405,7 +410,9 @@ public class SplashPresenter implements SplashContract.Presenter {
                         String version = profileMap.get(PROFILES_UPDATED_VERSION);
                         String isUpdated = profileMap.get(ARE_PROFILE_IMAGES_COPIED);
 
-                        if (!version.equalsIgnoreCase(String.valueOf(BuildConfig.VERSION_CODE)) || isUpdated.equalsIgnoreCase("false")) {
+                        String packageName = CoreApplication.getInstance().getClientPackageName();
+
+                        if (!version.equalsIgnoreCase(BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_CODE).toString()) || isUpdated.equalsIgnoreCase("false")) {
                             ResUtil.readAndSaveDrawables(mActivity, R.drawable.class, new ProfileConfig().getProfilePath(mActivity));
 
                             setProfileCopyStatus();
@@ -420,32 +427,34 @@ public class SplashPresenter implements SplashContract.Presenter {
     public void makeEntryInGenieSupportFile() throws IOException {
         File genieSupportDirectory = FileHandler.getRequiredDirectory(Environment.getExternalStorageDirectory(), GENIE_SUPPORT_DIRECTORY);
         String filePath = genieSupportDirectory + "/" + GENIE_SUPPORT_FILE;
+        String packageName = CoreApplication.getInstance().getClientPackageName();
+        String versionName = BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_NAME).toString();
 
         //for the first time when file does not exists
         if (!FileHandler.checkIfFileExists(filePath)) {
-            makeFirstEntryInTheFile(filePath);
+            makeFirstEntryInTheFile(versionName, filePath);
         } else {
             String lastLineOfFile = FileHandler.readLastLineFromFile(filePath);
             if (!StringUtil.isNullOrEmpty(lastLineOfFile)) {
                 String[] partsOfLastLine = lastLineOfFile.split(SEPERATOR);
 
-                if (BuildConfig.VERSION_NAME.equalsIgnoreCase(partsOfLastLine[0])) {
+                if (versionName.equalsIgnoreCase(partsOfLastLine[0])) {
                     //just remove the last line from the file and update it their
                     FileHandler.removeLastLineFromFile(filePath);
 
                     String previousOpenCount = partsOfLastLine[2];
                     int count = Integer.parseInt(previousOpenCount);
                     count++;
-                    String updateEntry = BuildConfig.VERSION_NAME + SEPERATOR + partsOfLastLine[1] + SEPERATOR + count;
+                    String updateEntry = versionName + SEPERATOR + partsOfLastLine[1] + SEPERATOR + count;
                     FileHandler.saveToFile(filePath, updateEntry);
                 } else {
                     //make a new entry to the file
-                    String newEntry = BuildConfig.VERSION_NAME + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
+                    String newEntry = versionName + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
                     FileHandler.saveToFile(filePath, newEntry);
                 }
             } else {
                 //make a new entry to the file
-                String newEntry = BuildConfig.VERSION_NAME + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
+                String newEntry = versionName + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
                 FileHandler.saveToFile(filePath, newEntry);
             }
         }
@@ -464,15 +473,17 @@ public class SplashPresenter implements SplashContract.Presenter {
         }
     }
 
-    private void makeFirstEntryInTheFile(String filePath) throws IOException {
+    private void makeFirstEntryInTheFile(String versionName, String filePath) throws IOException {
         FileHandler.createFileInTheDirectory(filePath);
-        String firstEntry = BuildConfig.VERSION_NAME + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
+        String firstEntry = versionName + SEPERATOR + System.currentTimeMillis() + SEPERATOR + "1";
         FileHandler.saveToFile(filePath, firstEntry);
     }
 
     private void setProfileCopyStatus() {
+        String packageName = CoreApplication.getInstance().getClientPackageName();
+
         Map<String, String> newProfileData = new HashMap<>();
-        newProfileData.put(PROFILES_UPDATED_VERSION, String.valueOf(BuildConfig.VERSION_CODE));
+        newProfileData.put(PROFILES_UPDATED_VERSION, BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_CODE).toString());
         newProfileData.put(ARE_PROFILE_IMAGES_COPIED, "true");
 
         PreferenceUtil.setProfilesCopyStatus(GsonUtil.toJson(newProfileData));

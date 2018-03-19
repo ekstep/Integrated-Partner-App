@@ -25,7 +25,6 @@
 
     <application
         android:name="org.ekstep.genie.CoreApplication"
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -139,8 +138,16 @@
                     android:scheme="@string/deeplink_scheme_http" />
                 <data
                     android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/c"
+                    android:scheme="@string/deeplink_scheme_https" />
+                <data
+                    android:host="@string/deeplink_ekstep_host"
                     android:pathPrefix="/l"
                     android:scheme="@string/deeplink_scheme_http" />
+                <data
+                    android:host="@string/deeplink_ekstep_host"
+                    android:pathPrefix="/l"
+                    android:scheme="@string/deeplink_scheme_https" />
                 <data
                     android:host="@string/deeplink_ekstep_host"
                     android:pathPrefix="/landing"

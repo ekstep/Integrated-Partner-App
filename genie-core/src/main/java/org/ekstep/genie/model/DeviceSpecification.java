@@ -1,60 +1,29 @@
 package org.ekstep.genie.model;
 
-import android.text.TextUtils;
-
-import org.ekstep.genie.util.preference.PreferenceUtil;
-import org.ekstep.genieservices.commons.utils.GsonUtil;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created on 5/16/2016.
- *
- * @author anil
+ * Created by user on 15/11/17.
  */
+
 public class DeviceSpecification {
 
-    private String dname;       // Optional user (whoever facilitating the device) defined device name.  Used for helping facilitators track devices and apply filters to reports/dashboards.
-    private String dlocname;    // Optional user (whoever facilitating the device) defined device location name. Used for helping facilitators track device location (school name, tuition center name, etc) and apply filters to reports/dashboards.
-    private String os;          // OS name and version
-    private String make;        // device make and model
-    private String id;          // physical device id if available from OS
+    private String os = "";          // OS name and version
+    private String make = "";        // device make and model
+    private String id = "";          // physical device id if available from OS
     private double mem = -1;    // total mem in MB, -1 if unknown
     private double idisk = -1;  // total internal disk in GB, -1 if unknown
     private double edisk = -1;  // total external disk (card) in GB, -1 if unknown
     private double scrn = -1;   // screen size in inches, -1 if unknown
     private String camera;      // "13,1.3", // primary and secondary camera specs
-    private String cpu;         // processor name
+    private String cpu = "";         // processor name
     private int sims = -1;      // number of sim cards, -1 if unknown
-    private MData mdata;
     private List<String> cap;   // enum array representing various capabilities
     // values - "GPS","BT","WIFI","3G","2G","LTE","ACCEL","GYRO","LIGHT","COMP"
 
     public DeviceSpecification() {
-        this.dname = "";
-        this.dlocname = "";
-        if (!TextUtils.isEmpty(PreferenceUtil.getFcmToken())) {
-            this.mdata = new MData();
-        }
         cap = new ArrayList<>();
-    }
-
-    public String getDname() {
-        return dname;
-    }
-
-    public void setDname(String dname) {
-        this.dname = dname;
-    }
-
-    public String getDlocname() {
-        return dlocname;
-    }
-
-    public void setDlocname(String dlocname) {
-        this.dlocname = dlocname;
     }
 
     public String getOs() {
@@ -137,14 +106,6 @@ public class DeviceSpecification {
         this.sims = sims;
     }
 
-    public MData getMdata() {
-        return mdata;
-    }
-
-    public void setMdata(MData mdata) {
-        this.mdata = mdata;
-    }
-
     public List<String> getCap() {
         return cap;
     }
@@ -152,8 +113,5 @@ public class DeviceSpecification {
     public void setCap(List<String> cap) {
         this.cap = cap;
     }
-
-    public Map<String,Object> toMap(){
-        return GsonUtil.fromJson(GsonUtil.toJson(this),Map.class);
-    }
 }
+

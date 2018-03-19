@@ -10,11 +10,14 @@ import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.activity.RuntimePermissionsActivity;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.util.AvatarUtil;
 import org.ekstep.genie.util.Constant;
@@ -63,9 +66,12 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
     @Override
     public void openManageChild() {
         if (PreferenceUtil.isGroup().equalsIgnoreCase("true")) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_GROUPS));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_GROUPS));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.MANAGE_GROUPS, ImpressionType.VIEW));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_CHILDREN));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_CHILDREN));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.MANAGE_CHILDREN, ImpressionType.VIEW));
+
         }
         fetchAllUserProfiles();
     }
@@ -114,9 +120,11 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
     @Override
     public void handleDeleteProfile(final Profile profile) {
         if (profile.isGroupUser()) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.DELETE_GROUP_INITIATED, profile.getUid()));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.DELETE_GROUP_INITIATED, profile.getUid()));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.DELETE_GROUP_INITIATED, TelemetryStageId.MANAGE_GROUPS, profile.getUid(), ObjectType.USER));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.DELETE_CHILD_INITIATED, profile.getUid()));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.DELETE_CHILD_INITIATED, profile.getUid()));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.DELETE_CHILD_INITIATED, TelemetryStageId.MANAGE_CHILDREN, profile.getUid(), ObjectType.USER));
         }
 
         UserService userService = CoreApplication.getGenieAsyncService().getUserService();
@@ -160,7 +168,8 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
 
     @Override
     public void handleOpenChildren() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_CHILDREN));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_CHILDREN));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.MANAGE_CHILDREN, ImpressionType.VIEW));
         PreferenceUtil.setGroup("false");
         mIsGroup = false;
         showChildrenProfiles();
@@ -168,7 +177,8 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
 
     @Override
     public void handleOpenGroup() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_GROUPS));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.MANAGE_GROUPS));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.MANAGE_GROUPS, ImpressionType.VIEW));
         PreferenceUtil.setGroup("true");
         mIsGroup = true;
         showGroupProfiles();
@@ -198,7 +208,9 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
     public void handleShareProfile() {
         List<String> selectedProfileUidList = new ArrayList(mManageChildView.getSelectedItems());
         if (mManageChildView.getSelectedProfileCount() > 0) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.SHARE_PROFILE_INITIATE, selectedProfileUidList.get(0)));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.SHARE_PROFILE_INITIATE, selectedProfileUidList.get(0)));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SHARE_PROFILE_INITIATE, TelemetryStageId.MANAGE_CHILDREN, selectedProfileUidList.get(0), ObjectType.USER));
 
             Map<String, String> values = new HashMap<>();
             values.put(Constant.SHARE_SCREEN_NAME, TelemetryStageId.MANAGE_CHILDREN);
@@ -360,7 +372,9 @@ public class ManageChildPresenter implements ManageChildContract.Presenter, Mana
                 PreferenceUtil.setGroup("");
                 Map<String, Object> map = new HashMap<>();
                 map.put(TelemetryConstant.CHILDREN_ON_DEVICE, "" + (mChildListProfile.size() + mGroupListProfile.size()));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.SWITCH_CHILD, profile.getUid(), map));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.SWITCH_CHILD, profile.getUid(), map));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.MANAGE_CHILDREN, profile.getUid(), ObjectType.USER, map));
                 mManageChildView.showHomeScreen();
             }
 

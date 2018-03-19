@@ -48,11 +48,15 @@ import org.ekstep.genie.customview.HorizontalSpacingDecoration;
 import org.ekstep.genie.customview.InteractiveScrollView;
 import org.ekstep.genie.fragment.BaseFragment;
 import org.ekstep.genie.model.ContentDeleteResponse;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.addchild.AddChildActivity;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.ui.landing.home.download.DownloadQueueFragment;
@@ -222,6 +226,11 @@ public class HomeFragment extends BaseFragment
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onSwitchSource(String switchSource) throws InterruptedException {
+        mHomePresenter.manageSwitchSource(switchSource);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onRefreshProfile(String refreshProfile) throws InterruptedException {
         mHomePresenter.manageRefreshProfile(refreshProfile);
     }
@@ -324,27 +333,27 @@ public class HomeFragment extends BaseFragment
 
     @Override
     public void generateAddChildSkippedTelemetry() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, TelemetryAction.ADD_CHILD_SKIPPED));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_CHILD_SKIPPED, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, PreferenceUtil.getCoRelationList()));
     }
 
     @Override
     public void generateSubjectSkippedTelemetry() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, TelemetryAction.CHANGE_SUBJECT_SKIPPED));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.CHANGE_SUBJECT_SKIPPED, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, PreferenceUtil.getCoRelationList()));
     }
 
     @Override
     public void generateOnboardingCompletedTelemetry() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, EntityType.ONBOARDING));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, ImpressionType.VIEW, EntityType.ONBOARDING));
     }
 
     @Override
     public void generateSubjectChangedTelemetry(String subject) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SUBJECT_CHANGED, subject));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.SUBJECT_CHANGED, TelemetryStageId.GENIE_HOME, subject, ""));
     }
 
     @Override
     public void generateViewMoreClickedTelemetry(String sectionName) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.VIEW_MORE_CLICKED, sectionName));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.VIEW_MORE_CLICKED, TelemetryStageId.GENIE_HOME, sectionName, ""));
     }
 
     @Override
@@ -729,12 +738,17 @@ public class HomeFragment extends BaseFragment
 
     @Override
     public void generateSectionViewdTelemetryEvent(List<Map<String, Object>> sectionViewMap) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME, TelemetryAction.SECTION_VIEWED, null, sectionViewMap));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.GENIE_HOME_SECTION, ImpressionType.VIEW, TelemetryAction.SECTION_VIEWED));
+        List<Map<String, Object>> newListMap = new ArrayList<>();
+        newListMap.addAll(sectionViewMap);
+        Map<String, Object> sectionViewed = new HashMap<>();
+        sectionViewed.put(TelemetryConstant.SECTIONS, newListMap);
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME,TelemetryStageId.GENIE_HOME, ImpressionType.VIEW, TelemetryStageId.GENIE_HOME_SECTION, sectionViewed));
     }
 
     @Override
     public void generateGenieHomeTelemetry(String uid) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.GENIE_HOME, EntityType.UID, uid));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.GENIE_HOME, ImpressionType.VIEW, EntityType.UID, uid, ObjectType.USER));
     }
 
     @Override

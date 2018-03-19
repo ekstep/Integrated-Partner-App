@@ -105,6 +105,7 @@
     <string name="error_import_not_compatible">Import failed. Lesson not supported by Genie</string>
     <string name="msg_import_successfull"> imported successfully </string>
     <string name="error_import_file_already_exists">This profile has already  been imported. </string>
+    <string name="error_import_file_already_exists_1"> profile(s) has already  been imported. </string>
     <string name="error_import_failure"> import failed</string>
     <!--Import Errors Strings End-->
 
@@ -379,6 +380,8 @@
     <!--Collection Strings End-->
 
     <!--TextBook Strings Begin-->
+    <string name="title_view_all">View All</string>
+    <string name="title_downloaded">Downloaded</string>
     <string name="title_textbook_downloaded_lessons">Downloaded lessons</string>
     <string name="label_textbook_table_of_contents">Table of contents</string>
     <string name="label_textbooks">Textbooks</string>
@@ -479,6 +482,23 @@
     <string name="title_move_content">Content Transfer</string>
     <string name="label_waiting_for_connection">Waiting for connection...</string>
     <string name="msg_no_sdcard_found">No sdcard found.</string>
+    <string name="duplicate_contents">Duplicate Contents</string>
+    <string name="keep_source">Keep Source</string>
+    <string name="keep_destination">Keep Destination</string>
+    <string name="set_sd_card_as_default">Set SD Card as Default Storage?</string>
+    <string name="set_phone_as_default">Set Mobile as Default Storage?</string>
+    <string name="set_sd_card_as_default_description">We noticed you have %1$s of genie content on your mobile. Do you want to transfer this to your SD card?</string>
+    <string name="set_phone_as_default_description">We noticed you have %1$s of genie content on your SD card. Do you want to transfer this to your mobile?</string>
+    <string name="move">Move</string>
+    <string name="dont_move_content">Do not move content</string>
+    <string name="move_to_sd_card_content_description">Move genie content from your mobile to your SD card</string>
+    <string name="move_to_phone_content_description">Move genie content from your SD card to your mobile</string>
+    <string name="dont_move_content_description">Use new location, but do not move existing content</string>
+    <string name="replace_content">Replace</string>
+    <string name="replace_sd_card_content_description">Previous genie content on your SD card will be deleted</string>
+    <string name="replace_phone_content_description">Previous genie content on your mobile will be deleted</string>
+    <string name="error_app_not_found">Application not found. Please choose another share option</string>
+    <string name="select_switch_option">Please select an option</string>
     <!--storage settings dialog strings end-->
 
 </resources>

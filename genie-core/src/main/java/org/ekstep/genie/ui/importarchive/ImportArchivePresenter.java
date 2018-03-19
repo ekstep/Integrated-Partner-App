@@ -8,6 +8,7 @@ import android.os.Environment;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.model.MountPoint;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
@@ -124,7 +125,9 @@ public class ImportArchivePresenter implements ImportArchiveContract.Presenter {
     public void importFile(String filePath) {
         mImportArchiveView.showProgressDialog(mContext.getResources().getString(R.string.msg_importing));
         if (mIsProfile) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.IMPORT_PROFILE, TelemetryAction.PROFILE_IMPORT_INITIATE, new HashMap<String, Object>()));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.IMPORT_PROFILE, TelemetryAction.PROFILE_IMPORT_INITIATE, new HashMap<String, Object>()));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.PROFILE_IMPORT_INITIATE, TelemetryStageId.IMPORT_PROFILE, new HashMap<String, Object>()));
             ImportExportUtil.importProfile(filePath);
         } else {
             ImportExportUtil.importContent(mContext, filePath, new ImportExportUtil.IImport() {

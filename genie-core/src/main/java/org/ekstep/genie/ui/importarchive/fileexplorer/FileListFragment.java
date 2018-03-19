@@ -53,13 +53,13 @@ public class FileListFragment extends BaseFragment implements AdapterView.OnItem
     }
 
     @Override
-    public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_file_list, container, false);
         return view;
     }
 
     @Override
-    public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListView = (RecyclerView) view.findViewById(R.id.rv_files);
         mListView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -90,7 +90,7 @@ public class FileListFragment extends BaseFragment implements AdapterView.OnItem
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         mPresenter.handleItemClick(position);
     }
 

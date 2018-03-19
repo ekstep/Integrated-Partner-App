@@ -5,6 +5,7 @@ import android.content.Context;
 import org.ekstep.genie.base.BasePresenter;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genieservices.commons.bean.MoveContentProgress;
+import org.ekstep.genieservices.commons.bean.enums.ExistingContentAction;
 
 /**
  * Created by Sneha on 9/17/2017.
@@ -28,10 +29,6 @@ public class StorageSettingsContract {
 
         void displayMobileGenieSpace(String genieSize);
 
-        void showDialogToSetMobileDeviceAsDefault();
-
-        void showDialogtoSetExternalDeviceAsDefault();
-
         void showExternalDeviceAsSelected();
 
         void showMobileDeviceAsSelected();
@@ -47,22 +44,32 @@ public class StorageSettingsContract {
         void showMoveContentProgressDialog(MoveContentProgress moveContentProgress);
 
         void dismissMoveContentDialog();
+
+        void showLoaders();
+
+        void hideLoaders();
+
+        void showMoveReplaceAndDontMoveDialog(boolean showReplace, String path, boolean sdCardAsDefault);
     }
 
     interface Presenter extends BasePresenter {
 
-        void calculateSdcardStorageValue(Context context);
+        void calculateMobileNSdcardStorage(Context context);
 
-        void calculateMobileStorageValue(Context context);
+        void setMobileDeviceAsDefault(boolean showReplace);
 
-        void setMobileDeviceAsDefault();
-
-        void setExternalDeviceAsDefault();
+        void setExternalDeviceAsDefault(boolean showReplace);
 
         int selectAptDefaultStorageOption();
 
         void checkExternalStorageAvaibility();
 
         void handleOnMoveContentProgress(MoveContentProgress moveContentProgress);
+
+        void switchSource(String path, boolean sdCardAsDefault);
+
+        void mergeContents(ExistingContentAction existingContentAction, String path, boolean sdCardAsDefault);
+
+        void deleteAndMoveContents(ExistingContentAction existingContentAction, String path, boolean sdCardAsDefault);
     }
 }

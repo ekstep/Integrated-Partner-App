@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.model.FileItem;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
@@ -196,7 +197,9 @@ public class FileListPresenter implements FileListContract.Presenter {
 
         if (filePath.toLowerCase().endsWith(Constant.FILE_EXTENSION_EPAR)) {
             mImportView.showProgressDialog(mContext.getResources().getString(R.string.msg_importing));
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.IMPORT_PROFILE, TelemetryAction.PROFILE_IMPORT_INITIATE, new HashMap<String, Object>()));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.IMPORT_PROFILE, TelemetryAction.PROFILE_IMPORT_INITIATE, new HashMap<String, Object>()));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.PROFILE_IMPORT_INITIATE, TelemetryStageId.IMPORT_PROFILE, new HashMap<String, Object>()));
             ImportExportUtil.importProfile(filePath);
 
         } else if (filePath.toLowerCase().endsWith(Constant.FILE_EXTENSION_ECAR)) {

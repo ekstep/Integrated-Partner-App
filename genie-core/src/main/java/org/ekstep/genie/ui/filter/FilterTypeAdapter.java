@@ -35,7 +35,7 @@ public class FilterTypeAdapter extends RecyclerView.Adapter<FilterTypeAdapter.Vi
     }
 
     @Override
-    public FilterTypeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_filter_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;

@@ -26,7 +26,7 @@
             android:layout_height="@dimen/dp_30"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_toRightOf="@+id/tv_chapter_name"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/ib_chapter_download"
@@ -34,8 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_toRightOf="@+id/tv_chapter_name"
-            android:background="@drawable/ic_chapter_download"
-            android:visibility="invisible" />
+            android:background="@drawable/ic_chapter_download" />
 
     </RelativeLayout>
 

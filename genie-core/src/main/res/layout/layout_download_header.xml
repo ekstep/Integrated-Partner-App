@@ -72,7 +72,7 @@
 
 
         <!--Size-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.4">
@@ -84,10 +84,30 @@
                 android:text="@string/download_header_size"
                 android:textColor="?attr/downloadTitleColor"
                 android:textSize="@dimen/font_medium_small" />
-        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/sort_ascending_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_toRightOf="@+id/download_ectv_header_size"
+                android:src="@drawable/ic_ascending_sort"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/sort_descending_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_toRightOf="@+id/download_ectv_header_size"
+                android:src="@drawable/ic_descending_sort"
+                android:visibility="gone" />
+        </RelativeLayout>
 
         <!-- Last Used-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2">
@@ -96,11 +116,30 @@
                 android:id="@+id/download_ectv_header_last_used"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/download_dummy_iv_more"
                 android:text="@string/download_header_last_used"
                 android:textColor="?attr/downloadTitleColor"
                 android:textSize="@dimen/font_medium_small" />
-        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/sort_ascending_lastused"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_toRightOf="@+id/download_ectv_header_last_used"
+                android:src="@drawable/ic_ascending_sort"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/sort_descending_lastused"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_tiny"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_toRightOf="@+id/download_ectv_header_last_used"
+                android:src="@drawable/ic_descending_sort"
+                android:visibility="gone" />
+        </RelativeLayout>
 
     </LinearLayout>
 

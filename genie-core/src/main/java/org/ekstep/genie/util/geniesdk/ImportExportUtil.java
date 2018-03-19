@@ -1,6 +1,7 @@
 package org.ekstep.genie.util.geniesdk;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,11 +14,13 @@ import org.ekstep.genie.R;
 import org.ekstep.genie.asynctask.PackagingGenieAsyncTask;
 import org.ekstep.genie.base.ProfileConfig;
 import org.ekstep.genie.callback.IInitAndExecuteGenie;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.AvatarUtil;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.FileHandler;
@@ -105,6 +108,7 @@ public class ImportExportUtil {
                             break;
                         case ALREADY_EXIST:
                             Util.showCustomToast(R.string.error_import_file_exists);
+                            break;
                         default:
                             Util.processImportSuccess(genieResponse);
                             break;
@@ -129,7 +133,9 @@ public class ImportExportUtil {
         identifierList.addAll(data.getExtras().getStringArrayList(Constant.SHARE_IDENTIFIER));
 
         final String screenName = data.getStringExtra(Constant.SHARE_SCREEN_NAME);
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_CONTENT_INITIATED, identifierList.get(0)));
+
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_CONTENT_INITIATED, identifierList.get(0)));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.SHARE_CONTENT_INITIATED, screenName, identifierList.get(0), ObjectType.CONTENT));
 
         ShowProgressDialog.showProgressDialog(context, CoreApplication.getInstance().getString(R.string.msg_exporting));
 
@@ -172,7 +178,9 @@ public class ImportExportUtil {
                 if (!StringUtil.isNullOrEmpty(identifier)) {
                     Map<String, Object> map = new HashMap<>();
                     map.put(TelemetryConstant.SIZE_OF_FILE_IN_MB, size);
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, screenName, TelemetryAction.SHARE_CONTENT_SUCCESS, identifier, map));
+
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, screenName, TelemetryAction.SHARE_CONTENT_SUCCESS, identifier, map));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.SHARE_CONTENT_SUCCESS, screenName, identifier, ObjectType.CONTENT, map));
                 }
             }
         }
@@ -244,7 +252,9 @@ public class ImportExportUtil {
         CoreApplication.getGenieAsyncService().getUserService().importProfile(importRequest, new IResponseHandler<ProfileImportResponse>() {
             @Override
             public void onSuccess(final GenieResponse<ProfileImportResponse> genieResponse) {
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.IMPORT_PROFILE, null));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.IMPORT_PROFILE, null));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, null, TelemetryStageId.IMPORT_PROFILE));
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -305,15 +315,22 @@ public class ImportExportUtil {
 
             Context context = CoreApplication.getInstance();
 
+            boolean isImportSuccessfull = false;
             if (response.getImported() > 0) {
                 message.append(response.getImported() + " " + context.getString(R.string.msg_import_successfull));
+                isImportSuccessfull = true;
             }
 
             if (response.getFailed() > 0) {
                 if (response.getFailed() == 1) {
-                    message.append(context.getString(R.string.error_import_file_already_exists));
+                    if (isImportSuccessfull) {
+                        message.append("\n" + response.getFailed() + " " + context.getString(R.string.error_import_file_already_exists_1));
+                    } else {
+                        message.append(context.getString(R.string.error_import_file_already_exists));
+                    }
+
                 } else {
-                    message.append("\n" + response.getFailed() + " " + context.getString(R.string.error_import_failure));
+                    message.append("\n" + response.getFailed() + " " + context.getString(R.string.error_import_file_already_exists_1));
                 }
             }
 
@@ -332,7 +349,9 @@ public class ImportExportUtil {
         }
 
         final String screenName = data.getStringExtra(Constant.SHARE_SCREEN_NAME);
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_PROFILE_INITIATE, profileList.get(0)));
+
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_PROFILE_INITIATE, profileList.get(0)));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.SHARE_PROFILE_INITIATE, screenName, profileList.get(0), ObjectType.USER));
 
         ShowProgressDialog.showProgressDialog(context, CoreApplication.getInstance().getString(R.string.msg_exporting));
 
@@ -351,7 +370,8 @@ public class ImportExportUtil {
 
                 EventBus.postStickyEvent(Constant.EventKey.EVENT_KEY_EXPORT_PROFILE);
 
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, screenName, TelemetryAction.SHARE_PROFILE_SUCCESS, profileList.get(0)));
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, screenName, TelemetryAction.SHARE_PROFILE_SUCCESS, profileList.get(0)));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.OTHER, TelemetryAction.SHARE_PROFILE_SUCCESS, screenName, profileList.get(0), ObjectType.USER));
 
                 data.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath))); // data.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + filePath));
                 context.startActivity(data);
@@ -393,7 +413,11 @@ public class ImportExportUtil {
     public static void doShareGenie(final Intent data, final Context context) {
         boolean isLink = data.getBooleanExtra(Constant.IS_LINK, false);
         if (isLink) {
-            context.startActivity(data);
+            try {
+                context.startActivity(data);
+            } catch (Exception e) {
+                Util.showCustomToast(R.string.error_app_not_found);
+            }
         } else {
             final String destinationFilePath = FileHandler.getExportGenieAPKFilePath(FileHandler.getExternalFilesDir(context));
 
@@ -401,7 +425,11 @@ public class ImportExportUtil {
                 @Override
                 public void onExportComplete(String filePath) {
                     data.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + filePath));
-                    context.startActivity(data);
+                    try {
+                        context.startActivity(data);
+                    } catch (ActivityNotFoundException activityNotFoundException) {
+                        Util.showCustomToast(R.string.error_app_not_found);
+                    }
                 }
             });
             packagingGenieAsyncTask.execute(destinationFilePath);
@@ -464,7 +492,7 @@ public class ImportExportUtil {
             return false;
         }
 
-        if(showProgressDialog) {
+        if (showProgressDialog) {
             ShowProgressDialog.showProgressDialog(activity, activity.getString(R.string.msg_importing));
         }
 
@@ -473,7 +501,7 @@ public class ImportExportUtil {
 
             EventBus.registerSubscriber(importExportUtil);
 
-            importContent(activity, filePath, new ImportExportUtil.IImport() {
+            importContent(activity, filePath, new IImport() {
                 @Override
                 public void onImportSuccess() {
                     EventBus.unregisterSubscriber(importExportUtil);
@@ -501,12 +529,16 @@ public class ImportExportUtil {
                 }
             });
         } else if (Util.isEpar(filePath)) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.PROFILE_IMPORT_INITIATE));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.PROFILE_IMPORT_INITIATE));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.PROFILE_IMPORT_INITIATE, TelemetryStageId.SPLASH));
             ProfileImportRequest request = new ProfileImportRequest.Builder().fromFilePath(filePath).build();
             CoreApplication.getGenieAsyncService().getUserService().importProfile(request, new IResponseHandler<ProfileImportResponse>() {
                 @Override
                 public void onSuccess(GenieResponse<ProfileImportResponse> genieResponse) {
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SPLASH, TelemetryAction.PROFILE_IMPORT_SUCCESS));
+
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SPLASH, TelemetryAction.PROFILE_IMPORT_SUCCESS));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.PROFILE_IMPORT_SUCCESS, TelemetryStageId.SPLASH));
                     if (isAttachment) {
                         File file = new File(filePath);
                         file.delete();

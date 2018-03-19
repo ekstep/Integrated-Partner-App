@@ -396,7 +396,7 @@ public class Util {
     public static String[] toTimesAgo(long time) {
         String relativeTime = DateUtils.getRelativeTimeSpanString(time, System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
         String[] relativeTimeArray = relativeTime.split(" ");
-        return new String[]{relativeTimeArray[0], relativeTimeArray[1] + " " + relativeTimeArray[2]};
+        return (relativeTimeArray != null && relativeTimeArray.length > 1) ? new String[]{relativeTimeArray[0], relativeTimeArray[1] + " " + relativeTimeArray[2]} : null;
     }
 
     public static int getPixelValue(Context context, float dimenId) {

@@ -114,6 +114,10 @@ public interface MyContentContract {
         void showContentSort();
 
         void hideContentSort();
+
+        void showAscendingSortIcon(boolean isSizeSort);
+
+        void showDescendingSortIcon(boolean isSizeSort);
     }
 
     interface Presenter extends BasePresenter {
@@ -170,5 +174,12 @@ public interface MyContentContract {
 
         void handleHeaderBackClick();
 
+        void clearBreadcrumbHeader();
+
+        void onBreadcrumbHeaderClick(int position, String identifier);
+
+        void handleContentSortBySize();
+
+        void handleContentSortByLastUsed();
     }
 }

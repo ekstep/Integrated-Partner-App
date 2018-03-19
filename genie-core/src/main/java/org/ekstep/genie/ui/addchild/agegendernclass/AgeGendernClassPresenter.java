@@ -7,9 +7,11 @@ import android.view.View;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genieservices.IConfigService;
@@ -84,7 +86,7 @@ public class AgeGendernClassPresenter implements AgeGendernClassContract.Present
     @Override
     public void openAgeLayout() {
 
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_AGE_GENDER_CLASS));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_CHILD_AGE_GENDER_CLASS, ImpressionType.VIEW));
 
         mClassList = new ArrayList<>(mClassMap.keySet());
 

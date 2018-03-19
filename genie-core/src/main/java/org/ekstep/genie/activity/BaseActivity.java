@@ -1,14 +1,11 @@
 package org.ekstep.genie.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,15 +27,11 @@ import org.ekstep.genie.ui.share.ShareActivity;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeviceUtility;
 import org.ekstep.genie.util.FontUtil;
-import org.ekstep.genie.util.LogUtil;
-import org.ekstep.genie.util.ShareUtil;
 import org.ekstep.genie.util.ThemeUtility;
-import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.geniesdk.ImportExportUtil;
 import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.ekstep.genie.ui.share.ShareActivity.REQUEST_CODE_SHARE;
 import static org.ekstep.genie.ui.share.ShareActivity.REQUEST_CODE_SHARE_GENIE;
@@ -53,8 +46,8 @@ import static org.ekstep.genie.ui.share.ShareActivity.REQUEST_CODE_SHARE_TELEMET
  */
 public abstract class BaseActivity extends RuntimePermissionsActivity {
 
-    private FragmentManager mFragmentManager = null;
     protected BasePresenter presenter;
+    private FragmentManager mFragmentManager = null;
     private boolean isDestroyedBySystem;
 
     @Override
@@ -79,9 +72,8 @@ public abstract class BaseActivity extends RuntimePermissionsActivity {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState,
-                                    PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         isDestroyedBySystem = true;
     }
 
@@ -216,7 +208,8 @@ public abstract class BaseActivity extends RuntimePermissionsActivity {
                         List<String> identifierList = data.getExtras().getStringArrayList(Constant.SHARE_IDENTIFIER);
                         String screenName = data.getStringExtra(Constant.SHARE_SCREEN_NAME);
                         if (identifierList != null) {
-                            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_CONTENT_LINK, identifierList.get(0)));
+//                            TODO: (s)to be implemented
+//                            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, TelemetryAction.SHARE_CONTENT_LINK, identifierList.get(0)));
                         }
 
                         startActivity(data);

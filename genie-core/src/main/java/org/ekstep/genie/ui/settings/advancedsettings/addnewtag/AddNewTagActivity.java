@@ -36,6 +36,11 @@ public class AddNewTagActivity extends BaseActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
     protected IPresenterFactory getPresenterFactory() {
         return null;
     }

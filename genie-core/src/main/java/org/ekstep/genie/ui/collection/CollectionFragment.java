@@ -123,6 +123,10 @@ public class CollectionFragment extends BaseFragment
         mPresenter.colorProgressBar(progressBar);
     }
 
+    public void handleTelemetryEndEvent() {
+        mPresenter.sendTelemetryEndEvent();
+    }
+
     @Override
     public void showCollectionShelf(List<Content> contentList, boolean isFromDownloadsScreen) {
         mCollectionContentAdapter = new CollectionContentAdapter(getActivity(), mPresenter.getModifiedContentList(contentList), isFromDownloadsScreen, mPresenter);

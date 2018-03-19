@@ -5,6 +5,7 @@ import android.content.Context;
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
@@ -43,7 +44,8 @@ public class DataSettingsPresenter implements DataSettingsContract.Presenter {
 
     public void handleSyncNow() {
         try {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SETTINGS_DATA_USAGE, TelemetryAction.MANUAL_SYNC_INITIATED));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SETTINGS_DATA_USAGE, TelemetryAction.MANUAL_SYNC_INITIATED));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.MANUAL_SYNC_INITIATED, TelemetryStageId.SETTINGS_DATA_USAGE));
 
             ShowProgressDialog.showProgressDialog(mContext, mContext.getString(R.string.msg_syncing));
 
@@ -55,7 +57,9 @@ public class DataSettingsPresenter implements DataSettingsContract.Presenter {
                         return;
                     }
                     SyncStat syncStat = genieResponse.getResult();
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SETTINGS_DATA_USAGE, TelemetryAction.MANUAL_SYNC_SUCCESS, SyncServiceUtil.getFileSizeMap(syncStat)));
+
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SETTINGS_DATA_USAGE, TelemetryAction.MANUAL_SYNC_SUCCESS, SyncServiceUtil.getFileSizeMap(syncStat)));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.MANUAL_SYNC_SUCCESS, TelemetryStageId.SETTINGS_DATA_USAGE, SyncServiceUtil.getFileSizeMap(syncStat)));
 
                     ShowProgressDialog.dismissDialog();
 

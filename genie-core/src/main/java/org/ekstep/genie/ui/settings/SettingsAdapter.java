@@ -39,13 +39,13 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.ViewHo
 
 
     @Override
-    public SettingsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_setings_item, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(SettingsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.vhTxtName.setText(mSettingsName[position]);
         holder.itemView.setBackgroundColor(mSelectedPosition == position ? ContextCompat.getColor(mContext, R.color.white) :
                 ContextCompat.getColor(mContext, R.color.color_gray));

@@ -170,6 +170,16 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
             searchBuilder.softFilters();
             mContentSearchCriteria = searchBuilder.build();
             mPresenter.searchContent(mContentSearchCriteria, ACTION_NONE, mIsSearchedExplicitly);
+        } else if (bundle.containsKey(Constant.BundleKey.BUNDLE_KEY_IS_FROM_DEEPLINK)) {
+            //Content searchCriteria will come from the Deeplink
+            searchedQuery = bundle.getString(Constant.BundleKey.BUNDLE_KEY_SEARCH_QUERY);
+            showHeaderWithTitle(searchedQuery);
+            ContentSearchCriteria.SearchBuilder searchBuilder = new ContentSearchCriteria.SearchBuilder();
+            searchBuilder.query(searchedQuery);
+            mPresenter.applyFilters(searchBuilder, currentProfile);
+            searchBuilder.softFilters();
+            mContentSearchCriteria = searchBuilder.build();
+            mPresenter.searchContent(mContentSearchCriteria, ACTION_NONE, false);
         }
 
     }
@@ -621,7 +631,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
 
     @Override
     public void refreshContentListAdapter(List<ContentData> contentDataList) {
-        mSearchResultAdapter.refreshAdapter(contentDataList);
+        if (mSearchResultAdapter != null) {
+            mSearchResultAdapter.refreshAdapter(contentDataList);
+        }
+
     }
 
     @Override

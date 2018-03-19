@@ -14,7 +14,6 @@ import org.ekstep.genie.R;
 import org.ekstep.genie.base.BasePresenter;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.IPresenterFactory;
-import org.ekstep.genie.base.PresenterManager;
 import org.ekstep.genie.fragment.BaseFragment;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genieservices.commons.bean.Profile;

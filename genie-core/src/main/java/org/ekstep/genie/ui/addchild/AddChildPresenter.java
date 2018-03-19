@@ -9,6 +9,7 @@ import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.activity.BaseActivity;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
@@ -81,13 +82,16 @@ public class AddChildPresenter implements AddChildContract.Presenter {
         }
 
         if (mIsEditMode) {
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildStartEvent(mContext, TelemetryStageId.MANAGE_CHILDREN, TelemetryConstant.APP, TelemetryConstant.MODE_EDIT, mProfile.getUid(), EnvironmentId.USER, null));
             mAddChildlView.hideAddChildIcon();
             mAddChildlView.hideAddGroupIcon();
+        } else {
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildStartEvent(mContext, TelemetryStageId.MANAGE_CHILDREN, TelemetryConstant.APP, TelemetryConstant.MODE_CREATE, mProfile.getUid(), EnvironmentId.USER, null));
         }
         if (mIsGroup) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.ADD_GROUP_INITIATE));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_GROUP_INITIATE, TelemetryStageId.MANAGE_GROUPS));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.ADD_CHILD_INITIATE));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_CHILD_INITIATE, TelemetryStageId.MANAGE_CHILDREN));
         }
 
         mAddChildlView.showNickNameFragment(mProfile, mIsGroup);
@@ -319,12 +323,17 @@ public class AddChildPresenter implements AddChildContract.Presenter {
                 mAddChildlView.hideSkip();
                 mAddChildlView.hideNext();
                 mAddChildlView.hideProgress();
+                // increment the onBoarding state to
+                if(PreferenceUtil.getOnBoardingState() == Constant.On_BOARD_STATE_ADD_CHILD ) {
+                    PreferenceUtil.setOnBoardingState((PreferenceUtil.getOnBoardingState() + 1));
+                }
+
                 mAddChildlView.showWelcomeAboardFragment(createdProfile);
 
                 if (mIsGroup) {
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.ADD_GROUP_SUCCESS));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.OTHER, TelemetryAction.ADD_GROUP_SUCCESS, TelemetryStageId.MANAGE_GROUPS));
                 } else {
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.ADD_CHILD_SUCCESS));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.OTHER, TelemetryAction.ADD_CHILD_SUCCESS, TelemetryStageId.MANAGE_CHILDREN));
                 }
                 setCurrentUser(createdProfile.getUid());
             }
@@ -441,7 +450,8 @@ public class AddChildPresenter implements AddChildContract.Presenter {
             validationMap.put(TelemetryConstant.VALIDATION_ERRORS, validationErrors);
             values.putAll(validationMap);
         }
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, screenName, null, values));
+
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, null, screenName, values));
     }
 
     @Override

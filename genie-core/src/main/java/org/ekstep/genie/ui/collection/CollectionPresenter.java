@@ -7,16 +7,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeviceUtility;
 import org.ekstep.genie.util.FileHandler;
@@ -44,7 +48,6 @@ import org.ekstep.genieservices.commons.bean.CorrelationData;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.HierarchyInfo;
 import org.ekstep.genieservices.commons.bean.enums.ContentImportStatus;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.eventbus.EventBus;
 
@@ -96,6 +99,15 @@ public class CollectionPresenter implements CollectionContract.Presenter {
         ContentUtil.addContentAccess(mContent);
 
         showCollectionInfo();
+
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildStartEvent(mContext, null, TelemetryConstant.COLLECTION,
+                TelemetryConstant.MODE_PLAY, mContentData.getIdentifier(), mContentData.getContentType(), mContentData.getPkgVersion()));
+    }
+
+    @Override
+    public void sendTelemetryEndEvent() {
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildEndEvent(TelemetryConstant.COLLECTION, TelemetryConstant.MODE_PLAY,
+                null,mContentData.getIdentifier(), mContentData.getContentType(), mContentData.getPkgVersion()));
     }
 
     @Override
@@ -241,6 +253,7 @@ public class CollectionPresenter implements CollectionContract.Presenter {
     @Override
     public void handleBackButtonClick() {
         postRequiredStickyEvents();
+        sendTelemetryEndEvent();
         mCollectionView.finish();
     }
 
@@ -445,10 +458,12 @@ public class CollectionPresenter implements CollectionContract.Presenter {
     @Override
     public void generateInteractEvent(String identifier, int localCount, int totalCount, List<CorrelationData> cData) {
 
-        Map<String, Object> eksMap = new HashMap<>();
-        eksMap.put(TelemetryConstant.CONTENT_LOCAL_COUNT, "" + localCount);
-        eksMap.put(TelemetryConstant.CONTENT_TOTAL_COUNT, "" + totalCount);
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.COLLECTION_HOME, EntityType.CONTENT_ID, identifier, eksMap, cData));
+        Map<String, Object> params = new HashMap<>();
+        params.put(TelemetryConstant.CONTENT_LOCAL_COUNT, "" + localCount);
+        params.put(TelemetryConstant.CONTENT_TOTAL_COUNT, "" + totalCount);
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.COLLECTION_HOME, EntityType.CONTENT_ID, identifier, eksMap, cData));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.COLLECTION_HOME, ImpressionType.VIEW, EntityType.CONTENT_ID, identifier, mContentData.getPkgVersion(), ObjectType.CONTENT, cData));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME, TelemetryStageId.COLLECTION_HOME, ImpressionType.VIEW, TelemetryStageId.COLLECTION_HOME, params));
     }
 
     @Override

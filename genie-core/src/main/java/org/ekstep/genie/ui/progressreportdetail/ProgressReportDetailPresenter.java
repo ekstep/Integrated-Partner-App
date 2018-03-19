@@ -8,10 +8,13 @@ import android.text.TextUtils;
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genieservices.async.SummarizerService;
 import org.ekstep.genieservices.commons.IResponseHandler;
@@ -22,7 +25,6 @@ import org.ekstep.genieservices.commons.bean.LearnerAssessmentDetails;
 import org.ekstep.genieservices.commons.bean.LearnerAssessmentSummary;
 import org.ekstep.genieservices.commons.bean.Profile;
 import org.ekstep.genieservices.commons.bean.SummaryRequest;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.utils.DateUtil;
 
 import java.util.List;
@@ -119,9 +121,12 @@ public class ProgressReportDetailPresenter implements ProgressReportDetailContra
                     mProgressReportDetailView.showProgressReport();
                     mProgressReportDetailView.showLearnerAssesments(assesmentDetailsList);
                     if (isContentProgress) {
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, EntityType.CONTENT_ID, uid));
+//                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, EntityType.CONTENT_ID, uid));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, ImpressionType.DETAIL, EntityType.UID, uid, ObjectType.USER));
                     } else {
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, EntityType.CONTENT_ID, contentId));
+//                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, EntityType.CONTENT_ID, contentId));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CHILD_CONTENT_DETAILS, ImpressionType.DETAIL, EntityType.CONTENT_ID, contentId, ObjectType.CONTENT));
+
                     }
                 } else {
                     if (isContentProgress) {

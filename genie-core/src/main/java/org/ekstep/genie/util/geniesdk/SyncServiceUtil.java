@@ -2,6 +2,7 @@ package org.ekstep.genie.util.geniesdk;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.model.enums.SyncConfiguration;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
@@ -33,12 +34,16 @@ public class SyncServiceUtil {
 
     public static void syncWithConfig(String stageId) {
         if (getConfiguration().canSync(CoreApplication.getGenieSdkInstance().getConnectionInfo())) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, stageId, TelemetryAction.AUTO_SYNC_INITIATED));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, stageId, TelemetryAction.AUTO_SYNC_INITIATED));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.AUTO_SYNC_INITIATED, stageId));
             getSyncService().sync(new IResponseHandler<SyncStat>() {
                 @Override
                 public void onSuccess(GenieResponse<SyncStat> genieResponse) {
                     LogUtil.i(TAG, "Auto Sync Success");
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.TELEMETRY_SYNC, TelemetryAction.AUTO_SYNC_SUCCESS, getFileSizeMap(genieResponse.getResult())));
+
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.TELEMETRY_SYNC, TelemetryAction.AUTO_SYNC_SUCCESS, getFileSizeMap(genieResponse.getResult())));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.AUTO_SYNC_SUCCESS, TelemetryStageId.TELEMETRY_SYNC, getFileSizeMap(genieResponse.getResult())));
                 }
 
                 @Override

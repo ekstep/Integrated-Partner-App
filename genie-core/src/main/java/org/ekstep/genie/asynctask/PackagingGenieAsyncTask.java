@@ -6,13 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 
 import org.ekstep.genie.R;
-import org.ekstep.genie.telemetry.TelemetryAction;
-import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
-import org.ekstep.genie.telemetry.TelemetryHandler;
-import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.util.ShowProgressDialog;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.utils.FileUtil;
 
 import java.io.File;
@@ -34,7 +29,8 @@ public class PackagingGenieAsyncTask extends AsyncTask<String, Void, String> {
     public PackagingGenieAsyncTask(Context context, IApkExport apkExport) {
         mApkExport = apkExport;
         mContext = context;
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SETTINGS_HOME, TelemetryAction.SHARE_GENIE_INITIATED));
+//        TODO: (s)to be implemented
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SETTINGS_HOME, TelemetryAction.SHARE_GENIE_INITIATED));
     }
 
     @Override
@@ -72,7 +68,8 @@ public class PackagingGenieAsyncTask extends AsyncTask<String, Void, String> {
                 float size = BigDecimal.valueOf(fileSizeInMB).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
                 Map<String, Object> eksMap = new HashMap<>();
                 eksMap.put(TelemetryConstant.SIZE_OF_FILE_IN_MB, String.valueOf(size));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SETTINGS_HOME, TelemetryAction.SHARE_GENIE_SUCCESS, eksMap));
+                //        TODO: (s)to be implemented
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SETTINGS_HOME, TelemetryAction.SHARE_GENIE_SUCCESS, eksMap));
             }
 
             mApkExport.onExportComplete(filePath);

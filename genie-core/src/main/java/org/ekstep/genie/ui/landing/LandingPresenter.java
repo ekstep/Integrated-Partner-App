@@ -11,8 +11,10 @@ import org.ekstep.genie.R;
 import org.ekstep.genie.base.BasePresenter;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.fragment.BaseFragment;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.ui.landing.home.HomeFragment;
@@ -21,6 +23,7 @@ import org.ekstep.genie.ui.managechild.ManageChildPresenter;
 import org.ekstep.genie.ui.mycontent.MyContentFragment;
 import org.ekstep.genie.ui.mycontent.MyContentPresenter;
 import org.ekstep.genie.ui.share.ShareActivity;
+import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DialogUtils;
 import org.ekstep.genie.util.FontConstants;
 import org.ekstep.genie.util.LogUtil;
@@ -37,8 +40,9 @@ import org.ekstep.genieservices.commons.bean.Profile;
 import org.ekstep.genieservices.commons.bean.SyncStat;
 import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.bean.enums.NotificationStatus;
-import org.ekstep.genieservices.commons.bean.telemetry.GEEvent;
+import org.ekstep.genieservices.commons.bean.telemetry.Telemetry;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
+import org.ekstep.genieservices.utils.BuildConfigUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -70,6 +74,8 @@ public class LandingPresenter implements LandingContract.Presenter {
     @Override
     public void handleAppUpdate() {
         String supportedGenieVersions = PreferenceUtil.getSupportedGenieVersions();
+        String packageName = CoreApplication.getInstance().getClientPackageName();
+        int versionCode = Integer.valueOf(BuildConfigUtil.getBuildConfigValue(packageName, Constant.BuildConfigKey.VERSION_CODE).toString());
         if (!TextUtils.isEmpty(supportedGenieVersions)) {
 
             Map mapData = GsonUtil.fromJson(supportedGenieVersions, Map.class);
@@ -77,9 +83,9 @@ public class LandingPresenter implements LandingContract.Presenter {
             double minVersion = (double) mapData.get("minVersion");
             double currentVersion = (double) mapData.get("currentVersion");
 
-            if (BuildConfig.VERSION_CODE < minVersion) {
+            if (versionCode < minVersion) {
                 DialogUtils.showDialogUpgradeGenie(mContext, true);
-            } else if (BuildConfig.VERSION_CODE < currentVersion) {
+            } else if (versionCode < currentVersion) {
                 DialogUtils.showDialogUpgradeGenie(mContext, false);
             }
         }
@@ -171,13 +177,16 @@ public class LandingPresenter implements LandingContract.Presenter {
         try {
             mLandingView.showProgressDialog(mContext.getResources().getString(R.string.msg_syncing));
 
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.MANUAL_SYNC_INITIATED));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.MANUAL_SYNC_INITIATED));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.MANUAL_SYNC_INITIATED, TelemetryStageId.GENIE_HOME));
             SyncServiceUtil.getSyncService().sync(new IResponseHandler<SyncStat>() {
                 @Override
                 public void onSuccess(GenieResponse<SyncStat> genieResponse) {
                     LogUtil.i(TAG, "Manual Sync Success");
                     SyncStat syncStat = genieResponse.getResult();
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME, TelemetryAction.MANUAL_SYNC_SUCCESS, SyncServiceUtil.getFileSizeMap(syncStat)));
+
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME, TelemetryAction.MANUAL_SYNC_SUCCESS, SyncServiceUtil.getFileSizeMap(syncStat)));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.MANUAL_SYNC_SUCCESS, TelemetryStageId.GENIE_HOME, SyncServiceUtil.getFileSizeMap(syncStat)));
                     mLandingView.dismissProgressDialog();
 
                     Util.processSuccess(genieResponse);
@@ -202,7 +211,8 @@ public class LandingPresenter implements LandingContract.Presenter {
 
     @Override
     public void saveEndGenieEvent() {
-        GEEvent event = TelemetryBuilder.buildGenieEndEvent();
+        Telemetry event = TelemetryBuilder.buildEndEvent(TelemetryConstant.APP, null,
+                null, null, null, null);
         TelemetryHandler.saveTelemetry(event, new IResponseHandler() {
             @Override
             public void onSuccess(GenieResponse genieResponse) {
@@ -232,7 +242,7 @@ public class LandingPresenter implements LandingContract.Presenter {
 //                || fragment instanceof DummyLanguageTestFragment) {
 //            mLandingView.setRespectiveFragment(new AboutFragment(), false);
 //        } else
-            if (fragment instanceof MyContentFragment) {
+        if (fragment instanceof MyContentFragment) {
             ((MyContentPresenter) basePresenter).handleBackButtonClicked();
         } else if (fragment instanceof ManageChildFragment) {
             ((ManageChildPresenter) basePresenter).handleBackButtonClicked();

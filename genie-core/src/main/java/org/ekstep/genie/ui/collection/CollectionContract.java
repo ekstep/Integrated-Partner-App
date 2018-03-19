@@ -132,5 +132,7 @@ public interface CollectionContract {
         void postRequiredStickyEvents();
 
         void handleProgressClick(Content content);
+
+        void sendTelemetryEndEvent();
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="authority_profiles">YOUR_APP_ID.profiles</string>
-    <string name="authority_telemetry">YOUR_APP_ID.telemetry</string>
-    <string name="authority_partner">YOUR_APP_ID.partner</string>
-    <string name="authority_content">YOUR_APP_ID.content</string>
-    <string name="authority_summarizer">YOUR_APP_ID.summarizer</string>
+    <string name="authority_profiles">org.ekstep.genieservices.profiles</string>
+    <string name="authority_telemetry">org.ekstep.genieservices.telemetry</string>
+    <string name="authority_partner">org.ekstep.genieservices.partner</string>
+    <string name="authority_content">org.ekstep.genieservices.content</string>
+    <string name="authority_summarizer">org.ekstep.genieservices.summarizer</string>
 
 </resources>

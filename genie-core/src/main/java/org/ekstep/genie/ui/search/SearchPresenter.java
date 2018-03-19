@@ -4,12 +4,13 @@ import android.content.Context;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
-import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genie.util.preference.PreferenceUtil;
@@ -130,7 +131,7 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     private void generateSearchEvents(Map<String, Object> request, int size, int actionId, String searchedQuery, boolean isSearchedExplicitly) {
-        Map<String, Object> eksMap = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
 
         //Generate events for sort/filter
         switch (actionId) {
@@ -139,33 +140,40 @@ public class SearchPresenter implements SearchContract.Presenter {
                     ContentSortCriteria sortCriteria = mContentSearchCriteria.getSortCriteria().get(0);
                     Map<String, String> criteria = new HashMap<>();
                     criteria.put(sortCriteria.getSortAttribute(), sortCriteria.getSortOrder().getValue());
-                    eksMap.put(TelemetryConstant.SORT_CRITERIA, criteria);
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, EntityType.SORT, null, searchedQuery, eksMap));
+                    params.put(TelemetryConstant.SORT_CRITERIA, criteria);
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, EntityType.SORT, null, searchedQuery, params));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, null, TelemetryStageId.CONTENT_SEARCH, params));
                 } else {
                     Map<String, String> criteria = new HashMap<>();
                     criteria.put("relevance", "");
-                    eksMap.put(TelemetryConstant.SORT_CRITERIA, criteria);
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, EntityType.SORT, null, searchedQuery, eksMap));
+                    params.put(TelemetryConstant.SORT_CRITERIA, criteria);
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, EntityType.SORT, null, searchedQuery, params));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, null, TelemetryStageId.CONTENT_SEARCH, params));
                 }
                 break;
 
             case ACTION_FILTER:
                 if (mContentSearchCriteria != null && mContentSearchCriteria.getFacetFilters() != null) {
-                    eksMap.put(TelemetryConstant.FILTER_CRITERIA, getFilterCriteria(mContentSearchCriteria.getFacetFilters()));
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, EntityType.FILTER, null, searchedQuery, eksMap));
+                    params.put(TelemetryConstant.FILTER_CRITERIA, getFilterCriteria(mContentSearchCriteria.getFacetFilters()));
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, null, TelemetryStageId.CONTENT_SEARCH, params));
                 }
                 break;
         }
 
         //Generate Screen view telemetry events
         List<CorrelationData> cdata = PreferenceUtil.getCoRelationList();
-        eksMap.clear();
-        eksMap.put(TelemetryConstant.SEARCH_RESULTS, size);
-        eksMap.put(TelemetryConstant.SEARCH_CRITERIA, request);
+        params.clear();
+        params.put(TelemetryConstant.SEARCH_RESULTS, size);
+        params.put(TelemetryConstant.SEARCH_CRITERIA, request);
+        params.put(TelemetryConstant.SEARCH_PHRASE, searchedQuery);
         if (isSearchedExplicitly) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.CONTENT_SEARCH, EntityType.SEARCH_PHRASE, searchedQuery, eksMap, cdata));
+
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.CONTENT_SEARCH, ImpressionType.SEARCH, TelemetryConstant.EXPLICIT_SEARCH, cdata));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME, TelemetryStageId.CONTENT_SEARCH, ImpressionType.SEARCH, TelemetryStageId.CONTENT_SEARCH, params));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.CONTENT_LIST, EntityType.SEARCH_PHRASE, searchedQuery, eksMap, cdata));
+
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.CONTENT_LIST, ImpressionType.SEARCH, TelemetryConstant.IMPLICIT_SEARCH, cdata));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME, TelemetryStageId.CONTENT_LIST, ImpressionType.SEARCH, TelemetryConstant.IMPLICIT_SEARCH, params));
         }
     }
 

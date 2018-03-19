@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryOperation;
@@ -96,7 +97,7 @@ public class CoreApplication extends Application implements ForegroundService.On
 
     private void setMobileasDefaultStorageOption() {
         if (PreferenceUtil.getDefaultStorageOption() == null) {
-            Map<String, String> map = new HashMap();
+            Map<String, String> map = new HashMap<>();
             map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_MOBILE);
             map.put(Constant.DEFAULT_STORAGE_PATH, FileHandler.getExternalFilesDir(this).toString());
             PreferenceUtil.setDefaultStorageOption(map);
@@ -107,7 +108,8 @@ public class CoreApplication extends Application implements ForegroundService.On
     @Override
     public void onSwitchBackground() {
         if (mGenieRunningStatus == 1) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInturrptEvent());
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInturrptEvent());
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInterruptEvent(TelemetryAction.BACKGROUND, null));
         }
         TelemetryOperation.shutDownSchedulers();
     }
@@ -115,7 +117,8 @@ public class CoreApplication extends Application implements ForegroundService.On
     @Override
     public void onSwitchForeground() {
         TelemetryOperation.startSyncingTelemetry();
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildResumeEvent());
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildResumeEvent());
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInterruptEvent(TelemetryAction.RESUME, null));
 
         ScanStorageRequest.Builder builder = new ScanStorageRequest.Builder();
 

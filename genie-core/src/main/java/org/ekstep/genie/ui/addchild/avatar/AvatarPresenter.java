@@ -7,9 +7,11 @@ import android.support.annotation.NonNull;
 
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.ProfileConfig;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.ui.addchild.AddChildActivity;
 import org.ekstep.genie.util.AvatarUtil;
 import org.ekstep.genie.util.Constant;
@@ -70,9 +72,10 @@ public class AvatarPresenter implements AvatarContract.Presenter {
         mIsGroup = mProfile.isGroupUser();
 
         if (mIsGroup) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_GROUP_AVATAR));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_GROUP_AVATAR, ImpressionType.VIEW));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_AVATAR));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_CHILD_AVATAR, ImpressionType.VIEW));
+
         }
         String gender = mProfile.getGender();
         mAvatarAdapter = new AvatarCoverflowAdapter(mContext, mIsGroup, mProfile.getGender());

@@ -27,7 +27,7 @@ public class PopUpWindowAdapter extends RecyclerView.Adapter<PopUpWindowAdapter.
     }
 
     @Override
-    public PopUpWindowAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_pop_up_window_row, null);
 
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);

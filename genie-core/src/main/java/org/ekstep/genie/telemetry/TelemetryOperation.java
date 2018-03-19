@@ -122,33 +122,33 @@ public class TelemetryOperation {
 
     private static void autoSync(String stageId) {
         if (getConfiguration().canSync(CoreApplication.getGenieSdkInstance().getConnectionInfo())) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, stageId,
-                    TelemetryAction.AUTO_SYNC_INITIATED));
+
             CoreApplication.getSyncService().sync(new IResponseHandler<SyncStat>() {
                 @Override
                 public void onSuccess(GenieResponse<SyncStat> genieResponse) {
                     mIsSyncInProgress = false;
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER,
-                            TelemetryStageId.TELEMETRY_SYNC, TelemetryAction.AUTO_SYNC_SUCCESS, getFileSizeMap(genieResponse.getResult())));
                 }
 
                 @Override
                 public void onError(GenieResponse<SyncStat> genieResponse) {
                     mIsSyncInProgress = false;
+                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildErrorEvent(TelemetryConstant.ERROR_AUTO_SYNC_FAILED,
+                            TelemetryConstant.ERROR_AUTO_SYNC_FAILED));
+
                 }
             });
         }
     }
 
     private static void manualSync() {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.TELEMETRY_SYNC,
-                TelemetryAction.MANUAL_SYNC_INITIATED));
+
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.MANUAL_SYNC_INITIATED, TelemetryStageId.TELEMETRY_SYNC));
         CoreApplication.getGenieAsyncService().getSyncService().sync(new IResponseHandler<SyncStat>() {
             @Override
             public void onSuccess(GenieResponse<SyncStat> genieResponse) {
                 mIsSyncInProgress = false;
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.TELEMETRY_SYNC,
-                        TelemetryAction.MANUAL_SYNC_SUCCESS, getFileSizeMap(genieResponse.getResult())));
+
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.MANUAL_SYNC_SUCCESS, TelemetryStageId.TELEMETRY_SYNC, getFileSizeMap(genieResponse.getResult())));
             }
 
             @Override

@@ -13,12 +13,14 @@ import org.ekstep.genie.activity.BaseActivity;
 import org.ekstep.genie.activity.RuntimePermissionsActivity;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.model.ContentDeleteResponse;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
-import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.ui.share.ShareActivity;
 import org.ekstep.genie.util.Constant;
@@ -177,7 +179,8 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
             String presentOnDevice = ContentUtil.getLocalContentsCache().contains(mIdentifier) ? "Y" : "N";
             map.put(TelemetryConstant.PRESENT_ON_DEVICE, presentOnDevice);
         }
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.CONTENT_DETAIL, EntityType.CONTENT, mIdentifier, map));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.CONTENT, TelemetryStageId.CONTENT_DETAIL, ImpressionType.DETAIL, "", ObjectType.CONTENT, mIdentifier, mContentData != null ? mContentData.getPkgVersion() : ""));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.CONTENT, TelemetryStageId.CONTENT_DETAIL, ImpressionType.DETAIL, TelemetryStageId.CONTENT_DETAIL, map));
         if (mContentData == null && !bundle.containsKey(Constant.EXTRA_DEEP_LINK_IDENTIFIER)) {
             mContentDetailView.handleMissingContent();
         }
@@ -400,7 +403,9 @@ public class ContentDetailPresenter implements ContentDetailContract.Presenter {
     public void deleteContent(final String identifier) {
         ContentDeleteRequest.Builder request = new ContentDeleteRequest.Builder();
         request.add(new ContentDelete(identifier, mIsFromTextBookOrCollection));
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.CONTENT_DETAIL, TelemetryAction.DELETE_CONTENT_INITIATED, identifier));
+
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.CONTENT_DETAIL, TelemetryAction.DELETE_CONTENT_INITIATED, identifier));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.DELETE_CONTENT_INITIATED, TelemetryStageId.CONTENT_DETAIL, identifier, ObjectType.CONTENT, mContentData.getPkgVersion()));
 
         mContentService.deleteContent(request.build(), new IResponseHandler<List<org.ekstep.genieservices.commons.bean.ContentDeleteResponse>>() {
             @Override

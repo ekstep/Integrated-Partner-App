@@ -91,7 +91,7 @@ public class MyContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public List<SelectedContent> getSelectedItems() {
-        return mSelectedContent;
+        return mSelectedContent != null ? mSelectedContent : new ArrayList<SelectedContent>();
     }
 
     public int getSelectedCount() {
@@ -125,6 +125,8 @@ public class MyContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public ImageView vhIvMore;
         public CheckBox vhCbContentCheckBox;
         public LinearLayout vhRlCompleteRow;
+        public TextView vhTvContentOpen;
+        public View vhImgOpenSeparator;
 
         public ContentViewHolder(View itemLayoutView) {
             super(itemLayoutView);
@@ -135,17 +137,21 @@ public class MyContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             vhTvContentSizeMetric = (TextView) itemLayoutView.findViewById(R.id.download_ectv_content_size_metric);
             vhTvContentDownloadedSince = (TextView) itemLayoutView.findViewById(R.id.download_ectv_content_since);
             vhTvContentDownloadedTimeAgo = (TextView) itemLayoutView.findViewById(R.id.download_ectv_content_times_ago);
+            vhImgOpenSeparator = (View) itemLayoutView.findViewById(R.id.ev_open_separator);
+            vhTvContentOpen = (TextView) itemLayoutView.findViewById(R.id.ectv_open_content);
+
+            vhTvContentOpen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPresenter.handleContentItemClick((ContentWrapper) view.getTag(R.id.ectv_open_content));
+                }
+            });
+
             vhIvMore = (ImageView) itemLayoutView.findViewById(R.id.download_iv_more);
             vhIvMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mPresenter.showMoreDialog((Content) view.getTag());
-                }
-            });
-            vhImgContent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mPresenter.handleContentItemClick((ContentWrapper) view.getTag(R.id.download_iv_content_icon));
                 }
             });
             vhCbContentCheckBox = (CheckBox) itemLayoutView.findViewById(R.id.download_iv_check_box);
@@ -156,6 +162,12 @@ public class MyContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             });
             vhRlCompleteRow = (LinearLayout) itemLayoutView.findViewById(R.id.download_rl_row);
+            vhRlCompleteRow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mPresenter.toggleContentIcon((Content) view.getTag());
+                }
+            });
         }
     }
 

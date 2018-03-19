@@ -3,21 +3,21 @@ package org.ekstep.genie.telemetry;
 import android.content.Context;
 import android.text.TextUtils;
 
-import org.ekstep.genie.model.DeviceSpecification;
-import org.ekstep.genie.model.UTMData;
-import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.GenieService;
 import org.ekstep.genieservices.commons.ILocationInfo;
 import org.ekstep.genieservices.commons.bean.CorrelationData;
 import org.ekstep.genieservices.commons.bean.enums.InteractionType;
-import org.ekstep.genieservices.commons.bean.telemetry.GEEvent;
-import org.ekstep.genieservices.commons.bean.telemetry.GEInteract;
-import org.ekstep.genieservices.utils.DeviceSpec;
+import org.ekstep.genieservices.commons.bean.telemetry.DeviceSpecification;
+import org.ekstep.genieservices.commons.bean.telemetry.End;
+import org.ekstep.genieservices.commons.bean.telemetry.Error;
+import org.ekstep.genieservices.commons.bean.telemetry.Impression;
+import org.ekstep.genieservices.commons.bean.telemetry.Interact;
+import org.ekstep.genieservices.commons.bean.telemetry.Interrupt;
+import org.ekstep.genieservices.commons.bean.telemetry.Log;
+import org.ekstep.genieservices.commons.bean.telemetry.Start;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,145 +27,228 @@ import java.util.Map;
  * All the events related to interaction.
  */
 public class TelemetryBuilder {
+    /**
+     * Start event
+     *
+     * @param context
+     * @return
+     */
+    public static Start buildStartEvent(Context context, String pageId, String type, String mode, String objectId, String objectType, String objectVersion) {
 
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, String id, List<Map<String, Object>> values, List<CorrelationData> coRelationList) {
-        GEInteract geInteract = new GEInteract.Builder()
-                .interActionType(interactionType)
-                .stageId(stageId)
-                .subType(subType)
-                .id(id)
-                .correlationData(coRelationList)
-                .values(values)
-                .build();
-        LogUtil.i("GE_INTERACT", geInteract.toString());
-        return geInteract;
-    }
+        DeviceSpecification deviceSpec = new DeviceSpecification();
+        deviceSpec.setOs("Android " + org.ekstep.genieservices.utils.DeviceSpec.getOSVersion());
+        deviceSpec.setMake(org.ekstep.genieservices.utils.DeviceSpec.getDeviceName());
+        deviceSpec.setId(org.ekstep.genieservices.utils.DeviceSpec.getAndroidId(context));
 
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, String id, Map<String, Object> values, List<CorrelationData> coRelationList) {
-        return buildGEInteract(interactionType, stageId, subType, id, buildEksList(values), coRelationList);
-    }
-
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, String id, Map<String, Object> values) {
-        return buildGEInteract(interactionType, stageId, subType, id, buildEksList(values), new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, String id, List<Map<String, Object>> values) {
-        return buildGEInteract(interactionType, stageId, subType, id, values, new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, Map<String, Object> values) {
-        return buildGEInteract(interactionType, stageId, subType, null, buildEksList(values), new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteract(String stageId) {
-        return buildGEInteract(InteractionType.SHOW, stageId, null, null, new ArrayList<Map<String, Object>>(), new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType, String id) {
-        return buildGEInteract(interactionType, stageId, subType, id, new ArrayList<Map<String, Object>>(), new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteract(InteractionType interactionType, String stageId, String subType) {
-        return buildGEInteract(interactionType, stageId, subType, null, new ArrayList<Map<String, Object>>(), new ArrayList<CorrelationData>());
-    }
-
-    public static GEInteract buildGEInteractWithCoRelation(InteractionType interactionType, String stageId, String subType, String id, List<CorrelationData> coRelationList) {
-        return buildGEInteract(interactionType, stageId, subType, id, new ArrayList<Map<String, Object>>(), coRelationList);
-    }
-
-    public static GEEvent buildInturrptEvent() {
-        HashMap<String, Object> eks = new HashMap<>();
-        eks.put("id", "");
-        eks.put("type", "BACKGROUND");
-        GEEvent geEvent = new GEEvent.Builder(TelemetryEvent.GE_INTERRUPT).eks(eks).build();
-        LogUtil.i("GE_INTERRUPT", geEvent.toString());
-        return geEvent;
-    }
-
-    public static GEEvent buildResumeEvent() {
-        HashMap<String, Object> eks = new HashMap<>();
-        ILocationInfo locationInfo = GenieService.getService().getLocationInfo();
-        eks.put("loc", locationInfo != null ? locationInfo.getLocation() : "");
-        GEEvent geEvent = new GEEvent.Builder(TelemetryEvent.GE_GENIE_RESUME).eks(eks).build();
-        LogUtil.i("GE_GENIE_RESUME", geEvent.toString());
-        return geEvent;
-    }
-
-    public static GEEvent buildGenieStartEvent(Context context) {
-        HashMap<String, Object> eks = new HashMap<>();
-
-        DeviceSpecification deviceSpecification = new DeviceSpecification();
-        deviceSpecification.setOs("Android " + DeviceSpec.getOSVersion());
-        deviceSpecification.setMake(DeviceSpec.getDeviceName());
-        deviceSpecification.setId(DeviceSpec.getAndroidId(context));
-
-        String internalMemory = Util.bytesToHuman(DeviceSpec.getTotalInternalMemorySize());
+        String internalMemory = Util.bytesToHuman(org.ekstep.genieservices.utils.DeviceSpec.getTotalInternalMemorySize());
         if (!TextUtils.isEmpty(internalMemory)) {
-            deviceSpecification.setIdisk(Double.valueOf(internalMemory));
+            deviceSpec.setIdisk(Double.valueOf(internalMemory));
         }
 
-        String externalMemory = Util.bytesToHuman(DeviceSpec.getTotalExternalMemorySize());
+        String externalMemory = Util.bytesToHuman(org.ekstep.genieservices.utils.DeviceSpec.getTotalExternalMemorySize());
         if (!TextUtils.isEmpty(externalMemory)) {
-            deviceSpecification.setEdisk(Double.valueOf(externalMemory));
+            deviceSpec.setEdisk(Double.valueOf(externalMemory));
         }
 
-        String screenSize = DeviceSpec.getScreenInfoinInch(context);
+        String screenSize = org.ekstep.genieservices.utils.DeviceSpec.getScreenInfoinInch(context);
         if (!TextUtils.isEmpty(screenSize)) {
-            deviceSpecification.setScrn(Double.valueOf(screenSize));
+            deviceSpec.setScrn(Double.valueOf(screenSize));
         }
 
-        String[] cameraInfo = DeviceSpec.getCameraInfo(context);
+        String[] cameraInfo = org.ekstep.genieservices.utils.DeviceSpec.getCameraInfo(context);
         String camera = "";
         if (cameraInfo != null) {
             camera = TextUtils.join(",", cameraInfo);
         }
-        deviceSpecification.setCamera(camera);
-        deviceSpecification.setCpu(DeviceSpec.getCpuInfo());
-        deviceSpecification.setSims(-1);
+        deviceSpec.setCamera(camera);
 
-        Map<String, Object> dspectMap = deviceSpecification.toMap();
-        eks.put("dspec", dspectMap);
+        deviceSpec.setCpu(org.ekstep.genieservices.utils.DeviceSpec.getCpuInfo());
+        deviceSpec.setSims(-1);
+
         ILocationInfo locationInfo = GenieService.getService().getLocationInfo();
-        eks.put("loc", locationInfo != null ? locationInfo.getLocation() : "");
 
-        GEEvent geEvent = new GEEvent.Builder(TelemetryEvent.GE_GENIE_START).eks(eks).build();
-        LogUtil.i("GE_GENIE_START", geEvent.toString());
-        return geEvent;
+        Start start = new Start.Builder()
+                .environment(EnvironmentId.HOME)
+                .deviceSpecification(deviceSpec)
+                .loc(locationInfo.getLocation())
+                .pageId(pageId)
+                .type(type)
+                .mode(mode)
+                .objectId(objectId)
+                .objectType(objectType)
+                .objectVersion(objectVersion)
+                .build();
+
+        return start;
     }
 
-    public static GEEvent buildGenieEndEvent() {
-        HashMap<String, Object> eks = new HashMap<>();
-
+    /**
+     * End event.
+     *
+     * @return
+     */
+    public static End buildEndEvent(String type, String mode, String pageId, String objectId, String objectType, String objectVersion) {
+        long timeInSeconds = 0;
         String genieStartTime = PreferenceUtil.getGenieStartTimeStamp();
 
         if (!TextUtils.isEmpty(genieStartTime)) {
             long timeDifference = System.currentTimeMillis() - Long.valueOf(genieStartTime);
-            long timeInSeconds = timeDifference / 1000;
-            eks.put("length", timeInSeconds);
+            timeInSeconds = (timeDifference / 1000);
         }
-        GEEvent geEvent = new GEEvent.Builder(TelemetryEvent.GE_GENIE_END).eks(eks).build();
-        LogUtil.i("GE_GENIE_END", geEvent.toString());
-        return geEvent;
+
+        End end = new End.Builder()
+                .environment(EnvironmentId.HOME)
+                .duration(timeInSeconds)
+                .pageId(pageId)
+                .type(type)
+                .mode(mode)
+                .objectId(objectId)
+                .objectType(objectType)
+                .objectVersion(objectVersion)
+                .build();
+
+        return end;
     }
 
-    private static List<Map<String, Object>> buildEksList(Map<String, Object> eks) {
-        List<Map<String, Object>> eksList = new ArrayList<>();
-        for (String key : eks.keySet()) {
-            Map<String, Object> eksMap = new HashMap<>();
-            eksMap.put(key, eks.get(key));
-            eksList.add(eksMap);
+    /**
+     * Impression Event
+     */
+    public static Impression buildImpressionEvent(String env, String pageId, String type) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType, String id, String objType) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).objectId(id).objectType(objType).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType, String id, String objType, String objVer) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).objectId(id).objectType(objType).objectVersion(objVer).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType, String id, String objType, List<CorrelationData> cdata) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).objectId(id).objectType(objType).correlationData(cdata).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType, List<CorrelationData> cdata) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).correlationData(cdata).build();
+        return impression;
+    }
+
+    public static Impression buildImpressionEvent(String env, String pageId, String type, String subType, String id, String objType, String objVersion, List<CorrelationData> cdata) {
+        Impression impression = new Impression.Builder().environment(env).pageId(pageId).type(type).subType(subType).objectId(id).objectType(objType).objectVersion(objVersion).correlationData(cdata).build();
+        return impression;
+    }
+
+    /**
+     * Log Event
+     *
+     * @param pageId
+     * @param type
+     * @param params
+     * @return
+     */
+    public static Log buildLogEvent(String env, String pageId, String type, String message, Map<String, Object> params) {
+        Log.Builder log = new Log.Builder();
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            log.addParam(entry.getKey(), entry.getValue()).environment(env).pageId(pageId).type(type).level(Log.Level.INFO).message(message);
         }
-        return eksList;
+        return log.build();
     }
 
-    public static GEEvent buildGEUpdate(UTMData utmData) {
-        List<UTMData> referrer = new ArrayList<>();
-        referrer.add(utmData);
-        HashMap<String, Object> eks = new HashMap<>();
-        eks.put("referrer", referrer);
-        GEEvent geEvent = new GEEvent.Builder(TelemetryEvent.GE_GENIE_UPDATE).eks(eks).build();
-        LogUtil.i("GE_GENIE_UPDATE", geEvent.toString());
-        return geEvent;
+    /**
+     * TODO: in all the interact events resource id value is pageId, should be replaced with actual expected value later.
+     *
+     * @param type
+     * @param subType
+     * @param pageId
+     * @return
+     */
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId) {
+        Interact interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).resourceId(pageId).build();
+        return interact;
     }
 
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, List<CorrelationData> cdata) {
+        Interact interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).correlationData(cdata).resourceId(pageId).build();
+        return interact;
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String key, Object value) {
+        Interact.Builder interact = new Interact.Builder().environment(env).interactionType(type)
+                .subType(subType)
+                .pageId(pageId)
+                .resourceId(pageId).addValue(key, value);
+        return interact.build();
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String objectId, String objectType, String key, Object value) {
+        Interact.Builder interact = new Interact.Builder().environment(env).interactionType(type)
+                .subType(subType)
+                .pageId(pageId)
+                .resourceId(pageId).addValue(key, value).objectId(objectId).objectType(objectType);
+        return interact.build();
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, Map<String, Object> values) {
+        Interact.Builder interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).resourceId(pageId);
+        for (Map.Entry<String, Object> entry : values.entrySet()) {
+            interact.addValue(entry.getKey(), entry.getValue());
+        }
+        return interact.build();
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String id, String objectType) {
+        Interact interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).objectId(id).objectType(objectType).resourceId(pageId).build();
+        return interact;
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String id, String objectType, Map<String, Object> values) {
+
+        Interact.Builder interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).objectId(id).objectType(objectType).resourceId(pageId);
+        for (Map.Entry<String, Object> entry : values.entrySet()) {
+            interact.addValue(entry.getKey(), entry.getValue());
+        }
+        return interact.build();
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String id, String objectType, Map<String, Object> values, List<CorrelationData> cdata) {
+        Interact.Builder interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).objectId(id).objectType(objectType).correlationData(cdata).resourceId(pageId);
+        for (Map.Entry<String, Object> entry : values.entrySet()) {
+            interact.addValue(entry.getKey(), entry.getValue());
+        }
+        return interact.build();
+    }
+
+    public static Interact buildInteractEvent(String env, InteractionType type, String subType, String pageId, String id, String objType, String objVersion) {
+        Interact interact = new Interact.Builder().environment(env).interactionType(type).subType(subType).pageId(pageId).objectId(id).objectType(objType).objectVersion(objVersion).resourceId(pageId).build();
+        return interact;
+    }
+
+    public static Interrupt buildInterruptEvent(String type, String pageId) {
+        Interrupt interrupt = new Interrupt.Builder().environment(EnvironmentId.HOME).type(type).pageId(pageId).build();
+        return interrupt;
+    }
+
+    /**
+     * build error event
+     *
+     * @param errorCode
+     * @param stackTrace
+     * @return
+     */
+    public static Error buildErrorEvent(String errorCode, String stackTrace) {
+        Error error = new Error.Builder().environment(EnvironmentId.GENIE).errorCode(errorCode).
+                errorType(Error.Type.MOBILE_APP).stacktrace(stackTrace).build();
+        return error;
+    }
 }

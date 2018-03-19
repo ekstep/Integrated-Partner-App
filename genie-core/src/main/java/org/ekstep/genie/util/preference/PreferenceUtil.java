@@ -8,15 +8,10 @@ import com.google.gson.reflect.TypeToken;
 import org.ekstep.genie.model.CurrentGame;
 import org.ekstep.genie.model.DownloadQueueItem;
 import org.ekstep.genie.model.enums.SyncConfiguration;
-import org.ekstep.genie.telemetry.TelemetryAction;
-import org.ekstep.genie.telemetry.TelemetryBuilder;
-import org.ekstep.genie.telemetry.TelemetryHandler;
-import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
 import org.ekstep.genie.telemetry.enums.CoRelationType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genieservices.commons.bean.CorrelationData;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.db.cache.PreferenceWrapper;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
@@ -323,7 +318,8 @@ public class PreferenceUtil {
      * @param language
      */
     public static void setLanguage(String language) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SETTINGS_LANGUAGE, TelemetryAction.LANGUAGE_SETTINGS_SUCCESS, language));
+
+
         PreferenceUtil.getPreferenceWrapper().putString(PreferenceKey.LANGUAGE, language);
     }
 
@@ -618,16 +614,6 @@ public class PreferenceUtil {
     }
 
     /**
-     * set Download Queue
-     *
-     * @param downloadQueueItemList
-     */
-    public static void setDownloadQueueItemList(List<DownloadQueueItem> downloadQueueItemList) {
-        String downloadQueueItemListJson = GsonUtil.toJson(downloadQueueItemList);
-        PreferenceUtil.getPreferenceWrapper().putString(PreferenceKey.KEY_DOWNLOAD_QUEUE_ITEM_LIST, downloadQueueItemListJson);
-    }
-
-    /**
      * get Download Queue
      *
      * @return
@@ -640,6 +626,16 @@ public class PreferenceUtil {
             downloadQueueItemList = new ArrayList<>();
         }
         return downloadQueueItemList;
+    }
+
+    /**
+     * set Download Queue
+     *
+     * @param downloadQueueItemList
+     */
+    public static void setDownloadQueueItemList(List<DownloadQueueItem> downloadQueueItemList) {
+        String downloadQueueItemListJson = GsonUtil.toJson(downloadQueueItemList);
+        PreferenceUtil.getPreferenceWrapper().putString(PreferenceKey.KEY_DOWNLOAD_QUEUE_ITEM_LIST, downloadQueueItemListJson);
     }
 
     /**

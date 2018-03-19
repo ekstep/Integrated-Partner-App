@@ -172,6 +172,11 @@ public class DownloadQueueFragment extends DialogFragment implements DownloadQue
         mIsDownloadCancelled = isDownloadCancelled;
     }
 
+    @Override
+    public void dismissDialog() {
+        dismiss();
+    }
+
     public interface OnDismissListener {
         void onDismiss(DownloadQueueFragment downloadQueueFragment, boolean isDownloadCancelled);
     }

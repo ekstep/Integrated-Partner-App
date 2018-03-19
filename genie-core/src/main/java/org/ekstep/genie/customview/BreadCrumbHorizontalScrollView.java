@@ -18,10 +18,9 @@ import java.util.Map;
  */
 
 public class BreadCrumbHorizontalScrollView extends HorizontalScrollView implements View.OnClickListener {
-
+    private BreadcrumbHeaderCallback breadcrumbHeaderCallback;
     private LayoutInflater mInflater;
     private List<Map<String, String>> mContentHeaders;
-    private BreadcrumbItemCallback breadcrumbItemCallback;
 
     public BreadCrumbHorizontalScrollView(Context context) {
         super(context);
@@ -40,11 +39,19 @@ public class BreadCrumbHorizontalScrollView extends HorizontalScrollView impleme
 
     @Override
     public void onClick(View v) {
-        if (breadcrumbItemCallback != null) {
-            Map<String, String> contentHeader = (Map<String, String>) v.getTag();
-            breadcrumbItemCallback.onItemClick(Integer.valueOf(contentHeader.get("position")), String.valueOf(contentHeader.get("identifier")));
+
+        if (v.getId() == R.id.txt_header_name) {
+            if (breadcrumbHeaderCallback != null) {
+                Map<String, String> contentHeader = (Map<String, String>) v.getTag();
+                breadcrumbHeaderCallback.onHeaderClick(Integer.valueOf(contentHeader.get("position")), String.valueOf(contentHeader.get("identifier")));
+            }
         }
     }
+
+    public void setBreadcrumbHeaderCallback(BreadcrumbHeaderCallback callback) {
+        this.breadcrumbHeaderCallback = callback;
+    }
+
 
     public void init() {
         mInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -100,7 +107,7 @@ public class BreadCrumbHorizontalScrollView extends HorizontalScrollView impleme
         fullScroll(HorizontalScrollView.FOCUS_RIGHT);
     }
 
-    public interface BreadcrumbItemCallback {
-        void onItemClick(int position, String identifier);
+    public interface BreadcrumbHeaderCallback {
+        void onHeaderClick(int position, String identifier);
     }
 }

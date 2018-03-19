@@ -15,11 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
-import org.ekstep.genie.telemetry.TelemetryAction;
-import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
-import org.ekstep.genie.telemetry.TelemetryHandler;
-import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.ui.splash.SplashActivity;
 import org.ekstep.genie.util.AlarmManagerUtil;
 import org.ekstep.genie.util.Constant;
@@ -32,7 +28,6 @@ import org.ekstep.genieservices.async.NotificationService;
 import org.ekstep.genieservices.commons.IResponseHandler;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.Notification;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.utils.DateUtil;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
@@ -98,7 +93,9 @@ public class NotificationManagerUtil {
             //Generate GE_INTERACT event for Server notification received.
             Map<String, Object> eksMap = new HashMap<>();
             eksMap.put(TelemetryConstant.NOTIFICATION_DATA, GsonUtil.getGson().toJson(notification));
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_RECEIVED, eksMap));
+
+            //        TODO: (s)to be implemented
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_RECEIVED, eksMap));
             // Server notification
             triggerAtMillis = DateUtil.parse(notification.getTime(), DateUtil.DATETIME_FORMAT).getMillis();
             long currentTime = DateUtil.getEpochTime();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
@@ -48,7 +49,8 @@ public class AddNewTagPresenter implements AddNewTagContract.Presenter {
                 tagService.setTag(tag, new IResponseHandler<Void>() {
                     @Override
                     public void onSuccess(GenieResponse<Void> genieResponse) {
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.ADD_NEW_TAG, TelemetryAction.ADD_TAG_MANUAL));
+//                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.ADD_NEW_TAG, TelemetryAction.ADD_TAG_MANUAL));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_TAG_MANUAL, TelemetryStageId.ADD_NEW_TAG));
                         Util.showCustomToast(R.string.msg_tag_added_sussessfully);
                         mAddNewTagView.finishActivity();
                     }

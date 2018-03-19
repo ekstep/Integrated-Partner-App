@@ -217,20 +217,25 @@ public class ContentDetailFragment extends BaseFragment
 
     @Override
     public void showIcon(String icon) {
-        GlideImageUtil.loadImageUrl(mActivity, icon, mContentIv);
+        if (isActive()) {
+            GlideImageUtil.loadImageUrl(mActivity, icon, mContentIv);
+        }
     }
 
     @Override
     public void showLocalIcon(File appIcon) {
-        if (getActivity() == null) {
-            return;
+        if (isActive()) {
+            GlideImageUtil.loadImageUrl(mActivity, appIcon, mContentIv);
         }
-        GlideImageUtil.loadImageUrl(mActivity, appIcon, mContentIv);
+
     }
 
     @Override
     public void showDefaultIcon(int appIcon) {
-        GlideImageUtil.loadImageUrl(mActivity, mContentIv);
+        if (isActive()) {
+            GlideImageUtil.loadImageUrl(mActivity, mContentIv);
+        }
+
     }
 
     @Override
@@ -312,7 +317,10 @@ public class ContentDetailFragment extends BaseFragment
 
     @Override
     public void showCopyRight(String copyRight) {
-        mCopyRightTv.setText(getString(R.string.label_contentdetail_copyright) + copyRight);
+        if (isActive()) {
+            mCopyRightTv.setText(getString(R.string.label_contentdetail_copyright) + copyRight);
+        }
+
     }
 
     @Override

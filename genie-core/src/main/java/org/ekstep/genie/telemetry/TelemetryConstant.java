@@ -9,6 +9,10 @@ public interface TelemetryConstant {
 
     String SEARCH_CRITERIA = "SearchCriteria";
     String SEARCH_RESULTS = "SearchResults";
+    String SEARCH_PHRASE = "SearchPhrase";
+    String EXPLICIT_SEARCH = "explicit-search";
+    String IMPLICIT_SEARCH = "implicit-search";
+
     String POSITION_CLICKED = "PositionClicked";
     String PRESENT_ON_DEVICE = "PresentOnDevice";
     String CHILDREN_WITH_RESULTS = "ChildrenWithResults";
@@ -38,10 +42,26 @@ public interface TelemetryConstant {
     String POSITION = "Position";
 
     String NOTIFICATION_DATA = "NotificationData";
+    String NOTIFICATION_COUNT = "NotificationCount";
 
     String SECTION_NAME = "SectionName";
     String SECTION_VISIBILTY_PERCENTAGE = "VisibilityPercentage";
     String TIME = "Time";
-    String CONTENT_PLAY = "ContentPlay";
+    String CONTENT_PLAY = "content-play";
 
+    String APP = "app";
+    String LANGUAGE_SELECTED = "LanguageSelected";
+    String SECTIONS = "sections";
+
+    //content type for the start and end event.
+    String COLLECTION = "collection";
+    String TEXTBOOK = "textbook";
+    String CONTENT = "content";
+
+    //modes for the start and end events
+    String MODE_PLAY = "play";
+    String MODE_CREATE = "create";
+    String MODE_EDIT = "edit";
+
+    String ERROR_AUTO_SYNC_FAILED = "auto sync failed";
 }

@@ -87,8 +87,8 @@ public class ReferrerReceiver extends BroadcastReceiver {
                         }
                     }
                 }
-
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEUpdate(utmData));
+                //        TODO: (s)to be implemented
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEUpdate(utmData));
 
             } catch (UnsupportedEncodingException e) {
                 LogUtil.e(TAG, "Referrer Error: " + e.getMessage());

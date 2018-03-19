@@ -120,7 +120,7 @@ public class MyLessonsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void setContentDetails(ViewHolder viewHolder, int position, int contentType, int contentAttribute, Content content) {
 
-        MyLessonsAdapter.WrapperContent wrapperContent = new MyLessonsAdapter.WrapperContent(position, content);
+        WrapperContent wrapperContent = new WrapperContent(position, content);
         viewHolder.vhLayoutMain.setTag(wrapperContent);
         viewHolder.vhtvContentName.setText(content.getContentData().getName());
         viewHolder.vhTvContentType.setText(contentType);
@@ -195,7 +195,7 @@ public class MyLessonsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     /**
      * View Holder for normal content
      */
-    public class NormalContentViewHolder extends MyLessonsAdapter.ViewHolder {
+    public class NormalContentViewHolder extends ViewHolder {
         public NormalContentViewHolder(View itemLayoutView) {
             super(itemLayoutView);
         }
@@ -204,7 +204,7 @@ public class MyLessonsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     /**
      * View Holder for collection content
      */
-    public class CollectionContentViewHolder extends MyLessonsAdapter.ViewHolder {
+    public class CollectionContentViewHolder extends ViewHolder {
         public CollectionContentViewHolder(View itemLayoutView) {
             super(itemLayoutView);
         }
@@ -213,7 +213,7 @@ public class MyLessonsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     /**
      * View Holder for text book content
      */
-    public class TextBookContentViewHolder extends MyLessonsAdapter.ViewHolder {
+    public class TextBookContentViewHolder extends ViewHolder {
         public TextBookContentViewHolder(View itemLayoutView) {
             super(itemLayoutView);
         }

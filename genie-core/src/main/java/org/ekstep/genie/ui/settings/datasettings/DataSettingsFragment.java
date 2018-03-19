@@ -19,9 +19,11 @@ import org.ekstep.genie.customview.EkStepRadioGroup;
 import org.ekstep.genie.fragment.BaseFragment;
 import org.ekstep.genie.model.enums.StageCode;
 import org.ekstep.genie.model.enums.SyncConfiguration;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genie.util.ShowProgressDialog;
 import org.ekstep.genie.util.Util;
@@ -62,7 +64,8 @@ public class DataSettingsFragment extends BaseFragment implements DataSettingsCo
 
         displayCurrentSyncConfiguration();
 
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.SETTINGS_DATA_USAGE));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.SETTINGS_DATA_USAGE));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.SETTINGS, TelemetryStageId.SETTINGS_DATA_USAGE, ImpressionType.VIEW));
     }
 
     private void initViews(View view) {

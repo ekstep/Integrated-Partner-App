@@ -54,10 +54,14 @@ public class LocalNotificationService extends IntentService {
                 eksMap.put(TelemetryConstant.NOTIFICATION_DATA, GsonUtil.toJson(genieNotification));
                 if (genieNotification.getRelativetime() > 0) {
                     PreferenceUtil.setOnBoardingNotificationState(genieNotification.getRelativetime());
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.LOCAL_NOTIFICATION, TelemetryAction.NOTIFICATION_DISPLAYED, String.valueOf(genieNotification.getMsgid()), eksMap));
+
+                    //        TODO: (s)to be implemented
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.LOCAL_NOTIFICATION, TelemetryAction.NOTIFICATION_DISPLAYED, String.valueOf(genieNotification.getMsgid()), eksMap));
                     LocalBroadcastManager.getInstance(this).sendBroadcast(Util.getRefreshNotificationsIntent());
                 } else {
-                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_DISPLAYED, String.valueOf(genieNotification.getMsgid()), eksMap));
+
+                    //        TODO: (s)to be implemented
+//                    TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_DISPLAYED, String.valueOf(genieNotification.getMsgid()), eksMap));
                 }
 
                 NotificationManagerUtil notificationManagerUtil = new NotificationManagerUtil(LocalNotificationService.this);

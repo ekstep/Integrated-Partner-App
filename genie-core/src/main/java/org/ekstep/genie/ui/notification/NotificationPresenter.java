@@ -2,28 +2,29 @@ package org.ekstep.genie.ui.notification;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import org.ekstep.genie.base.BasePresenter;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
-import org.ekstep.genie.util.LogUtil;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genieservices.GenieService;
 import org.ekstep.genieservices.async.NotificationService;
 import org.ekstep.genieservices.commons.IResponseHandler;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.Notification;
 import org.ekstep.genieservices.commons.bean.NotificationFilterCriteria;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.bean.enums.NotificationStatus;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by shriharsh on 9/1/17.
@@ -31,9 +32,8 @@ import java.util.List;
 
 public class NotificationPresenter implements NotificationContract.Presenter {
     private static final String TAG = NotificationPresenter.class.getSimpleName();
-
-    private NotificationContract.View mNotificationView;
     List<Notification> mNotificationList;
+    private NotificationContract.View mNotificationView;
     private NotificationService mNotificationService;
     private Activity mActivity;
 
@@ -65,16 +65,21 @@ public class NotificationPresenter implements NotificationContract.Presenter {
                         mNotificationList = notificationList;
 
                         mNotificationView.hideEmptyNotificationLayout();
-                        LogUtil.e(TAG, "notificationList Size : " + mNotificationList.size());
                         mNotificationView.initAdapter();
                         mNotificationView.setNotificationAdapter();
                         mNotificationView.setNotificationAdapterData(mNotificationList);
                         mNotificationView.notifyAdapterDataSetChanged();
 
                         // Generate GE_INTERCAT event
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.NOTIFICATION, EntityType.NOTIFICATION, String.valueOf(mNotificationList.size())));
+                        Map<String, Object> params = new HashMap<>();
+                        params.put(TelemetryConstant.NOTIFICATION_COUNT, String.valueOf(mNotificationList.size()));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.NOTIFICATION, ImpressionType.LIST, EntityType.NOTIFICATION));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME,TelemetryStageId.NOTIFICATION, ImpressionType.LIST, TelemetryStageId.NOTIFICATION, params));
                     } else {
-                        LogUtil.i(TAG, "notificationList is empty");
+                        Map<String, Object> params = new HashMap<>();
+                        params.put(TelemetryConstant.NOTIFICATION_COUNT, "0");
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.NOTIFICATION, ImpressionType.LIST, EntityType.NOTIFICATION));
+                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME,TelemetryStageId.NOTIFICATION, ImpressionType.LIST, TelemetryStageId.NOTIFICATION, params));
                         mNotificationView.showEmptyNotificationLayout();
                     }
                 }

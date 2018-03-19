@@ -164,6 +164,10 @@ public class DownloadQueuePresenter implements DownloadQueueContract.Presenter {
         PreferenceUtil.removeDownloadQueueItem(downloadQueueItem.getIdentifier());
         mModifiedDownloadQueueItemList.remove(downloadQueueItem);
         removeDummyParentItem(downloadQueueItem.getParentIdentifier());
+        if (mModifiedDownloadQueueItemList.size() == 0) {
+            mDownloadQueueView.dismissDialog();
+            return;
+        }
         mDownloadQueueView.refreshAdapter(mModifiedDownloadQueueItemList);
     }
 

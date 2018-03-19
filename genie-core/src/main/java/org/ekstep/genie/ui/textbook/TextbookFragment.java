@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -32,11 +34,15 @@ import org.ekstep.genie.customview.treeview.view.AndroidTreeView;
 import org.ekstep.genie.fragment.BaseFragment;
 import org.ekstep.genie.model.ContentDeleteResponse;
 import org.ekstep.genie.model.TextbookSection;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.progressreports.ProgressReportsActivity;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DeviceUtility;
@@ -59,6 +65,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import static android.view.View.GONE;
+
 /**
  * Created by shriharsh on 8/2/17.
  */
@@ -66,13 +74,10 @@ import java.util.Map;
 public class TextbookFragment extends BaseFragment
         implements TextbookContract.View, View.OnClickListener {
 
-    private static final String TAG = TextbookFragment.class.getSimpleName();
     private TextbookContract.Presenter mPresenter;
     private EkStepCustomTextView mTextViewTextbookName;
     private EkStepCustomTextView mTextViewTextbookDetails;
     private ImageView mImageViewTextbookPoster;
-    private EkStepCustomTextView mEkStepCustomTextViewDownload;
-    private ImageView mIv_Tick;
     private ViewGroup mTreeViewContainer;
     private AndroidTreeView mAndroidTreeView;
     private RecyclerView mRecyclerViewTextbooks;
@@ -84,6 +89,11 @@ public class TextbookFragment extends BaseFragment
     private LinearLayoutManager mLinearLayoutManager;
     private RelativeLayout mRelativeLayoutNoTextbooks;
     private boolean isRequiredToCallApi;
+    private RadioButton mRbViewAllTextbook;
+    private RadioButton mRbDownloadedTextbook;
+    private EkStepCustomTextView mTextViewTextbookSize;
+    private RelativeLayout mRelativeLayoutDownloadAll;
+    private RelativeLayout mRelativeLayoutDownloading;
 
     private TreeNode.TreeNodeClickListener nodeClickListener = new TreeNode.TreeNodeClickListener() {
         @Override
@@ -94,6 +104,7 @@ public class TextbookFragment extends BaseFragment
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onContentImport(ContentImportResponse importResponse) throws InterruptedException {
+        Log.e("TextbookFragment", "onContentImport: ");
         mPresenter.manageImportAndDeleteSuccess(importResponse);
     }
 
@@ -170,9 +181,6 @@ public class TextbookFragment extends BaseFragment
         mTextViewTextbookDetails.setOnClickListener(this);
         mTextViewTextbookName = (EkStepCustomTextView) view.findViewById(R.id.tv_textbook_name);
         mImageViewTextbookPoster = (ImageView) view.findViewById(R.id.iv_textbook_poster);
-        mEkStepCustomTextViewDownload = (EkStepCustomTextView) view.findViewById(R.id.tv_textbook_download);
-        mEkStepCustomTextViewDownload.setOnClickListener(this);
-        mIv_Tick = (ImageView) view.findViewById(R.id.iv_normal_tick_mark);
         mRecyclerViewTextbooks = (RecyclerView) view.findViewById(R.id.rv_textbooks);
         mLinearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewTextbooks.setLayoutManager(mLinearLayoutManager);
@@ -181,6 +189,14 @@ public class TextbookFragment extends BaseFragment
         mGradeDivider = (View) view.findViewById(R.id.textbook_grade_divider);
         mLanguageTv = (EkStepCustomTextView) view.findViewById(R.id.tv_textbook_language);
         mRelativeLayoutNoTextbooks = (RelativeLayout) view.findViewById(R.id.rl_no_textbook);
+        mRelativeLayoutDownloadAll = (RelativeLayout) view.findViewById(R.id.layout_download_all);
+        mRelativeLayoutDownloadAll.setOnClickListener(this);
+        mRelativeLayoutDownloading = (RelativeLayout) view.findViewById(R.id.layout_downloading);
+        mRbDownloadedTextbook = (RadioButton) view.findViewById(R.id.downloaded);
+        mRbDownloadedTextbook.setOnClickListener(this);
+        mRbViewAllTextbook = (RadioButton) view.findViewById(R.id.view_all);
+        mRbViewAllTextbook.setOnClickListener(this);
+        mTextViewTextbookSize = (EkStepCustomTextView) view.findViewById(R.id.tv_textbook_size);
         mRecyclerViewTextbooks.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -227,7 +243,7 @@ public class TextbookFragment extends BaseFragment
 
     @Override
     public void hideLanguage() {
-        mLanguageTv.setVisibility(View.GONE);
+        mLanguageTv.setVisibility(GONE);
     }
 
     @Override
@@ -237,12 +253,12 @@ public class TextbookFragment extends BaseFragment
 
     @Override
     public void hideGrade() {
-        mGradeTv.setVisibility(View.GONE);
+        mGradeTv.setVisibility(GONE);
     }
 
     @Override
     public void hideGradeDivider() {
-        mGradeDivider.setVisibility(View.GONE);
+        mGradeDivider.setVisibility(GONE);
     }
 
     @Override
@@ -272,7 +288,8 @@ public class TextbookFragment extends BaseFragment
 
     @Override
     public void generateTOCInteractEvent(String identifier) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.TEXTBOOK_TOC, EntityType.CONTENT_ID.toString(), identifier));
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.TEXTBOOK_TOC, EntityType.CONTENT_ID.toString(), identifier));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.TEXTBOOK_TOC, ImpressionType.VIEW, EntityType.CONTENT_ID.toString(), identifier, ObjectType.CONTENT));
     }
 
     @Override
@@ -296,7 +313,7 @@ public class TextbookFragment extends BaseFragment
     }
 
     public void hideNoTextBooksView() {
-        mRelativeLayoutNoTextbooks.setVisibility(View.GONE);
+        mRelativeLayoutNoTextbooks.setVisibility(GONE);
     }
 
     @Override
@@ -311,32 +328,12 @@ public class TextbookFragment extends BaseFragment
 
     @Override
     public void hideTextBooksRecyclerView() {
-        mRecyclerViewTextbooks.setVisibility(View.GONE);
+        mRecyclerViewTextbooks.setVisibility(GONE);
     }
 
     @Override
     public void generateSectionViewedEvent(String identifier, List<Map<String, Object>> mSectionMapList) {
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.TEXTBOOK_HOME, TelemetryAction.SECTION_VIEWED, identifier, mSectionMapList));
-    }
-
-    @Override
-    public void showDownloadedLessonText() {
-        mEkStepCustomTextViewDownload.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideDownloadedLessonText() {
-        mEkStepCustomTextViewDownload.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showTickImage() {
-        mIv_Tick.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideTickImage() {
-        mIv_Tick.setVisibility(View.GONE);
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.OTHER, TelemetryAction.SECTION_VIEWED, TelemetryStageId.TEXTBOOK_HOME, identifier, ObjectType.CONTENT, TelemetryConstant.SECTIONS, mSectionMapList));
     }
 
     @Override
@@ -349,6 +346,18 @@ public class TextbookFragment extends BaseFragment
         Intent intent = new Intent(mActivity, ProgressReportsActivity.class);
         intent.putExtra(Constant.BundleKey.BUNDLE_KEY_CONTENT, content);
         mActivity.startActivity(intent);
+    }
+
+    @Override
+    public void showDownloadedTextbookView() {
+        mRbDownloadedTextbook.setTextColor(getResources().getColor(R.color.white));
+        mRbViewAllTextbook.setTextColor(getResources().getColor(R.color.text_color_button));
+    }
+
+    @Override
+    public void showViewAllTextbookView() {
+        mRbViewAllTextbook.setTextColor(getResources().getColor(R.color.white));
+        mRbDownloadedTextbook.setTextColor(getResources().getColor(R.color.text_color_button));
     }
 
     /**
@@ -469,19 +478,53 @@ public class TextbookFragment extends BaseFragment
         mPresenter.removeContentToBeDeletedValue();
     }
 
+    public void handleTelemetryEndEvent() {
+        mPresenter.sendTelemetryEndEvent();
+    }
+
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.back_btn) {
             mPresenter.handleBackButtonClick();
 
-        } else if (i == R.id.tv_textbook_download) {
-            mPresenter.downloadedLessons();
-
         } else if (i == R.id.tv_textbook_details) {
             mPresenter.handleDetailsClick();
 
+        } else if (i == R.id.layout_download_all) {
+            mPresenter.handleDownloadAllClick();
+
+        } else if (i == R.id.downloaded) {
+            mPresenter.showDownloadedLessons();
+
+        } else if (i == R.id.view_all) {
+            mPresenter.fetchTableOfContentsAndLessons(true);
         }
+    }
+
+    @Override
+    public void setTextbookSize(String size) {
+        mTextViewTextbookSize.setText(size);
+    }
+
+    @Override
+    public void hideDownloadAllView() {
+        mRelativeLayoutDownloadAll.setVisibility(GONE);
+    }
+
+    @Override
+    public void showDownloadAllView() {
+        mRelativeLayoutDownloadAll.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideDownloadingView() {
+        mRelativeLayoutDownloading.setVisibility(GONE);
+    }
+
+    @Override
+    public void showDownloadingView() {
+        mRelativeLayoutDownloading.setVisibility(View.VISIBLE);
     }
 
     @Override

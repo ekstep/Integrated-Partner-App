@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.ekstep.genie.model.enums.ContentType;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryUtil;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.ui.collection.CollectionsActivity;
 import org.ekstep.genie.ui.textbook.TextbookActivity;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
@@ -45,7 +47,8 @@ public class PlayerUtil {
 
         if (content.getContentType().equalsIgnoreCase(ContentType.COLLECTION) || content.getContentType().equalsIgnoreCase(ContentType.TEXTBOOK)) {
             // This content is a collection so generate GE_GAME_LAUNCH and start CollectionActivity.
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, stageId, TelemetryConstant.CONTENT_PLAY, content.getIdentifier(), (Map) new HashMap<>(), cdata), new IResponseHandler() {
+
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryConstant.CONTENT_PLAY, stageId, content.getIdentifier(), ObjectType.CONTENT, (Map) new HashMap<>(), cdata), new IResponseHandler() {
                 @Override
                 public void onSuccess(GenieResponse genieResponse) {
                     Util.processSuccess(genieResponse);
@@ -54,7 +57,6 @@ public class PlayerUtil {
                     } else if (content.getContentType().equalsIgnoreCase(ContentType.TEXTBOOK)) {
                         startActivity(context, TextbookActivity.class, content, content.getBasePath(), isFromDownloads, isRoot);
                     }
-
                 }
 
                 @Override
@@ -72,7 +74,8 @@ public class PlayerUtil {
             } else {
 
                 //Content is not originated from collection/Textbook so  generate GE_LAUNCH_GAME and  launch the content.
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, stageId, TelemetryConstant.CONTENT_PLAY, content.getIdentifier(), (Map) new HashMap<>(), cdata), new IResponseHandler() {
+
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryConstant.CONTENT_PLAY, stageId, content.getIdentifier(), ObjectType.CONTENT, (Map) new HashMap<>(), cdata), new IResponseHandler() {
                     @Override
                     public void onSuccess(GenieResponse genieResponse) {
                         ContentUtil.addContentAccess(content);

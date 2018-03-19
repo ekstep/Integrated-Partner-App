@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 def globalConf = rootProject.ext
-
 android {
     compileSdkVersion globalConf.androidCompileSdkVersion
     buildToolsVersion globalConf.androidBuildToolsVersion
@@ -133,21 +131,22 @@ android {
 
         Map<String, String> dependencies = globalConf.dependencies;
 
-        qaCompile project(path:':genie-core',configuration: 'productionRelease')
+        qaCompile project(path: ':genie-core', configuration: 'productionRelease')
         productionCompile project(path: ':genie-core', configuration: 'productionRelease')
         qaxWalkCompile project(path: ':genie-core', configuration: 'xWalkRelease')
         productionxWalkCompile project(path: ':genie-core', configuration: 'xWalkRelease')
 
+        compile project(':open-rap')
         compile dependencies.supportLibrary
 
         compile dependencies.playServiceAuth
         compile dependencies.playServiceDrive
 
-        compile (dependencies.googleAPIClient) {
+        compile(dependencies.googleAPIClient) {
             exclude group: 'org.apache.httpcomponents'
         }
 
-        compile (dependencies.sheetsAPIClient) {
+        compile(dependencies.sheetsAPIClient) {
             exclude group: 'org.apache.httpcomponents'
         }
     }

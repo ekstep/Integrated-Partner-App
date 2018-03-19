@@ -51,9 +51,9 @@ public class DownloadQueueAdapter extends RecyclerView.Adapter<DownloadQueueAdap
     }
 
     @Override
-    public DownloadQueueAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_download_queue_item, parent, false);
-        return new DownloadQueueAdapter.ViewHolder(itemView);
+        return new ViewHolder(itemView);
     }
 
     @Override
@@ -127,12 +127,18 @@ public class DownloadQueueAdapter extends RecyclerView.Adapter<DownloadQueueAdap
         String progressValue = downloadQueueItem.getProgress();
         String totalContentSize = downloadQueueItem.getSize();
         if (!StringUtil.isNullOrEmpty(progressValue) && Float.valueOf(progressValue) != -1) {
-            float totalContentSizeFloat = Float.valueOf(totalContentSize.substring(0, totalContentSize.indexOf("MB") - 1));// * 1000000;
-            String currentContentSizeInMB = Util.humanReadableByteCount((long) (totalContentSizeFloat * (Float.valueOf(progressValue) / 100)), true);
-            viewHolder.vhTvDownloadingSize.setText(currentContentSizeInMB.
-                    substring(0, currentContentSizeInMB.indexOf("B") - 1) + "/" + totalContentSize);
+            try {
+                float totalContentSizeFloat = Float.valueOf(totalContentSize.substring(0, totalContentSize.indexOf("MB") - 1));// * 1000000;
+                String currentContentSizeInMB = Util.humanReadableByteCount((long) (totalContentSizeFloat * (Float.valueOf(progressValue) / 100)), true);
+                viewHolder.vhTvDownloadingSize.setText(currentContentSizeInMB.
+                        substring(0, currentContentSizeInMB.indexOf("B") - 1) + "/" + totalContentSize);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
-            viewHolder.vhTvDownloadingSize.setText("0/" + totalContentSize);
+            if(totalContentSize != null){
+                viewHolder.vhTvDownloadingSize.setText("0/" + totalContentSize);
+            }
         }
     }
 

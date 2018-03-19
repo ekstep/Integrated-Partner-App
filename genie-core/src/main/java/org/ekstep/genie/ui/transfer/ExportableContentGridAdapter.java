@@ -42,7 +42,7 @@ public class ExportableContentGridAdapter extends RecyclerView.Adapter<Exportabl
     }
 
     @Override
-    public ExportableContentGridAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_exportable_content, null);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;

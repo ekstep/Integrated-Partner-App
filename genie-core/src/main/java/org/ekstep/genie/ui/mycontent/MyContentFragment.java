@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -40,10 +41,8 @@ import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genieservices.commons.bean.Content;
 import org.ekstep.genieservices.commons.bean.ContentImportResponse;
-import org.ekstep.genieservices.commons.bean.ContentSortCriteria;
 import org.ekstep.genieservices.commons.bean.HierarchyInfo;
 import org.ekstep.genieservices.commons.bean.ScanStorageResponse;
-import org.ekstep.genieservices.commons.bean.enums.SortOrder;
 import org.ekstep.genieservices.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -61,7 +60,7 @@ import java.util.Map;
  */
 
 public class MyContentFragment extends BaseFragment
-        implements MyContentContract.View, View.OnClickListener {
+        implements MyContentContract.View, View.OnClickListener, BreadCrumbHorizontalScrollView.BreadcrumbHeaderCallback {
 
     private MyContentPresenter mPresenter;
     private RecyclerView mMyLessonsRecyclerView;
@@ -71,21 +70,25 @@ public class MyContentFragment extends BaseFragment
     private RelativeLayout mRelativeLayoutSelectedContentOptions;
     private TextView mTxtSelectedContentSize;
     private TextView mTxtSelectedContentCount;
-
     private View mMenuShareBtn;
     private View mMenuDoneBtn;
     private View mMenuImportBtn;
     private View mMenuContentSort;
-
     private View mViewContentHeader;
     private View mViewNestedContentHeader;
-
     private MyContentAdapter mMyContentAdapter;
     private int mRBId = -1;
     private int mSelectedRadioButtonId = -1;
-    private boolean mIsSizeSortApplied;
-    private boolean mIsTimeSortApplied;
     private BreadCrumbHorizontalScrollView mBreadcrumbscrollView;
+    private ImageView mAscendingSizeSortImg;
+    private ImageView mDescendingSizeSortImg;
+    private ImageView mAscendingUsedBySortImg;
+    private ImageView mDescendingUsedBySortImg;
+
+    @Override
+    public void onHeaderClick(int position, String identifier) {
+        mPresenter.onBreadcrumbHeaderClick(position, identifier);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -159,6 +162,12 @@ public class MyContentFragment extends BaseFragment
         view.findViewById(R.id.btn_menu_settings).setOnClickListener(this);
         view.findViewById(R.id.btn_delete).setOnClickListener(this);
 
+        mAscendingSizeSortImg = (ImageView) view.findViewById(R.id.sort_ascending_size);
+        mDescendingSizeSortImg = (ImageView) view.findViewById(R.id.sort_descending_size);
+
+        mAscendingUsedBySortImg = (ImageView) view.findViewById(R.id.sort_ascending_lastused);
+        mDescendingUsedBySortImg = (ImageView) view.findViewById(R.id.sort_descending_lastused);
+
         mCardGetMoreContent = view.findViewById(R.id.card_get_more_content);
         mCardGetMoreContent.setOnClickListener(this);
         view.findViewById(R.id.back_btn).setOnClickListener(this);
@@ -169,11 +178,16 @@ public class MyContentFragment extends BaseFragment
         mViewContentHeader = view.findViewById(R.id.download_rl_header);
         mViewNestedContentHeader = view.findViewById(R.id.layout_nested_content_header);
         mBreadcrumbscrollView = (BreadCrumbHorizontalScrollView) view.findViewById(R.id.hs_breadcrumb);
+        mBreadcrumbscrollView.setBreadcrumbHeaderCallback(this);
         view.findViewById(R.id.layout_back_header).setOnClickListener(this);
 
         view.findViewById(R.id.txt_download_clear_all).setOnClickListener(this);
         mTxtSelectedContentSize = (TextView) view.findViewById(R.id.txt_download_selected_content_size);
         mTxtSelectedContentCount = (TextView) view.findViewById(R.id.txt_download_selected_content_count);
+        TextView mTxtSize = (TextView) view.findViewById(R.id.download_ectv_header_size);
+        mTxtSize.setOnClickListener(this);
+        TextView mTxtLastUsed = (TextView) view.findViewById(R.id.download_ectv_header_last_used);
+        mTxtLastUsed.setOnClickListener(this);
 
         mPresenter.renderMyContent();
         view.setFocusableInTouchMode(true);
@@ -219,6 +233,7 @@ public class MyContentFragment extends BaseFragment
         int i = v.getId();
         if (i == R.id.back_btn) {
             mPresenter.postDeleteSuccessEvent();
+            mPresenter.clearBreadcrumbHeader();
             dismissProgressDialog();
             ((LandingActivity) mActivity).showHome(false);
 
@@ -253,6 +268,11 @@ public class MyContentFragment extends BaseFragment
             clearSelected();
             mMyContentAdapter.notifyDataSetChanged();
 
+        } else if (i == R.id.download_ectv_header_size) {
+            mPresenter.handleContentSortBySize();
+
+        } else if (i == R.id.download_ectv_header_last_used) {
+            mPresenter.handleContentSortByLastUsed();
         } else {
         }
     }
@@ -448,25 +468,10 @@ public class MyContentFragment extends BaseFragment
                         dialog.dismiss();
                         mSelectedRadioButtonId = mRBId;
                         if (mSelectedRadioButtonId == R.id.rb_file_size) {
-                            if (!mIsSizeSortApplied) {
-                                mIsSizeSortApplied = true;
-                                mPresenter.renderLocalContents(new ContentSortCriteria("sizeOnDevice", SortOrder.DESC));
-                            } else {
-                                mPresenter.renderLocalContents(new ContentSortCriteria("sizeOnDevice", SortOrder.ASC));
-                            }
-                            mIsTimeSortApplied = false;
-
+                            mPresenter.handleContentSortBySize();
 
                         } else if (mSelectedRadioButtonId == R.id.rb_last_used) {
-                            if (!mIsTimeSortApplied) {
-                                mIsTimeSortApplied = true;
-                                mPresenter.renderLocalContents(new ContentSortCriteria("lastUsedOn", SortOrder.ASC));
-                            } else {
-                                mPresenter.renderLocalContents(new ContentSortCriteria("lastUsedOn", SortOrder.DESC));
-                            }
-                            mIsSizeSortApplied = false;
-
-
+                            mPresenter.handleContentSortByLastUsed();
                         }
                         dialog.dismiss();
                     }
@@ -586,6 +591,28 @@ public class MyContentFragment extends BaseFragment
     @Override
     public void hideContentSort() {
         mMenuContentSort.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showAscendingSortIcon(boolean isSizeSort) {
+        if (isSizeSort) {
+            mAscendingSizeSortImg.setVisibility(View.VISIBLE);
+            mDescendingSizeSortImg.setVisibility(View.GONE);
+        } else {
+            mAscendingUsedBySortImg.setVisibility(View.VISIBLE);
+            mDescendingUsedBySortImg.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showDescendingSortIcon(boolean isSizeSort) {
+        if (isSizeSort) {
+            mDescendingSizeSortImg.setVisibility(View.VISIBLE);
+            mAscendingSizeSortImg.setVisibility(View.GONE);
+        } else {
+            mDescendingUsedBySortImg.setVisibility(View.VISIBLE);
+            mAscendingUsedBySortImg.setVisibility(View.GONE);
+        }
     }
 
     @Override

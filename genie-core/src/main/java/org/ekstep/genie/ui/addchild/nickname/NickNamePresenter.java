@@ -6,10 +6,12 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.ui.addchild.AddChildActivity;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.Util;
@@ -62,9 +64,11 @@ public class NickNamePresenter implements NickNameContract.Presenter {
     @Override
     public void openNickNameLayout() {
         if (mIsGroup) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_GROUP_NAME));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_GROUP_NAME));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_GROUP_NAME, ImpressionType.VIEW));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_NAME));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_NAME));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_CHILD_NAME, ImpressionType.VIEW));
         }
         adjustUIAccordingLanguage();
         //Set Random Name
@@ -133,8 +137,10 @@ public class NickNamePresenter implements NickNameContract.Presenter {
             mIsGroup = false;
 
             PreferenceUtil.setGroup("false");
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.ADD_CHILD_INITIATE));
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_CHILD_NAME));
+
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_CHILDREN, TelemetryAction.ADD_CHILD_INITIATE));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.ADD_CHILD_INITIATE, TelemetryStageId.MANAGE_CHILDREN));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_CHILD_NAME, ImpressionType.VIEW));
         } else {
             mIsGroup = true;
 
@@ -146,8 +152,9 @@ public class NickNamePresenter implements NickNameContract.Presenter {
 
             PreferenceUtil.setGroup("true");
 
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.ADD_GROUP_INITIATE));
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(TelemetryStageId.ADD_GROUP_NAME));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.MANAGE_GROUPS, TelemetryAction.ADD_GROUP_INITIATE));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.ADD_GROUP_INITIATE, TelemetryStageId.MANAGE_GROUPS));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.ADD_GROUP_NAME, ImpressionType.VIEW));
         }
     }
 

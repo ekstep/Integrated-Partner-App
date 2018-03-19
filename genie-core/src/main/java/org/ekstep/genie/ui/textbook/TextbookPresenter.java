@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
 import org.ekstep.genie.CoreApplication;
@@ -18,15 +17,19 @@ import org.ekstep.genie.customview.treeview.model.TreeNode;
 import org.ekstep.genie.model.ContentDeleteResponse;
 import org.ekstep.genie.model.TextbookSection;
 import org.ekstep.genie.model.enums.ContentType;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.DialogUtils;
 import org.ekstep.genie.util.FileHandler;
 import org.ekstep.genie.util.LogUtil;
+import org.ekstep.genie.util.NetworkUtil;
 import org.ekstep.genie.util.PlayerUtil;
 import org.ekstep.genie.util.Util;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
@@ -51,7 +54,6 @@ import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.HierarchyInfo;
 import org.ekstep.genieservices.commons.bean.UserSession;
 import org.ekstep.genieservices.commons.bean.enums.ContentImportStatus;
-import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.utils.DateUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.eventbus.EventBus;
@@ -75,7 +77,6 @@ public class TextbookPresenter implements TextbookContract.Presenter {
     private static final String SECTION_IDENTIFIER = "sectionIdentifier";
     private Context mContext;
     private TextbookContract.View mTextbookView;
-
     private Content mContent;
     private ContentData mContentData;
     private ContentAccess mContentAccess;
@@ -91,17 +92,24 @@ public class TextbookPresenter implements TextbookContract.Presenter {
     private UserSession mUserSession;
     private IContentService mSyncContentService = null;
     private Content mContentToBeDeleted;
+    private long mAvailableSizeLeft;
+    private List<String> mIdentifierList;
+    private boolean mIsDownloading = false;
 
     public TextbookPresenter() {
         mContentService = CoreApplication.getGenieAsyncService().getContentService();
         mUserService = CoreApplication.getGenieAsyncService().getUserService();
         mSyncContentService = CoreApplication.getGenieSdkInstance().getContentService();
+        mIdentifierList = new ArrayList<>();
     }
 
     @Override
     public void fetchTextbooks(Bundle arguments) {
         mContent = (Content) arguments.getSerializable(Constant.BundleKey.BUNDLE_KEY_CONTENT);
         mContentData = mContent.getContentData();
+
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildStartEvent(mContext, null, TelemetryConstant.TEXTBOOK,
+                TelemetryConstant.MODE_PLAY, mContentData.getIdentifier(), mContentData.getContentType(), mContentData.getPkgVersion()));
 
         ContentUtil.addContentAccess(mContent);
 
@@ -150,6 +158,7 @@ public class TextbookPresenter implements TextbookContract.Presenter {
 
     @Override
     public void fetchTableOfContentsAndLessons(final boolean refreshLayout) {
+        mTextbookView.showViewAllTextbookView();
         if (refreshLayout) {
             isNeededToGenerateHomeInteractEvent = true;
             ChildContentRequest.Builder childContentRequestBuilder = new ChildContentRequest.Builder();
@@ -164,6 +173,7 @@ public class TextbookPresenter implements TextbookContract.Presenter {
                         getSectionNamesAndLessons(mainContent);
                         generateTOC(mainContent, refreshLayout);
                         mTextbookView.showTextBookShelf(mTextbookSectionsList, mIsFromDownloadsScreen);
+                        handleDownloadAllVisibilityByContentSize(mTextbookSectionsList);
                     }
                 }
 
@@ -173,11 +183,19 @@ public class TextbookPresenter implements TextbookContract.Presenter {
                 }
             });
         } else {
+            handleDownloadAllVisibilityByContentSize(mTextbookSectionsList);
             isNeededToGenerateHomeInteractEvent = false;
             generateTOC(mTextbookObjectGotFromApi, refreshLayout);
             getSectionNamesAndLessons(mTextbookObjectGotFromApi);
             mTextbookView.showTextBookShelf(mTextbookSectionsList, mIsFromDownloadsScreen);
         }
+    }
+
+    private void handleDownloadAllVisibilityByContentSize(List<TextbookSection> textbookSectionsList) {
+        mIsDownloading = false;
+        mAvailableSizeLeft = 0;
+        mIdentifierList = new ArrayList<>();
+        calculateSize(textbookSectionsList);
     }
 
     /**
@@ -265,13 +283,6 @@ public class TextbookPresenter implements TextbookContract.Presenter {
             mTextbookSectionsList.clear();
             mTextbookSectionsList.addAll(textbookSectionsList);
 
-            if (checkIfLocalContentIsAvailableorNot(textbookSectionsList)) {
-                mTextbookView.showDownloadedLessonText();
-                mTextbookView.showTickImage();
-            } else {
-                mTextbookView.hideDownloadedLessonText();
-                mTextbookView.hideTickImage();
-            }
             mTextbookView.hideNoTextBooksView();
             mTextbookView.showTextBooksRecyclerView();
 
@@ -279,21 +290,6 @@ public class TextbookPresenter implements TextbookContract.Presenter {
             mTextbookView.hideTextBooksRecyclerView();
             mTextbookView.showNoTextBooksView();
         }
-    }
-
-    private boolean checkIfLocalContentIsAvailableorNot(List<TextbookSection> textbookSectionsList) {
-        for (TextbookSection textbookSection : textbookSectionsList) {
-            List<Content> eachSectionLessons = textbookSection.getSectionContents();
-            if (eachSectionLessons != null && eachSectionLessons.size() > 0) {
-                for (Content lesson : eachSectionLessons) {
-                    if (lesson.isAvailableLocally()) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-
     }
 
     /**
@@ -478,41 +474,46 @@ public class TextbookPresenter implements TextbookContract.Presenter {
         if (mSectionMapList.size() > 0) {
             mTextbookView.generateSectionViewedEvent(mContentData.getIdentifier(), mSectionMapList);
         }
-
-
+        sendTelemetryEndEvent();
         mTextbookView.finish();
     }
 
     @Override
-    public void downloadedLessons() {
-        showDownloadedLessons(mLocalPath, mIsFromDownloadsScreen);
+    public void sendTelemetryEndEvent() {
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildEndEvent(TelemetryConstant.TEXTBOOK, TelemetryConstant.MODE_PLAY,
+                null, mContentData.getIdentifier(), mContentData.getContentType(), mContentData.getPkgVersion()));
     }
 
-    public void showDownloadedLessons(String mLocalPath, boolean mIsFromDownloadsScreen) {
-        int count = 0;
+    public void showDownloadedLessons() {
+        mTextbookView.showDownloadedTextbookView();
+        List<TextbookSection> downloadedTextbookSectionList = new ArrayList<>();
+
         if (mTextbookSectionsList != null && mTextbookSectionsList.size() > 0) {
             for (TextbookSection textbookSection : mTextbookSectionsList) {
+                TextbookSection downloadedSection = new TextbookSection();
                 List<Content> eachSectionLessons = textbookSection.getSectionContents();
+
+                List<Content> mDownloadedContents = new ArrayList<>();
                 if (eachSectionLessons != null && eachSectionLessons.size() > 0) {
                     for (Content lesson : eachSectionLessons) {
                         if (lesson.isAvailableLocally()) {
-                            count++;
+                            mDownloadedContents.add(lesson);
                         }
                     }
                 }
-            }
+                if (!mDownloadedContents.isEmpty() && mDownloadedContents.size() > 0) {
+                    downloadedSection.setSectionContents(mDownloadedContents);
+                    if (downloadedSection != null) {
+                        downloadedSection.setSectionName(textbookSection.getSectionName());
+                        downloadedTextbookSectionList.add(downloadedSection);
+                    }
+                } else {
 
-            if (count > 0) {
-                DownloadedTextbooksFragment downloadedTextbooksFragment =
-                        DownloadedTextbooksFragment.newInstance(mContent,
-                                mLocalPath, mIsFromDownloadsScreen);
-                ((TextbookActivity) mContext).setFragment(downloadedTextbooksFragment,
-                        true, R.id.fragment_container, true);
-            } else {
-                Util.showCustomToast(mContext.getString(R.string.error_textbook_no_downloaded_lessons));
+                }
             }
+            mTextbookView.refreshAdapter(downloadedTextbookSectionList);
         } else {
-            Util.showCustomToast(mContext.getString(R.string.error_textbook_no_downloaded_lessons));
+
         }
     }
 
@@ -525,6 +526,40 @@ public class TextbookPresenter implements TextbookContract.Presenter {
     @Override
     public void handleProgressClick(Content content) {
         mTextbookView.showProgressReportActivity(content);
+    }
+
+    @Override
+    public void handleDownloadAllClick() {
+        if (NetworkUtil.isNetworkAvailable(mContext)) {
+            mTextbookView.hideDownloadAllView();
+            mTextbookView.showDownloadingView();
+
+            List<Content> toBeDownloadedContentList = new ArrayList<>();
+            List<TextbookSection> toBeDownloadedTextbookSectionList = new ArrayList<>();
+            if (mTextbookSectionsList != null && mTextbookSectionsList.size() > 0) {
+                for (TextbookSection textbookSection : mTextbookSectionsList) {
+                    List<Content> eachSectionLessons = textbookSection.getSectionContents();
+                    boolean hasDownloadedContent = false;
+                    if (eachSectionLessons != null && eachSectionLessons.size() > 0) {
+                        for (Content lesson : eachSectionLessons) {
+                            if (!lesson.isAvailableLocally()) {
+                                hasDownloadedContent = true;
+                                toBeDownloadedContentList.add(lesson);
+                            }
+                        }
+                    }
+                    if (hasDownloadedContent) {
+                        toBeDownloadedTextbookSectionList.add(textbookSection);
+                    }
+                }
+                if (toBeDownloadedContentList != null && toBeDownloadedContentList.size() > 0) {
+                    downloadAll(toBeDownloadedContentList);
+                }
+            }
+        } else {
+            mTextbookView.showDownloadAllView();
+            mTextbookView.hideDownloadingView();
+        }
     }
 
 
@@ -582,7 +617,18 @@ public class TextbookPresenter implements TextbookContract.Presenter {
     @Override
     public void setLearnerState(LinearLayoutManager linearLayoutManager) {
         if (linearLayoutManager != null && mTextbookSectionsList != null && mTextbookSectionsList.size() > 0) {
-            String lastVisibleSectionIdentifier = mTextbookSectionsList.get(linearLayoutManager.findLastVisibleItemPosition()).getCurrentSectionContentDetails().getIdentifier();
+            if (linearLayoutManager.findLastVisibleItemPosition() < 0 && mTextbookSectionsList.size() < linearLayoutManager.findLastVisibleItemPosition()) {
+                return;
+            }
+
+            Content content = mTextbookSectionsList.get(linearLayoutManager.findLastVisibleItemPosition()).
+                    getCurrentSectionContentDetails();
+
+            if (content == null) {
+                return;
+            }
+
+            String lastVisibleSectionIdentifier = content.getIdentifier();
 
             LogUtil.e(TAG, "Textbook Identifier - " + mContentData.getIdentifier() + " Last Visible Section Identifier - " + lastVisibleSectionIdentifier);
 
@@ -697,13 +743,20 @@ public class TextbookPresenter implements TextbookContract.Presenter {
 
     @Override
     public void manageImportSuccess(String identifier) {
-        if (!StringUtil.isNullOrEmpty(identifier)) {
-            updateTextbookSectionList(mTextbookSectionsList, identifier, true);
-            mTextbookView.refreshAdapter(mTextbookSectionsList);
 
-            //show downloaded lessons button, because for the first time, it will be hidden
-            mTextbookView.showDownloadedLessonText();
-            mTextbookView.showTickImage();
+        if (mIdentifierList != null && mIdentifierList.contains(identifier)) {
+            List<String> identifierList = new ArrayList<>();
+            identifierList.add(identifier);
+            if (!StringUtil.isNullOrEmpty(identifier)) {
+                updateTextbookSectionList(mTextbookSectionsList, identifier, true);
+                ArrayList<TextbookSection> textbookSections = new ArrayList<>();
+                textbookSections.addAll(mTextbookSectionsList);
+                mTextbookView.refreshAdapter(textbookSections);
+
+                //show downloaded lessons button, because for the first time, it will be hidden
+//                mTextbookView.showDownloadedLessonText();
+//                handleDownloadAllVisibilityByContentSize(mTextbookSectionsList);
+            }
         }
     }
 
@@ -800,39 +853,62 @@ public class TextbookPresenter implements TextbookContract.Presenter {
 
         if (numberOfNotDownloadedContents > 0) {
             downloadChapterButton.setVisibility(View.VISIBLE);
-            progressBarChapterDownload.setVisibility(View.INVISIBLE);
+            progressBarChapterDownload.setVisibility(View.GONE);
         } else {
-            downloadChapterButton.setVisibility(View.INVISIBLE);
-            progressBarChapterDownload.setVisibility(View.INVISIBLE);
+//            downloadChapterButton.setVisibility(View.INVISIBLE);
+            progressBarChapterDownload.setVisibility(View.GONE);
         }
     }
 
     /**
      * Calculate the size of remaining contents to be downloaded
-     *
-     * @param gameList
-     * @param sectionName
-     * @param chapterDownloadButton
-     * @param progressBarChapterDownload
      */
-    public void calculateSize(List<Content> gameList, String sectionName, ImageButton chapterDownloadButton, ProgressBar progressBarChapterDownload) {
-        long availableSizeLeft = 0;
-        int numberOfNotDownloadedContents = 0;
-        List<Content> contentsToBeDownloaded = new ArrayList<>();
-        for (Content content : gameList) {
-            if (!content.isAvailableLocally()) {
-                ContentData contentData = content.getContentData();
-                String contentSize = ContentUtil.getContentSize(contentData);
-                if (contentData != null && !StringUtil.isNullOrEmpty(contentSize)) {
-                    long size = new BigDecimal(contentSize).longValue();
-                    availableSizeLeft += size;
+    public void calculateSize(List<TextbookSection> textbookSectionList) {
+        if (textbookSectionList != null && textbookSectionList.size() > 0) {
+            for (TextbookSection textbookSection : textbookSectionList) {
+                List<Content> eachSectionLessons = textbookSection.getSectionContents();
+                if (eachSectionLessons != null && eachSectionLessons.size() > 0) {
+
+                    for (Content lesson : eachSectionLessons) {
+                        if (!lesson.isAvailableLocally()) {
+                            String identifier = lesson.getIdentifier();
+                            mIdentifierList.add(identifier);
+                            checkIfDownloadInProgress(lesson.getIdentifier());
+
+                            ContentData contentData = lesson.getContentData();
+                            String contentSize = ContentUtil.getContentSize(contentData);
+                            if (contentData != null && !StringUtil.isNullOrEmpty(contentSize)) {
+                                long size = new BigDecimal(contentSize).longValue();
+                                mAvailableSizeLeft += size;
+                            }
+                        }
+                    }
                 }
-                contentsToBeDownloaded.add(content);
-                numberOfNotDownloadedContents++;
             }
+
+            if (mAvailableSizeLeft > 0) {
+                if (!mIsDownloading) {
+                    mTextbookView.showDownloadAllView();
+                    mTextbookView.hideDownloadingView();
+                    mTextbookView.setTextbookSize(String.valueOf(Util.humanReadableByteCount(mAvailableSizeLeft, true)));
+                } else {
+                    mTextbookView.hideDownloadAllView();
+                    mTextbookView.showDownloadingView();
+                }
+            } else {
+                mTextbookView.hideDownloadAllView();
+                mTextbookView.hideDownloadingView();
+            }
+            mTextbookView.setTextbookSize(String.valueOf(Util.humanReadableByteCount(mAvailableSizeLeft, true)));
         }
-        if (numberOfNotDownloadedContents > 0) {
-            mTextbookView.showDownloadDialog(contentsToBeDownloaded, numberOfNotDownloadedContents, sectionName, String.valueOf(Util.humanReadableByteCount(availableSizeLeft, true)), chapterDownloadButton, progressBarChapterDownload);
+    }
+
+    private void checkIfDownloadInProgress(String identifier) {
+        if (!mIsDownloading) {
+            ContentImportResponse response = mSyncContentService.getImportStatus(identifier).getResult();
+            if (response.getStatus().getValue() == ContentImportStatus.DOWNLOAD_STARTED.getValue() || response.getStatus().getValue() == ContentImportStatus.ENQUEUED_FOR_DOWNLOAD.getValue()) {
+                mIsDownloading = true;
+            }
         }
     }
 
@@ -898,11 +974,13 @@ public class TextbookPresenter implements TextbookContract.Presenter {
 
     @Override
     public void generateHomeInteractEvent(String identifier, int localCount, int totalCount, int position) {
-        Map<String, Object> eks = new HashMap<>();
-        eks.put(TelemetryConstant.CONTENT_LOCAL_COUNT, "" + localCount);
-        eks.put(TelemetryConstant.CONTENT_TOTAL_COUNT, "" + totalCount);
-        eks.put(TelemetryConstant.POSITION, "" + position);
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.TEXTBOOK_HOME, EntityType.CONTENT_ID, identifier, eks));
+        Map<String, Object> params = new HashMap<>();
+        params.put(TelemetryConstant.CONTENT_LOCAL_COUNT, "" + localCount);
+        params.put(TelemetryConstant.CONTENT_TOTAL_COUNT, "" + totalCount);
+        params.put(TelemetryConstant.POSITION, "" + position);
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.TEXTBOOK_HOME, EntityType.CONTENT_ID, identifier, eks));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.TEXTBOOK_HOME, ImpressionType.VIEW, EntityType.CONTENT_ID, identifier, ObjectType.CONTENT, mContentData.getPkgVersion()));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME, TelemetryStageId.TEXTBOOK_HOME, ImpressionType.VIEW, TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, params));
     }
 
     @Override

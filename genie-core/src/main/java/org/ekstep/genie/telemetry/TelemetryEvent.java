@@ -7,15 +7,23 @@ package org.ekstep.genie.telemetry;
  */
 public interface TelemetryEvent {
 
-    String GE_GENIE_START = "GE_START";
-    String GE_GENIE_UPDATE = "GE_UPDATE";
-    String GE_GENIE_END = "GE_END";
+    String START_EVENT = "START";
+    String LOG_EVENT = "LOG";
+    String END_EVENT = "END";
+    String GE_LAUNCH_GAME = "GE_LAUNCH_GAME";
 
 
-    String GE_GENIE_RESUME = "GE_RESUME";
-    String GE_INTERACT = "GE_INTERACT";
-    String GE_INTERRUPT = "GE_INTERRUPT";
-    String GE_FEEDBACK = "GE_FEEDBACK";
-    String GE_TRANSFER = "GE_TRANSFER";
+//    String GE_GENIE_RESUME = "GE_RESUME";
+    String INTERACT_EVENT = "INTERACT";
+    String INTERRUPT_EVENT = "INTERRUPT";
+    String FEEDBACK_EVENT = "FEEDBACK";
+    String SHARE = "SHARE";
+
+
+    String IMPRESSION_EVENT = "IMPRESSION";
+    String RESPONSE_EVENT = "RESPONSE";
+    String SHARE_EVENT = "SHARE";
+    String ERROR_EVENT = "ERROR";
+    String EXDATA_EVENT = "EXDATA";
 
 }

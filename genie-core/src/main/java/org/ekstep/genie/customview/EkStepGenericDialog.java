@@ -52,7 +52,7 @@ public class EkStepGenericDialog extends Dialog implements View.OnClickListener,
 
     @UiThread
     private void setLayout(final EkStepGenericDialog dialog) {
-        final EkStepGenericDialog.Builder builder = dialog.builder;
+        final Builder builder = dialog.builder;
         setContentView(R.layout.dialog_generic);
         mLayout_Parent = (LinearLayout) findViewById(R.id.layout_parent);
         mLayout_CustomView = (LinearLayout) findViewById(R.id.layout_custom_view);
@@ -126,8 +126,11 @@ public class EkStepGenericDialog extends Dialog implements View.OnClickListener,
 
         dialog.setOnDismissListener(this);
 
-
-        dialog.setCancelable(true);
+        if (builder.isCancellable) {
+            dialog.setCancelable(true);
+        } else {
+            dialog.setCancelable(false);
+        }
 
 
     }
@@ -206,6 +209,7 @@ public class EkStepGenericDialog extends Dialog implements View.OnClickListener,
         protected DismissCallback onDismissCallback = null;
         protected int progressLimit;
         protected boolean showProgressBar;
+        protected boolean isCancellable = true;
 
         public Builder(@NonNull Context context) {
             this.context = context;
@@ -217,7 +221,12 @@ public class EkStepGenericDialog extends Dialog implements View.OnClickListener,
 
         public Builder setCustomView(@LayoutRes int layoutRes) {
             LayoutInflater mInflator = LayoutInflater.from(this.context);
+            getLayoutView(mInflator.inflate(layoutRes, null));
             return setCustomView(mInflator.inflate(layoutRes, null));
+        }
+
+        public View getLayoutView(View layoutRes) {
+            return layoutRes;
         }
 
         public Builder setCustomView(@NonNull View view) {
@@ -282,6 +291,11 @@ public class EkStepGenericDialog extends Dialog implements View.OnClickListener,
 
         public Builder setProgressLimit(int progressLimit) {
             this.progressLimit = progressLimit;
+            return this;
+        }
+
+        public Builder setCancellable(boolean isCancellable) {
+            this.isCancellable = isCancellable;
             return this;
         }
 

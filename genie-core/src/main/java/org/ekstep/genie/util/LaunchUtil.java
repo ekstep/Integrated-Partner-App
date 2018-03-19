@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.notification.enums.NotificationActionId;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
@@ -202,12 +203,17 @@ public class LaunchUtil {
         }
         if (extras.containsKey(Constant.BUNDLE_FROM_NOTIFICATION_LIST)) {
 
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.NOTIFICATION_LIST, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
+//            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.NOTIFICATION_LIST, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.NOTIFICATION_LIST, String.valueOf(msgId), null, map));
         } else {
             if (notification.getRelativetime() > 0) {
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.LOCAL_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.LOCAL_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.LOCAL_NOTIFICATION, String.valueOf(msgId), null, map));
             } else {
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId)));
+
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId)));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.SERVER_NOTIFICATION, String.valueOf(msgId), null));
             }
 
         }
@@ -243,9 +249,14 @@ public class LaunchUtil {
                     ActionData actionData = notification.getActiondata();
 
                     intent = new Intent(activity, SearchActivity.class);
-
+                    intent.putExtra(Constant.BundleKey.BUNDLE_KEY_IS_FROM_DEEPLINK, true);
                     if (!TextUtils.isEmpty(actionData.getSearchquery())) {
-                        intent.putExtra(Constant.EXTRA_DEEP_LINK_SEARCH_QUERY, actionData.getSearchquery());
+                        if (actionData.getSearchquery().equalsIgnoreCase("all")) {
+                            intent.putExtra(Constant.BundleKey.BUNDLE_KEY_SEARCH_QUERY, "");
+                        } else {
+                            intent.putExtra(Constant.BundleKey.BUNDLE_KEY_SEARCH_QUERY, actionData.getSearchquery());
+                        }
+
                     }
 
                     if (!TextUtils.isEmpty(actionData.getSearchsortquery())) {

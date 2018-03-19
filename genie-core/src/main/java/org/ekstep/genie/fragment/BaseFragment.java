@@ -100,6 +100,10 @@ public abstract class BaseFragment extends Fragment {
         DeviceUtility.displayFullScreenDialog(dialog, getActivity());
     }
 
+    protected boolean isActive() {
+        return (mActivity != null && !mActivity.isFinishing());
+    }
+
     public BasePresenter getPresenter() {
         return presenter;
     }

@@ -20,7 +20,7 @@ public class ViewMoreTextViewUtil {
 
     static Context mContext;
 
-    public static void makeTextViewResizable(Context context,final TextView tv, final int maxLine, final String expandText, final boolean viewMore,final int color) {
+    public static void makeTextViewResizable(Context context, final TextView tv, final int maxLine, final String expandText, final boolean viewMore, final int color) {
 
         mContext = context;
 
@@ -43,15 +43,20 @@ public class ViewMoreTextViewUtil {
                     tv.setMovementMethod(LinkMovementMethod.getInstance());
                     tv.setText(
                             addClickablePartTextViewResizable(Html.fromHtml(tv.getText().toString()), tv, maxLine, expandText,
-                                    viewMore,color), TextView.BufferType.SPANNABLE);
+                                    viewMore, color), TextView.BufferType.SPANNABLE);
                 } else if (maxLine > 0 && tv.getLineCount() >= maxLine) {
                     int lineEndIndex = tv.getLayout().getLineEnd(maxLine - 1);
-                    String text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 5) + " " + expandText;
-                    tv.setText(text);
-                    tv.setMovementMethod(LinkMovementMethod.getInstance());
-                    tv.setText(
-                            addClickablePartTextViewResizable(Html.fromHtml(tv.getText().toString()), tv, maxLine, expandText,
-                                    viewMore,color), TextView.BufferType.SPANNABLE);
+                    if (lineEndIndex > 10) {
+                        String text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 5) + " " + expandText;
+                        tv.setText(text);
+                        tv.setMovementMethod(LinkMovementMethod.getInstance());
+                        tv.setText(
+                                addClickablePartTextViewResizable(Html.fromHtml(tv.getText().toString()), tv, maxLine, expandText,
+                                        viewMore, color), TextView.BufferType.SPANNABLE);
+                    } else {
+                        tv.setText(tv.getText());
+                    }
+
                 } else {
                     if (tv.getLayout() != null) {
                         int lineEndIndex = tv.getLayout().getLineEnd(tv.getLayout().getLineCount() - 1);
@@ -77,7 +82,7 @@ public class ViewMoreTextViewUtil {
         if (str.contains(spanableText)) {
 
 
-            ssb.setSpan(new UnderLineSpannable(true,color){
+            ssb.setSpan(new UnderLineSpannable(true, color) {
                 @Override
                 public void onClick(View widget) {
                     if (viewMore) {
@@ -100,14 +105,15 @@ public class ViewMoreTextViewUtil {
         return ssb;
 
     }
+
     public static class UnderLineSpannable extends ClickableSpan {
 
         private boolean isUnderline = true;
         private int mColor;
 
-        public UnderLineSpannable(boolean isUnderline,int color) {
+        public UnderLineSpannable(boolean isUnderline, int color) {
             this.isUnderline = isUnderline;
-            this.mColor=color;
+            this.mColor = color;
         }
 
         @Override

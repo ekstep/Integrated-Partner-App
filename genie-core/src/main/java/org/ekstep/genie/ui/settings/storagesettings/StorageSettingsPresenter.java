@@ -1,7 +1,9 @@
 package org.ekstep.genie.ui.settings.storagesettings;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Log;
 
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
@@ -13,13 +15,18 @@ import org.ekstep.genie.util.preference.PreferenceKey;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.commons.IResponseHandler;
 import org.ekstep.genieservices.commons.bean.ContentMoveRequest;
+import org.ekstep.genieservices.commons.bean.ContentSwitchRequest;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.MoveContentProgress;
-import org.ekstep.genieservices.commons.utils.StringUtil;
+import org.ekstep.genieservices.commons.bean.MoveContentResponse;
+import org.ekstep.genieservices.commons.bean.SwitchContentResponse;
+import org.ekstep.genieservices.commons.bean.enums.ExistingContentAction;
 import org.ekstep.genieservices.utils.DeviceSpec;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,42 +50,14 @@ public class StorageSettingsPresenter implements StorageSettingsContract.Present
         mStorageSettingView = null;
     }
 
-    @Override
-    public void calculateSdcardStorageValue(Context context) {
-        if (FileHandler.isSecondaryStorageAvailable()) {
-
-            long sdcardSpace = FileHandler.getAvailableExternalMemorySize();
-            mStorageSettingView.displaySdcardAvailableSpace(Util.humanReadableByteCount(sdcardSpace, true));
-
-            long usedSpace = FileHandler.getTotalExternalMemorySize() - FileHandler.getAvailableExternalMemorySize();
-            mStorageSettingView.displaySdcardUsedSpace(Util.humanReadableByteCount(usedSpace, true));
-
-            File file = new File(FileHandler.getExternalSdcardPath(mContext));
-            mStorageSettingView.displaySdcardGenieSpace(Util.humanReadableByteCount(FileHandler.folderSize(file), true));
-        } else {
-            mStorageSettingView.displaySdcardNotAvailable();
-        }
-    }
-
     public String getExternalGenieUsedSpace() {
-        if (StringUtil.isNullOrEmpty(FileHandler.getExternalSdcardPath(mContext))) {
-            Util.showCustomToast(R.string.msg_no_sdcard_found);
-        } else {
-            File file = new File(FileHandler.getExternalSdcardPath(mContext));
-            return Util.humanReadableByteCount(FileHandler.folderSize(file), true);
-        }
-        return null;
+        File file = new File(FileHandler.getExternalSdcardPath(mContext));
+        return Util.humanReadableByteCount(FileHandler.folderSize(file), true);
     }
 
     @Override
-    public void calculateMobileStorageValue(Context context) {
-        long availableSpace = DeviceSpec.getAvailableExternalMemorySize();
-        mStorageSettingView.displayMobileAvailableSpace(Util.humanReadableByteCount(availableSpace, true));
-
-        long usedSpace = DeviceSpec.getTotalInternalMemorySize() - DeviceSpec.getAvailableExternalMemorySize();
-        mStorageSettingView.displayMobileUsedSpace(Util.humanReadableByteCount(usedSpace, true));
-
-        mStorageSettingView.displayMobileGenieSpace(getInternalGenieUsedSpace());
+    public void calculateMobileNSdcardStorage(Context context) {
+        new CalculateMobileSpaceAsync().execute();
     }
 
     public String getInternalGenieUsedSpace() {
@@ -87,53 +66,121 @@ public class StorageSettingsPresenter implements StorageSettingsContract.Present
     }
 
     @Override
-    public void setMobileDeviceAsDefault() {
-        Map<String, String> map = new HashMap();
-        map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_MOBILE);
-        map.put(Constant.DEFAULT_STORAGE_PATH, FileHandler.getExternalFilesDir(mContext).toString());
-        PreferenceUtil.setDefaultStorageOption(map);
-
+    public void setMobileDeviceAsDefault(boolean showReplace) {
         String filepath = FileHandler.getExternalFilesDir(mContext).getPath();
 
-        ContentMoveRequest.Builder contentMoveRequest = new ContentMoveRequest.Builder();
-        contentMoveRequest.toFolder(filepath);
-        CoreApplication.getGenieAsyncService().getContentService().moveContent(contentMoveRequest.build(), new IResponseHandler<Void>() {
+        mStorageSettingView.showMoveReplaceAndDontMoveDialog(showReplace, filepath, false);
+    }
+
+    @Override
+    public void setExternalDeviceAsDefault(boolean showReplace) {
+        String sdcardPath = FileHandler.getExternalSdcardPath(mContext);
+
+        mStorageSettingView.showMoveReplaceAndDontMoveDialog(showReplace, sdcardPath, true);
+    }
+
+    @Override
+    public void switchSource(String path, final boolean sdCardAsDefault) {
+        ContentSwitchRequest.Builder contentSwitchRequest = new ContentSwitchRequest.Builder();
+        contentSwitchRequest.toFolder(path);
+        CoreApplication.getGenieAsyncService().getContentService().switchContent(contentSwitchRequest.build(), new IResponseHandler<List<SwitchContentResponse>>() {
             @Override
-            public void onSuccess(GenieResponse<Void> genieResponse) {
-                PreferenceUtil.getPreferenceWrapper().putBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
-                calculateSdcardStorageValue(mContext);
-                calculateMobileStorageValue(mContext);
+            public void onSuccess(GenieResponse<List<SwitchContentResponse>> genieResponse) {
+                Log.e("setExternalDevice", "onSuccess - " + genieResponse.getMessage());
+                if (sdCardAsDefault) {
+                    setSdCardAsDefault();
+                    mStorageSettingView.showExternalDeviceAsSelected();
+                } else {
+                    setDeviceAsDefault();
+                    mStorageSettingView.showMobileDeviceAsSelected();
+                }
+
+                EventBus.getDefault().postSticky(Constant.EventKey.EVENT_KEY_SWITCH_SOURCE);
             }
 
             @Override
-            public void onError(GenieResponse<Void> genieResponse) {
+            public void onError(GenieResponse<List<SwitchContentResponse>> genieResponse) {
             }
         });
     }
 
     @Override
-    public void setExternalDeviceAsDefault() {
+    public void mergeContents(ExistingContentAction existingContentAction, final String path, final boolean sdCardAsDefault) {
+        ContentMoveRequest.Builder contentMoveRequest = new ContentMoveRequest.Builder();
+        contentMoveRequest.toFolder(path);
+        contentMoveRequest.actionForDuplicateContentFound(existingContentAction);
+        CoreApplication.getGenieAsyncService().getContentService().moveContent(contentMoveRequest.build(), new IResponseHandler<List<MoveContentResponse>>() {
+            @Override
+            public void onSuccess(GenieResponse<List<MoveContentResponse>> genieResponse) {
+                if (sdCardAsDefault) {
+                    setSdCardAsDefault();
+                    mStorageSettingView.showExternalDeviceAsSelected();
+                } else {
+                    setDeviceAsDefault();
+                    mStorageSettingView.showMobileDeviceAsSelected();
+                }
+
+                EventBus.getDefault().postSticky(Constant.EventKey.EVENT_KEY_SWITCH_SOURCE);
+            }
+
+            @Override
+            public void onError(GenieResponse<List<MoveContentResponse>> genieResponse) {
+                Log.e("StorageSettingPresenter", "onError: " + genieResponse);
+                mStorageSettingView.showMoveReplaceAndDontMoveDialog(true, path, sdCardAsDefault);
+            }
+        });
+    }
+
+    @Override
+    public void deleteAndMoveContents(ExistingContentAction existingContentAction, final String path, final boolean sdCardAsDefault) {
+        ContentMoveRequest.Builder contentMoveRequest = new ContentMoveRequest.Builder();
+        contentMoveRequest.toFolder(path);
+        contentMoveRequest.actionForDuplicateContentFound(existingContentAction);
+        contentMoveRequest.deleteDestination();
+        CoreApplication.getGenieAsyncService().getContentService().moveContent(contentMoveRequest.build(), new IResponseHandler<List<MoveContentResponse>>() {
+            @Override
+            public void onSuccess(GenieResponse<List<MoveContentResponse>> genieResponse) {
+                if (sdCardAsDefault) {
+                    setSdCardAsDefault();
+                    mStorageSettingView.showExternalDeviceAsSelected();
+                } else {
+                    setDeviceAsDefault();
+                    mStorageSettingView.showExternalDeviceAsSelected();
+                }
+
+                EventBus.getDefault().postSticky(Constant.EventKey.EVENT_KEY_SWITCH_SOURCE);
+            }
+
+            @Override
+            public void onError(GenieResponse<List<MoveContentResponse>> genieResponse) {
+                Log.e("StorageSettingPresenter", "onError: " + genieResponse);
+                mStorageSettingView.showMoveReplaceAndDontMoveDialog(true, path, sdCardAsDefault);
+            }
+        });
+    }
+
+    private void setDeviceAsDefault() {
+        Map<String, String> map = new HashMap();
+        map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_MOBILE);
+        map.put(Constant.DEFAULT_STORAGE_PATH, FileHandler.getExternalFilesDir(mContext).toString());
+        PreferenceUtil.setDefaultStorageOption(map);
+
+        PreferenceUtil.getPreferenceWrapper().putBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
+//        calculateSdcardStorageValue(mContext);
+//        calculateMobileStorageValue(mContext);
+        calculateMobileNSdcardStorage(mContext);
+    }
+
+    private void setSdCardAsDefault() {
         Map<String, String> map = new HashMap();
         map.put(Constant.DEFAULT_STORAGE, Constant.DEFAULT_STORAGE_EXTERNAL);
         map.put(Constant.DEFAULT_STORAGE_PATH, Environment.getExternalStorageDirectory().toString());
         PreferenceUtil.setDefaultStorageOption(map);
 
-        String sdcardPath = FileHandler.getExternalSdcardPath(mContext);
-
-        ContentMoveRequest.Builder contentMoveRequest = new ContentMoveRequest.Builder();
-        contentMoveRequest.toFolder(sdcardPath);
-        CoreApplication.getGenieAsyncService().getContentService().moveContent(contentMoveRequest.build(), new IResponseHandler<Void>() {
-            @Override
-            public void onSuccess(GenieResponse<Void> genieResponse) {
-                PreferenceUtil.getPreferenceWrapper().putBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, true);
-                calculateSdcardStorageValue(mContext);
-                calculateMobileStorageValue(mContext);
-            }
-
-            @Override
-            public void onError(GenieResponse<Void> genieResponse) {
-            }
-        });
+        PreferenceUtil.getPreferenceWrapper().putBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, true);
+//        calculateSdcardStorageValue(mContext);
+//        calculateMobileStorageValue(mContext);
+        calculateMobileNSdcardStorage(mContext);
     }
 
     @Override
@@ -163,13 +210,70 @@ public class StorageSettingsPresenter implements StorageSettingsContract.Present
         }
 
         if (moveContentProgress.getCurrentCount() == moveContentProgress.getTotalCount()) {
-            boolean isExternalStorage = PreferenceUtil.getPreferenceWrapper().getBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
-            if (isExternalStorage) {
-                mStorageSettingView.showMobileDeviceAsSelected();
-            } else {
-                mStorageSettingView.showExternalDeviceAsSelected();
-            }
+            setDefaultStorage();
             mStorageSettingView.dismissMoveContentDialog();
+        }
+    }
+
+    private void setDefaultStorage() {
+        boolean isExternalStorage = PreferenceUtil.getPreferenceWrapper().getBoolean(PreferenceKey.KEY_SET_EXTERNAL_STORAGE_DEFAULT, false);
+        if (isExternalStorage) {
+            mStorageSettingView.showMobileDeviceAsSelected();
+        } else {
+            mStorageSettingView.showExternalDeviceAsSelected();
+        }
+    }
+
+    private class CalculateMobileSpaceAsync extends AsyncTask {
+        private long availableMobileSpace;
+        private long usedMobileSpace;
+        private String genieMobileSpace;
+        private long availableSdcardSpace;
+        private long usedSdcardSpace;
+        private String genieSdcardSpace;
+
+        @Override
+        protected void onPreExecute() {
+            mStorageSettingView.showLoaders();
+        }
+
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            // mobile storage
+            availableMobileSpace = DeviceSpec.getAvailableInternalMemorySize();
+            usedMobileSpace = DeviceSpec.getTotalInternalMemorySize() - DeviceSpec.getAvailableInternalMemorySize();
+            genieMobileSpace = Util.humanReadableByteCount(FileHandler.
+                    folderSize(new File(String.valueOf(mContext.getExternalFilesDir(null)))), true);
+
+            //sdcard storage
+            if (FileHandler.isSecondaryStorageAvailable()) {
+                availableSdcardSpace = FileHandler.getAvailableExternalMemorySize();
+                usedSdcardSpace = FileHandler.getTotalExternalMemorySize() - FileHandler.getAvailableExternalMemorySize();
+                if (FileHandler.getExternalSdcardPath(mContext) != null) {
+                    genieSdcardSpace = Util.humanReadableByteCount(FileHandler.folderSize(new File(FileHandler.getExternalSdcardPath(mContext))), true);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            mStorageSettingView.hideLoaders();
+
+            // mobile
+            mStorageSettingView.displayMobileAvailableSpace(Util.humanReadableByteCount(availableMobileSpace, true));
+            mStorageSettingView.displayMobileUsedSpace(Util.humanReadableByteCount(usedMobileSpace, true));
+            mStorageSettingView.displayMobileGenieSpace(genieMobileSpace);
+
+            // sd card
+            if (FileHandler.isSecondaryStorageAvailable()) {
+                mStorageSettingView.displaySdcardAvailableSpace(Util.humanReadableByteCount(availableSdcardSpace, true));
+                mStorageSettingView.displaySdcardUsedSpace(Util.humanReadableByteCount(usedSdcardSpace, true));
+                mStorageSettingView.displaySdcardGenieSpace(genieSdcardSpace);
+            } else {
+                mStorageSettingView.displaySdcardNotAvailable();
+            }
         }
     }
 }

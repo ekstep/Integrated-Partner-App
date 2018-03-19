@@ -9,12 +9,15 @@ import android.text.TextUtils;
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.base.BaseView;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
 import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.EntityType;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
+import org.ekstep.genie.telemetry.enums.ObjectType;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genie.util.preference.PreferenceUtil;
@@ -102,9 +105,10 @@ public class ProgressReportsPresenter implements ProgressReportsContract.Present
     @Override
     public void deleteProfile(final Profile profile) {
         if (profile.isGroupUser()) {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, TelemetryAction.DELETE_GROUP_INITIATED, profile.getUid()));
+
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.DELETE_GROUP_INITIATED, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, profile.getUid(), ObjectType.USER));
         } else {
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, TelemetryAction.DELETE_CHILD_INITIATED, profile.getUid()));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.DELETE_CHILD_INITIATED, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, profile.getUid(), ObjectType.USER));
         }
 
         UserService userService = CoreApplication.getGenieAsyncService().getUserService();
@@ -155,7 +159,9 @@ public class ProgressReportsPresenter implements ProgressReportsContract.Present
                 Map<String, Object> valuesMap = new HashMap<>();
                 List<LearnerAssessmentSummary> assessmentSummaryList = genieResponse.getResult();
                 valuesMap.put(TelemetryConstant.CHILDREN_WITH_RESULTS, assessmentSummaryList != null ? genieResponse.getResult().size() : 0);
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, EntityType.CONTENT_ID, contentId, valuesMap));
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, EntityType.CONTENT_ID, contentId, valuesMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, ImpressionType.VIEW, EntityType.CONTENT_ID, contentId, ObjectType.CONTENT));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, ImpressionType.VIEW, TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, valuesMap));
                 renderProgressReport(assessmentSummaryList, true);
             }
 
@@ -175,7 +181,9 @@ public class ProgressReportsPresenter implements ProgressReportsContract.Present
                 Map<String, Object> valuesMap = new HashMap<>();
                 List<LearnerAssessmentSummary> assessmentSummaryList = genieResponse.getResult();
                 valuesMap.put(TelemetryConstant.CONTENTS_WITH_RESULTS, assessmentSummaryList != null ? genieResponse.getResult().size() : 0);
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, EntityType.CHILD_ID, uid, valuesMap));
+//                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.SHOW, TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, EntityType.CHILD_ID, uid, valuesMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, ImpressionType.VIEW, EntityType.CHILD_ID, uid, ObjectType.USER));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildLogEvent(EnvironmentId.HOME,TelemetryStageId.SUMMARIZER_CHILD_SUMMARY, ImpressionType.VIEW, TelemetryStageId.SUMMARIZER_CONTENT_SUMMARY, valuesMap));
                 renderProgressReport(genieResponse.getResult(), false);
             }
 

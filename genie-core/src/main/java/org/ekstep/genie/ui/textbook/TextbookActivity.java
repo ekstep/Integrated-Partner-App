@@ -6,8 +6,10 @@ import org.ekstep.genie.R;
 import org.ekstep.genie.activity.BaseActivity;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.IPresenterFactory;
-import org.ekstep.genie.base.PresenterManager;
 import org.ekstep.genie.model.TextbookSection;
+import org.ekstep.genie.util.Constant;
+import org.ekstep.genieservices.commons.bean.Content;
+import org.ekstep.genieservices.commons.bean.ContentData;
 
 import java.util.List;
 
@@ -17,9 +19,8 @@ import java.util.List;
  * @author shriharsh
  */
 public class TextbookActivity extends BaseActivity {
-
+    private TextbookFragment textbooksFragment;
     private List<TextbookSection> textbookSectionList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class TextbookActivity extends BaseActivity {
 
         setContentView(R.layout.activity_collections);
 
-        TextbookFragment textbooksFragment = new TextbookFragment();
+        textbooksFragment = new TextbookFragment();
         textbooksFragment.setArguments(getIntent().getExtras());
         setFragment(textbooksFragment, false);
     }
@@ -65,5 +66,11 @@ public class TextbookActivity extends BaseActivity {
         this.textbookSectionList = textbookSectionList;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        if (textbooksFragment != null && textbooksFragment.isVisible()) {
+           textbooksFragment.handleTelemetryEndEvent();
+        }
+        super.onBackPressed();
+    }
 }

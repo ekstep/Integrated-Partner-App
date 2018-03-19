@@ -15,6 +15,11 @@ import org.ekstep.genie.base.BasePresenter;
 import org.ekstep.genie.base.BaseView;
 import org.ekstep.genie.base.IPresenterFactory;
 import org.ekstep.genie.fragment.BaseFragment;
+import org.ekstep.genie.telemetry.EnvironmentId;
+import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryHandler;
+import org.ekstep.genie.telemetry.TelemetryStageId;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.ui.settings.about.AboutFragment;
 import org.ekstep.genie.ui.settings.advancedsettings.AdvancedSettingsFragment;
 import org.ekstep.genie.ui.settings.datasettings.DataSettingsFragment;
@@ -61,6 +66,8 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
         findViewById(R.id.btn_settings_share).setOnClickListener(this);
 
         findViewById(R.id.btn_back).setOnClickListener(this);
+
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.SETTINGS, TelemetryStageId.SETTINGS_HOME, ImpressionType.VIEW));
     }
 
     private void extractBundle(Intent intent) {

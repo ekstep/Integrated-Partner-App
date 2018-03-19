@@ -247,5 +247,7 @@ public interface HomeContract {
         void manageImportResponse(ContentImportResponse importResponse);
 
         void handleDownloadingAnimation(String identifier);
+
+        void manageSwitchSource(String switchSource);
     }
 }

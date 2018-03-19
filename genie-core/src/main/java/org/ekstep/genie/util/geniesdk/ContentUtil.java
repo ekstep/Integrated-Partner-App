@@ -241,7 +241,7 @@ public class ContentUtil {
     }
 
     public static void addOrUpdateSearchHistoryList(String queryString) {
-        if (searchHistoryList != null && !searchHistoryList.contains(queryString) && queryString.length() > 0) {
+        if (!StringUtil.isNullOrEmpty(queryString) && searchHistoryList != null && !searchHistoryList.contains(queryString) && queryString.length() > 0) {
             searchHistoryList.add(0, queryString);
 
             if (searchHistoryList.size() > 5) {

@@ -13,6 +13,7 @@ import org.ekstep.genie.base.IPresenterFactory;
  * @author shriharsh
  */
 public class CollectionsActivity extends BaseActivity {
+    private CollectionFragment collectionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class CollectionsActivity extends BaseActivity {
 
         setContentView(R.layout.activity_collections);
 
-        CollectionFragment collectionFragment = new CollectionFragment();
+        collectionFragment = new CollectionFragment();
         collectionFragment.setArguments(getIntent().getExtras());
         setFragment(collectionFragment, false);
     }
@@ -56,6 +57,9 @@ public class CollectionsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (collectionFragment != null && collectionFragment.isVisible()) {
+            collectionFragment.handleTelemetryEndEvent();
+        }
         super.onBackPressed();
     }
 

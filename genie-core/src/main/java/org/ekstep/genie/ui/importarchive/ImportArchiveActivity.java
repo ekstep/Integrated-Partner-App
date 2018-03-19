@@ -91,7 +91,7 @@ public class ImportArchiveActivity extends BaseActivity implements ImportArchive
     }
 
     @Override
-    public void onClick(android.view.View v) {
+    public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btn_back) {
             mImportArchivePresenter.handleBackClick();

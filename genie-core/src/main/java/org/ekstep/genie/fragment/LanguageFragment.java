@@ -24,11 +24,14 @@ import org.ekstep.genie.base.IPresenterFactory;
 import org.ekstep.genie.callback.IInitAndExecuteGenie;
 import org.ekstep.genie.customview.FancyCoverFlow;
 import org.ekstep.genie.notification.NotificationManagerUtil;
+import org.ekstep.genie.telemetry.EnvironmentId;
 import org.ekstep.genie.telemetry.TelemetryAction;
 import org.ekstep.genie.telemetry.TelemetryBuilder;
+import org.ekstep.genie.telemetry.TelemetryConstant;
 import org.ekstep.genie.telemetry.TelemetryHandler;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
+import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.ui.landing.LandingActivity;
 import org.ekstep.genie.util.AnimationUtils;
 import org.ekstep.genie.util.Constant;
@@ -58,6 +61,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LanguageFragment extends BaseFragment
         implements OnClickListener {
@@ -119,7 +123,8 @@ public class LanguageFragment extends BaseFragment
                 CoreApplication.getGenieAsyncService().getTagService().setTag(tag, new IResponseHandler<Void>() {
                     @Override
                     public void onSuccess(GenieResponse<Void> genieResponse) {
-                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.ADD_TAG_DEEP_LINK));
+                        //        TODO: (s)to be implemented
+//                        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SPLASH, TelemetryAction.ADD_TAG_DEEP_LINK));
                         Util.showCustomToast(R.string.msg_tag_added_sussessfully);
                         proceedToLanding();
                     }
@@ -244,16 +249,10 @@ public class LanguageFragment extends BaseFragment
         }
 
         if (PreferenceUtil.isFirstTime().equalsIgnoreCase("true")) {
-//            view.findViewById(R.id.back_btn).setVisibility(View.GONE);
             mOkBtn.setVisibility(View.INVISIBLE);
             ((TextView) view.findViewById(R.id.txt_header)).setPadding(0, DeviceUtility.dp2px(mActivity, 12), 0, 0);
         }
-
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SETTINGS_HOME, TelemetryAction.LANGUAGE_SETTINGS_INITIATE));
-
-//        view.findViewById(R.id.back_btn).setOnClickListener(this);
-
-
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildImpressionEvent(EnvironmentId.HOME, TelemetryStageId.LANGUAGE_SELECTION, ImpressionType.VIEW));
     }
 
     @Override
@@ -303,12 +302,15 @@ public class LanguageFragment extends BaseFragment
         if (PreferenceUtil.isFirstTime().equalsIgnoreCase("false")) {
             ChangeLanguageAsynTask changeLanguageAsyncTask = new ChangeLanguageAsynTask(getActivity());
             changeLanguageAsyncTask.execute(locale);
+
         } else {
             PreferenceUtil.setLanguageSelected(true);
             PreferenceUtil.setLanguage(locale);
             FontUtil.getInstance().changeLocale();
             ShowProgressDialog.showProgressDialog(getActivity(), getString(R.string.msg_setting_changing_language));
-
+            Map<String, Object> map = new HashMap<>();
+            map.put(TelemetryConstant.LANGUAGE_SELECTED, locale);
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.LANGUAGE_SETTINGS_SUCCESS, TelemetryStageId.LANGUAGE_SELECTION, map));
             mContentService.getAllLocalContent(null, new IResponseHandler<List<Content>>() {
                 @Override
                 public void onSuccess(GenieResponse<List<Content>> genieResponse) {
@@ -319,6 +321,7 @@ public class LanguageFragment extends BaseFragment
                         importContent(Constant.CONTENT2_FILE_PATH, false);
                     } else if (contentList.size() == 2) {
                         importContent(Constant.CONTENT3_FILE_PATH, true);
+
                     }
                 }
 
@@ -403,7 +406,8 @@ public class LanguageFragment extends BaseFragment
         PreferenceUtil.setOnBoardingCorelationId(Util.getOnBoardingCoRelationId());
         LogUtil.i("Corelation ID", "" + PreferenceUtil.getCoRelationId());
 
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, null, null, new HashMap<String, Object>(), PreferenceUtil.getCoRelationList()));
+//        TODO: (s)to be implemented
+//        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.OTHER, TelemetryStageId.GENIE_HOME_ONBOARDING_SCREEN, null, null, new HashMap<String, Object>(), PreferenceUtil.getCoRelationList()));
 
         Intent intent = new Intent(getActivity(), LandingActivity.class);
         startActivity(intent);
