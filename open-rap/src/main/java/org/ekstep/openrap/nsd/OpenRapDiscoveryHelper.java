@@ -144,16 +144,6 @@ public class OpenRapDiscoveryHelper {
     }
 
     private void connectToHost(final NsdServiceInfo nsdServiceInfo) {
-
-//        String ipAddress = getLocalIpAddress();
-//        JSONObject jsonData = new JSONObject();
-//
-//        try {
-//            jsonData.put("request", "_openrap._tcp");
-//            jsonData.put("ipAddress", ipAddress);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         new ConnectToOpenRAPAsyncTask(mHostAddress, mHostPort, new ConnectToOpenRAPAsyncTask.OnConnectionCompleted() {
             @Override
             public void onConnectionCompleted(boolean isConnectionDone) {

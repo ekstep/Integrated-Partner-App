@@ -33,19 +33,13 @@ public class ConnectToOpenRAPAsyncTask extends AsyncTask<JSONObject, Void, Boole
         Socket socket = null;
         DataInputStream dataInputStream = null;
         DataOutputStream dataOutputStream = null;
-//        JSONObject jsonData = jsonObjects[0];
-        boolean isConnected = false;
+        boolean isConnected;
 
         try {
 
             socket = new Socket(mHostAddress, mHostPort);
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
-
-//            dataOutputStream.writeUTF(jsonData.toString());
-
-//            String response = dataInputStream.readUTF();
-//            isConnected = response.equals("Connection Accepted");
             isConnected = true;
         } catch (IOException e) {
             e.printStackTrace();
