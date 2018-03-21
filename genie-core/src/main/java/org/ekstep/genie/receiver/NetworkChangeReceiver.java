@@ -27,12 +27,12 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null) {
-            String token = FirebaseInstanceId.getInstance().getToken();
-            LogUtil.d(TAG, "InstanceID token: " + token);
-
-            if (!TextUtils.isEmpty(token)) {
-                PreferenceUtil.setFcmToken(token);
-            }
+//            String token = FirebaseInstanceId.getInstance().getToken();
+//            LogUtil.d(TAG, "InstanceID token: " + token);
+//
+//            if (!TextUtils.isEmpty(token)) {
+//                PreferenceUtil.setFcmToken(token);
+//            }
         }
     }
 }
