@@ -61,7 +61,7 @@
 #-keep class android.support.v7.** { *; }
 #-keep class android.support.v4.** { *; }
 #-keep class android.support.design.widget.** { *; }
-#-keep class com.google.gson.** { *; }
+-keep class com.google.gson.** { *; }
 #-keep class com.squareup.okhttp.** { *; }
 #-keep class okio.** { *; }
 #-keep class org.joda.time.** { *; }
@@ -185,3 +185,5 @@
     public static *** v(...);
     public static *** i(...);
 }
+
+-keep class org.ekstep.ipa.model.** { *; }
