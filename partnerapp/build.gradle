@@ -27,14 +27,14 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
-            buildConfigField 'org.ekstep.genie.ui.splash.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
+            buildConfigField 'org.ekstep.genie.hooks.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
         }
         debug {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
-            buildConfigField 'org.ekstep.genie.ui.splash.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
+            buildConfigField 'org.ekstep.genie.hooks.IStartUp', 'STARTUP', 'new org.ekstep.ipa.ui.splash.PartnerStartUp()'
         }
 
     }
@@ -50,6 +50,7 @@ android {
             buildConfigField 'String', 'CONTENT_BASE_URL', '"https://qa.ekstep.in/api/content/v3"'
             buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://qa.ekstep.in/api/api-manager/v1"'
             buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'PRODUCER_UNIQUE_ID', '"PRODUCER_UNIQUE_ID"'
             buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
             buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
             buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
@@ -72,6 +73,7 @@ android {
             buildConfigField 'String', 'CONTENT_BASE_URL', '"https://qa.ekstep.in/api/content/v3"'
             buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://qa.ekstep.in/api/api-manager/v1"'
             buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'PRODUCER_UNIQUE_ID', '"PRODUCER_UNIQUE_ID"'
             buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
             buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
             buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
@@ -92,6 +94,7 @@ android {
             buildConfigField 'String', 'CONTENT_BASE_URL', '"https://api.ekstep.in/content/v3"'
             buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://api.ekstep.in/api-manager/v1"'
             buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'PRODUCER_UNIQUE_ID', '"PRODUCER_UNIQUE_ID"'
             buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
             buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
             buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
@@ -114,6 +117,7 @@ android {
             buildConfigField 'String', 'CONTENT_BASE_URL', '"https://api.ekstep.in/content/v3"'
             buildConfigField 'String', 'APIGATEWAY_BASE_URL', '"https://api.ekstep.in/api-manager/v1"'
             buildConfigField 'String', 'PRODUCER_ID', '"PRODUCER_ID"'
+            buildConfigField 'String', 'PRODUCER_UNIQUE_ID', '"PRODUCER_UNIQUE_ID"'
             buildConfigField 'String', 'CHANNEL_ID', '"CHANNEL_ID"'
             buildConfigField 'String', 'LOG_LEVEL', '"INFO"'
             buildConfigField 'String', 'PROFILE_CONFIG', '"org.ekstep.genie.base.ProfileConfig"'
