@@ -27,8 +27,6 @@ import org.ekstep.ipa.R;
 import org.ekstep.ipa.ui.addchild.AddChildActivity;
 import org.ekstep.ipa.ui.landing.geniechildren.GenieChildrenFragment;
 
-import static android.net.NetworkInfo.State.CONNECTED;
-
 /**
  * @author vinayagasundar
  */
@@ -175,7 +173,8 @@ public class LandingActivity extends BaseActivity implements LandingContract.Vie
     }
 
     public boolean isEnabled() {
-        return ((mConnectivityManager != null) ? mConnectivityManager.getNetworkInfo(0).getState() : 0) == CONNECTED;
+        return (((mConnectivityManager != null) && mConnectivityManager.getActiveNetworkInfo() != null) ?
+                mConnectivityManager.getActiveNetworkInfo().getType() : 0) == ConnectivityManager.TYPE_MOBILE;
     }
 
     private boolean isConnectedToOpenRAPNetwork(String ssid) {
@@ -186,10 +185,8 @@ public class LandingActivity extends BaseActivity implements LandingContract.Vie
             if (wifiInfo != null) {
                 NetworkInfo.DetailedState state = WifiInfo.getDetailedStateOf(wifiInfo.getSupplicantState());
                 String currentSsid = wifiInfo.getSSID();
-                if (currentSsid.equals(String.format("\"%s\"", ssid)) &&
-                        (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR)) {
-                    return true;
-                }
+                return currentSsid.equals(String.format("\"%s\"", ssid)) &&
+                        (state == NetworkInfo.DetailedState.CONNECTED || state == NetworkInfo.DetailedState.OBTAINING_IPADDR);
             }
         }
         return false;
