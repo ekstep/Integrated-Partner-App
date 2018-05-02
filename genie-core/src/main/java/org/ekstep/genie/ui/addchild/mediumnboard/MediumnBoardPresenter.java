@@ -74,7 +74,7 @@ public class MediumnBoardPresenter implements MediumnBoardContract.Presenter {
     @Override
     public void onMediumItemClick(int position) {
         mSelectedMedium = mMediumList.get(position);
-        mProfile.setMedium(ConfigUtil.getRelevantMasterData(mMediumList, mSelectedMedium));
+        mProfile.setMedium(new String[]{ConfigUtil.getRelevantMasterData(mMediumList, mSelectedMedium)});
         mMediumBoardView.showMedium(mMediumList.get(position));
         setMediumMarked();
     }
@@ -99,7 +99,7 @@ public class MediumnBoardPresenter implements MediumnBoardContract.Presenter {
     @Override
     public void onBoardItemClick(int position) {
         mSelectedBoard = mBoardList.get(position);
-        mProfile.setBoard(ConfigUtil.getRelevantMasterData(mBoardList, mSelectedBoard));
+        mProfile.setBoard(new String[]{ConfigUtil.getRelevantMasterData(mBoardList, mSelectedBoard)});
         mMediumBoardView.showBoard(mBoardList.get(position));
         setBoardMarked();
     }
@@ -147,9 +147,13 @@ public class MediumnBoardPresenter implements MediumnBoardContract.Presenter {
                 if (mIsEditMode || mProfile != null) {
                     if (mProfile.getBoard() != null) {
                         if (mBoardList.size() > 0) {
-                            String boardLabel = ConfigUtil.getRelevantMasterData(mBoardList, mProfile.getBoard());
-                            mMediumBoardView.showBoard(boardLabel);
-                            setBoardMarked();
+                            String[] board = mProfile.getBoard();
+                            if (board != null) {
+                                String boardLabel = ConfigUtil.getRelevantMasterData(mBoardList, board[0]);
+                                mMediumBoardView.showBoard(boardLabel);
+                                setBoardMarked();
+                            }
+
                         }
                     }
                 }
@@ -174,13 +178,17 @@ public class MediumnBoardPresenter implements MediumnBoardContract.Presenter {
                 if (mIsEditMode || mProfile != null) {
 
                     if (mProfile.getMedium() != null) {
-                        String label = ConfigUtil.getRelevantMasterData(mMediumList, mProfile.getMedium());
-                        mMediumBoardView.showMedium(label);
-                        setMediumMarked();
+                        String[] medium = mProfile.getMedium();
+                        if (medium != null) {
+                            String label = ConfigUtil.getRelevantMasterData(mMediumList, medium[0]);
+                            mMediumBoardView.showMedium(label);
+                            setMediumMarked();
+                        }
+
                     } else {
                         //Set Selected language as default medium of instruction.
                         String defaultMedium = getMediumofInstruction();
-                        mProfile.setMedium(ConfigUtil.getRelevantMasterData(mMediumList, defaultMedium));
+                        mProfile.setMedium(new String[]{ConfigUtil.getRelevantMasterData(mMediumList, defaultMedium)});
                         mMediumBoardView.showMedium(defaultMedium);
                         setMediumMarked();
                     }

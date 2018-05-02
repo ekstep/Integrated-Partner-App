@@ -8,6 +8,7 @@ import org.ekstep.genie.model.enums.ContentType;
 import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.util.Constant;
 import org.ekstep.genie.util.PlayerUtil;
+import org.ekstep.genie.util.geniesdk.ConfigUtil;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genieservices.async.ContentService;
 import org.ekstep.genieservices.commons.IResponseHandler;
@@ -15,7 +16,10 @@ import org.ekstep.genieservices.commons.bean.Content;
 import org.ekstep.genieservices.commons.bean.ContentFilterCriteria;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.Profile;
+import org.ekstep.genieservices.content.ContentConstants;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,8 +52,12 @@ public class MyLessonsPresenter implements MyLessonsContract.Presenter {
         if (lesstionType.equalsIgnoreCase(Constant.CONTENT_TYPE_TEXTBOOK)) {
             contentType = new String[]{ContentType.TEXTBOOK};
         } else {
-            contentType = new String[]{ContentType.GAME, ContentType.STORY, ContentType.WORKSHEET, ContentType.COLLECTION};
+            contentType = ConfigUtil.getFilterConfig(ContentConstants.CONFIG_CONTENT_TYPE);
+            List<String> list = new ArrayList<String>(Arrays.asList(contentType));
+            list.remove(ContentType.TEXTBOOK);
+            contentType = list.toArray(new String[0]);
         }
+        contentFilterCriteria.excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA));
         contentFilterCriteria.contentTypes(contentType).withContentAccess();
         ContentUtil.applyPartnerFilter(contentFilterCriteria);
 

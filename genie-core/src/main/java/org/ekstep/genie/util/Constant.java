@@ -155,6 +155,7 @@ public interface Constant {
     String EXTRAS_SCROLL_TO_BEST_OF_GENIE = "scroll_to_best_ofGenie";
     String AVAILABLE_GAME_LIST = "available_game_list";
 
+    String BUNDLE_KEY_PARTNER_PRAGMA_ARRAY = "pragma_array";
     String BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY = "audience_array";
     String BUNDLE_KEY_PARTNER_CHANNEL_ARRAY = "channel_array";
     String BUNDLE_KEY_PARTNER_TAG = "program_tag";

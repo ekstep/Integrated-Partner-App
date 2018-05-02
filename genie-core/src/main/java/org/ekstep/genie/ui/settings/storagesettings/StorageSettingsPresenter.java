@@ -15,6 +15,8 @@ import org.ekstep.genie.util.preference.PreferenceKey;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.commons.IResponseHandler;
 import org.ekstep.genieservices.commons.bean.ContentMoveRequest;
+import org.ekstep.genieservices.commons.bean.ContentSpaceUsageSummaryRequest;
+import org.ekstep.genieservices.commons.bean.ContentSpaceUsageSummaryResponse;
 import org.ekstep.genieservices.commons.bean.ContentSwitchRequest;
 import org.ekstep.genieservices.commons.bean.GenieResponse;
 import org.ekstep.genieservices.commons.bean.MoveContentProgress;
@@ -25,6 +27,7 @@ import org.ekstep.genieservices.utils.DeviceSpec;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +60,75 @@ public class StorageSettingsPresenter implements StorageSettingsContract.Present
 
     @Override
     public void calculateMobileNSdcardStorage(Context context) {
-        new CalculateMobileSpaceAsync().execute();
+        mStorageSettingView.showLoaders();
+//        new CalculateMobileSpaceAsync().execute();
+
+        getGenieContentTotalSizeOnDevice();
+    }
+
+    private void getGenieContentTotalSizeOnDevice() {
+        final List<String> pathsList = new ArrayList<>();
+        pathsList.add(FileHandler.getExternalFilesDir(mContext).toString());
+
+        //check if secondary storage is available
+        if (FileHandler.isSecondaryStorageAvailable()) {
+            pathsList.add(FileHandler.getExternalSdcardPath(mContext));
+        }
+
+        ContentSpaceUsageSummaryRequest.Builder contentSpaceUsageSummaryRequest = new ContentSpaceUsageSummaryRequest.Builder();
+        contentSpaceUsageSummaryRequest.paths(pathsList);
+
+        CoreApplication.getGenieAsyncService().getContentService().getContentSpaceUsageSummary(contentSpaceUsageSummaryRequest.build(), new IResponseHandler<List<ContentSpaceUsageSummaryResponse>>() {
+            @Override
+            public void onSuccess(GenieResponse<List<ContentSpaceUsageSummaryResponse>> genieResponse) {
+                mStorageSettingView.hideLoaders();
+
+                long availableMobileSpace;
+                long usedMobileSpace;
+                String genieMobileSpace;
+                long availableSdcardSpace = 0;
+                long usedSdcardSpace = 0;
+                String genieSdcardSpace = null;
+
+                // mobile storage
+                availableMobileSpace = DeviceSpec.getAvailableInternalMemorySize();
+                usedMobileSpace = DeviceSpec.getTotalInternalMemorySize() - DeviceSpec.getAvailableInternalMemorySize();
+
+                //sdcard storage
+                if (FileHandler.isSecondaryStorageAvailable()) {
+                    availableSdcardSpace = FileHandler.getAvailableExternalMemorySize();
+                    usedSdcardSpace = FileHandler.getTotalExternalMemorySize() - FileHandler.getAvailableExternalMemorySize();
+                }
+
+                List<ContentSpaceUsageSummaryResponse> responses = genieResponse.getResult();
+                for (ContentSpaceUsageSummaryResponse contentSpaceUsageSummaryResponse : responses) {
+                    Log.e("TotalSizeOnDevice", "Path & Size - " + contentSpaceUsageSummaryResponse.getPath() + " & " + contentSpaceUsageSummaryResponse.getSizeOnDevice());
+
+                    if (contentSpaceUsageSummaryResponse.getPath().equalsIgnoreCase(pathsList.get(0))) {
+                        genieMobileSpace = Util.humanReadableByteCount(contentSpaceUsageSummaryResponse.getSizeOnDevice(), true);
+                        mStorageSettingView.displayMobileAvailableSpace(Util.humanReadableByteCount(availableMobileSpace, true));
+                        mStorageSettingView.displayMobileUsedSpace(Util.humanReadableByteCount(usedMobileSpace, true));
+                        mStorageSettingView.displayMobileGenieSpace(genieMobileSpace);
+                    } else if (FileHandler.isSecondaryStorageAvailable()) {
+                        if (FileHandler.getExternalSdcardPath(mContext) != null) {
+                            genieSdcardSpace = Util.humanReadableByteCount(contentSpaceUsageSummaryResponse.getSizeOnDevice(), true);
+                        }
+
+                        mStorageSettingView.displaySdcardAvailableSpace(Util.humanReadableByteCount(availableSdcardSpace, true));
+                        mStorageSettingView.displaySdcardUsedSpace(Util.humanReadableByteCount(usedSdcardSpace, true));
+                        mStorageSettingView.displaySdcardGenieSpace(genieSdcardSpace);
+                    } else {
+                        mStorageSettingView.displaySdcardNotAvailable();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(GenieResponse<List<ContentSpaceUsageSummaryResponse>> genieResponse) {
+
+            }
+        });
+
     }
 
     public String getInternalGenieUsedSpace() {

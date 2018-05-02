@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.SOURCE)
 @StringDef({ContentType.STORY, ContentType.WORKSHEET, ContentType.GAME, ContentType.COLLECTION,
-        ContentType.TEXTBOOK, ContentType.TEXTBOOK, ContentType.COURSE, ContentType.LESSIONPLAN})
+        ContentType.TEXTBOOK, ContentType.TEXTBOOK, ContentType.COURSE, ContentType.LESSIONPLAN, ContentType.RESOURCE})
 public @interface ContentType {
 
     String STORY = "Story";
@@ -21,4 +21,5 @@ public @interface ContentType {
     String TEXTBOOKUNIT = "TextbookUnit";
     String COURSE = "Course";
     String LESSIONPLAN = "LessonPlan";
+    String RESOURCE = "Resource";
 }

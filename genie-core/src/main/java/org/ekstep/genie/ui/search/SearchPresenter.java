@@ -12,6 +12,7 @@ import org.ekstep.genie.telemetry.TelemetryStageId;
 import org.ekstep.genie.telemetry.enums.CoRelationIdContext;
 import org.ekstep.genie.telemetry.enums.ImpressionType;
 import org.ekstep.genie.util.Constant;
+import org.ekstep.genie.util.geniesdk.ConfigUtil;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.async.ContentService;
@@ -36,6 +37,7 @@ import org.ekstep.genieservices.commons.bean.enums.SortOrder;
 import org.ekstep.genieservices.commons.utils.CollectionUtil;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
+import org.ekstep.genieservices.content.ContentConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -199,6 +201,8 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     private void applyPartnerFilter(ContentSearchCriteria.SearchBuilder searchBuilder) {
+        searchBuilder.facets(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_FACETS));
+        searchBuilder.contentTypes(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_CONTENT_TYPE));
         String partnerInfo = PreferenceUtil.getPartnerInfo();
         if (!StringUtil.isNullOrEmpty(partnerInfo)) {
             HashMap<String, Object> partnerMap = GsonUtil.fromJson(partnerInfo, HashMap.class);
@@ -216,7 +220,19 @@ public class SearchPresenter implements SearchContract.Presenter {
                     searchBuilder.audience(audience.toArray(new String[audience.size()]));
                 }
             }
+            //Apply pragma filter
+            if (partnerMap.containsKey(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY)) {
+                ArrayList<String> pragma = (ArrayList<String>) partnerMap.get(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY);
+                if (pragma != null) {
+                    searchBuilder.excludePragma(pragma.toArray(new String[pragma.size()]));
+                }
+            }
+        } else {
+            //Apply pragma filter
+            searchBuilder.excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA));
+
         }
+
     }
 
     private void applyProfileFilter(ContentSearchCriteria.SearchBuilder searchBuilder, Profile profile) {

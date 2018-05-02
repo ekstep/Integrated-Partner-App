@@ -56,8 +56,6 @@ import org.ekstep.genieservices.commons.bean.Profile;
 
 import java.util.List;
 
-//import org.ekstep.genie.fragment.DataSettingsFragment;
-
 public class LandingActivity extends BaseActivity
         implements LandingContract.View, IMenuItemClick {
 

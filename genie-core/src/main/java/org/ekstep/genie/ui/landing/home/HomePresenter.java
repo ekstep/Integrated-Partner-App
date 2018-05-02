@@ -65,9 +65,11 @@ import org.ekstep.genieservices.commons.utils.CollectionUtil;
 import org.ekstep.genieservices.commons.utils.DateUtil;
 import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
+import org.ekstep.genieservices.content.ContentConstants;
 import org.ekstep.genieservices.eventbus.EventBus;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -214,9 +216,11 @@ public class HomePresenter implements HomeContract.Presenter {
         }
 
         ContentListingCriteria.Builder listingCriteria = new ContentListingCriteria.Builder();
+        listingCriteria.facets(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_FACETS));
         String identifier = Constant.HOME_IDENTIFIER;
 
         String partnerInfo = PreferenceUtil.getPartnerInfo();
+
         if (!StringUtil.isNullOrEmpty(partnerInfo)) {
             HashMap<String, Object> partnerMap = GsonUtil.fromJson(partnerInfo, HashMap.class);
             if (partnerMap.get("mode") != null) {
@@ -241,6 +245,16 @@ public class HomePresenter implements HomeContract.Presenter {
                     listingCriteria.audience(audience.toArray(new String[audience.size()]));
                 }
             }
+
+            //Apply pragma filter
+            if (partnerMap.containsKey(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY)) {
+                ArrayList<String> pragma = (ArrayList<String>) partnerMap.get(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY);
+                if (pragma != null) {
+                    listingCriteria.excludePragma(pragma.toArray(new String[pragma.size()]));
+                }
+            }
+        } else {
+            listingCriteria.excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA));
         }
 
         listingCriteria.listingId(identifier).subject(selectedSubject);
@@ -567,7 +581,7 @@ public class HomePresenter implements HomeContract.Presenter {
         }
 
 //        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.CONTENT_CLICKED, contentId, map, cdata));
-        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.CONTENT_CLICKED, TelemetryStageId.GENIE_HOME, contentId, ObjectType.CONTENT, map, cdata));
+        TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.CONTENT_CLICKED, TelemetryStageId.GENIE_HOME, contentId, ObjectType.CONTENT, map, cdata));
 
         ContentUtil.navigateToContentDetails(mContext, contentData, new ArrayList<HierarchyInfo>(), false, false, false);
 
@@ -579,7 +593,12 @@ public class HomePresenter implements HomeContract.Presenter {
             isLocalContentsCalledAlready = true;
             LogUtil.e(TAG + "@getLocalContents", "Called !");
             ContentFilterCriteria.Builder contentFilterCriteria = new ContentFilterCriteria.Builder();
-            contentFilterCriteria.contentTypes(new String[]{ContentType.GAME, ContentType.STORY, ContentType.WORKSHEET, ContentType.COLLECTION})
+            contentFilterCriteria.excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA));
+            String[] contentTypesArray = ConfigUtil.getFilterConfig(ContentConstants.CONFIG_CONTENT_TYPE);
+            List<String> list = new ArrayList<String>(Arrays.asList(contentTypesArray));
+            list.remove(ContentType.TEXTBOOK);
+            contentTypesArray = list.toArray(new String[0]);
+            contentFilterCriteria.contentTypes(contentTypesArray)
                     .withContentAccess();
             ContentUtil.applyPartnerFilter(contentFilterCriteria);
 
@@ -664,6 +683,7 @@ public class HomePresenter implements HomeContract.Presenter {
 
     private void getLocalTextBookContent() {
         ContentFilterCriteria.Builder contentFilterCriteria = new ContentFilterCriteria.Builder().contentTypes(new String[]{ContentType.TEXTBOOK})
+                .excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA))
                 .withContentAccess();
         ContentUtil.applyPartnerFilter(contentFilterCriteria);
         mContentService.getAllLocalContent(contentFilterCriteria.build(), new IResponseHandler<List<Content>>() {
@@ -987,7 +1007,7 @@ public class HomePresenter implements HomeContract.Presenter {
                 eksMap.put(TelemetryConstant.CHILDREN_ON_DEVICE, "" + size);
 
 //                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, profile.getUid(), eksMap));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, profile.getUid(), ObjectType.USER, eksMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, profile.getUid(), ObjectType.USER, eksMap));
                 getCurrentUser();
             }
 
@@ -1014,7 +1034,7 @@ public class HomePresenter implements HomeContract.Presenter {
                 eksMap.put(TelemetryConstant.CHILDREN_ON_DEVICE, "" + size);
 
 //                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.GENIE_HOME, TelemetryAction.SWITCH_CHILD, "0", eksMap));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER,InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, "0", ObjectType.USER, eksMap));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.USER, InteractionType.TOUCH, TelemetryAction.SWITCH_CHILD, TelemetryStageId.GENIE_HOME, "0", ObjectType.USER, eksMap));
             }
 
             @Override

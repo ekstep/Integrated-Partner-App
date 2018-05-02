@@ -39,6 +39,7 @@ import org.ekstep.genie.util.DeviceUtility;
 import org.ekstep.genie.util.KeyboardUtil;
 import org.ekstep.genie.util.ThemeUtility;
 import org.ekstep.genie.util.Util;
+import org.ekstep.genie.util.geniesdk.ConfigUtil;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genieservices.commons.bean.ContentData;
 import org.ekstep.genieservices.commons.bean.ContentImportResponse;
@@ -49,6 +50,7 @@ import org.ekstep.genieservices.commons.bean.ContentSortCriteria;
 import org.ekstep.genieservices.commons.bean.Profile;
 import org.ekstep.genieservices.commons.bean.enums.SortOrder;
 import org.ekstep.genieservices.commons.utils.CollectionUtil;
+import org.ekstep.genieservices.content.ContentConstants;
 import org.ekstep.genieservices.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -582,6 +584,8 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
             moveSearchCursortoEnd();
 
             ContentSearchCriteria.SearchBuilder searchBuilder = new ContentSearchCriteria.SearchBuilder();
+            searchBuilder.contentTypes(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_CONTENT_TYPE));
+            searchBuilder.facets(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_FACETS));
             searchBuilder.query(getSearchedQuery())
                     .limit(200);
             mContentSearchCriteria = searchBuilder.build();

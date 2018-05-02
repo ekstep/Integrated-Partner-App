@@ -44,6 +44,7 @@ public class LaunchUtil {
         if (extras != null) {
             String[] channelArray = getStringArrayFromBundle(extras, Constant.BUNDLE_KEY_PARTNER_CHANNEL_ARRAY);
             String[] audienceArray = getStringArrayFromBundle(extras, Constant.BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY);
+            String[] pragmaArray = getStringArrayFromBundle(extras, Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY);
             String language = getStringFromBundle(extras, Constant.BUNDLE_KEY_PARTNER_LANGUAGE);
             String mode = getStringFromBundle(extras, Constant.BUNDLE_KEY_HOME_MODE);
 
@@ -83,6 +84,7 @@ public class LaunchUtil {
             Map hashMap = new HashMap();
             hashMap.put(Constant.BUNDLE_KEY_PARTNER_CHANNEL_ARRAY, channelArray);
             hashMap.put(Constant.BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY, audienceArray);
+            hashMap.put(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY, pragmaArray);
             hashMap.put(Constant.BUNDLE_KEY_PARTNER_LANGUAGE, language);
             hashMap.put(Constant.BUNDLE_KEY_HOME_MODE, mode);
             hashMap.put(Constant.BUNDLE_KEY_ENABLE_CHILD_SWITCHER, enableChildSwitcher);
@@ -120,7 +122,7 @@ public class LaunchUtil {
                     }
                 });
             } else {
-                if ((extras.containsKey(Constant.BUNDLE_KEY_ENABLE_ONBOARDING_PROFILE_CREATION) && !extras.getBoolean(Constant.BUNDLE_KEY_ENABLE_ONBOARDING_PROFILE_CREATION))){
+                if ((extras.containsKey(Constant.BUNDLE_KEY_ENABLE_ONBOARDING_PROFILE_CREATION) && !extras.getBoolean(Constant.BUNDLE_KEY_ENABLE_ONBOARDING_PROFILE_CREATION))) {
                     incrementOnBoardingAndCheckForChangeSubjectOnBoarding(extras);
                 }
             }
@@ -204,18 +206,17 @@ public class LaunchUtil {
         if (extras.containsKey(Constant.BUNDLE_FROM_NOTIFICATION_LIST)) {
 
 //            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.NOTIFICATION_LIST, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
-            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.NOTIFICATION_LIST, String.valueOf(msgId), null, map));
+            TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.NOTIFICATION_LIST, String.valueOf(msgId), null, map));
         } else {
             if (notification.getRelativetime() > 0) {
 
 //                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.LOCAL_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId), map));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.LOCAL_NOTIFICATION, String.valueOf(msgId), null, map));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.LOCAL_NOTIFICATION, String.valueOf(msgId), null, map));
             } else {
 
 //                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildGEInteract(InteractionType.TOUCH, TelemetryStageId.SERVER_NOTIFICATION, TelemetryAction.NOTIFICATION_CLICKED, String.valueOf(msgId)));
-                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME,InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.SERVER_NOTIFICATION, String.valueOf(msgId), null));
+                TelemetryHandler.saveTelemetry(TelemetryBuilder.buildInteractEvent(EnvironmentId.HOME, InteractionType.TOUCH, TelemetryAction.NOTIFICATION_CLICKED, TelemetryStageId.SERVER_NOTIFICATION, String.valueOf(msgId), null));
             }
-
         }
 
         Intent intent = new Intent(activity, LandingActivity.class);

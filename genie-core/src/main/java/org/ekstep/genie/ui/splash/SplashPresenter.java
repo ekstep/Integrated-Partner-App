@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 
-import org.ekstep.genie.BuildConfig;
 import org.ekstep.genie.CoreApplication;
 import org.ekstep.genie.R;
 import org.ekstep.genie.activity.BaseActivity;
@@ -327,7 +326,8 @@ public class SplashPresenter implements SplashContract.Presenter {
     private boolean isFromPartner(Bundle extras) {
         return extras.containsKey(Constant.BUNDLE_KEY_PARTNER_CHANNEL_ARRAY)
                 || extras.containsKey(Constant.BUNDLE_KEY_PARTNER_TAG)
-                || extras.containsKey(Constant.BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY);
+                || extras.containsKey(Constant.BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY)
+                || extras.containsKey(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY);
     }
 
     private void handleNotification(Intent intent) {

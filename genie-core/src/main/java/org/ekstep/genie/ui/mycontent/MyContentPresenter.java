@@ -28,6 +28,7 @@ import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genie.util.PlayerUtil;
 import org.ekstep.genie.util.ThemeUtility;
 import org.ekstep.genie.util.Util;
+import org.ekstep.genie.util.geniesdk.ConfigUtil;
 import org.ekstep.genie.util.geniesdk.ContentUtil;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 import org.ekstep.genieservices.IUserService;
@@ -48,6 +49,7 @@ import org.ekstep.genieservices.commons.bean.enums.InteractionType;
 import org.ekstep.genieservices.commons.bean.enums.SortOrder;
 import org.ekstep.genieservices.commons.utils.CollectionUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
+import org.ekstep.genieservices.content.ContentConstants;
 import org.ekstep.genieservices.eventbus.EventBus;
 
 import java.util.ArrayList;
@@ -170,6 +172,8 @@ public class MyContentPresenter implements MyContentContract.Presenter {
     @Override
     public void renderLocalContents() {
         ContentFilterCriteria.Builder contentFilterCriteria = new ContentFilterCriteria.Builder();
+        contentFilterCriteria.excludePragma(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_EXCLUDE_PRAGMA));
+        contentFilterCriteria.contentTypes(ConfigUtil.getFilterConfig(ContentConstants.CONFIG_CONTENT_TYPE));
         contentFilterCriteria.withContentAccess().withFeedback();
         contentFilterCriteria.forUser(mUserService.getCurrentUser().getResult().getUid());
         ContentUtil.applyPartnerFilter(contentFilterCriteria);

@@ -7,7 +7,6 @@ import org.ekstep.genie.R;
 import org.ekstep.genie.util.preference.PreferenceUtil;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created on 4/28/2016.
@@ -44,9 +43,9 @@ public class ContentLanguageJsonCreator {
     private static final String ANONYMOUS = "anonymousUserName";
     private static final String COMMENT = "comment";
 
-    public static Map<String, Object> createLanguageBundleMap() {
+    public static HashMap<String, Object> createLanguageBundleMap() {
         Context context = CoreApplication.getInstance();
-        Map<String, Object> languageBundle = new HashMap<>();
+        HashMap<String, Object> languageBundle = new HashMap<>();
         languageBundle.put(LANGUAGE_CODE, PreferenceUtil.getLanguage());
         languageBundle.put(HOME, context.getResources().getString(R.string.title_content_player_home));
         languageBundle.put(TITLE, context.getResources().getString(R.string.title_content_player_title));

@@ -70,7 +70,7 @@ public class PlayerUtil {
 
             if (TelemetryUtil.isFromCollectionOrTextBook(content.getHierarchyInfo())) {
                 //Content is originated from collection/Textbook so dont generate GE_LAUNCH_GAME only launch the content.
-                ContentPlayer.play(context, content, ContentLanguageJsonCreator.createLanguageBundleMap());
+                ContentPlayer.play(context, content, null);
             } else {
 
                 //Content is not originated from collection/Textbook so  generate GE_LAUNCH_GAME and  launch the content.
@@ -81,7 +81,7 @@ public class PlayerUtil {
                         ContentUtil.addContentAccess(content);
 
                         Util.processSuccess(genieResponse);
-                        ContentPlayer.play(context, content, ContentLanguageJsonCreator.createLanguageBundleMap());
+                        ContentPlayer.play(context, content, null);
                     }
 
                     @Override

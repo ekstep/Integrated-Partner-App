@@ -139,7 +139,7 @@ public class ContentUtil {
                     contentDetailPresenter.deleteContent(identifier);
                 } else if (presenter instanceof CollectionPresenter) {
                     CollectionPresenter collectionPresenter = (CollectionPresenter) presenter;
-                    collectionPresenter.deleteContent(identifier, isAccessedElsewhere > 1 ? true : false);
+                    collectionPresenter.deleteContent(identifier, isAccessedElsewhere > 1);
                 } else if (presenter instanceof TextbookPresenter) {
                     TextbookPresenter textbookPresenter = (TextbookPresenter) presenter;
                     textbookPresenter.deleteContent(identifier);
@@ -163,23 +163,22 @@ public class ContentUtil {
         return sLocalContentCache != null ? sLocalContentCache : new HashSet<String>();
     }
 
-    public static void setLocalContentsCache(Set<String> identfierList) {
+    public static void setLocalContentsCache(Set<String> identifierList) {
         if (sLocalContentCache == null) {
             sLocalContentCache = new HashSet<>();
         }
-        sLocalContentCache.addAll(identfierList);
+        sLocalContentCache.addAll(identifierList);
     }
 
-    public static void removeFromLocalCache(String identfier) {
+    public static void removeFromLocalCache(String identifier) {
         if (sLocalContentCache != null) {
-            sLocalContentCache.remove(identfier);
+            sLocalContentCache.remove(identifier);
         }
-
     }
 
-    public static float getPreviousRating(List<ContentFeedback> contententFeedbackList) {
-        if (!CollectionUtil.isNullOrEmpty(contententFeedbackList)) {
-            ContentFeedback contentFeedback = contententFeedbackList.get(0);
+    public static float getPreviousRating(List<ContentFeedback> contentFeedbackList) {
+        if (!CollectionUtil.isNullOrEmpty(contentFeedbackList)) {
+            ContentFeedback contentFeedback = contentFeedbackList.get(0);
             return contentFeedback != null ? contentFeedback.getRating() : 0;
         }
         return 0;
@@ -260,6 +259,13 @@ public class ContentUtil {
                 ArrayList<String> audience = (ArrayList<String>) partnerMap.get(Constant.BUNDLE_KEY_PARTNER_AUDIENCE_ARRAY);
                 if (audience != null) {
                     builder.audience(audience.toArray(new String[audience.size()]));
+                }
+            }
+            //Apply pragma filter
+            if (partnerMap.containsKey(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY)) {
+                ArrayList<String> pragma = (ArrayList<String>) partnerMap.get(Constant.BUNDLE_KEY_PARTNER_PRAGMA_ARRAY);
+                if (pragma != null) {
+                    builder.pragma(pragma.toArray(new String[pragma.size()]));
                 }
             }
         }

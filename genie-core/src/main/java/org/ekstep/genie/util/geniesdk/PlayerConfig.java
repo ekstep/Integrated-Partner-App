@@ -7,17 +7,19 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
 
+import org.ekstep.genie.CoreApplication;
+import org.ekstep.genie.util.ContentLanguageJsonCreator;
 import org.ekstep.genie.util.LogUtil;
 import org.ekstep.genie.util.Util;
+import org.ekstep.genieservices.commons.IParams;
 import org.ekstep.genieservices.commons.IPlayerConfig;
 import org.ekstep.genieservices.commons.bean.Content;
-import org.ekstep.genieservices.commons.utils.GsonUtil;
 import org.ekstep.genieservices.commons.utils.ReflectionUtil;
 import org.ekstep.genieservices.commons.utils.StringUtil;
 import org.ekstep.genieservices.content.ContentConstants;
+import org.ekstep.genieservices.utils.BuildConfigUtil;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created on 7/17/2017.
@@ -31,7 +33,7 @@ public class PlayerConfig implements IPlayerConfig {
     private static final String GENIE_CANVAS_PACKAGE = "org.ekstep.geniecanvas";
     private static final String GENIE_QUIZ_APP_PACKAGE = "org.ekstep.quiz.app";
     private static final String GENIE_CANVAS_ACTIVITY = "org.ekstep.geniecanvas.MainActivity";
-    private static final String BUNDLE_KEY_OVERLAY = "overlay";
+    private static final String BUNDLE_KEY_CONFIG = "config";
 
     @Override
     public Intent getPlayerIntent(Context context, Content content) {
@@ -61,10 +63,15 @@ public class PlayerConfig implements IPlayerConfig {
             }
         }
         if (Util.isChildSwitcherEnabled()) {
-            Map<String, Object> userSwitcher = new HashMap<>();
+            HashMap<String, Object> userSwitcher = new HashMap<>();
             userSwitcher.put("enableUserSwitcher", false);
-            intent.putExtra(BUNDLE_KEY_OVERLAY, GsonUtil.toJson(userSwitcher));
+            intent.putExtra(BUNDLE_KEY_CONFIG, userSwitcher);
         }
+        intent.putExtra("languageInfo", ContentLanguageJsonCreator.createLanguageBundleMap());
+        intent.putExtra("origin", "Genie");
+        String packageName = CoreApplication.getInstance().getClientPackageName();
+        String appId = BuildConfigUtil.getBuildConfigValue(packageName, IParams.Key.APPLICATION_ID).toString();
+        intent.putExtra("appQualifier", appId);
 
         return intent;
     }
