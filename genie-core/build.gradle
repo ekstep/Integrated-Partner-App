@@ -58,7 +58,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
 
     Map<String, String> dependencies = globalConf.dependencies;
 
@@ -76,6 +76,14 @@ dependencies {
     //Genie Sdk modules
     compile dependencies.genieproviders
     compile dependencies.genieIntegration
+//    compile "com.google.code.gson:gson:2.8.2"
+//    compile "joda-time:joda-time:2.9.9"
+//    compile "org.greenrobot:eventbus:3.1.1"
+//    compile "com.google.android.gms:play-services-location:9.4.0"
+//    compile "com.squareup.okhttp3:okhttp:3.9.1"
+//    compile(name:'genie-integration-1.0.local',ext:'aar')
+//    compile(name:'genie-providers-1.0.local',ext:'aar')
+//    compile(name:'genie-services-1.0.local',ext:'aar')
 
     //Content player modules
     compile dependencies.cordova
@@ -89,7 +97,7 @@ dependencies {
 
 //     xWalk shared mode lib
     productionCompile dependencies.xWalkSharedLib
-    compile "com.squareup.okhttp3:okhttp:3.8.1"
+    compile "com.squareup.okhttp3:okhttp:3.9.1"
 
 //     xWalk lib
 //    xWalkCompile dependencies.xWalkCore
