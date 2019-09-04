@@ -478,5 +478,4 @@
     <string name="msg_no_sdcard_found">No sdcard found.</string>
     <string name="error_app_not_found">Application not found. Please choose another share option</string>
     <!--storage settings dialog strings end-->
-
 </resources>

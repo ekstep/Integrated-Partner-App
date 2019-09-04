@@ -500,5 +500,4 @@
     <string name="error_app_not_found">Application not found. Please choose another share option</string>
     <string name="select_switch_option">Please select an option</string>
     <!--storage settings dialog strings end-->
-
 </resources>
